@@ -7,8 +7,10 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
+    [SerializeField] private BaseTower _towerPrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
+    [SerializeField] private BuildingManager buildingManager;
 
 
     private Dictionary<Vector2, Tile> _tiles;
@@ -38,7 +40,7 @@ public class GridManager : MonoBehaviour
 
                 //for checker board patter...
                 var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-                spawnedTile.Init(isOffset);
+                spawnedTile.Init(isOffset, _towerPrefab);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
@@ -48,10 +50,13 @@ public class GridManager : MonoBehaviour
     }
 
 
-    public Tile GetTileAtPosition(Vector2 pos)
+    public Tile GetTileAtPosition(float x, float y)
     {
+        Debug.Log(x + " " + y);
+        Vector2 pos = new Vector2(x, y);
         if (_tiles.TryGetValue(pos, out var tile))
         {
+            Debug.Log("return tile");
             return tile;
         }
 

@@ -16,6 +16,10 @@ public class Tile : MonoBehaviour
 
     private BuildingManager buildingManager;
     private bool Occupied = false;
+    public Tile leftTile = null;
+    public Tile rightTile = null;
+    public Tile underTile = null;
+
     //public bool Buildable => _isBuildable && OccupiedTower == null;
     public bool Buildable => _isBuildable && Occupied == false;
 
@@ -64,6 +68,13 @@ public class Tile : MonoBehaviour
             Occupied = true;
        }
         
+    }
+
+    public void setAdjacentTiles(Tile underTile, Tile leftTile, Tile rightTile)
+    {
+        this.underTile = underTile;
+        this.rightTile = rightTile;
+        this.leftTile = leftTile;
     }
 
 

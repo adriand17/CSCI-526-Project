@@ -335,6 +335,7 @@ MonoBehaviour:
   _width: 16
   _height: 9
   _tilePrefab: {fileID: 9049506976798774116, guid: 6192c2dacd9154344a52002a8abf1c74, type: 3}
+  _dropPrefab: {fileID: 8683724273254306095, guid: 83349da6cc159db4f895d02d01dad219, type: 3}
   _towerPrefab: {fileID: 4851590680856019125, guid: e7ab8d921f8f89b4ba56cf232ddf6ddb, type: 3}
   _camera: {fileID: 1264035264}
   buildingManager: {fileID: 506064124}

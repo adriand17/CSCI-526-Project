@@ -4,14 +4,27 @@ using UnityEngine;
 
 public class WaterDrop : MonoBehaviour
 {
+
+    enum Direction
+    {
+        Left,
+        Right,
+        Up,
+        Down
+    }
+
+
     private bool isMoving;
     private Vector3 originPos, targetPos;
     private float timeToMove = 0.2f;
     private Tile currentTile = null;
     private Tile destinationTile = null;
+    private Direction direction = Direction.Down;
 
     /*public float movementSpeed = 5f;
     public Transform movePoint;*/
+
+    
 
     public void Init(Tile currentTile)
     {
@@ -31,48 +44,68 @@ public class WaterDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.position = Vector3.MoveTowards(transform.position, movePoint.position, movementSpeed * Time.deltaTime);
-
-        // if (Vector3.Distance(transform.position, movePoint.position) <= .05f) { }
-
-        /*  if (Input.GetKey(KeyCode.W) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.up));
-          }
-          if (Input.GetKey(KeyCode.A) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.left));
-          }
-          if (Input.GetKey(KeyCode.S) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.down));
-          }
-          if (Input.GetKey(KeyCode.D) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.right));
-          }*/
+        
 
         if (!isMoving)
         {
             //determine which direction to go
+            //Debug.Log(direction);
             if (currentTile.underTile != null)
             {
-
-                Debug.Log("moving down");
+                ///if possible move down
                 destinationTile = currentTile.underTile;
                 StartCoroutine(MovePlayer(Vector3.down));
             }
-            else if (currentTile.leftTile != null)
+            else if (currentTile.underTile == null && direction == Direction.Down)
             {
-                Debug.Log("moving left");
-                destinationTile = currentTile.leftTile;
-                StartCoroutine(MovePlayer(Vector3.left));
+                //if cannot move down anymore move left
+                //Debug.Log("cannot move down anymore");
+                if (currentTile.leftTile != null)
+                {
+                    direction = Direction.Left;
+                    destinationTile = currentTile.leftTile;
+                    StartCoroutine(MovePlayer(Vector3.left));
+                }
+                else
+                {
+                    direction = Direction.Right;
+                    destinationTile = currentTile.rightTile;
+                    StartCoroutine(MovePlayer(Vector3.right));
+                }
+               
             }
-            else if (currentTile.rightTile != null)
+            else if ((currentTile.leftTile != null && direction == Direction.Left) || (currentTile.rightTile != null && direction == Direction.Right))
             {
-                Debug.Log("moving right");
-                destinationTile = currentTile.rightTile;
-                StartCoroutine(MovePlayer(Vector3.right));
+                //if currently moving horizonatally, keep moving the same direction
+                //Debug.Log("keep directions!");
+                if (direction == Direction.Left)
+                {
+                    destinationTile = currentTile.leftTile;
+                    StartCoroutine(MovePlayer(Vector3.left));
+                }
+                else
+                {
+                    destinationTile = currentTile.rightTile;
+                    StartCoroutine(MovePlayer(Vector3.right));
+                }
+               
+            }
+            else if ((currentTile.leftTile == null && direction == Direction.Left) || (currentTile.rightTile == null && direction == Direction.Right))
+            {
+                //if currently moving horizonatally, but cannot move towards that direction anymore, move towards is opposite direction
+                //Debug.Log("change directions!");
+                if (direction == Direction.Left)
+                {
+                    direction = Direction.Right;                   
+                    destinationTile = currentTile.rightTile;
+                    StartCoroutine(MovePlayer(Vector3.right));
+                }
+                else
+                {
+                    direction = Direction.Left;
+                    destinationTile = currentTile.leftTile;
+                    StartCoroutine(MovePlayer(Vector3.left));
+                }
             }
 
         }
@@ -85,14 +118,17 @@ public class WaterDrop : MonoBehaviour
         //determine which direction to go
         if (currentTile.underTile != null)
         {
+            direction = Direction.Down;
             destinationTile = currentTile.underTile;
         }
-        if (currentTile.leftTile != null)
+        else if (currentTile.leftTile != null)
         {
+            direction = Direction.Left;
             destinationTile = currentTile.leftTile;
         }
-        if (currentTile.rightTile != null)
+        else if (currentTile.rightTile != null)
         {
+            direction = Direction.Right;
             destinationTile = currentTile.rightTile;
         }
 
@@ -102,7 +138,6 @@ public class WaterDrop : MonoBehaviour
     private IEnumerator MovePlayer(Vector3 direction)
     {
 
-        Debug.Log("moving...");
         isMoving = true;
 
         float elapsedTime = 0;

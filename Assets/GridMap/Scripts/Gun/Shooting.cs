@@ -42,11 +42,9 @@ public class Shooting : MonoBehaviour
     
     private IEnumerator WaitAndDisappear(float waitTime)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(waitTime);
-            Destroy(GameObject.Find("Laser Beam"));
-        }
+        yield return new WaitForSeconds(waitTime);
+        Debug.Log("Destroy");
+        Destroy(GameObject.Find("Laser Beam"));
     }
 
 

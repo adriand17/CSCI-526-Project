@@ -30,7 +30,8 @@ public class Tile : MonoBehaviour
         _isBuildable = false;
         //buildingManager = bm;
         this._towerPrefab = towerPrefab;
-        _renderer.color = _baseColor;
+        
+        _renderer.color = isOffset ? _offsetColor : _baseColor;
     }
 
     private void Update()

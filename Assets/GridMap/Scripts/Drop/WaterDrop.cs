@@ -50,31 +50,35 @@ public class WaterDrop : MonoBehaviour
         {
             //determine which direction to go
             //Debug.Log(direction);
-            if (currentTile.underTile != null)
+            if (currentTile.underTile != null && currentTile.underTile._isPassable)
             {
                 ///if possible move down
+                direction = Direction.Down;
                 destinationTile = currentTile.underTile;
                 StartCoroutine(MovePlayer(Vector3.down));
             }
-            else if (currentTile.underTile == null && direction == Direction.Down)
+            else if ((currentTile.underTile == null || !currentTile.underTile._isPassable)  && direction == Direction.Down)
             {
                 //if cannot move down anymore move left
                 //Debug.Log("cannot move down anymore");
-                if (currentTile.leftTile != null)
+
+                Debug.Log("hit the ground");
+                if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
                 {
                     direction = Direction.Left;
                     destinationTile = currentTile.leftTile;
                     StartCoroutine(MovePlayer(Vector3.left));
                 }
-                else
+                else if(currentTile.rightTile != null && currentTile.rightTile._isPassable)
                 {
                     direction = Direction.Right;
                     destinationTile = currentTile.rightTile;
                     StartCoroutine(MovePlayer(Vector3.right));
                 }
-               
+
             }
-            else if ((currentTile.leftTile != null && direction == Direction.Left) || (currentTile.rightTile != null && direction == Direction.Right))
+            else if ((currentTile.leftTile != null && currentTile.leftTile._isPassable && direction == Direction.Left) || 
+                (currentTile.rightTile != null && currentTile.rightTile._isPassable && direction == Direction.Right))
             {
                 //if currently moving horizonatally, keep moving the same direction
                 //Debug.Log("keep directions!");
@@ -90,7 +94,8 @@ public class WaterDrop : MonoBehaviour
                 }
                
             }
-            else if ((currentTile.leftTile == null && direction == Direction.Left) || (currentTile.rightTile == null && direction == Direction.Right))
+            else if (((currentTile.leftTile == null ||  (currentTile.leftTile != null && !currentTile.leftTile._isPassable)) && direction == Direction.Left) || 
+                ((currentTile.rightTile == null || (currentTile.rightTile != null && !currentTile.rightTile._isPassable)) && direction == Direction.Right))
             {
                 //if currently moving horizonatally, but cannot move towards that direction anymore, move towards is opposite direction
                 //Debug.Log("change directions!");
@@ -116,17 +121,17 @@ public class WaterDrop : MonoBehaviour
     private void findDestination()
     {
         //determine which direction to go
-        if (currentTile.underTile != null)
+        if (currentTile.underTile != null && currentTile.underTile._isPassable)
         {
             direction = Direction.Down;
             destinationTile = currentTile.underTile;
         }
-        else if (currentTile.leftTile != null)
+        else if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
         {
             direction = Direction.Left;
             destinationTile = currentTile.leftTile;
         }
-        else if (currentTile.rightTile != null)
+        else if (currentTile.rightTile != null && currentTile.rightTile._isPassable)
         {
             direction = Direction.Right;
             destinationTile = currentTile.rightTile;

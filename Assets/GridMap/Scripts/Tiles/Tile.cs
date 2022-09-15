@@ -9,6 +9,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
+    
     [SerializeField] public BaseTower OccupiedTower;
     [SerializeField] private BaseTower _towerPrefab;
 
@@ -19,17 +20,19 @@ public class Tile : MonoBehaviour
     public Tile leftTile = null;
     public Tile rightTile = null;
     public Tile underTile = null;
+    public bool _isPassable = true;
 
     //public bool Buildable => _isBuildable && OccupiedTower == null;
     public bool Buildable => _isBuildable && Occupied == false;
 
     // Start is called before the first frame update
 
-    public void Init(bool isOffset, BaseTower towerPrefab)
+    public void Init(bool isOffset, BaseTower towerPrefab, bool _isPassable)
     {
         _isBuildable = false;
         //buildingManager = bm;
         this._towerPrefab = towerPrefab;
+        this._isPassable = _isPassable;
         
         _renderer.color = isOffset ? _offsetColor : _baseColor;
     }
@@ -45,6 +48,12 @@ public class Tile : MonoBehaviour
         {
 
         }
+    }
+
+    public void SetTileUnpassable()
+    {
+        _renderer.color = Color.black;
+        _isPassable = false;
     }
 
 

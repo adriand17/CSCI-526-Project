@@ -40,14 +40,17 @@ public class GridManager : MonoBehaviour
                 spawnedTile.name = $"Tile {x} {y}";
 
                 //for checker board patter...
-                var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
-                spawnedTile.Init(isOffset, _towerPrefab);
+                var isOffset = (x + y) % 2 == 1;
+                spawnedTile.Init(isOffset, _towerPrefab, true);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
 
+
+        SetUnpassableTiles();
         SetAdjacentTiles();
+        
         SpawnWaterDrop();
 
         _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
@@ -86,6 +89,81 @@ public class GridManager : MonoBehaviour
 
             }
         }
+    }
+
+    public void SetUnpassableTiles()
+    {
+
+     
+        Tile t = _tiles[new Vector3(5,6)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(4, 6)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(3, 6)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(2, 6)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(1, 6)];
+        t.SetTileUnpassable();
+
+
+        t = _tiles[new Vector3(6, 4)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(5, 4)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(4, 4)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(3, 4)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(2, 4)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(1, 4)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(0, 4)];
+        t.SetTileUnpassable();
+
+
+        t = _tiles[new Vector3(8, 3)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(7, 2)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(6, 2)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(5, 2)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(4, 2)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(3, 2)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(2, 2)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(1, 2)];
+        t.SetTileUnpassable();
+
+
+        t = _tiles[new Vector3(1, 1)];
+        t.SetTileUnpassable();
+
+        t = _tiles[new Vector3(1, 0)];
+        t.SetTileUnpassable();
+
     }
 
     public void SpawnWaterDrop()

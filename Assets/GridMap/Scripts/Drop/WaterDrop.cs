@@ -88,26 +88,6 @@ public class WaterDrop : MonoBehaviour
                 return;
             }
             
-            if ((!canMoveInDirection(Direction.Left) && direction == Direction.Left ) ||
-                (!canMoveInDirection(Direction.Right) && direction == Direction.Right))
-            {
-                /// If currently moving horizonatally, but cannot move towards that direction anymore, move in the opposite direction.
-                //Debug.Log("change directions!");
-                if (direction == Direction.Left && currentTile.rightTile != null && currentTile.rightTile._isPassable)
-                {
-                    moveInDirection(Direction.Right);
-                }
-                else if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
-                {
-                    moveInDirection(Direction.Left);
-                }
-                else
-                {
-                    currentTile._filledWater.SetActive(true);
-                }
-                return;
-            }
-
             currentTile._filledWater.SetActive(true);
         }
     }

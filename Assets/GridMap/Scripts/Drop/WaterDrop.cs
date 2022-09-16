@@ -121,26 +121,6 @@ public class WaterDrop : MonoBehaviour
         }
     }
 
-    private void findDestination()
-    {
-        //determine which direction to go
-        if (currentTile.underTile != null && currentTile.underTile._isPassable)
-        {
-            direction = Direction.Down;
-            destinationTile = currentTile.underTile;
-        }
-        else if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
-        {
-            direction = Direction.Left;
-            destinationTile = currentTile.leftTile;
-        }
-        else if (currentTile.rightTile != null && currentTile.rightTile._isPassable)
-        {
-            direction = Direction.Right;
-            destinationTile = currentTile.rightTile;
-        }
-    }
-
     /// Async coroutine to animate the drop moving.
     private IEnumerator animateMove(Vector3 direction)
     {

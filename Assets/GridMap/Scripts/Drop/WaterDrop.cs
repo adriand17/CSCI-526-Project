@@ -57,6 +57,13 @@ public class WaterDrop : MonoBehaviour
                 return;
             }
 
+            if (!canMoveInDirection(Direction.Left) && !canMoveInDirection(Direction.Right))
+            {
+                /// Settle as stagnant water.
+                currentTile._filledWater.SetActive(true);
+                return;
+            }
+
             if (direction == Direction.Down) { 
                 if (canMoveInDirection(Direction.Left))
                 {
@@ -67,9 +74,6 @@ public class WaterDrop : MonoBehaviour
                 {
                     /// If possible move right.
                     moveInDirection(Direction.Right);
-                } else { 
-                    /// Settle as stagnant water.
-                    currentTile._filledWater.SetActive(true);
                 }
                 return;
             }
@@ -86,9 +90,6 @@ public class WaterDrop : MonoBehaviour
                 {
                     /// If possible move right.
                     moveInDirection(Direction.Right);
-                } else { 
-                    /// Settle as stagnant water.
-                    currentTile._filledWater.SetActive(true);
                 }
                 return;
             }
@@ -105,10 +106,7 @@ public class WaterDrop : MonoBehaviour
                 {
                     /// If possible move right.
                     moveInDirection(Direction.Left);
-                } else { 
-                    /// Settle as stagnant water.
-                    currentTile._filledWater.SetActive(true);
-                }
+                } 
                 return;
             }
             

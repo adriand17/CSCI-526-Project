@@ -106,6 +106,7 @@ public class Tile : MonoBehaviour
 
     }
 
+    /// Lets manager inform tile of its valid neighbors.
     public void setAdjacentTiles(Tile underTile, Tile leftTile, Tile rightTile)
     {
         this.underTile = underTile;

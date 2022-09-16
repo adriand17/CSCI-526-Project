@@ -19,9 +19,13 @@ public class Tile : MonoBehaviour
 
     private GridManager gridManager;
     private bool Occupied = false;
+
+    /// Tile's valid neighbors.
+    /// Null indicates the world border.
     public Tile leftTile = null;
     public Tile rightTile = null;
     public Tile underTile = null;
+    
     public bool _isPassable = true;
     public bool _hasWater = false;
     public Color baseColor = Color.gray;

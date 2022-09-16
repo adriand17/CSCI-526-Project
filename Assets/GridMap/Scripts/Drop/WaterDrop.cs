@@ -77,14 +77,38 @@ public class WaterDrop : MonoBehaviour
             /// If currently moving horizonatally, keep moving in the same direction.
             if ((direction == Direction.Left))
             {
-                moveInDirection(canMoveInDirection(Direction.Left) ? Direction.Left : Direction.Right);
+                if (canMoveInDirection(Direction.Left))
+                {
+                    /// If possible move left.
+                    moveInDirection(Direction.Left);
+                }
+                else if (canMoveInDirection(Direction.Right))
+                {
+                    /// If possible move right.
+                    moveInDirection(Direction.Right);
+                } else { 
+                    /// Settle as stagnant water.
+                    currentTile._filledWater.SetActive(true);
+                }
                 return;
             }
             
             /// If currently moving horizonatally, keep moving in the same direction.
             if ((direction == Direction.Right))
             {
-                moveInDirection(canMoveInDirection(Direction.Right) ? Direction.Right : Direction.Left);
+                if (canMoveInDirection(Direction.Right))
+                {
+                    /// If possible move left.
+                    moveInDirection(Direction.Right);
+                }
+                else if (canMoveInDirection(Direction.Left))
+                {
+                    /// If possible move right.
+                    moveInDirection(Direction.Left);
+                } else { 
+                    /// Settle as stagnant water.
+                    currentTile._filledWater.SetActive(true);
+                }
                 return;
             }
             

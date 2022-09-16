@@ -19,6 +19,8 @@ public class WaterDrop : MonoBehaviour
     private float timeToMove = 0.2f;
     private Tile currentTile = null;
     private Tile destinationTile = null;
+
+    // Direction the drop is currently moving in.
     private Direction direction = Direction.Down;
 
     /*public float movementSpeed = 5f;

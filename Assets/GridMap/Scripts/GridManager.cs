@@ -71,27 +71,19 @@ public class GridManager : MonoBehaviour
                 Vector2 pos = new Vector2(x, y);
                 Tile t = _tiles[pos];
 
-                //null represent the border for now.
-                Tile underTile = null;
-                Tile rightTile = null;
-                Tile leftTile = null;
-                if (y > 0)
-                {
-                    underTile = _tiles[new Vector2(x, y - 1)];
-                }
-
-                if(x > 0)
-                {
-                    leftTile = _tiles[new Vector2(x -1, y)];
-                }
-
-                if (x < _width - 1)
-                {
-                    rightTile = _tiles[new Vector2(x + 1, y)];
-                }
-                //if(x)
+                // Look up valid adjacent tiles.
+                // null represents the world's borders.
+                Tile underTile = (y > 0) 
+                	? _tiles[new Vector2(x, y - 1)] 
+                	: null;
+                Tile rightTile = (x < _width - 1)
+                	? _tiles[new Vector2(x + 1, y)]
+                	: null;
+                Tile leftTile = (x > 0)
+                	? _tiles[new Vector2(x -1, y)]
+                	: null;
+                
                 t.setAdjacentTiles(underTile, leftTile, rightTile);
-
             }
         }
     }

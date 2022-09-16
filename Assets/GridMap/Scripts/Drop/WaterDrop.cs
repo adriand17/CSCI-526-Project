@@ -50,34 +50,28 @@ public class WaterDrop : MonoBehaviour
         {
             /// Determine which direction to go.
             //Debug.Log(direction);
-            if (currentTile.underTile != null && currentTile.underTile._isPassable && !currentTile.underTile._hasWater)
+            if (canMoveInDirection(Direction.Down))
             {
-                /// Lower tile is clear, should start falling.
-                
-                currentTile._filledWater.SetActive(false);
-                
                 /// If possible move down.
                 moveInDirection(Direction.Down);
+                return;
             }
-            else if ((currentTile.underTile == null || !currentTile.underTile._isPassable) && direction == Direction.Down)
-            {
-                /// If cannot move down anymore, then move left.
-                //Debug.Log("cannot move down anymore");
 
-                //Debug.Log("hit the ground");
-                if (currentTile.leftTile != null && currentTile.leftTile._isPassable && !currentTile.leftTile._hasWater)
+            if (direction == Direction.Down) { 
+                if (canMoveInDirection(Direction.Left))
                 {
+                    /// If possible move left.
                     moveInDirection(Direction.Left);
                 }
-                else if (currentTile.rightTile != null && currentTile.rightTile._isPassable && !currentTile.rightTile._hasWater)
+                else if (canMoveInDirection(Direction.Right))
                 {
+                    /// If possible move right.
                     moveInDirection(Direction.Right);
-                }
-                else
-                {
+                } else { 
+                    /// Settle as stagnant water.
                     currentTile._filledWater.SetActive(true);
                 }
-
+                return;
             }
             else if ((currentTile.leftTile != null && currentTile.leftTile._isPassable && direction == Direction.Left && !currentTile.leftTile._hasWater) ||
                 (currentTile.rightTile != null && currentTile.rightTile._isPassable && direction == Direction.Right && !currentTile.rightTile._hasWater))
@@ -116,6 +110,25 @@ public class WaterDrop : MonoBehaviour
             {
                 currentTile._filledWater.SetActive(true);
             }
+        }
+    }
+
+    private bool canMoveInDirection(Direction direction) 
+    { 
+        switch (direction)
+        {
+            case Direction.Down:
+                return currentTile.underTile != null && currentTile.underTile._isPassable && !currentTile.underTile._hasWater;
+            
+            case Direction.Left:
+                return currentTile.leftTile != null && currentTile.leftTile._isPassable && !currentTile.leftTile._hasWater;
+            
+            case Direction.Right:
+                return currentTile.rightTile != null && currentTile.rightTile._isPassable && !currentTile.rightTile._hasWater;
+            
+            default:
+                /// TODO: REPORT ERROR
+                return false;
         }
     }
 

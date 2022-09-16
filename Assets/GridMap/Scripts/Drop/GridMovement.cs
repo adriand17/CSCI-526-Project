@@ -27,23 +27,6 @@ public class GridMovement : MonoBehaviour
 
         // if (Vector3.Distance(transform.position, movePoint.position) <= .05f) { }
 
-        /*  if (Input.GetKey(KeyCode.W) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.up));
-          }
-          if (Input.GetKey(KeyCode.A) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.left));
-          }
-          if (Input.GetKey(KeyCode.S) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.down));
-          }
-          if (Input.GetKey(KeyCode.D) && !isMoving)
-          {
-              StartCoroutine(MovePlayer(Vector3.right));
-          }*/
-
         if (!isMoving)
         {
             //determine which direction to go

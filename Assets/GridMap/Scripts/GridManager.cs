@@ -220,8 +220,20 @@ public class GridManager : MonoBehaviour
         {
             DestroyImmediate(drop.gameObject);
         }
+        for (int x = 0; x < _width; x++)
+        {
+            for (int y = 0; y < _height; y++)
+            {
+                Vector2 pos = new Vector2(x, y);
+                Tile t = _tiles[pos];
+                if (t._filledWater.activeSelf == false){
+                    t._hasWater = false;
+                }
 
-        dropList.Clear();
+            }
+        }
+
+                dropList.Clear();
 
         SpawnWaterDrop();
     }

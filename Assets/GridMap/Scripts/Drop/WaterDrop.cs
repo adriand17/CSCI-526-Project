@@ -46,71 +46,36 @@ public class WaterDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /// Determine which direction to go.
         if (!isMoving)
         {
-            /// Determine which direction to go.
-            //Debug.Log(direction);
+            /// If possible move down.
             if (canMoveInDirection(Direction.Down))
             {
-                /// If possible move down.
                 moveInDirection(Direction.Down);
                 return;
             }
 
+            /// If trapped, settle as stagnant water.
             if (!canMoveInDirection(Direction.Left) && !canMoveInDirection(Direction.Right))
             {
-                /// Settle as stagnant water.
                 currentTile._filledWater.SetActive(true);
                 return;
             }
 
-            if (direction == Direction.Down) { 
-                if (canMoveInDirection(Direction.Left))
-                {
-                    /// If possible move left.
-                    moveInDirection(Direction.Left);
-                }
-                else if (canMoveInDirection(Direction.Right))
-                {
-                    /// If possible move right.
-                    moveInDirection(Direction.Right);
-                }
-                return;
-            }
-            
-            /// If currently moving horizonatally, keep moving in the same direction.
-            if ((direction == Direction.Left))
+            /// Otherwise, choose a horizontal direction.
+            switch (direction)
             {
-                if (canMoveInDirection(Direction.Left))
-                {
-                    /// If possible move left.
-                    moveInDirection(Direction.Left);
-                }
-                else if (canMoveInDirection(Direction.Right))
-                {
-                    /// If possible move right.
-                    moveInDirection(Direction.Right);
-                }
-                return;
+                case Direction.Down:
+                    moveInDirection(canMoveInDirection(Direction.Left) ? Direction.Left : Direction.Right);
+                    return;
+                case Direction.Left:
+                    moveInDirection(canMoveInDirection(Direction.Left) ? Direction.Left : Direction.Right);
+                    return;
+                case Direction.Right:
+                    moveInDirection(canMoveInDirection(Direction.Right) ? Direction.Right : Direction.Left);
+                    return;
             }
-            
-            /// If currently moving horizonatally, keep moving in the same direction.
-            if ((direction == Direction.Right))
-            {
-                if (canMoveInDirection(Direction.Right))
-                {
-                    /// If possible move left.
-                    moveInDirection(Direction.Right);
-                }
-                else if (canMoveInDirection(Direction.Left))
-                {
-                    /// If possible move right.
-                    moveInDirection(Direction.Left);
-                } 
-                return;
-            }
-            
-            currentTile._filledWater.SetActive(true);
         }
     }
 

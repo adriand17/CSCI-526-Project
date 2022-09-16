@@ -50,11 +50,14 @@ public class WaterDrop : MonoBehaviour
         {
             //determine which direction to go
             //Debug.Log(direction);
-            if (currentTile.underTile != null && currentTile.underTile._isPassable)
+            if (currentTile.underTile != null && currentTile.underTile._isPassable && !currentTile.underTile._hasWater)
             {
+                currentTile._filledWater.SetActive(false);
                 ///if possible move down
                 direction = Direction.Down;
                 destinationTile = currentTile.underTile;
+                currentTile._hasWater = false;
+                destinationTile._hasWater = true;
                 StartCoroutine(MovePlayer(Vector3.down));
             }
             else if ((currentTile.underTile == null || !currentTile.underTile._isPassable)  && direction == Direction.Down)
@@ -63,57 +66,90 @@ public class WaterDrop : MonoBehaviour
                 //Debug.Log("cannot move down anymore");
 
                 //Debug.Log("hit the ground");
-                if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
+                if (currentTile.leftTile != null && currentTile.leftTile._isPassable && !currentTile.leftTile._hasWater)
                 {
+                    currentTile._filledWater.SetActive(false);
                     direction = Direction.Left;
                     destinationTile = currentTile.leftTile;
+                    currentTile._hasWater = false;
+                    destinationTile._hasWater = true;
                     StartCoroutine(MovePlayer(Vector3.left));
                 }
-                else if(currentTile.rightTile != null && currentTile.rightTile._isPassable)
+                else if(currentTile.rightTile != null && currentTile.rightTile._isPassable && !currentTile.rightTile._hasWater)
                 {
+                    currentTile._filledWater.SetActive(false);
                     direction = Direction.Right;
                     destinationTile = currentTile.rightTile;
+                    currentTile._hasWater = false;
+                    destinationTile._hasWater = true;
                     StartCoroutine(MovePlayer(Vector3.right));
+                }
+                else
+                {
+                    currentTile._filledWater.SetActive(true);
                 }
 
             }
-            else if ((currentTile.leftTile != null && currentTile.leftTile._isPassable && direction == Direction.Left) || 
-                (currentTile.rightTile != null && currentTile.rightTile._isPassable && direction == Direction.Right))
+            else if ((currentTile.leftTile != null && currentTile.leftTile._isPassable && direction == Direction.Left && !currentTile.leftTile._hasWater) || 
+                (currentTile.rightTile != null && currentTile.rightTile._isPassable && direction == Direction.Right && !currentTile.rightTile._hasWater))
             {
                 //if currently moving horizonatally, keep moving the same direction
                 //Debug.Log("keep directions!");
                 if (direction == Direction.Left)
                 {
+                    currentTile._filledWater.SetActive(false);
                     destinationTile = currentTile.leftTile;
+                    currentTile._hasWater = false;
+                    destinationTile._hasWater = true;
                     StartCoroutine(MovePlayer(Vector3.left));
                 }
                 else
                 {
+                    currentTile._filledWater.SetActive(false);
                     destinationTile = currentTile.rightTile;
+                    currentTile._hasWater = false;
+                    destinationTile._hasWater = true;
                     StartCoroutine(MovePlayer(Vector3.right));
                 }
                
             }
-            else if (((currentTile.leftTile == null ||  (currentTile.leftTile != null && !currentTile.leftTile._isPassable)) && direction == Direction.Left) || 
-                ((currentTile.rightTile == null || (currentTile.rightTile != null && !currentTile.rightTile._isPassable)) && direction == Direction.Right))
+            else if ((currentTile.leftTile == null ||  (currentTile.leftTile != null && (!currentTile.leftTile._isPassable || currentTile.leftTile._hasWater)) && direction == Direction.Left) || 
+                ((currentTile.rightTile == null || (currentTile.rightTile != null && (!currentTile.rightTile._isPassable || currentTile.leftTile._hasWater)) && direction == Direction.Right)))
             {
                 //if currently moving horizonatally, but cannot move towards that direction anymore, move towards is opposite direction
                 //Debug.Log("change directions!");
-                if (direction == Direction.Left)
+                
+                
+                if (direction == Direction.Left && currentTile.rightTile != null && currentTile.rightTile._isPassable)
                 {
+                    currentTile._filledWater.SetActive(false);
                     direction = Direction.Right;                   
                     destinationTile = currentTile.rightTile;
+                    currentTile._hasWater = false;
+                    destinationTile._hasWater = true;
                     StartCoroutine(MovePlayer(Vector3.right));
+                }
+                else if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
+                {
+                    currentTile._filledWater.SetActive(false);
+                    direction = Direction.Left;
+                    destinationTile = currentTile.leftTile;
+                    currentTile._hasWater = false;
+                    destinationTile._hasWater = true;
+                    StartCoroutine(MovePlayer(Vector3.left));
                 }
                 else
                 {
-                    direction = Direction.Left;
-                    destinationTile = currentTile.leftTile;
-                    StartCoroutine(MovePlayer(Vector3.left));
+                    currentTile._filledWater.SetActive(true);
                 }
+            }
+            else
+            {
+                currentTile._filledWater.SetActive(true);
             }
 
         }
+        
 
     }
 

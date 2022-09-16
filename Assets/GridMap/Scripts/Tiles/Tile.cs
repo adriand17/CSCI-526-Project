@@ -9,6 +9,8 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
+    [SerializeField] public GameObject _filledWater;
+        
     
     [SerializeField] public BaseTower OccupiedTower;
     [SerializeField] private BaseTower _towerPrefab;
@@ -21,6 +23,7 @@ public class Tile : MonoBehaviour
     public Tile rightTile = null;
     public Tile underTile = null;
     public bool _isPassable = true;
+    public bool _hasWater = false;
     public Color baseColor = Color.gray;
     public Vector3 location;
 

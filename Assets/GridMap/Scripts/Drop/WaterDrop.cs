@@ -22,24 +22,15 @@ public class WaterDrop : MonoBehaviour
     // Direction the drop is currently moving in.
     private Direction direction = Direction.Down;
 
-    /*public float movementSpeed = 5f;
-    public Transform movePoint;*/
-
-    
-
     public void Init(Tile currentTile)
     {
         this.isMoving = false;
         this.currentTile = currentTile;
-        //Debug.Log(currentTile.underTile.transform.position);
-       
-        //findDestination();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //isMoving = true;
     }
 
     // Update is called once per frame

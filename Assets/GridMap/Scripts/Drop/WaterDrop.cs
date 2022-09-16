@@ -75,16 +75,16 @@ public class WaterDrop : MonoBehaviour
             }
             
             /// If currently moving horizonatally, keep moving in the same direction.
-            if ((canMoveInDirection(Direction.Left) && direction == Direction.Left))
+            if ((direction == Direction.Left))
             {
-                moveInDirection(Direction.Left);
+                moveInDirection(canMoveInDirection(Direction.Left) ? Direction.Left : Direction.Right);
                 return;
             }
             
             /// If currently moving horizonatally, keep moving in the same direction.
-            if ((canMoveInDirection(Direction.Right) && direction == Direction.Right))
+            if ((direction == Direction.Right))
             {
-                moveInDirection(Direction.Right);
+                moveInDirection(canMoveInDirection(Direction.Right) ? Direction.Right : Direction.Left);
                 return;
             }
             

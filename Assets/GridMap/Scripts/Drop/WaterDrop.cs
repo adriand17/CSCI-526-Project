@@ -108,21 +108,21 @@ public class WaterDrop : MonoBehaviour
                 destinationTile = currentTile.underTile;
                 currentTile._hasWater = false;
                 destinationTile._hasWater = true;
-                StartCoroutine(MovePlayer(Vector3.down));
+                StartCoroutine(animateMove(Vector3.down));
                 break;
             
             case Direction.Left:
                 destinationTile = currentTile.leftTile;
                 currentTile._hasWater = false;
                 destinationTile._hasWater = true;
-                StartCoroutine(MovePlayer(Vector3.left));
+                StartCoroutine(animateMove(Vector3.left));
                 break;
             
             case Direction.Right:
                 destinationTile = currentTile.rightTile;
                 currentTile._hasWater = false;
                 destinationTile._hasWater = true;
-                StartCoroutine(MovePlayer(Vector3.right));
+                StartCoroutine(animateMove(Vector3.right));
                 break;
             
             case Direction.Up:
@@ -151,8 +151,8 @@ public class WaterDrop : MonoBehaviour
         }
     }
 
-
-    private IEnumerator MovePlayer(Vector3 direction)
+    /// Async coroutine to animate the drop moving.
+    private IEnumerator animateMove(Vector3 direction)
     {
 
         isMoving = true;

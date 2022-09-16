@@ -15,7 +15,6 @@ public class WaterDrop : MonoBehaviour
 
 
     private bool isMoving;
-    private Vector3 originPos, targetPos;
     private float timeToMove = 0.2f;
     private Tile currentTile = null;
     private Tile destinationTile = null;
@@ -154,13 +153,10 @@ public class WaterDrop : MonoBehaviour
     /// Async coroutine to animate the drop moving.
     private IEnumerator animateMove(Vector3 direction)
     {
-
-        isMoving = true;
-
+        this.isMoving = true;
         float elapsedTime = 0;
-
-        originPos = transform.position;
-        targetPos = originPos + direction;
+        Vector3 originPos = transform.position;
+        Vector3 targetPos = originPos + direction;
 
         while (elapsedTime < timeToMove)
         {
@@ -173,6 +169,6 @@ public class WaterDrop : MonoBehaviour
         originPos = transform.position;
         currentTile = destinationTile;
 
-        isMoving = false;
+        this.isMoving = false;
     }
 }

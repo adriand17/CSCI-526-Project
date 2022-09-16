@@ -30,7 +30,7 @@ public class WaterDrop : MonoBehaviour
     {
         this.isMoving = false;
         this.currentTile = currentTile;
-        Debug.Log(currentTile.underTile.transform.position);
+        //Debug.Log(currentTile.underTile.transform.position);
        
         findDestination();
     }
@@ -62,7 +62,7 @@ public class WaterDrop : MonoBehaviour
                 //if cannot move down anymore move left
                 //Debug.Log("cannot move down anymore");
 
-                Debug.Log("hit the ground");
+                //Debug.Log("hit the ground");
                 if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
                 {
                     direction = Direction.Left;

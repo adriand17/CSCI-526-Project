@@ -15,6 +15,8 @@ public class GridManager : MonoBehaviour
 
 
     private Dictionary<Vector2, Tile> _tiles;
+
+    private List<WaterDrop> dropList = new List<WaterDrop>();
     // Start is called before the first frame update
     void Start()
     {
@@ -170,8 +172,25 @@ public class GridManager : MonoBehaviour
     {
         var spawnedDrop = Instantiate(_dropPrefab, new Vector3(5, 8, -1), Quaternion.identity);
         spawnedDrop.Init(GetTileAtPosition(5, 8));
+        dropList.Add(spawnedDrop);
+
+        spawnedDrop = Instantiate(_dropPrefab, new Vector3(7, 8, -1), Quaternion.identity);
+        spawnedDrop.Init(GetTileAtPosition(7, 8));
+        dropList.Add(spawnedDrop);
+
+        spawnedDrop = Instantiate(_dropPrefab, new Vector3(10, 8, -1), Quaternion.identity);
+        spawnedDrop.Init(GetTileAtPosition(10, 8));
+        dropList.Add(spawnedDrop);
+
+        spawnedDrop = Instantiate(_dropPrefab, new Vector3(13, 8, -1), Quaternion.identity);
+        spawnedDrop.Init(GetTileAtPosition(13, 8));
+        dropList.Add(spawnedDrop);
+
+        spawnedDrop = Instantiate(_dropPrefab, new Vector3(1, 8, -1), Quaternion.identity);
+        spawnedDrop.Init(GetTileAtPosition(1, 8));
+        dropList.Add(spawnedDrop);
         //for checker board patter...
-       // spawnedTile.Init(isOffset, _towerPrefab);
+        // spawnedTile.Init(isOffset, _towerPrefab);
     }
 
 
@@ -193,6 +212,18 @@ public class GridManager : MonoBehaviour
     {
         Tile t = _tiles[pos];
         Debug.Log(t._isPassable);
+    }
+
+    public void ResetGrid()
+    {
+        foreach(WaterDrop drop in dropList)
+        {
+            DestroyImmediate(drop.gameObject);
+        }
+
+        dropList.Clear();
+
+        SpawnWaterDrop();
     }
   
 }

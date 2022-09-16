@@ -55,11 +55,7 @@ public class WaterDrop : MonoBehaviour
                 currentTile._filledWater.SetActive(false);
                 
                 /// If possible move down.
-                direction = Direction.Down;
-                destinationTile = currentTile.underTile;
-                currentTile._hasWater = false;
-                destinationTile._hasWater = true;
-                StartCoroutine(MovePlayer(Vector3.down));
+                moveInDirection(Direction.Down);
             }
             else if ((currentTile.underTile == null || !currentTile.underTile._isPassable) && direction == Direction.Down)
             {
@@ -69,21 +65,11 @@ public class WaterDrop : MonoBehaviour
                 //Debug.Log("hit the ground");
                 if (currentTile.leftTile != null && currentTile.leftTile._isPassable && !currentTile.leftTile._hasWater)
                 {
-                    currentTile._filledWater.SetActive(false);
-                    direction = Direction.Left;
-                    destinationTile = currentTile.leftTile;
-                    currentTile._hasWater = false;
-                    destinationTile._hasWater = true;
-                    StartCoroutine(MovePlayer(Vector3.left));
+                    moveInDirection(Direction.Left);
                 }
                 else if (currentTile.rightTile != null && currentTile.rightTile._isPassable && !currentTile.rightTile._hasWater)
                 {
-                    currentTile._filledWater.SetActive(false);
-                    direction = Direction.Right;
-                    destinationTile = currentTile.rightTile;
-                    currentTile._hasWater = false;
-                    destinationTile._hasWater = true;
-                    StartCoroutine(MovePlayer(Vector3.right));
+                    moveInDirection(Direction.Right);
                 }
                 else
                 {
@@ -99,19 +85,11 @@ public class WaterDrop : MonoBehaviour
                 //Debug.Log("keep directions!");
                 if (direction == Direction.Left)
                 {
-                    currentTile._filledWater.SetActive(false);
-                    destinationTile = currentTile.leftTile;
-                    currentTile._hasWater = false;
-                    destinationTile._hasWater = true;
-                    StartCoroutine(MovePlayer(Vector3.left));
+                    moveInDirection(Direction.Left);
                 }
                 else
                 {
-                    currentTile._filledWater.SetActive(false);
-                    destinationTile = currentTile.rightTile;
-                    currentTile._hasWater = false;
-                    destinationTile._hasWater = true;
-                    StartCoroutine(MovePlayer(Vector3.right));
+                    moveInDirection(Direction.Right);
                 }
             }
             else if ((currentTile.leftTile == null || (currentTile.leftTile != null && (!currentTile.leftTile._isPassable || currentTile.leftTile._hasWater)) && direction == Direction.Left) ||
@@ -121,21 +99,11 @@ public class WaterDrop : MonoBehaviour
                 //Debug.Log("change directions!");
                 if (direction == Direction.Left && currentTile.rightTile != null && currentTile.rightTile._isPassable)
                 {
-                    currentTile._filledWater.SetActive(false);
-                    direction = Direction.Right;
-                    destinationTile = currentTile.rightTile;
-                    currentTile._hasWater = false;
-                    destinationTile._hasWater = true;
-                    StartCoroutine(MovePlayer(Vector3.right));
+                    moveInDirection(Direction.Right);
                 }
                 else if (currentTile.leftTile != null && currentTile.leftTile._isPassable)
                 {
-                    currentTile._filledWater.SetActive(false);
-                    direction = Direction.Left;
-                    destinationTile = currentTile.leftTile;
-                    currentTile._hasWater = false;
-                    destinationTile._hasWater = true;
-                    StartCoroutine(MovePlayer(Vector3.left));
+                    moveInDirection(Direction.Left);
                 }
                 else
                 {
@@ -149,6 +117,38 @@ public class WaterDrop : MonoBehaviour
         }
     }
 
+    private void moveInDirection(Direction direction) 
+    { 
+        currentTile._filledWater.SetActive(false);
+        this.direction = direction;
+        
+        switch (direction) { 
+            case Direction.Down:
+                destinationTile = currentTile.underTile;
+                currentTile._hasWater = false;
+                destinationTile._hasWater = true;
+                StartCoroutine(MovePlayer(Vector3.down));
+                break;
+            
+            case Direction.Left:
+                destinationTile = currentTile.leftTile;
+                currentTile._hasWater = false;
+                destinationTile._hasWater = true;
+                StartCoroutine(MovePlayer(Vector3.left));
+                break;
+            
+            case Direction.Right:
+                destinationTile = currentTile.rightTile;
+                currentTile._hasWater = false;
+                destinationTile._hasWater = true;
+                StartCoroutine(MovePlayer(Vector3.right));
+                break;
+            
+            case Direction.Up:
+                /// TODO: REPORT ERROR
+                return;
+        }
+    }
 
     private void findDestination()
     {

@@ -88,6 +88,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    // Create inital level geometry.
     public void SetUnpassableTiles()
     {
 

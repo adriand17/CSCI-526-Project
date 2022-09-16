@@ -73,8 +73,8 @@ public class WaterDrop : MonoBehaviour
                 }
                 return;
             }
-            else if ((currentTile.leftTile != null && currentTile.leftTile._isPassable && direction == Direction.Left && !currentTile.leftTile._hasWater) ||
-                (currentTile.rightTile != null && currentTile.rightTile._isPassable && direction == Direction.Right && !currentTile.rightTile._hasWater))
+            else if ((canMoveInDirection(Direction.Left) && direction == Direction.Left) ||
+                (canMoveInDirection(Direction.Right) && direction == Direction.Right))
             {
                
                 /// If currently moving horizonatally, keep moving in the same direction.

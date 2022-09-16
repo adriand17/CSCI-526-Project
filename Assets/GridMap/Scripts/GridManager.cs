@@ -23,7 +23,7 @@ public class GridManager : MonoBehaviour
     {
         GenerateGrid();
 		// A correct website page.
-        StartCoroutine(GetRequest("https://www.example.com"));
+        StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
     }
 
     // Update is called once per frame

@@ -90,14 +90,6 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-
-        /*if (Buildable)
-        {
-
-             SetBuilding();
-
-             Occupied = true;
-        }*/
         if (_isPassable)
         {
             _isPassable = !_isPassable;

@@ -222,8 +222,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-                dropList.Clear();
-
+        dropList.Clear();
         SpawnWaterDrop();
     }
  

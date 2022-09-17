@@ -71,21 +71,27 @@ public class WaterDrop : MonoBehaviour
 
     private bool canMoveInDirection(Direction direction) 
     { 
+        Tile adj = null;
         switch (direction)
         {
             case Direction.Down:
-                return currentTile.underTile != null && currentTile.underTile._isPassable && !currentTile.underTile._hasWater;
-            
+                adj = currentTile.underTile;
+                break;
+
             case Direction.Left:
-                return currentTile.leftTile != null && currentTile.leftTile._isPassable && !currentTile.leftTile._hasWater;
+                adj = currentTile.leftTile;
+                break;
             
             case Direction.Right:
-                return currentTile.rightTile != null && currentTile.rightTile._isPassable && !currentTile.rightTile._hasWater;
+                adj = currentTile.rightTile;
+                break;
             
             default:
                 /// TODO: REPORT ERROR
                 return false;
         }
+
+        return adj != null && adj._isPassable && !adj._hasWater;
     }
 
     private void moveInDirection(Direction direction) 
@@ -138,7 +144,7 @@ public class WaterDrop : MonoBehaviour
 
         transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
         originPos = transform.position;
-        currentTile = destinationTile;
+        this.currentTile = destinationTile;
 
         this.isMoving = false;
     }

@@ -26,7 +26,6 @@ public class Tile : MonoBehaviour
 
     //public BaseTower OccupiedTower;
 
-    private GridManager gridManager;
     private bool Occupied = false;
 
     /// Tile's valid neighbors.
@@ -69,7 +68,7 @@ public class Tile : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
+    public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location)
     {
         _isBuildable = false;
         //buildingManager = bm;
@@ -79,7 +78,6 @@ public class Tile : MonoBehaviour
         baseColor = isOffset ? _offsetColor : _baseColor;
 
         this.location = location;
-        this.gridManager = gridManager;
     }
 
     private void Update()

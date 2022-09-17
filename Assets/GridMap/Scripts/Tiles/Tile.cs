@@ -9,24 +9,45 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
+    [SerializeField] public GameObject _filledWater;
+        
+    
     [SerializeField] public BaseTower OccupiedTower;
     [SerializeField] private BaseTower _towerPrefab;
 
     //public BaseTower OccupiedTower;
 
-    private BuildingManager buildingManager;
+    private GridManager gridManager;
     private bool Occupied = false;
+
+    /// Tile's valid neighbors.
+    /// Null indicates the world border.
+    public Tile leftTile = null;
+    public Tile rightTile = null;
+    public Tile underTile = null;
+    
+    public bool _isPassable = true;
+    public bool _hasWater = false;
+    public Color baseColor = Color.gray;
+    public Vector3 location;
+
     //public bool Buildable => _isBuildable && OccupiedTower == null;
     public bool Buildable => _isBuildable && Occupied == false;
 
     // Start is called before the first frame update
 
-    public void Init(bool isOffset, BaseTower towerPrefab)
+    public void Init(bool isOffset, BaseTower towerPrefab, bool _isPassable, Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
         //buildingManager = bm;
         this._towerPrefab = towerPrefab;
-        _renderer.color = _baseColor;
+        this._isPassable = _isPassable;
+        
+        _renderer.color = isOffset ? _offsetColor : _baseColor;
+        baseColor = isOffset ? _offsetColor : _baseColor;
+
+        this.location = location;
+        this.gridManager = gridManager;
     }
 
     private void Update()
@@ -40,6 +61,12 @@ public class Tile : MonoBehaviour
         {
 
         }
+    }
+
+    public void SetTileUnpassable()
+    {
+        _renderer.color = Color.black;
+        _isPassable = false;
     }
 
 
@@ -56,14 +83,35 @@ public class Tile : MonoBehaviour
     private void OnMouseDown()
     {
 
-       if (Buildable)
-       {
+        /*if (Buildable)
+        {
 
-            SetBuilding();
-            
-            Occupied = true;
-       }
-        
+             SetBuilding();
+
+             Occupied = true;
+        }*/
+        if (_isPassable)
+        {
+            _isPassable = !_isPassable;
+            _renderer.color = Color.black;
+           
+        }
+        else
+        {
+            _isPassable = !_isPassable;
+            _renderer.color = baseColor;
+        }
+
+        gridManager.UpdatePassability(_isPassable, location);
+
+    }
+
+    /// Lets manager inform tile of its valid neighbors.
+    public void setAdjacentTiles(Tile underTile, Tile leftTile, Tile rightTile)
+    {
+        this.underTile = underTile;
+        this.rightTile = rightTile;
+        this.leftTile = leftTile;
     }
 
 

@@ -17,7 +17,6 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
-    [SerializeField] public GameObject _filledWater;
         
     
     [SerializeField] public BaseTower OccupiedTower;
@@ -58,10 +57,6 @@ public class Tile : MonoBehaviour
         }
     }
 
-
-    public bool isPassable() { return blockID == BlockID.Air; }
-    
-    public bool _hasWater = false;
     public Color baseColor = Color.gray;
     public Vector3 location;
 

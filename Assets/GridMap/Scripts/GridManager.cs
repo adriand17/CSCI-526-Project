@@ -54,8 +54,6 @@ public class GridManager : MonoBehaviour
         SetUnpassableTiles();
         SetAdjacentTiles();
         
-        SpawnWaterDrop();
-
         _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
 
@@ -115,12 +113,6 @@ public class GridManager : MonoBehaviour
         _tiles[new Vector3(1, 1)].SetBlockID(Tile.BlockID.Dirt);
         _tiles[new Vector3(1, 0)].SetBlockID(Tile.BlockID.Dirt);
     }
-
-    public void SpawnWaterDrop()
-    {
-        /// TODO
-    }
-
 
     public Tile GetTileAtPosition(float x, float y)
     {

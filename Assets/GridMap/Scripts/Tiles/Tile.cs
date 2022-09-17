@@ -109,9 +109,6 @@ public class Tile : MonoBehaviour
             _isPassable = !_isPassable;
             _renderer.color = baseColor;
         }
-
-        gridManager.UpdatePassability(_isPassable, location);
-
     }
 
     /// Lets manager inform tile of its valid neighbors.

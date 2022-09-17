@@ -203,13 +203,6 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-
-    public void UpdatePassability(bool isPassable, Vector3 pos )
-    {
-        Tile t = _tiles[pos];
-        Debug.Log(t._isPassable);
-    }
-
     public void ResetGrid()
     {
         foreach(WaterDrop drop in dropList)

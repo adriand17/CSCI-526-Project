@@ -87,6 +87,8 @@ public class GridManager : MonoBehaviour
     // Create inital level geometry.
     public void SetUnpassableTiles()
     {
+        _tiles[new Vector3(6, 6)].SetBlockID(Tile.BlockID.Water);
+        
         _tiles[new Vector3(5, 6)].SetBlockID(Tile.BlockID.Dirt);
         _tiles[new Vector3(4, 6)].SetBlockID(Tile.BlockID.Dirt);
         _tiles[new Vector3(3, 6)].SetBlockID(Tile.BlockID.Dirt);

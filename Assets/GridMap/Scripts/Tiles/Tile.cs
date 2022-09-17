@@ -44,7 +44,7 @@ public class Tile : MonoBehaviour
                 break;
             
             case BlockID.Water:
-                /// TODO
+                _renderer.color = Color.blue;
                 break;
             
             case BlockID.Bedrock:

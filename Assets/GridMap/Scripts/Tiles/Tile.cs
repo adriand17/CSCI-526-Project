@@ -42,10 +42,10 @@ public class Tile : MonoBehaviour
         this.particle = p;
         if (p == null) {
             _renderer.color = _baseColor;
-            Debug.Log("Particle is null");
             return;
         }
 
+        p.tile = this;
         switch (particle.blockType)
         {
             case BlockType.Water:
@@ -107,7 +107,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown() {
         if (particle == null) {
-            Particle p = new Particle(BlockType.Dirt);
+            Particle p = new Particle(BlockType.Water);
             SetParticle(p);
             this._gridManager.particles.Add(p);
         } else if (particle.blockType == BlockType.Dirt) {

@@ -5,6 +5,14 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
 
+    public enum BlockID 
+    { 
+        Air,     // Absence of a block.
+        Water,   // Water block.
+        Bedrock, // Uneditable level structure block.
+        Dirt,    // Player placable block.
+    }
+
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;

@@ -15,6 +15,7 @@ public class GridManager : MonoBehaviour
 
 
     private Dictionary<Vector2, Tile> _tiles;
+    private float waterInterval;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +26,117 @@ public class GridManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
+        /// Wait for 0.5s.
+        waterInterval += Time.deltaTime;
+        if (waterInterval < 0.5f) {
+            return;
+        }
+        waterInterval = 0;
 
+        Dictionary<Vector2, Tile.BlockID> blockMap = new Dictionary<Vector2, Tile.BlockID>();
+        for (int y = 0; y < _height; y++) {
+            for (int x = 0; x < _width; x++) {
+                Tile.BlockID blockID = _tiles[new Vector2(x, y)].blockID;
+                blockMap.Add(new Vector2(x, y), blockID);
+            }
+        }
+
+        /// Clone the grid, so it can be processed row by row.
+        Dictionary<Vector2, Tile.BlockID> mapClone = new Dictionary<Vector2, Tile.BlockID>(blockMap);
+        
+        bool flowLeft(int x, int y) {
+            Vector2 here = new Vector2(x, y);
+            Vector2 left = new Vector2(x - 1, y);
+            if (mapClone.ContainsKey(left) && mapClone[left] == Tile.BlockID.Air && blockMap[left] == Tile.BlockID.Air) {
+                blockMap[left] = Tile.BlockID.WaterLeft;
+                blockMap[here] = Tile.BlockID.Air;
+                return true;
+            }
+            return false;
+        }
+
+        bool flowRight(int x, int y) {
+            Vector2 here = new Vector2(x, y);
+            Vector2 right = new Vector2(x + 1, y);
+            if (mapClone.ContainsKey(right) && mapClone[right] == Tile.BlockID.Air && blockMap[right] == Tile.BlockID.Air) {
+                blockMap[right] = Tile.BlockID.WaterRight;
+                blockMap[here] = Tile.BlockID.Air;
+                return true;
+            }
+            return false;
+        }
+
+        for (int y = 0; y < _height; y++) {
+            for (int x = 0; x < _width; x++) {
+                Vector2 here = new Vector2(x, y);
+                Vector2 down = new Vector2(x, y - 1);
+                Vector2 left = new Vector2(x - 1, y);
+                Vector2 right = new Vector2(x + 1, y);
+                
+                /// Ensure block is water of some kind.
+                Tile tile = _tiles[here];
+                if (!(tile.blockID == Tile.BlockID.WaterStill || tile.blockID == Tile.BlockID.WaterLeft || tile.blockID == Tile.BlockID.WaterRight)) {
+                    continue;
+                }
+
+                /// Try to fall.
+                if (mapClone.ContainsKey(down) && mapClone[down] == Tile.BlockID.Air) {
+                    blockMap[down] = Tile.BlockID.WaterStill;
+                    blockMap[here] = Tile.BlockID.Air;
+                    continue;
+                }
+                
+                if (tile.blockID == Tile.BlockID.WaterStill) {
+                    if (Random.value >= 0.5) {
+                        if (flowLeft(x, y)) {
+                            continue;
+                        }
+                        if (flowRight(x, y)) {
+                            continue;
+                        }
+                    } else {
+                        if (flowRight(x, y)) {
+                            continue;
+                        }
+                        if (flowLeft(x, y)) {
+                            continue;
+                        }
+                    }
+                } else if (tile.blockID == Tile.BlockID.WaterLeft) {
+                    if (flowLeft(x, y)) {
+                        continue;
+                    } else if (flowRight(x, y)) {
+                        continue;
+                    }
+                } else if (tile.blockID == Tile.BlockID.WaterRight) {
+                    if (flowRight(x, y)) {
+                        continue;
+                    } else if (flowLeft(x, y)) {
+                        continue;
+                    }
+                }
+
+                if (mapClone.ContainsKey(right) && mapClone[right] == Tile.BlockID.Air)
+                {
+                    blockMap[right] = Tile.BlockID.WaterRight;
+                    blockMap[here] = Tile.BlockID.Air;
+                    continue;
+                }
+            }
+            
+            /// Update the mapClone to the current state of the grid.
+            mapClone = new Dictionary<Vector2, Tile.BlockID>(blockMap);
+        }
+
+        for (int y = 0; y < _height; y++)
+        {
+            for (int x = 0; x < _width; x++)
+            {
+                Tile tile = _tiles[new Vector2(x, y)];
+                tile.SetBlockID(blockMap[new Vector2(x, y)]);
+            }
+        }
     }
 
     void GenerateGrid()
@@ -49,7 +158,6 @@ public class GridManager : MonoBehaviour
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
-
 
         SetUnpassableTiles();
         SetAdjacentTiles();
@@ -87,7 +195,7 @@ public class GridManager : MonoBehaviour
     // Create inital level geometry.
     public void SetUnpassableTiles()
     {
-        _tiles[new Vector3(6, 6)].SetBlockID(Tile.BlockID.Water);
+        _tiles[new Vector3(6, 6)].SetBlockID(Tile.BlockID.WaterStill);
         
         _tiles[new Vector3(5, 6)].SetBlockID(Tile.BlockID.Dirt);
         _tiles[new Vector3(4, 6)].SetBlockID(Tile.BlockID.Dirt);

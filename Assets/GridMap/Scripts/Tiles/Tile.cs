@@ -7,10 +7,12 @@ public class Tile : MonoBehaviour
 
     public enum BlockID 
     { 
-        Air,     // Absence of a block.
-        Water,   // Water block.
-        Bedrock, // Uneditable level structure block.
-        Dirt,    // Player placable block.
+        Air,        // Absence of a block.
+        WaterStill, // Water block.
+        WaterLeft,  // Water block.
+        WaterRight, // Water block.
+        Bedrock,    // Uneditable level structure block.
+        Dirt,       // Player placable block.
     }
 
     [SerializeField] private Color _baseColor, _offsetColor;
@@ -43,7 +45,9 @@ public class Tile : MonoBehaviour
                 _renderer.color = _baseColor;
                 break;
             
-            case BlockID.Water:
+            case BlockID.WaterStill: 
+            case BlockID.WaterLeft: 
+            case BlockID.WaterRight:
                 _renderer.color = Color.blue;
                 break;
             

@@ -194,36 +194,44 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    private void DrawParticle(BlockType type, Vector3 pos)
+    {
+        var tile = _tiles[pos];
+        Particle particle = new Particle(type);
+        tile.SetParticle(particle);
+        particles.Add(particle);
+    }
+
     // Create inital level geometry.
     public void SetUnpassableTiles()
-    {
-        _tiles[new Vector3(6, 6)].SetBlockID(Tile.BlockID.WaterStill);
-        
-        _tiles[new Vector3(5, 6)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(4, 6)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(3, 6)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(2, 6)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(1, 6)].SetBlockID(Tile.BlockID.Dirt);
+    {   
+        DrawParticle(BlockType.Water, new Vector3(6, 6));
 
-        _tiles[new Vector3(6, 4)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(5, 4)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(4, 4)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(3, 4)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(2, 4)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(1, 4)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(0, 4)].SetBlockID(Tile.BlockID.Dirt);
+        DrawParticle(BlockType.Dirt, new Vector3(5, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(4, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(3, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(2, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 6));
 
-        _tiles[new Vector3(8, 3)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(7, 2)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(6, 2)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(5, 2)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(4, 2)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(3, 2)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(2, 2)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(1, 2)].SetBlockID(Tile.BlockID.Dirt);
+        DrawParticle(BlockType.Dirt, new Vector3(6, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(5, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(4, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(3, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(2, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(0, 4));
 
-        _tiles[new Vector3(1, 1)].SetBlockID(Tile.BlockID.Dirt);
-        _tiles[new Vector3(1, 0)].SetBlockID(Tile.BlockID.Dirt);
+        DrawParticle(BlockType.Dirt, new Vector3(8, 3));
+        DrawParticle(BlockType.Dirt, new Vector3(7, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(6, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(5, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(4, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(3, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(2, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 2));
+
+        DrawParticle(BlockType.Dirt, new Vector3(1, 1));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 0));
     }
 
     public Tile GetTileAtPosition(float x, float y)

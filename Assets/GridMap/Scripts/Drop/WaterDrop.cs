@@ -91,7 +91,7 @@ public class WaterDrop : MonoBehaviour
                 return false;
         }
 
-        return adj != null && adj._isPassable && !adj._hasWater;
+        return adj != null && adj.isPassable() && !adj._hasWater;
     }
 
     private void moveInDirection(Direction direction) 

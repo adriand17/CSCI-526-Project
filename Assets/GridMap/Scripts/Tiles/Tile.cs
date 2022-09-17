@@ -35,6 +35,7 @@ public class Tile : MonoBehaviour
     public Tile underTile = null;
     
     public bool _isPassable = true;
+        _isPassable = false;
     public bool _hasWater = false;
     public Color baseColor = Color.gray;
     public Vector3 location;
@@ -71,13 +72,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void SetTileUnpassable()
-    {
-        _renderer.color = Color.black;
-        _isPassable = false;
-    }
-
-
+    
     private void OnMouseEnter()
     {
         _highlight.SetActive(true);

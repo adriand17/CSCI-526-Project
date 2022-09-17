@@ -8,20 +8,15 @@ public enum BlockType {
     Dirt,    // Player placable block.
 }
 
-public class Particle : MonoBehaviour
-{
+public class Particle {
 
-    public BlockID blockID = BlockID.Air;
+    public BlockType blockType;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public Particle(BlockType type) {
+        blockType = type;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public void Tick(GridManager grid) { 
         
     }
 }

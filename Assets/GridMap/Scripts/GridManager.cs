@@ -29,7 +29,7 @@ public class GridManager : MonoBehaviour
     void Update() {
         /// Wait for 0.5s.
         waterInterval += Time.deltaTime;
-        if (waterInterval < 0.5f) {
+        if (waterInterval < 0.25f) {
             return;
         }
         waterInterval = 0;
@@ -68,7 +68,17 @@ public class GridManager : MonoBehaviour
         }
 
         for (int y = 0; y < _height; y++) {
-            for (int x = 0; x < _width; x++) {
+            int x, threshold, step;
+            if (Random.value >= 0.5) {
+                x = 0;
+                threshold = _width;
+                step = 1;
+            } else {
+                x = _width - 1;
+                threshold = -1;
+                step = -1;
+            }
+            for (; x != threshold; x += step) {
                 Vector2 here = new Vector2(x, y);
                 Vector2 down = new Vector2(x, y - 1);
                 Vector2 left = new Vector2(x - 1, y);
@@ -91,15 +101,13 @@ public class GridManager : MonoBehaviour
                     if (Random.value >= 0.5) {
                         if (flowLeft(x, y)) {
                             continue;
-                        }
-                        if (flowRight(x, y)) {
+                        } else if (flowRight(x, y)) {
                             continue;
                         }
                     } else {
                         if (flowRight(x, y)) {
                             continue;
-                        }
-                        if (flowLeft(x, y)) {
+                        } else if (flowLeft(x, y)) {
                             continue;
                         }
                     }
@@ -115,13 +123,6 @@ public class GridManager : MonoBehaviour
                     } else if (flowLeft(x, y)) {
                         continue;
                     }
-                }
-
-                if (mapClone.ContainsKey(right) && mapClone[right] == Tile.BlockID.Air)
-                {
-                    blockMap[right] = Tile.BlockID.WaterRight;
-                    blockMap[here] = Tile.BlockID.Air;
-                    continue;
                 }
             }
             

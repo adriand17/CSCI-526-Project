@@ -110,7 +110,7 @@ public class Tile : MonoBehaviour
     {
         if (blockID == BlockID.Air) 
         {
-            this.SetBlockID(BlockID.Dirt);
+            this.SetBlockID(BlockID.WaterStill);
         } else if (blockID == BlockID.Dirt)
         {
             this.SetBlockID(BlockID.Air);

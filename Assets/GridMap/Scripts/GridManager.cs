@@ -13,6 +13,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Transform _camera;
     [SerializeField] private BuildingManager buildingManager;
 
+    public HashSet<Particle> particles = new HashSet<Particle>();
 
     private Dictionary<Vector2, Tile> _tiles;
     private float waterInterval;

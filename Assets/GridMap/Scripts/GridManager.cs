@@ -8,7 +8,6 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
-    [SerializeField] private WaterDrop _dropPrefab;
     [SerializeField] private BaseTower _towerPrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
@@ -17,7 +16,6 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
-    private List<WaterDrop> dropList = new List<WaterDrop>();
     // Start is called before the first frame update
     void Start()
     {
@@ -120,27 +118,7 @@ public class GridManager : MonoBehaviour
 
     public void SpawnWaterDrop()
     {
-        var spawnedDrop = Instantiate(_dropPrefab, new Vector3(5, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(5, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(7, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(7, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(10, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(10, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(13, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(13, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(1, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(1, 8));
-        dropList.Add(spawnedDrop);
-        //for checker board patter...
-        // spawnedTile.Init(isOffset, _towerPrefab);
+        /// TODO
     }
 
 
@@ -159,25 +137,7 @@ public class GridManager : MonoBehaviour
 
     public void ResetGrid()
     {
-        foreach(WaterDrop drop in dropList)
-        {
-            DestroyImmediate(drop.gameObject);
-        }
-        for (int x = 0; x < _width; x++)
-        {
-            for (int y = 0; y < _height; y++)
-            {
-                Vector2 pos = new Vector2(x, y);
-                Tile t = _tiles[pos];
-                if (t._filledWater.activeSelf == false){
-                    t._hasWater = false;
-                }
-
-            }
-        }
-
-        dropList.Clear();
-        SpawnWaterDrop();
+        /// TODO
     }
  
 	IEnumerator GetRequest(string uri)

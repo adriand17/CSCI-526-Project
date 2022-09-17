@@ -30,6 +30,8 @@ public class Particle {
         }
     }
 
+    /// Try to move the water particle to the left.
+    /// Returns true if the particle moved.
     private bool flowLeft() {
         if (tile.leftTile != null && tile.leftTile.particle == null) {
             Tile oldTile = this.tile;
@@ -41,6 +43,8 @@ public class Particle {
         return false;
     }
 
+    /// Try to move the particle to the right.
+    /// Returns true if the particle moved.
     private bool flowRight() {
         if (tile.rightTile != null && tile.rightTile.particle == null) {
             Tile oldTile = this.tile;
@@ -51,6 +55,8 @@ public class Particle {
         }
         return false;
     }
+
+    /// Try to move water.
     private void WaterTick(GridManager grid) { 
         // Check if water can flow down.
         if (tile.underTile != null && tile.underTile.particle == null) {

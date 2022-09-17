@@ -11,12 +11,25 @@ public enum BlockType {
 public class Particle {
 
     public BlockType blockType;
+    public Tile tile;
 
     public Particle(BlockType type) {
         blockType = type;
     }
 
     public void Tick(GridManager grid) { 
-        
+        if (blockType == BlockType.Water) {
+            WaterTick(grid);
+        }
+    }
+
+    private void WaterTick(GridManager grid) { 
+        // Check if water can flow down.
+        if (tile.underTile != null && tile.underTile.particle == null) {
+            Tile oldTile = this.tile;
+            tile.underTile.SetParticle(this);
+            oldTile.SetParticle(null);
+        }
+
     }
 }

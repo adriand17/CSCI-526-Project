@@ -48,11 +48,11 @@ public class Tile : MonoBehaviour
                 break;
             
             case BlockID.Bedrock:
-                /// TODO
+                _renderer.color = Color.black;
                 break;
             
             case BlockID.Dirt:
-                _renderer.color = Color.black;
+                _renderer.color = new Color(0.5f, 0.25f, 0);
                 break;
         }
     }

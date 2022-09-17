@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
-    [SerializeField] public GameObject _filledWater;
         
     
     [SerializeField] public BaseTower OccupiedTower;
@@ -17,7 +15,6 @@ public class Tile : MonoBehaviour
 
     //public BaseTower OccupiedTower;
 
-    private GridManager gridManager;
     private bool Occupied = false;
 
     /// Tile's valid neighbors.
@@ -26,8 +23,32 @@ public class Tile : MonoBehaviour
     public Tile rightTile = null;
     public Tile underTile = null;
     
-    public bool _isPassable = true;
-    public bool _hasWater = false;
+    private GridManager _gridManager;
+
+    public Particle particle;
+    public void SetParticle(Particle p)
+    {
+        this.particle = p;
+        if (p == null) {
+            _renderer.color = _baseColor;
+            return;
+        }
+
+        p.tile = this;
+        switch (particle.getBlockType())
+        {
+            case BlockType.Water:
+                _renderer.color = Color.blue;
+                break;
+            case BlockType.Bedrock:
+                _renderer.color = Color.black;
+                break;
+            case BlockType.Dirt:
+                _renderer.color = new Color(0.5f, 0.25f, 0);
+                break;
+        }
+    }
+
     public Color baseColor = Color.gray;
     public Vector3 location;
 
@@ -36,18 +57,17 @@ public class Tile : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public void Init(bool isOffset, BaseTower towerPrefab, bool _isPassable, Vector3 location, GridManager gridManager)
+    public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
         //buildingManager = bm;
         this._towerPrefab = towerPrefab;
-        this._isPassable = _isPassable;
         
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         baseColor = isOffset ? _offsetColor : _baseColor;
 
         this.location = location;
-        this.gridManager = gridManager;
+        this._gridManager = gridManager;
     }
 
     private void Update()
@@ -63,13 +83,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void SetTileUnpassable()
-    {
-        _renderer.color = Color.black;
-        _isPassable = false;
-    }
-
-
+    
     private void OnMouseEnter()
     {
         _highlight.SetActive(true);
@@ -80,30 +94,15 @@ public class Tile : MonoBehaviour
         _highlight.SetActive(false);
     }
 
-    private void OnMouseDown()
-    {
-
-        /*if (Buildable)
-        {
-
-             SetBuilding();
-
-             Occupied = true;
-        }*/
-        if (_isPassable)
-        {
-            _isPassable = !_isPassable;
-            _renderer.color = Color.black;
-           
+    private void OnMouseDown() {
+        if (particle == null) {
+            Particle p = new Particle(BlockType.Water);
+            SetParticle(p);
+            this._gridManager.particles.Add(p);
+        } else if (particle.getBlockType() == BlockType.Dirt) {
+            this._gridManager.particles.Remove(particle);
+            SetParticle(null);
         }
-        else
-        {
-            _isPassable = !_isPassable;
-            _renderer.color = baseColor;
-        }
-
-        gridManager.UpdatePassability(_isPassable, location);
-
     }
 
     /// Lets manager inform tile of its valid neighbors.

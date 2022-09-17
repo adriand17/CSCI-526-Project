@@ -8,16 +8,16 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
-    [SerializeField] private WaterDrop _dropPrefab;
     [SerializeField] private BaseTower _towerPrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
     [SerializeField] private BuildingManager buildingManager;
 
+    public HashSet<Particle> particles = new HashSet<Particle>();
 
     private Dictionary<Vector2, Tile> _tiles;
+    private float waterInterval;
 
-    private List<WaterDrop> dropList = new List<WaterDrop>();
     // Start is called before the first frame update
     void Start()
     {
@@ -27,9 +27,17 @@ public class GridManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
+    void Update() {
+        /// Wait for 0.5s.
+        waterInterval += Time.deltaTime;
+        if (waterInterval < 0.25f) {
+            return;
+        }
+        waterInterval = 0;
+        
+        foreach (var particle in particles) {
+            particle.Tick(this);
+        }
     }
 
     void GenerateGrid()
@@ -46,18 +54,15 @@ public class GridManager : MonoBehaviour
 
                 //for checker board patter...
                 var isOffset = (x + y) % 2 == 1;
-                spawnedTile.Init(isOffset, _towerPrefab, true, new Vector3(x, y), this);
+                spawnedTile.Init(isOffset, _towerPrefab, new Vector3(x, y), this);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
         }
 
-
         SetUnpassableTiles();
         SetAdjacentTiles();
         
-        SpawnWaterDrop();
-
         _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
 
@@ -88,107 +93,45 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    private void DrawParticle(BlockType type, Vector3 pos)
+    {
+        var tile = _tiles[pos];
+        Particle particle = new Particle(type);
+        tile.SetParticle(particle);
+        particles.Add(particle);
+    }
+
     // Create inital level geometry.
     public void SetUnpassableTiles()
-    {
+    {   
+        DrawParticle(BlockType.Water, new Vector3(6, 6));
 
-     
-        Tile t = _tiles[new Vector3(5,6)];
-        t.SetTileUnpassable();
+        DrawParticle(BlockType.Dirt, new Vector3(5, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(4, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(3, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(2, 6));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 6));
 
-        t = _tiles[new Vector3(4, 6)];
-        t.SetTileUnpassable();
+        DrawParticle(BlockType.Dirt, new Vector3(6, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(5, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(4, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(3, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(2, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 4));
+        DrawParticle(BlockType.Dirt, new Vector3(0, 4));
 
-        t = _tiles[new Vector3(3, 6)];
-        t.SetTileUnpassable();
+        DrawParticle(BlockType.Dirt, new Vector3(8, 3));
+        DrawParticle(BlockType.Dirt, new Vector3(7, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(6, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(5, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(4, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(3, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(2, 2));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 2));
 
-        t = _tiles[new Vector3(2, 6)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(1, 6)];
-        t.SetTileUnpassable();
-
-
-        t = _tiles[new Vector3(6, 4)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(5, 4)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(4, 4)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(3, 4)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(2, 4)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(1, 4)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(0, 4)];
-        t.SetTileUnpassable();
-
-
-        t = _tiles[new Vector3(8, 3)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(7, 2)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(6, 2)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(5, 2)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(4, 2)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(3, 2)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(2, 2)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(1, 2)];
-        t.SetTileUnpassable();
-
-
-        t = _tiles[new Vector3(1, 1)];
-        t.SetTileUnpassable();
-
-        t = _tiles[new Vector3(1, 0)];
-        t.SetTileUnpassable();
-
+        DrawParticle(BlockType.Dirt, new Vector3(1, 1));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 0));
     }
-
-    public void SpawnWaterDrop()
-    {
-        var spawnedDrop = Instantiate(_dropPrefab, new Vector3(5, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(5, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(7, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(7, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(10, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(10, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(13, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(13, 8));
-        dropList.Add(spawnedDrop);
-
-        spawnedDrop = Instantiate(_dropPrefab, new Vector3(1, 8, -1), Quaternion.identity);
-        spawnedDrop.Init(GetTileAtPosition(1, 8));
-        dropList.Add(spawnedDrop);
-        //for checker board patter...
-        // spawnedTile.Init(isOffset, _towerPrefab);
-    }
-
 
     public Tile GetTileAtPosition(float x, float y)
     {
@@ -203,35 +146,9 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-
-    public void UpdatePassability(bool isPassable, Vector3 pos )
-    {
-        Tile t = _tiles[pos];
-        Debug.Log(t._isPassable);
-    }
-
     public void ResetGrid()
     {
-        foreach(WaterDrop drop in dropList)
-        {
-            DestroyImmediate(drop.gameObject);
-        }
-        for (int x = 0; x < _width; x++)
-        {
-            for (int y = 0; y < _height; y++)
-            {
-                Vector2 pos = new Vector2(x, y);
-                Tile t = _tiles[pos];
-                if (t._filledWater.activeSelf == false){
-                    t._hasWater = false;
-                }
-
-            }
-        }
-
-                dropList.Clear();
-
-        SpawnWaterDrop();
+        /// TODO
     }
  
 	IEnumerator GetRequest(string uri)

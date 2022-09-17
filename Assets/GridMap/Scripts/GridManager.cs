@@ -46,7 +46,7 @@ public class GridManager : MonoBehaviour
 
                 //for checker board patter...
                 var isOffset = (x + y) % 2 == 1;
-                spawnedTile.Init(isOffset, _towerPrefab, true, new Vector3(x, y), this);
+                spawnedTile.Init(isOffset, _towerPrefab, new Vector3(x, y), this);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }

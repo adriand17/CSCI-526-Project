@@ -34,8 +34,16 @@ public class Tile : MonoBehaviour
     public Tile rightTile = null;
     public Tile underTile = null;
     
-    public bool _isPassable = true;
-        _isPassable = false;
+    public BlockID blockID = BlockID.Air;
+
+    public bool isPassable() { return blockID == BlockID.Air; }
+    public void SetTileUnpassable()
+    {
+        _renderer.color = Color.black;
+        blockID = BlockID.Dirt;
+    }
+
+
     public bool _hasWater = false;
     public Color baseColor = Color.gray;
     public Vector3 location;
@@ -45,12 +53,11 @@ public class Tile : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public void Init(bool isOffset, BaseTower towerPrefab, bool _isPassable, Vector3 location, GridManager gridManager)
+    public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
         //buildingManager = bm;
         this._towerPrefab = towerPrefab;
-        this._isPassable = _isPassable;
         
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         baseColor = isOffset ? _offsetColor : _baseColor;
@@ -85,15 +92,13 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_isPassable)
+        if (blockID == BlockID.Air) 
         {
-            _isPassable = !_isPassable;
+            blockID = BlockID.Dirt;
             _renderer.color = Color.black;
-           
-        }
-        else
+        } else if (blockID == BlockID.Dirt)
         {
-            _isPassable = !_isPassable;
+            blockID = BlockID.Air;
             _renderer.color = baseColor;
         }
     }

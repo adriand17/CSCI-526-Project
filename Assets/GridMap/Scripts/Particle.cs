@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BlockID 
-{ 
-    Air,     // Absence of a block.
+public enum BlockType { 
     Water,   // Water block.
     Bedrock, // Uneditable level structure block.
     Dirt,    // Player placable block.

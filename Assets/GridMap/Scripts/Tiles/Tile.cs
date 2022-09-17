@@ -34,27 +34,27 @@ public class Tile : MonoBehaviour
     public Tile rightTile = null;
     public Tile underTile = null;
     
-    public BlockID blockID = BlockID.Air;
-    public void SetBlockID(BlockID id)
+    private GridManager _gridManager;
+
+    public Particle particle;
+    public void SetParticle(Particle p)
     {
-        blockID = id;
-        switch (id) 
-        { 
-            case BlockID.Air:
-                _renderer.color = _baseColor;
-                break;
-            
-            case BlockID.WaterStill: 
-            case BlockID.WaterLeft: 
-            case BlockID.WaterRight:
+        this.particle = p;
+        if (p == null) {
+            _renderer.color = _baseColor;
+            Debug.Log("Particle is null");
+            return;
+        }
+
+        switch (particle.blockType)
+        {
+            case BlockType.Water:
                 _renderer.color = Color.blue;
                 break;
-            
-            case BlockID.Bedrock:
+            case BlockType.Bedrock:
                 _renderer.color = Color.black;
                 break;
-            
-            case BlockID.Dirt:
+            case BlockType.Dirt:
                 _renderer.color = new Color(0.5f, 0.25f, 0);
                 break;
         }
@@ -68,7 +68,7 @@ public class Tile : MonoBehaviour
 
     // Start is called before the first frame update
 
-    public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location)
+    public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
         //buildingManager = bm;
@@ -78,6 +78,7 @@ public class Tile : MonoBehaviour
         baseColor = isOffset ? _offsetColor : _baseColor;
 
         this.location = location;
+        this._gridManager = gridManager;
     }
 
     private void Update()
@@ -104,14 +105,14 @@ public class Tile : MonoBehaviour
         _highlight.SetActive(false);
     }
 
-    private void OnMouseDown()
-    {
-        if (blockID == BlockID.Air) 
-        {
-            this.SetBlockID(BlockID.WaterStill);
-        } else if (blockID == BlockID.Dirt)
-        {
-            this.SetBlockID(BlockID.Air);
+    private void OnMouseDown() {
+        if (particle == null) {
+            Particle p = new Particle(BlockType.Dirt);
+            SetParticle(p);
+            this._gridManager.particles.Add(p);
+        } else if (particle.blockType == BlockType.Dirt) {
+            this._gridManager.particles.Remove(particle);
+            SetParticle(null);
         }
     }
 

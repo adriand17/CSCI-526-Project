@@ -8,10 +8,17 @@ public enum BlockType {
     Dirt,    // Player placable block.
 }
 
+public enum WaterFlow { 
+    Still, 
+    Left,  
+    Right, 
+}
+
 public class Particle {
 
     public BlockType blockType;
     public Tile tile;
+    private WaterFlow _waterFlow;
 
     public Particle(BlockType type) {
         blockType = type;
@@ -23,13 +30,60 @@ public class Particle {
         }
     }
 
+    private bool flowLeft() {
+        if (tile.leftTile != null && tile.leftTile.particle == null) {
+            Tile oldTile = this.tile;
+            tile.leftTile.SetParticle(this);
+            oldTile.SetParticle(null);
+            this._waterFlow = WaterFlow.Left;
+            return true;
+        }
+        return false;
+    }
+
+    private bool flowRight() {
+        if (tile.rightTile != null && tile.rightTile.particle == null) {
+            Tile oldTile = this.tile;
+            tile.rightTile.SetParticle(this);
+            oldTile.SetParticle(null);
+            this._waterFlow = WaterFlow.Right;
+            return true;
+        }
+        return false;
+    }
     private void WaterTick(GridManager grid) { 
         // Check if water can flow down.
         if (tile.underTile != null && tile.underTile.particle == null) {
             Tile oldTile = this.tile;
             tile.underTile.SetParticle(this);
             oldTile.SetParticle(null);
+            return;
         }
 
+        switch (_waterFlow) {
+            case WaterFlow.Still:
+                if (Random.value >= 0.5) {
+                    if (!flowLeft() && !flowRight()) {
+                        _waterFlow = WaterFlow.Still;
+                    }
+                } else {
+                    if (!flowRight() && !flowLeft()) {
+                        _waterFlow = WaterFlow.Still;
+                    }
+                } 
+                break;
+            
+            case WaterFlow.Left:
+                if (!flowLeft() && !flowRight()) {
+                    _waterFlow = WaterFlow.Still;
+                }
+                break;
+            
+            case WaterFlow.Right:
+                if (!flowRight() && !flowLeft()) {
+                    _waterFlow = WaterFlow.Still;
+                }
+                break;
+        }
     }
 }

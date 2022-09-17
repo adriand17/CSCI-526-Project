@@ -35,15 +35,32 @@ public class Tile : MonoBehaviour
     public Tile underTile = null;
     
     public BlockID blockID = BlockID.Air;
-
-    public bool isPassable() { return blockID == BlockID.Air; }
-    public void SetTileUnpassable()
+    public void SetBlockID(BlockID id)
     {
-        _renderer.color = Color.black;
-        blockID = BlockID.Dirt;
+        blockID = id;
+        switch (id) 
+        { 
+            case BlockID.Air:
+                _renderer.color = _baseColor;
+                break;
+            
+            case BlockID.Water:
+                /// TODO
+                break;
+            
+            case BlockID.Bedrock:
+                /// TODO
+                break;
+            
+            case BlockID.Dirt:
+                _renderer.color = Color.black;
+                break;
+        }
     }
 
 
+    public bool isPassable() { return blockID == BlockID.Air; }
+    
     public bool _hasWater = false;
     public Color baseColor = Color.gray;
     public Vector3 location;
@@ -94,12 +111,10 @@ public class Tile : MonoBehaviour
     {
         if (blockID == BlockID.Air) 
         {
-            blockID = BlockID.Dirt;
-            _renderer.color = Color.black;
+            this.SetBlockID(BlockID.Dirt);
         } else if (blockID == BlockID.Dirt)
         {
-            blockID = BlockID.Air;
-            _renderer.color = baseColor;
+            this.SetBlockID(BlockID.Air);
         }
     }
 

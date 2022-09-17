@@ -94,73 +94,73 @@ public class GridManager : MonoBehaviour
 
      
         Tile t = _tiles[new Vector3(5,6)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(4, 6)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(3, 6)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(2, 6)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(1, 6)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
 
         t = _tiles[new Vector3(6, 4)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(5, 4)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(4, 4)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(3, 4)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(2, 4)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(1, 4)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(0, 4)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
 
         t = _tiles[new Vector3(8, 3)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(7, 2)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(6, 2)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(5, 2)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(4, 2)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(3, 2)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(2, 2)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(1, 2)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
 
         t = _tiles[new Vector3(1, 1)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
         t = _tiles[new Vector3(1, 0)];
-        t.SetTileUnpassable();
+        t.SetBlockID(Tile.BlockID.Dirt);
 
     }
 

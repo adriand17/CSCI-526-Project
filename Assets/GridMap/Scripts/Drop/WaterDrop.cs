@@ -54,7 +54,7 @@ public class WaterDrop : MonoBehaviour
             }
 
             /// Otherwise, choose a horizontal direction.
-            switch (direction)
+            switch (this.direction)
             {
                 case Direction.Down:
                     moveInDirection(canMoveInDirection(Direction.Left) ? Direction.Left : Direction.Right);

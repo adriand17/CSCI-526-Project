@@ -16,7 +16,17 @@ public enum WaterFlow {
 
 public class Particle {
 
-    public BlockType blockType;
+    private BlockType blockType;
+    public BlockType getBlockType() { 
+        return blockType; 
+    } 
+    public void setBlockType(BlockType blockType) { 
+        this.blockType = blockType; 
+        
+        /// Reset metadata.
+        _waterFlow = WaterFlow.Still;
+    }
+
     public Tile tile;
     private WaterFlow _waterFlow;
 

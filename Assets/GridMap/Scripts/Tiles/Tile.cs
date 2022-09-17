@@ -35,7 +35,7 @@ public class Tile : MonoBehaviour
         }
 
         p.tile = this;
-        switch (particle.blockType)
+        switch (particle.getBlockType())
         {
             case BlockType.Water:
                 _renderer.color = Color.blue;
@@ -99,7 +99,7 @@ public class Tile : MonoBehaviour
             Particle p = new Particle(BlockType.Water);
             SetParticle(p);
             this._gridManager.particles.Add(p);
-        } else if (particle.blockType == BlockType.Dirt) {
+        } else if (particle.getBlockType() == BlockType.Dirt) {
             this._gridManager.particles.Remove(particle);
             SetParticle(null);
         }

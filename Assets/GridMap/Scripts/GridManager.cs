@@ -91,77 +91,31 @@ public class GridManager : MonoBehaviour
     // Create inital level geometry.
     public void SetUnpassableTiles()
     {
+        _tiles[new Vector3(5, 6)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(4, 6)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(3, 6)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(2, 6)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(1, 6)].SetBlockID(Tile.BlockID.Dirt);
 
-     
-        Tile t = _tiles[new Vector3(5,6)];
-        t.SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(6, 4)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(5, 4)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(4, 4)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(3, 4)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(2, 4)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(1, 4)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(0, 4)].SetBlockID(Tile.BlockID.Dirt);
 
-        t = _tiles[new Vector3(4, 6)];
-        t.SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(8, 3)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(7, 2)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(6, 2)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(5, 2)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(4, 2)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(3, 2)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(2, 2)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(1, 2)].SetBlockID(Tile.BlockID.Dirt);
 
-        t = _tiles[new Vector3(3, 6)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(2, 6)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(1, 6)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-
-        t = _tiles[new Vector3(6, 4)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(5, 4)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(4, 4)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(3, 4)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(2, 4)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(1, 4)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(0, 4)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-
-        t = _tiles[new Vector3(8, 3)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(7, 2)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(6, 2)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(5, 2)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(4, 2)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(3, 2)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(2, 2)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(1, 2)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-
-        t = _tiles[new Vector3(1, 1)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
-        t = _tiles[new Vector3(1, 0)];
-        t.SetBlockID(Tile.BlockID.Dirt);
-
+        _tiles[new Vector3(1, 1)].SetBlockID(Tile.BlockID.Dirt);
+        _tiles[new Vector3(1, 0)].SetBlockID(Tile.BlockID.Dirt);
     }
 
     public void SpawnWaterDrop()

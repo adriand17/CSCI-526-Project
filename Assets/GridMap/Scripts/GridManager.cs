@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
@@ -5,7 +6,7 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-
+    [SerializeField] public GameManager _gameManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
     [SerializeField] private BaseTower _towerPrefab;
@@ -24,6 +25,7 @@ public class GridManager : MonoBehaviour
         GenerateGrid();
 		// A correct website page.
         StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
+        //_gameManager.SpawnNextWave();
     }
 
     // Update is called once per frame
@@ -93,7 +95,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void DrawParticle(BlockType type, Vector3 pos)
+    public void DrawParticle(BlockType type, Vector3 pos)
     {
         var tile = _tiles[pos];
         Particle particle = new Particle(type);
@@ -102,11 +104,10 @@ public class GridManager : MonoBehaviour
     }
 
     // Create inital level geometry.
-    public void SetUnpassableTiles()
-    {   
-        DrawParticle(BlockType.Water, new Vector3(6, 6));
+    private void SetUnpassableTiles()
+    {
 
-        DrawParticle(BlockType.Dirt, new Vector3(5, 6));
+        /*DrawParticle(BlockType.Dirt, new Vector3(5, 6));
         DrawParticle(BlockType.Dirt, new Vector3(4, 6));
         DrawParticle(BlockType.Dirt, new Vector3(3, 6));
         DrawParticle(BlockType.Dirt, new Vector3(2, 6));
@@ -130,7 +131,7 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Dirt, new Vector3(1, 2));
 
         DrawParticle(BlockType.Dirt, new Vector3(1, 1));
-        DrawParticle(BlockType.Dirt, new Vector3(1, 0));
+        DrawParticle(BlockType.Dirt, new Vector3(1, 0));*/
     }
 
     public Tile GetTileAtPosition(float x, float y)
@@ -175,6 +176,16 @@ public class GridManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public int getHeight()
+    {
+        return _height;
+    }
+
+    public int getWidth()
+    {
+        return _width;
     }
 
 }

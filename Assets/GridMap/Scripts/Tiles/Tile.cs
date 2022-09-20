@@ -96,7 +96,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown() {
         if (particle == null) {
-            Particle p = new Particle(BlockType.Water);
+            Particle p = new Particle(BlockType.Dirt);
             SetParticle(p);
             this._gridManager.particles.Add(p);
         } else if (particle.getBlockType() == BlockType.Dirt) {

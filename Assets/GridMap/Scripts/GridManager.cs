@@ -9,6 +9,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
     [SerializeField] private BaseTower _towerPrefab;
+    [SerializeField] private Particle _particlePrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
     [SerializeField] private BuildingManager buildingManager;
@@ -29,7 +30,7 @@ public class GridManager : MonoBehaviour
     // Update is called once per frame
     void Update() {
         /// Wait for 0.5s.
-        waterInterval += Time.deltaTime;
+       /* waterInterval += Time.deltaTime;
         if (waterInterval < 0.25f) {
             return;
         }
@@ -37,7 +38,7 @@ public class GridManager : MonoBehaviour
         
         foreach (var particle in particles) {
             particle.Tick(this);
-        }
+        }*/
     }
 
     void GenerateGrid()
@@ -93,12 +94,18 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    private void DrawParticle(BlockType type, Vector3 pos)
+    public void DrawParticle(BlockType type, Vector3 pos)
     {
         var tile = _tiles[pos];
-        Particle particle = new Particle(type);
+        //Particle particle = new Particle(type);
+        //tile.SetParticle(particle);
+        //particles.Add(particle);
+
+        //Particle particle = new Particle(type);
+        var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
+        particle.Init(type, tile);
         tile.SetParticle(particle);
-        particles.Add(particle);
+        //particles.Add(particle);
     }
 
     // Create inital level geometry.

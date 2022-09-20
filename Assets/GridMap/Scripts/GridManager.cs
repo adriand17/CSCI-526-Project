@@ -20,6 +20,11 @@ public class GridManager : MonoBehaviour
     
 
     public HashSet<Particle> particles = new HashSet<Particle>();
+    [SerializeField] private HealthBar healthBar;
+    public int maxHealth = 50;
+    public int damage = 10;
+    public int currentHealth;
+
 
     private Dictionary<Vector2, Tile> _tiles;
     private float waterInterval;
@@ -36,7 +41,8 @@ public class GridManager : MonoBehaviour
     {
         
         GenerateGrid();
-		// A correct website page.
+        ResetHealth();
+        // A correct website page.
         StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
 
     }
@@ -44,6 +50,12 @@ public class GridManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void ResetHealth()
+    {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
     }
 
     void GenerateGrid()
@@ -68,7 +80,7 @@ public class GridManager : MonoBehaviour
 
         SetUnpassableTiles();
         SetAdjacentTiles();
-        
+
         _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
 
@@ -84,16 +96,16 @@ public class GridManager : MonoBehaviour
 
                 // Look up valid adjacent tiles.
                 // null represents the world's borders.
-                Tile underTile = (y > 0) 
-                	? _tiles[new Vector2(x, y - 1)] 
-                	: null;
+                Tile underTile = (y > 0)
+                    ? _tiles[new Vector2(x, y - 1)]
+                    : null;
                 Tile rightTile = (x < _width - 1)
-                	? _tiles[new Vector2(x + 1, y)]
-                	: null;
+                    ? _tiles[new Vector2(x + 1, y)]
+                    : null;
                 Tile leftTile = (x > 0)
-                	? _tiles[new Vector2(x -1, y)]
-                	: null;
-                
+                    ? _tiles[new Vector2(x - 1, y)]
+                    : null;
+
                 t.setAdjacentTiles(underTile, leftTile, rightTile);
             }
         }
@@ -192,6 +204,13 @@ public class GridManager : MonoBehaviour
         particles.Clear();
       
     }
+
+    public void TakeDamage()
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+    }
+
 
     IEnumerator GetRequest(string uri)
     {

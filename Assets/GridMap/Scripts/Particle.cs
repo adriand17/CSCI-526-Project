@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BlockType { 
+public enum BlockType
+{
     Water,   // Water block.
     Bedrock, // Uneditable level structure block.
     Dirt,    // Player placable block.
@@ -25,15 +26,16 @@ public class Particle : MonoBehaviour{
     } 
     public void setBlockType(BlockType blockType) { 
         this.blockType = blockType; 
-        
         /// Reset metadata.
         _waterFlow = WaterFlow.Still;
     }
 
     public Tile tile;
+    private bool atBottom = false;
     private WaterFlow _waterFlow;
 
-    public Particle(BlockType type) {
+    public Particle(BlockType type)
+    {
         blockType = type;
     }
 
@@ -103,6 +105,15 @@ public class Particle : MonoBehaviour{
         return false;
     }
 
+    private void hasHitBottom(GridManager grid)
+    {
+        if (!atBottom && tile.underTile == null)
+        {
+            atBottom = true;
+            grid.TakeDamage();
+        }
+    }
+
     /// Try to move water.
     private void WaterTick() {
 
@@ -117,17 +128,23 @@ public class Particle : MonoBehaviour{
             return;
         }
 
-        switch (_waterFlow) {
+        switch (_waterFlow)
+        {
             case WaterFlow.Still:
-                if (Random.value >= 0.5) {
-                    if (!flowLeft() && !flowRight()) {
+                if (Random.value >= 0.5)
+                {
+                    if (!flowLeft() && !flowRight())
+                    {
                         _waterFlow = WaterFlow.Still;
                     }
-                } else {
-                    if (!flowRight() && !flowLeft()) {
+                }
+                else
+                {
+                    if (!flowRight() && !flowLeft())
+                    {
                         _waterFlow = WaterFlow.Still;
                     }
-                } 
+                }
                 break;
             case WaterFlow.Down:
                 if (Random.value >= 0.5)
@@ -146,13 +163,15 @@ public class Particle : MonoBehaviour{
                 }
                 break;
             case WaterFlow.Left:
-                if (!flowLeft() && !flowRight()) {
+                if (!flowLeft() && !flowRight())
+                {
                     _waterFlow = WaterFlow.Still;
                 }
                 break;
-            
+
             case WaterFlow.Right:
-                if (!flowRight() && !flowLeft()) {
+                if (!flowRight() && !flowLeft())
+                {
                     _waterFlow = WaterFlow.Still;
                 }
                 break;

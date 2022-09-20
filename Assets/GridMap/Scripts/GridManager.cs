@@ -6,6 +6,8 @@ using UnityEngine;
 public class GridManager : MonoBehaviour
 {
 
+    public static GridManager Instance;
+
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
     [SerializeField] private BaseTower _towerPrefab;
@@ -18,8 +20,12 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2, Tile> _tiles;
     private float waterInterval;
 
+    void Awake(){
+        Instance = this;
+    }
+
     // Start is called before the first frame update
-    void Start()
+    public void onStart()
     {
         GenerateGrid();
 		// A correct website page.

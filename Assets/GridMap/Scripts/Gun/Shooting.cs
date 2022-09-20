@@ -52,15 +52,16 @@ public class Shooting : MonoBehaviour
         }
         void DrawLaser()
         {
-        bool loopActive = true;
-        int CountLaser = 1;
-        pos = transform.position;
-            directLaser = Camera.main.WorldToScreenPoint(Input.mousePosition - pos);
+            bool loopActive = true;
+            int CountLaser = 1;
+            pos = firepoint.position;
+            directLaser = firepoint.up;
+            Debug.Log(directLaser);
             laserRenderer.positionCount = CountLaser;
             laserRenderer.SetPosition(0, pos);
-            float angle = Mathf.Atan2(directLaser.y, directLaser.x)*180/Mathf.PI;
-            laserRenderer.SetPosition(1, Square.position + new Vector3(Mathf.Cos(angle) * 100, Mathf.Sin(angle) * 100, 0) * 100);
-            Square.transform.rotation = Quaternion.AngleAxis(angle,new Vector3(0,0,1)) ;
+            //float angle = Mathf.Atan2(directLaser.y, directLaser.x)*180/Mathf.PI;
+            //laserRenderer.SetPosition(1, Square.position + new Vector3(Mathf.Cos(angle) * 100, Mathf.Sin(angle) * 100, 0) * 100);
+            //Square.transform.rotation = Quaternion.AngleAxis(angle,new Vector3(0,0,1)) ;
    
             while (loopActive)
             {

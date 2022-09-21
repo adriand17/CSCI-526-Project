@@ -13,11 +13,12 @@ public class Shooting : MonoBehaviour
     public float bulletForce=20f;
     private LineRenderer laserRenderer;
     private int laserDistance = 100;
-    private int numberReflectMax = 2;
+    private int numberReflectMax = 3;
     private Vector3 pos = new Vector3();
     private Vector3 directLaser = new Vector3();
     
-    public int CountLaser = 1;
+    [SerializeField] private int CountLaser = 1;
+    [SerializeField] private bool loopActive = false;
     public Transform Square;
 
     void Start()
@@ -52,38 +53,23 @@ public class Shooting : MonoBehaviour
         }
         void DrawLaser()
         {
-            bool loopActive = true;
-            int CountLaser = 1;
+            loopActive = true;
+            CountLaser = 1;
             pos = firepoint.position;
             directLaser = firepoint.up;
-            Debug.Log(directLaser);
             laserRenderer.positionCount = CountLaser;
             laserRenderer.SetPosition(0, pos);
-            //float angle = Mathf.Atan2(directLaser.y, directLaser.x)*180/Mathf.PI;
-            //laserRenderer.SetPosition(1, Square.position + new Vector3(Mathf.Cos(angle) * 100, Mathf.Sin(angle) * 100, 0) * 100);
-            //Square.transform.rotation = Quaternion.AngleAxis(angle,new Vector3(0,0,1)) ;
    
             while (loopActive)
             {
                 RaycastHit2D hit = Physics2D.Raycast(pos, directLaser, laserDistance);
-                if (hit)
-                {
-                    CountLaser++;
-                    laserRenderer.positionCount = CountLaser;
-                    pos = (Vector2)directLaser.normalized + hit.normal;
-                    directLaser = Vector3.Reflect(directLaser, hit.point);
-                    laserRenderer.SetPosition(CountLaser - 1, hit.point);
-
-                }
-                else
-                {
+                if (!hit || !HandleHit(hit)) {
                     CountLaser++;
                     laserRenderer.positionCount = CountLaser;
                     laserRenderer.SetPosition(CountLaser - 1, pos + (directLaser.normalized * laserDistance));
                     loopActive = false;
-
-
                 }
+                CountLaser++; //TODO: Avoid infinite loop currently
                 if (CountLaser > numberReflectMax)
                 {
                     loopActive = false;
@@ -92,4 +78,29 @@ public class Shooting : MonoBehaviour
 
         }
 
+
+        private bool HandleHit(RaycastHit2D hit) {
+            bool handled = false;
+            if (hit.collider.tag == TagConstant.ReflectWall) {
+                    CountLaser++;
+                    laserRenderer.positionCount = CountLaser;
+                    pos = (Vector2)directLaser.normalized + hit.normal;
+                    directLaser = Vector3.Reflect(directLaser, hit.point);
+                    laserRenderer.SetPosition(CountLaser - 1, hit.point);
+                    handled = true;
+            } else if (hit.collider.tag == TagConstant.WaterDrop) {
+                    Debug.Log("Hit water");
+                    handleWaterHit();                    
+            } else if (hit.collider.tag == TagConstant.Wall) {
+                    Debug.Log("Hit Wall");
+                    handled = true;
+                    loopActive = false;
+            }
+            
+            return handled;
+        }
+
+        void handleWaterHit() {
+
+        }
     }

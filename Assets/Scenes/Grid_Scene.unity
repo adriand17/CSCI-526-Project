@@ -1215,6 +1215,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1371074781}
     m_Modifications:
+    - target: {fileID: 8131458325811062568, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f2ab4eef4672e4b27b98068ef3be03d1, type: 2}
+    - target: {fileID: 8131458325811062568, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131458325811062568, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.8679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131458325811062568, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.8014153
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131458325811062568, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.15966538
+      objectReference: {fileID: 0}
     - target: {fileID: 8131458325811062570, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
       propertyPath: m_RootOrder
       value: 4

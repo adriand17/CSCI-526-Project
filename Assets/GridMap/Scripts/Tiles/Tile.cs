@@ -39,12 +39,15 @@ public class Tile : MonoBehaviour
         {
             case BlockType.Water:
                 _renderer.color = Color.blue;
+                this.tag = TagConstant.WaterDrop;
                 break;
             case BlockType.Bedrock:
                 _renderer.color = Color.black;
+                this.tag = TagConstant.Wall;
                 break;
             case BlockType.Dirt:
                 _renderer.color = new Color(0.5f, 0.25f, 0);
+                this.tag = TagConstant.ReflectWall;
                 break;
         }
     }

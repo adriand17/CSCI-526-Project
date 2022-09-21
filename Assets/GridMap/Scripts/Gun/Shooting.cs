@@ -106,7 +106,7 @@ public class Shooting : MonoBehaviour
                     handled = true;
             } else if (hit.collider.tag == TagConstant.WaterDrop) {
                     Debug.Log("Hit water");
-                    handleWaterHit();                    
+                    handleWaterHit(hit.collider.gameObject);                    
             } else if (hit.collider.tag == TagConstant.Wall) {
                     Debug.Log("Hit Wall");
                     handled = true;
@@ -116,7 +116,7 @@ public class Shooting : MonoBehaviour
             return handled;
         }
 
-        void handleWaterHit() {
-
+        void handleWaterHit(GameObject water) {
+            Destroy(water);
         }
 }

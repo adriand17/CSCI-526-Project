@@ -56,10 +56,6 @@ public class Particle : MonoBehaviour{
 
     }
 
-    public void Tick(GridManager grid) { 
-        
-    }
-
     public void Update()
     {
         if (blockType == BlockType.Water)

@@ -27,20 +27,6 @@ public class GridManager : MonoBehaviour
         StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
     }
 
-    // Update is called once per frame
-    void Update() {
-        /// Wait for 0.5s.
-       /* waterInterval += Time.deltaTime;
-        if (waterInterval < 0.25f) {
-            return;
-        }
-        waterInterval = 0;
-        
-        foreach (var particle in particles) {
-            particle.Tick(this);
-        }*/
-    }
-
     void GenerateGrid()
     {
 
@@ -97,15 +83,10 @@ public class GridManager : MonoBehaviour
     public void DrawParticle(BlockType type, Vector3 pos)
     {
         var tile = _tiles[pos];
-        //Particle particle = new Particle(type);
-        //tile.SetParticle(particle);
-        //particles.Add(particle);
-
-        //Particle particle = new Particle(type);
         var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
         particle.Init(type, tile);
         tile.SetParticle(particle);
-        //particles.Add(particle);
+        particles.Add(particle);
     }
 
     // Create inital level geometry.
@@ -156,9 +137,20 @@ public class GridManager : MonoBehaviour
     public void ResetGrid()
     {
         /// TODO
+        foreach (Particle p in particles)
+        {
+            if(p.getBlockType() == BlockType.Water)
+            {
+                DestroyImmediate(p.gameObject);
+               
+            }
+            
+        }
+        particles.Clear();
+      
     }
- 
-	IEnumerator GetRequest(string uri)
+
+    IEnumerator GetRequest(string uri)
     {
         using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
         {

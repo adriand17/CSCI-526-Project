@@ -17,7 +17,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
     [SerializeField] private BuildingManager buildingManager;
-    [SerializeField] private bool enableText;
+    
 
     public HashSet<Particle> particles = new HashSet<Particle>();
 
@@ -29,14 +29,12 @@ public class GridManager : MonoBehaviour
     }
     private int _buildingCount = 0;
     private int _buildingLimit = 3;
-    private Text _MyText;
-    private float _timeToAppear = 2f;
-    private float _timeWhenDisappear;
+    
 
     // Start is called before the first frame update
     public void onStart()
     {
-        enableText = false;
+        
         GenerateGrid();
 		// A correct website page.
         StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
@@ -161,7 +159,7 @@ public class GridManager : MonoBehaviour
         // if the existing building count excess the limit and player want to add budling on the pos
         if (_buildingCount >= _buildingLimit && t._isPassable)
         {
-            enableText = true;
+            
             return false;
         }
         else

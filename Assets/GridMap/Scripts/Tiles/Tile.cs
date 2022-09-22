@@ -29,7 +29,7 @@ public class Tile : MonoBehaviour
     public void SetParticle(Particle p)
     {
         this.particle = p;
-       
+
     }
 
     public Color baseColor = Color.gray;

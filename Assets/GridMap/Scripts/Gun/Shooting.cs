@@ -78,7 +78,24 @@ public class Shooting : MonoBehaviour
    
             while (loopActive)
             {
-                RaycastHit2D hit = Physics2D.Raycast(pos, directLaser, laserDistance);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
+                RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
+                foreach (var obj in hits)
+                {
+                    if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall)
+                    {
+                        hit = obj;
+                        break;
+                    }
+                    else if (obj.collider.tag == TagConstant.WaterDrop)
+                    {
+                        hit = obj;
+                        break;
+                    }
+                    
+                }
+                
+                
                 if (!hit || !HandleHit(hit)) {
                     CountLaser++;
                     laserRenderer.positionCount = CountLaser;

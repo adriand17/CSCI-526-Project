@@ -80,7 +80,7 @@ public class Tile : MonoBehaviour
     private void OnMouseDown() {
         if (particle == null)
         {
-            _gridManager.DrawParticle(BlockType.Water, this.location);
+            _gridManager.DrawParticle(BlockType.Water, this.location + new Vector3(0, 0));
         }
         else if (particle.getBlockType() == BlockType.Dirt)
         {

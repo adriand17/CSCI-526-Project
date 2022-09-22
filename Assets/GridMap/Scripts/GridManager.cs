@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
@@ -5,9 +6,9 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-
     public static GridManager Instance;
 
+    [SerializeField] public GameManager _gameManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
     [SerializeField] private BaseTower _towerPrefab;
@@ -31,6 +32,7 @@ public class GridManager : MonoBehaviour
         GenerateGrid();
 		// A correct website page.
         StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
+        //_gameManager.SpawnNextWave();
     }
 
     void GenerateGrid()
@@ -96,9 +98,8 @@ public class GridManager : MonoBehaviour
     }
 
     // Create inital level geometry.
-    public void SetUnpassableTiles()
-    {   
-        DrawParticle(BlockType.Water, new Vector3(6, 6));
+    private void SetUnpassableTiles()
+    {
 
         DrawParticle(BlockType.Dirt, new Vector3(5, 6));
         DrawParticle(BlockType.Dirt, new Vector3(4, 6));
@@ -180,6 +181,16 @@ public class GridManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public int getHeight()
+    {
+        return _height;
+    }
+
+    public int getWidth()
+    {
+        return _width;
     }
 
 }

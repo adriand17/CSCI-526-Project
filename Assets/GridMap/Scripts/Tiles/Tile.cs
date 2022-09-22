@@ -29,27 +29,7 @@ public class Tile : MonoBehaviour
     public void SetParticle(Particle p)
     {
         this.particle = p;
-        if (p == null) {
-            _renderer.color = _baseColor;
-            return;
-        }
 
-        p.tile = this;
-        switch (particle.getBlockType())
-        {
-            case BlockType.Water:
-                _renderer.color = Color.blue;
-                this.tag = TagConstant.WaterDrop;
-                break;
-            case BlockType.Bedrock:
-                _renderer.color = Color.black;
-                this.tag = TagConstant.Wall;
-                break;
-            case BlockType.Dirt:
-                _renderer.color = new Color(0.5f, 0.25f, 0);
-                this.tag = TagConstant.ReflectWall;
-                break;
-        }
     }
 
     public Color baseColor = Color.gray;
@@ -98,11 +78,12 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        if (particle == null) {
-            Particle p = new Particle(BlockType.Water);
-            SetParticle(p);
-            this._gridManager.particles.Add(p);
-        } else if (particle.getBlockType() == BlockType.Dirt) {
+        if (particle == null)
+        {
+            _gridManager.DrawParticle(BlockType.Water, this.location);
+        }
+        else if (particle.getBlockType() == BlockType.Dirt)
+        {
             this._gridManager.particles.Remove(particle);
             SetParticle(null);
         }

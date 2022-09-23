@@ -26,7 +26,7 @@ public class Particle : MonoBehaviour{
     public void setBlockType(BlockType blockType) { 
         this.blockType = blockType; 
         /// Reset metadata.
-        _waterFlowDirection = WaterFlowDirectionDirection.Still;
+        _waterFlowDirection = WaterFlowDirection.Still;
     }
 
     /// Amount of time since last update.

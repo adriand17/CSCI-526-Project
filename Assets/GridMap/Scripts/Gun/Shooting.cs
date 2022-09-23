@@ -22,8 +22,8 @@ public class Shooting : MonoBehaviour
     [SerializeField] private int CountLaser = 1;
     [SerializeField] private bool loopActive = false;
     private IEnumerator coroutineForDestoryLaser;
-    private float waitTime = 1.0f;
-
+    private float waitTime = 0.5f;
+    private bool lasering = false;
     public Transform Square;
 
     void Start()
@@ -35,11 +35,9 @@ public class Shooting : MonoBehaviour
     
     private IEnumerator WaitAndDisappear(float waitTime)
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(waitTime);
-            laserRenderer.positionCount = 0;
-        }
+        yield return new WaitForSeconds(waitTime);
+        laserRenderer.positionCount = 0;
+        lasering = false;
     }
 
 
@@ -50,8 +48,9 @@ public class Shooting : MonoBehaviour
         //     Shoot();
         // }
         //if (Input.GetButton("Fire2"))
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown("space") && !lasering)
         {
+            lasering = true;
             DrawLaser();
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);
             StartCoroutine(coroutineForDestoryLaser);

@@ -228,7 +228,7 @@ public class GridManager : MonoBehaviour
         /// TODO
         foreach (Particle p in particles)
         {
-            if(p.getBlockType() != BlockType.Bedrock)
+            if(p.getBlockType() != BlockType.Bedrock && p != null)
             {
                 DestroyImmediate(p.gameObject);
                

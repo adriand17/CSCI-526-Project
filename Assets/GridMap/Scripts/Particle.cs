@@ -35,7 +35,9 @@ public class Particle : MonoBehaviour{
 
     [SerializeField] private SpriteRenderer _renderer;
     
+    /// Reference to the tile where this particle is located.
     public Tile tile;
+
     private bool atBottom = false;
     public bool userPlaced = false;
 

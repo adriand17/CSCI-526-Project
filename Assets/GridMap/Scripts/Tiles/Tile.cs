@@ -2,20 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Tile : MonoBehaviour
 {
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
-        
     
+
+
+
     [SerializeField] public BaseTower OccupiedTower;
     [SerializeField] private BaseTower _towerPrefab;
 
     //public BaseTower OccupiedTower;
 
     private bool Occupied = false;
+    private bool changeFlage = true;
+    public bool _isPassable = true;
 
     /// Tile's valid neighbors.
     /// Null indicates the world border.
@@ -24,6 +29,7 @@ public class Tile : MonoBehaviour
     public Tile underTile = null;
     
     private GridManager _gridManager;
+    
 
     public Particle particle;
     public void SetParticle(Particle p)
@@ -78,12 +84,37 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        if (particle == null) {
+       /* if (particle == null) {
             _gridManager.DrawParticle(BlockType.Dirt, this.location + new Vector3(0, 0));
         } else if (particle.getBlockType() == BlockType.Dirt) {
             this._gridManager.particles.Remove(particle);
             SetParticle(null);
+        }*/
+
+        // changeFlage is a check to see if a building can be placed on the location
+
+
+        changeFlage = _gridManager.UpdatePassability(location);
+        if (changeFlage)
+        {
+            if (_isPassable)
+            {
+                _isPassable = !_isPassable;
+                _renderer.color = Color.black;
+
+            }
+            else
+            {
+                _isPassable = !_isPassable;
+                _renderer.color = baseColor;
+            }
         }
+        else
+        {
+            Debug.Log("cancel other buliding to create new one");
+
+        }
+
     }
 
     /// Lets manager inform tile of its valid neighbors.

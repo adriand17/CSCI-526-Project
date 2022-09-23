@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
     [SerializeField] private BuildingManager buildingManager;
+    
 
     public HashSet<Particle> particles = new HashSet<Particle>();
 
@@ -25,14 +27,23 @@ public class GridManager : MonoBehaviour
     void Awake(){
         Instance = this;
     }
+    private int _buildingCount = 0;
+    private int _buildingLimit = 3;
+    
 
     // Start is called before the first frame update
     public void onStart()
     {
+        
         GenerateGrid();
 		// A correct website page.
         StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
-        //_gameManager.SpawnNextWave();
+
+    }
+
+    void Update()
+    {
+        
     }
 
     void GenerateGrid()
@@ -139,6 +150,31 @@ public class GridManager : MonoBehaviour
         }
 
         return null;
+    }
+
+   public bool UpdatePassability(Vector3 pos )
+    {
+        Tile t = _tiles[pos];
+        Debug.Log(t._isPassable);
+        // if the existing building count excess the limit and player want to add budling on the pos
+        Debug.Log(_buildingCount + "/" + _buildingLimit);
+        if (_buildingCount >= _buildingLimit && t._isPassable)
+        {
+            
+            return false;
+        }
+        else
+        {
+            if (t._isPassable)
+            {
+                _buildingCount++;
+            }
+            else
+            {
+                _buildingCount--;
+            }
+            return true;
+        }
     }
 
     public void ResetGrid()

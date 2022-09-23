@@ -125,6 +125,7 @@ public class Shooting : MonoBehaviour
     }
 
     void handleWaterHit(GameObject water) {
+        // TODO: log water position on death.
         Destroy(water);
     }
 }

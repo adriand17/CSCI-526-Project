@@ -22,7 +22,7 @@ public class GridManager : MonoBehaviour
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
-    public int damage = 10;
+    public int damage = 5;
     public int currentHealth;
 
 
@@ -141,9 +141,7 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Bedrock, new Vector3(3, 4));
         DrawParticle(BlockType.Bedrock, new Vector3(2, 4));
         DrawParticle(BlockType.Bedrock, new Vector3(1, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(0, 4));
 
-        DrawParticle(BlockType.Bedrock, new Vector3(8, 3));
         DrawParticle(BlockType.Bedrock, new Vector3(7, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(6, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(5, 2));
@@ -152,8 +150,23 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Bedrock, new Vector3(2, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(1, 2));
 
-        DrawParticle(BlockType.Bedrock, new Vector3(1, 1));
+
+
+        DrawParticle(BlockType.Bedrock, new Vector3(0, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(1, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(2, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(3, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(4, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(5, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(6, 0));
+
+        DrawParticle(BlockType.Bedrock, new Vector3(9, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(10, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(11, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(12, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(13, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(14, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(15, 0));
     }
 
     public Tile GetTileAtPosition(float x, float y)
@@ -214,14 +227,15 @@ public class GridManager : MonoBehaviour
         /// TODO
         foreach (Particle p in particles)
         {
-            if(p.getBlockType() == BlockType.Water)
+            if(p.getBlockType() != BlockType.Bedrock)
             {
                 DestroyImmediate(p.gameObject);
                
-            }
-            
+            } 
         }
+        _buildingCount = 0;
         particles.Clear();
+        ResetHealth();
       
     }
 
@@ -230,6 +244,8 @@ public class GridManager : MonoBehaviour
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
     }
+
+
 
 
     IEnumerator GetRequest(string uri)
@@ -267,16 +283,24 @@ public class GridManager : MonoBehaviour
             Tile t = _tiles[new Vector3(x, 0)];
             if (t.particle != null && t.particle.getBlockType() == BlockType.Water)
             {
-                //at bottom
+                particles.Remove(t.particle);
+                DestroyImmediate(t.particle.gameObject);
+                t.particle = null;
+                
                 TakeDamage();
-               /* if (p.getBlockType() == BlockType.Water)
-                {
-                    DestroyImmediate(p.gameObject);
-
-                }*/
+               
             }
         }
     }
+
+   /* public void DestroyWaterParticle(Particle p)
+    {
+        if (p != null && p.getBlockType() == BlockType.Water)
+        {
+            DestroyImmediate(p.gameObject);
+
+        }
+    }*/
 
     public int getHeight()
     {

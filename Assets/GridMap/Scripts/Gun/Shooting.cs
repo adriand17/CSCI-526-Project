@@ -76,25 +76,18 @@ public class Shooting : MonoBehaviour
         laserRenderer.positionCount = CountLaser;
         laserRenderer.SetPosition(0, pos);
 
-        while (loopActive)
-        {
+        while (loopActive) {
             RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
             RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
-            foreach (var obj in hits)
-            {
-                if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall)
-                {
+            foreach (var obj in hits) {
+                if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall) {
+                    hit = obj;
+                    break;
+                } else if (obj.collider.tag == TagConstant.WaterDrop) {
                     hit = obj;
                     break;
                 }
-                else if (obj.collider.tag == TagConstant.WaterDrop)
-                {
-                    hit = obj;
-                    break;
-                }
-                
             }
-            
             
             if (!hit || !HandleHit(hit)) {
                 CountLaser++;
@@ -103,12 +96,10 @@ public class Shooting : MonoBehaviour
                 loopActive = false;
             }
             CountLaser++; //TODO: Avoid infinite loop currently
-            if (CountLaser > numberReflectMax)
-            {
+            if (CountLaser > numberReflectMax) {
                 loopActive = false;
             }
         }
-
     }
 
 

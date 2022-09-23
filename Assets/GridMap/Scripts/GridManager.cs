@@ -16,12 +16,13 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
     [SerializeField] private BuildingManager buildingManager;
-    
+    [SerializeField] private GameObject _nextWaveButton;
+    [SerializeField] private GameObject _GameOverText;
 
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
-    public int damage = 5;
+    public int damage = 2;
     public int currentHealth;
 
 
@@ -30,7 +31,6 @@ public class GridManager : MonoBehaviour
     private int _buildingCount = 0;
     [SerializeField] private int _buildingLimit = 3;
     [SerializeField] public TextMeshProUGUI _buildingCountText;
-    
 
     // Start is called before the first frame update
     public void onStart()
@@ -46,12 +46,19 @@ public class GridManager : MonoBehaviour
     void Update()
     {
         checkWaterAtBottom();
+        if (currentHealth == 0)
+        {
+            _nextWaveButton.SetActive(false);
+            _GameOverText.SetActive(true);
+        }
     }
 
     void ResetHealth()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        _nextWaveButton.SetActive(true);
+        _GameOverText.SetActive(false);
     }
 
     void GenerateGrid()

@@ -30,7 +30,7 @@ public class Particle : MonoBehaviour{
     }
 
     /// Amount of time since last update.
-    private float waterInterval;
+    private float _timeSinceLastUpdate;
 
     [SerializeField] private SpriteRenderer _renderer;
     
@@ -41,6 +41,7 @@ public class Particle : MonoBehaviour{
     /// Direction that the water is flowing.
     private WaterFlowDirection _waterFlowDirection;
     
+    /// Parent grid manager.
     private GridManager _gridManager;
 
     public Particle(BlockType type)
@@ -73,12 +74,12 @@ public class Particle : MonoBehaviour{
         if (blockType == BlockType.Water)
         {
 
-            waterInterval += Time.deltaTime;
-            if (waterInterval < 0.25f)
+            _timeSinceLastUpdate += Time.deltaTime;
+            if (_timeSinceLastUpdate < 0.25f)
             {
                 return;
             }
-            waterInterval = 0;
+            _timeSinceLastUpdate = 0;
             WaterTick();
 
 

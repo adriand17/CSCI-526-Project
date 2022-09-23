@@ -113,8 +113,22 @@ public class Shooting : MonoBehaviour
             laserRenderer.SetPosition(CountLaser - 1, hit.point);
             handled = true;
         } else if (hit.collider.tag == TagConstant.WaterDrop) {
-            Debug.Log("Hit water");
-            handleWaterHit(hit.collider.gameObject);                    
+            Particle particle = hit.collider.gameObject.GetComponent<Particle>();
+            if (particle == null) { 
+                Debug.Log("ERROR: Particle is null");
+                return false;
+            }
+            switch (particle.getBlockType()) { 
+                case BlockType.Water:
+                    handleWaterHit(hit.collider.gameObject);
+                    break;
+                
+                case BlockType.Bedrock:
+                    break;
+                
+                case BlockType.Dirt:
+                    break;
+            }
         } else if (hit.collider.tag == TagConstant.Wall) {
             Debug.Log("Hit Wall");
             handled = true;

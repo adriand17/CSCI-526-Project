@@ -18,9 +18,8 @@ public enum WaterFlow {
 
 public class Particle : MonoBehaviour{
 
+    /// Kind of block this particle is.
     private BlockType blockType;
-    private float waterInterval;
-    [SerializeField] private SpriteRenderer _renderer;
     public BlockType getBlockType() { 
         return blockType; 
     } 
@@ -29,6 +28,12 @@ public class Particle : MonoBehaviour{
         /// Reset metadata.
         _waterFlow = WaterFlow.Still;
     }
+
+    /// Amount of time since last update.
+    private float waterInterval;
+
+    [SerializeField] private SpriteRenderer _renderer;
+    
 
     public Tile tile;
     private bool atBottom = false;

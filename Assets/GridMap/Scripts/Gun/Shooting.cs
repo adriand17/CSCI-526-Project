@@ -115,19 +115,19 @@ public class Shooting : MonoBehaviour
     private bool HandleHit(RaycastHit2D hit) {
         bool handled = false;
         if (hit.collider.tag == TagConstant.ReflectWall) {
-                CountLaser++;
-                laserRenderer.positionCount = CountLaser;
-                pos = (Vector2)directLaser.normalized + hit.normal;
-                directLaser = Vector3.Reflect(directLaser, hit.point);
-                laserRenderer.SetPosition(CountLaser - 1, hit.point);
-                handled = true;
+            CountLaser++;
+            laserRenderer.positionCount = CountLaser;
+            pos = (Vector2)directLaser.normalized + hit.normal;
+            directLaser = Vector3.Reflect(directLaser, hit.point);
+            laserRenderer.SetPosition(CountLaser - 1, hit.point);
+            handled = true;
         } else if (hit.collider.tag == TagConstant.WaterDrop) {
-                Debug.Log("Hit water");
-                handleWaterHit(hit.collider.gameObject);                    
+            Debug.Log("Hit water");
+            handleWaterHit(hit.collider.gameObject);                    
         } else if (hit.collider.tag == TagConstant.Wall) {
-                Debug.Log("Hit Wall");
-                handled = true;
-                loopActive = false;
+            Debug.Log("Hit Wall");
+            handled = true;
+            loopActive = false;
         }
         
         return handled;

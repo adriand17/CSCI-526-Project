@@ -146,13 +146,22 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Bedrock, new Vector3(1, 4));
 
 
-        DrawParticle(BlockType.Bedrock, new Vector3(7, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(6, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(5, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(4, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(3, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(2, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(1, 2));
+
+        DrawParticle(BlockType.Bedrock, new Vector3(9, 3));
+        DrawParticle(BlockType.Bedrock, new Vector3(10, 3));
+        DrawParticle(BlockType.Bedrock, new Vector3(11, 3));
+        DrawParticle(BlockType.Bedrock, new Vector3(12, 3));
+        DrawParticle(BlockType.Bedrock, new Vector3(13, 3));
+        DrawParticle(BlockType.Bedrock, new Vector3(14, 3));
+        DrawParticle(BlockType.Bedrock, new Vector3(9, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(14, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(14, 5));
 
 
         DrawParticle(BlockType.Bedrock, new Vector3(0, 0));

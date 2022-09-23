@@ -9,8 +9,10 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
-        
     
+
+
+
     [SerializeField] public BaseTower OccupiedTower;
     [SerializeField] private BaseTower _towerPrefab;
 
@@ -18,6 +20,7 @@ public class Tile : MonoBehaviour
 
     private bool Occupied = false;
     private bool changeFlage = true;
+    public bool _isPassable = true;
 
     /// Tile's valid neighbors.
     /// Null indicates the world border.
@@ -26,6 +29,7 @@ public class Tile : MonoBehaviour
     public Tile underTile = null;
     
     private GridManager _gridManager;
+    
 
     public Particle particle;
     public void SetParticle(Particle p)
@@ -90,7 +94,7 @@ public class Tile : MonoBehaviour
         // changeFlage is a check to see if a building can be placed on the location
 
 
-     /*   changeFlage = gridManager.UpdatePassability(location);
+        changeFlage = _gridManager.UpdatePassability(location);
         if (changeFlage)
         {
             if (_isPassable)
@@ -109,7 +113,7 @@ public class Tile : MonoBehaviour
         {
             Debug.Log("cancel other buliding to create new one");
 
-        }*/
+        }
 
     }
 

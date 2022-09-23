@@ -152,11 +152,12 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-   /* public bool UpdatePassability(Vector3 pos )
+   public bool UpdatePassability(Vector3 pos )
     {
         Tile t = _tiles[pos];
         Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
+        Debug.Log(_buildingCount + "/" + _buildingLimit);
         if (_buildingCount >= _buildingLimit && t._isPassable)
         {
             
@@ -174,7 +175,7 @@ public class GridManager : MonoBehaviour
             }
             return true;
         }
-    }*/
+    }
 
     public void ResetGrid()
     {

@@ -142,6 +142,7 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Bedrock, new Vector3(2, 4));
         DrawParticle(BlockType.Bedrock, new Vector3(1, 4));
 
+
         DrawParticle(BlockType.Bedrock, new Vector3(7, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(6, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(5, 2));
@@ -149,7 +150,6 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Bedrock, new Vector3(3, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(2, 2));
         DrawParticle(BlockType.Bedrock, new Vector3(1, 2));
-
 
 
         DrawParticle(BlockType.Bedrock, new Vector3(0, 0));
@@ -167,6 +167,7 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Bedrock, new Vector3(13, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(14, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(15, 0));
+
     }
 
     public Tile GetTileAtPosition(float x, float y)

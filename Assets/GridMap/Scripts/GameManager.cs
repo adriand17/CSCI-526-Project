@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public List<Tile> _spawnTiles;
     public JSONParser.DropLocationsArray _dropLocations;
     public GridManager _gridManager;
+    public GunManager _gunManager;
     private int _wave = 0;
     
     void Awake() {
@@ -61,13 +62,12 @@ public class GameManager : MonoBehaviour
     }
 
     void handleGun(){
-        GunManager.Instance.handleGunPosition();
+        _gunManager.handleGunPosition();
     }
     
     void UpdateGameState() {
         //TODO: Add game state listener
         handleGrid();
         handleGun();
-
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5095413079667632645}
   - component: {fileID: 7577803950388011953}
   m_Layer: 0
-  m_Name: Water
+  m_Name: Block
   m_TagString: WaterDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -34,11 +34,13 @@ public class Particle : MonoBehaviour{
 
     [SerializeField] private SpriteRenderer _renderer;
     
-
     public Tile tile;
     private bool atBottom = false;
     public bool userPlaced = false;
+
+    /// Direction that the water is flowing.
     private WaterFlow _waterFlow;
+    
     private GridManager _gridManager;
 
     public Particle(BlockType type)

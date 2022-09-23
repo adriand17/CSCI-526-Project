@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,13 +28,14 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2, Tile> _tiles;
     
     private int _buildingCount = 0;
-    private int _buildingLimit = 3;
+    [SerializeField] private int _buildingLimit = 3;
+    [SerializeField] public TextMeshProUGUI _buildingCountText;
     
 
     // Start is called before the first frame update
     public void onStart()
     {
-        
+        _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
         GenerateGrid();
         ResetHealth();
         // A correct website page.
@@ -192,6 +194,7 @@ public class GridManager : MonoBehaviour
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
+                _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
             }
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return false;
@@ -203,6 +206,7 @@ public class GridManager : MonoBehaviour
                 _buildingCount++;
                 DrawParticle(BlockType.Dirt, pos);
                 t.particle.userPlaced = true;
+                _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
                
             }
             else if (t.particle.getBlockType() == BlockType.Dirt)
@@ -211,6 +215,7 @@ public class GridManager : MonoBehaviour
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
+                _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
             }
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return true;
@@ -231,6 +236,7 @@ public class GridManager : MonoBehaviour
         _buildingCount = 0;
         particles.Clear();
         ResetHealth();
+        _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
       
     }
 

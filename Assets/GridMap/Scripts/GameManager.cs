@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     }
     
     void handleGrid() {
-        GridManager.Instance.onStart();
+        _gridManager.onStart();
     }
 
     void handleGun(){

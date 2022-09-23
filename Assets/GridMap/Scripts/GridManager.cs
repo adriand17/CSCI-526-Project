@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
-    public static GridManager Instance;
-
     [SerializeField] public GameManager _gameManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
@@ -29,9 +27,6 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2, Tile> _tiles;
     private float waterInterval;
 
-    void Awake(){
-        Instance = this;
-    }
     private int _buildingCount = 0;
     private int _buildingLimit = 3;
     

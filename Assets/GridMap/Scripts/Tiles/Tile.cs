@@ -41,15 +41,11 @@ public class Tile : MonoBehaviour
     public Color baseColor = Color.gray;
     public Vector3 location;
 
-    //public bool Buildable => _isBuildable && OccupiedTower == null;
     public bool Buildable => _isBuildable && Occupied == false;
-
-    // Start is called before the first frame update
 
     public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
-        //buildingManager = bm;
         this._towerPrefab = towerPrefab;
         
         _renderer.color = isOffset ? _offsetColor : _baseColor;

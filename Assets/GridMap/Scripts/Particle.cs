@@ -70,6 +70,13 @@ public class Particle : MonoBehaviour{
             }
             waterInterval = 0;
             WaterTick();
+
+
+            //check if water at bottom
+            if(tile.underTile == null)
+            {
+                hasHitBottom();
+            }
         }
     }
 
@@ -105,12 +112,12 @@ public class Particle : MonoBehaviour{
         return false;
     }
 
-    private void hasHitBottom(GridManager grid)
+    private void hasHitBottom()
     {
         if (!atBottom && tile.underTile == null)
         {
             atBottom = true;
-            grid.TakeDamage();
+           // grid.TakeDamage();
         }
     }
 

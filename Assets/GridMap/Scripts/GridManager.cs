@@ -49,7 +49,7 @@ public class GridManager : MonoBehaviour
 
     void Update()
     {
-        
+        checkWaterAtBottom();
     }
 
     void ResetHealth()
@@ -234,6 +234,26 @@ public class GridManager : MonoBehaviour
                 case UnityWebRequest.Result.Success:
                     Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                     break;
+            }
+        }
+    }
+
+    private void checkWaterAtBottom()
+    {
+        //for now check if bottom row has water
+        for(int x = 0; x < _width; x++)
+        {
+            
+            Tile t = _tiles[new Vector3(x, 0)];
+            if (t.particle != null && t.particle.getBlockType() == BlockType.Water)
+            {
+                //at bottom
+                TakeDamage();
+               /* if (p.getBlockType() == BlockType.Water)
+                {
+                    DestroyImmediate(p.gameObject);
+
+                }*/
             }
         }
     }

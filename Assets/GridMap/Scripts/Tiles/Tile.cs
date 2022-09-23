@@ -10,13 +10,8 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
     
-
-
-
     [SerializeField] public BaseTower OccupiedTower;
     [SerializeField] private BaseTower _towerPrefab;
-
-    //public BaseTower OccupiedTower;
 
     public bool Occupied = false;
     private bool changeFlage = true;
@@ -83,8 +78,6 @@ public class Tile : MonoBehaviour
        
 
         // changeFlage is a check to see if a building can be placed on the location
-
-
         changeFlage = _gridManager.CanAddBlockToTile(location);
         if (changeFlage)
         {

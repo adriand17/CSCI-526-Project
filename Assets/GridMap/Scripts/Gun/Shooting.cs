@@ -139,7 +139,15 @@ public class Shooting : MonoBehaviour
     }
 
     void handleWaterHit(GameObject water) {
+        Particle particle = water.GetComponent<Particle>();
+        if (particle == null) { 
+            Debug.Log("ERROR: Particle is null");
+            return;
+        }
+        Debug.Log(particle.tile.location);
+            
         // TODO: log water position on death.
+
         Destroy(water);
     }
 }

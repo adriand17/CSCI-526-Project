@@ -25,8 +25,7 @@ public class GridManager : MonoBehaviour
 
 
     private Dictionary<Vector2, Tile> _tiles;
-    private float waterInterval;
-
+    
     private int _buildingCount = 0;
     private int _buildingLimit = 3;
     

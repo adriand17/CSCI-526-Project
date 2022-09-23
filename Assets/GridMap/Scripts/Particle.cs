@@ -9,7 +9,7 @@ public enum BlockType
     Dirt,    // Player placable block.
 }
 
-public enum WaterFlow { 
+public enum WaterFlowDirection { 
     Still, 
     Left,  
     Right, 
@@ -18,22 +18,31 @@ public enum WaterFlow {
 
 public class Particle : MonoBehaviour{
 
+    /// Kind of block this particle is.
     private BlockType blockType;
-    private float waterInterval;
-    [SerializeField] private SpriteRenderer _renderer;
     public BlockType getBlockType() { 
         return blockType; 
     } 
     public void setBlockType(BlockType blockType) { 
         this.blockType = blockType; 
         /// Reset metadata.
-        _waterFlow = WaterFlow.Still;
+        _waterFlowDirection = WaterFlowDirectionDirection.Still;
     }
 
+    /// Amount of time since last update.
+    private float _timeSinceLastUpdate;
+    private static float _WaterInterval = 0.25f;
+
+    [SerializeField] private SpriteRenderer _renderer;
+    
     public Tile tile;
     private bool atBottom = false;
     public bool userPlaced = false;
-    private WaterFlow _waterFlow;
+
+    /// Direction that the water is flowing.
+    private WaterFlowDirection _waterFlowDirection;
+    
+    /// Parent grid manager.
     private GridManager _gridManager;
 
     public Particle(BlockType type)
@@ -61,23 +70,19 @@ public class Particle : MonoBehaviour{
 
     }
 
-    public void Update()
-    {
-        if (blockType == BlockType.Water)
-        {
+    public void Update() {
+        if (blockType == BlockType.Water) {
 
-            waterInterval += Time.deltaTime;
-            if (waterInterval < 0.25f)
-            {
+            _timeSinceLastUpdate += Time.deltaTime;
+            if (_timeSinceLastUpdate < Particle._WaterInterval) {
                 return;
             }
-            waterInterval = 0;
+            _timeSinceLastUpdate = 0;
             WaterTick();
 
 
             //check if water at bottom
-            if(tile.underTile == null)
-            {
+            if(tile.underTile == null) {
                 hasHitBottom();
             }
         }
@@ -87,7 +92,7 @@ public class Particle : MonoBehaviour{
     /// Returns true if the particle moved.
     private bool flowLeft() {
         if (tile.leftTile != null && tile.leftTile.particle == null) {
-            this._waterFlow = WaterFlow.Left;
+            this._waterFlowDirection = WaterFlowDirection.Left;
             Tile oldTile = this.tile;
             tile.leftTile.SetParticle(this);
             MoveWater(Vector3.left);
@@ -103,7 +108,7 @@ public class Particle : MonoBehaviour{
     /// Returns true if the particle moved.
     private bool flowRight() {
         if (tile.rightTile != null && tile.rightTile.particle == null) {
-            this._waterFlow = WaterFlow.Right;
+            this._waterFlowDirection = WaterFlowDirection.Right;
             Tile oldTile = this.tile;
             tile.rightTile.SetParticle(this);
             MoveWater(Vector3.right);
@@ -159,7 +164,7 @@ public class Particle : MonoBehaviour{
         
         // Check if water can flow down.
         if (tile.underTile != null && tile.underTile.particle == null) {
-            this._waterFlow = WaterFlow.Down;
+            this._waterFlowDirection = WaterFlowDirection.Down;
             Tile oldTile = this.tile;
             tile.underTile.SetParticle(this);
             MoveWater(Vector3.down);
@@ -167,51 +172,51 @@ public class Particle : MonoBehaviour{
             return;
         }
 
-        switch (_waterFlow)
+        switch (_waterFlowDirection)
         {
-            case WaterFlow.Still:
+            case WaterFlowDirection.Still:
                 if (Random.value >= 0.5)
                 {
                     if (!flowLeft() && !flowRight())
                     {
-                        _waterFlow = WaterFlow.Still;
+                        _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 else
                 {
                     if (!flowRight() && !flowLeft())
                     {
-                        _waterFlow = WaterFlow.Still;
+                        _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 break;
-            case WaterFlow.Down:
+            case WaterFlowDirection.Down:
                 if (Random.value >= 0.5)
                 {
                     if (!flowLeft() && !flowRight())
                     {
-                        _waterFlow = WaterFlow.Still;
+                        _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 else
                 {
                     if (!flowRight() && !flowLeft())
                     {
-                        _waterFlow = WaterFlow.Still;
+                        _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 break;
-            case WaterFlow.Left:
+            case WaterFlowDirection.Left:
                 if (!flowLeft() && !flowRight())
                 {
-                    _waterFlow = WaterFlow.Still;
+                    _waterFlowDirection = WaterFlowDirection.Still;
                 }
                 break;
 
-            case WaterFlow.Right:
+            case WaterFlowDirection.Right:
                 if (!flowRight() && !flowLeft())
                 {
-                    _waterFlow = WaterFlow.Still;
+                    _waterFlowDirection = WaterFlowDirection.Still;
                 }
                 break;
         }
@@ -222,15 +227,15 @@ public class Particle : MonoBehaviour{
     {
         //this.isMoving = true;
         Tile destinationTile;
-        switch (_waterFlow)
+        switch (_waterFlowDirection)
         {
-            case WaterFlow.Down:
+            case WaterFlowDirection.Down:
                 destinationTile = tile.underTile;
                 break;
-            case WaterFlow.Right:
+            case WaterFlowDirection.Right:
                 destinationTile = tile.rightTile;
                 break;
-            case WaterFlow.Left:
+            case WaterFlowDirection.Left:
                 destinationTile = tile.leftTile;
                 break;
             default:

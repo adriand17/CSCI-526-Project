@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviour
 {
-    public static GunManager Instance;
     [SerializeField] private GameObject _gunObject;
     [SerializeField] private GameObject _camera;
-
-    void Awake() {
-        Instance = this;
-    }
 
     public void handleGunPosition() {
         float height = 2f * Camera.main.orthographicSize;
@@ -19,5 +14,4 @@ public class GunManager : MonoBehaviour
 
         _gunObject.transform.position = pos;
     }
-
 }

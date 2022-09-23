@@ -10,13 +10,8 @@ public class Tile : MonoBehaviour
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
     
-
-
-
     [SerializeField] public BaseTower OccupiedTower;
     [SerializeField] private BaseTower _towerPrefab;
-
-    //public BaseTower OccupiedTower;
 
     public bool Occupied = false;
     private bool changeFlage = true;
@@ -41,15 +36,11 @@ public class Tile : MonoBehaviour
     public Color baseColor = Color.gray;
     public Vector3 location;
 
-    //public bool Buildable => _isBuildable && OccupiedTower == null;
     public bool Buildable => _isBuildable && Occupied == false;
-
-    // Start is called before the first frame update
 
     public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
-        //buildingManager = bm;
         this._towerPrefab = towerPrefab;
         
         _renderer.color = isOffset ? _offsetColor : _baseColor;
@@ -87,8 +78,6 @@ public class Tile : MonoBehaviour
        
 
         // changeFlage is a check to see if a building can be placed on the location
-
-
         changeFlage = _gridManager.CanAddBlockToTile(location);
         if (changeFlage)
         {

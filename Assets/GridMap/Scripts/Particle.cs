@@ -31,6 +31,7 @@ public class Particle : MonoBehaviour{
 
     /// Amount of time since last update.
     private float _timeSinceLastUpdate;
+    private static float _WaterInterval = 0.25f;
 
     [SerializeField] private SpriteRenderer _renderer;
     
@@ -69,14 +70,11 @@ public class Particle : MonoBehaviour{
 
     }
 
-    public void Update()
-    {
-        if (blockType == BlockType.Water)
-        {
+    public void Update() {
+        if (blockType == BlockType.Water) {
 
             _timeSinceLastUpdate += Time.deltaTime;
-            if (_timeSinceLastUpdate < 0.25f)
-            {
+            if (_timeSinceLastUpdate < Particle._WaterInterval) {
                 return;
             }
             _timeSinceLastUpdate = 0;
@@ -84,8 +82,7 @@ public class Particle : MonoBehaviour{
 
 
             //check if water at bottom
-            if(tile.underTile == null)
-            {
+            if(tile.underTile == null) {
                 hasHitBottom();
             }
         }

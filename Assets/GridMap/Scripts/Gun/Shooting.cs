@@ -58,82 +58,82 @@ public class Shooting : MonoBehaviour
     }
 
 
-        void Shoot()
-        {
-           
+    void Shoot()
+    {
+        
 
-            GameObject bullet = Instantiate(bulletPreFab, firepoint.position, firepoint.rotation);
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
+        GameObject bullet = Instantiate(bulletPreFab, firepoint.position, firepoint.rotation);
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
 
-        }
-        void DrawLaser()
+    }
+    void DrawLaser()
+    {
+        loopActive = true;
+        CountLaser = 1;
+        pos = firepoint.position;
+        directLaser = firepoint.up;
+        laserRenderer.positionCount = CountLaser;
+        laserRenderer.SetPosition(0, pos);
+
+        while (loopActive)
         {
-            loopActive = true;
-            CountLaser = 1;
-            pos = firepoint.position;
-            directLaser = firepoint.up;
-            laserRenderer.positionCount = CountLaser;
-            laserRenderer.SetPosition(0, pos);
-   
-            while (loopActive)
+            RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
+            RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
+            foreach (var obj in hits)
             {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
-                RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
-                foreach (var obj in hits)
+                if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall)
                 {
-                    if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall)
-                    {
-                        hit = obj;
-                        break;
-                    }
-                    else if (obj.collider.tag == TagConstant.WaterDrop)
-                    {
-                        hit = obj;
-                        break;
-                    }
-                    
+                    hit = obj;
+                    break;
+                }
+                else if (obj.collider.tag == TagConstant.WaterDrop)
+                {
+                    hit = obj;
+                    break;
                 }
                 
-                
-                if (!hit || !HandleHit(hit)) {
-                    CountLaser++;
-                    laserRenderer.positionCount = CountLaser;
-                    laserRenderer.SetPosition(CountLaser - 1, pos + (directLaser.normalized * laserDistance));
-                    loopActive = false;
-                }
-                CountLaser++; //TODO: Avoid infinite loop currently
-                if (CountLaser > numberReflectMax)
-                {
-                    loopActive = false;
-                }
-            }
-
-        }
-
-
-        private bool HandleHit(RaycastHit2D hit) {
-            bool handled = false;
-            if (hit.collider.tag == TagConstant.ReflectWall) {
-                    CountLaser++;
-                    laserRenderer.positionCount = CountLaser;
-                    pos = (Vector2)directLaser.normalized + hit.normal;
-                    directLaser = Vector3.Reflect(directLaser, hit.point);
-                    laserRenderer.SetPosition(CountLaser - 1, hit.point);
-                    handled = true;
-            } else if (hit.collider.tag == TagConstant.WaterDrop) {
-                    Debug.Log("Hit water");
-                    handleWaterHit(hit.collider.gameObject);                    
-            } else if (hit.collider.tag == TagConstant.Wall) {
-                    Debug.Log("Hit Wall");
-                    handled = true;
-                    loopActive = false;
             }
             
-            return handled;
+            
+            if (!hit || !HandleHit(hit)) {
+                CountLaser++;
+                laserRenderer.positionCount = CountLaser;
+                laserRenderer.SetPosition(CountLaser - 1, pos + (directLaser.normalized * laserDistance));
+                loopActive = false;
+            }
+            CountLaser++; //TODO: Avoid infinite loop currently
+            if (CountLaser > numberReflectMax)
+            {
+                loopActive = false;
+            }
         }
 
-        void handleWaterHit(GameObject water) {
-            Destroy(water);
+    }
+
+
+    private bool HandleHit(RaycastHit2D hit) {
+        bool handled = false;
+        if (hit.collider.tag == TagConstant.ReflectWall) {
+                CountLaser++;
+                laserRenderer.positionCount = CountLaser;
+                pos = (Vector2)directLaser.normalized + hit.normal;
+                directLaser = Vector3.Reflect(directLaser, hit.point);
+                laserRenderer.SetPosition(CountLaser - 1, hit.point);
+                handled = true;
+        } else if (hit.collider.tag == TagConstant.WaterDrop) {
+                Debug.Log("Hit water");
+                handleWaterHit(hit.collider.gameObject);                    
+        } else if (hit.collider.tag == TagConstant.Wall) {
+                Debug.Log("Hit Wall");
+                handled = true;
+                loopActive = false;
         }
+        
+        return handled;
+    }
+
+    void handleWaterHit(GameObject water) {
+        Destroy(water);
+    }
 }

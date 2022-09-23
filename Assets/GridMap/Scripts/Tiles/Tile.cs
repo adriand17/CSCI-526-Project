@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour
 
     //public BaseTower OccupiedTower;
 
-    private bool Occupied = false;
+    public bool Occupied = false;
     private bool changeFlage = true;
     public bool _isPassable = true;
 
@@ -84,30 +84,23 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown() {
-       /* if (particle == null) {
-            _gridManager.DrawParticle(BlockType.Dirt, this.location + new Vector3(0, 0));
-        } else if (particle.getBlockType() == BlockType.Dirt) {
-            this._gridManager.particles.Remove(particle);
-            SetParticle(null);
-        }*/
+       
 
         // changeFlage is a check to see if a building can be placed on the location
 
 
-        changeFlage = _gridManager.UpdatePassability(location);
+        changeFlage = _gridManager.CanAddBlockToTile(location);
         if (changeFlage)
         {
-            if (_isPassable)
-            {
-                _isPassable = !_isPassable;
-                _renderer.color = Color.black;
 
-            }
-            else
-            {
-                _isPassable = !_isPassable;
-                _renderer.color = baseColor;
-            }
+            Debug.Log("added or removed at tile");
+            /*if (particle == null) {
+                _gridManager.DrawParticle(BlockType.Dirt, this.location);
+
+            } else if (particle.getBlockType() == BlockType.Dirt) {
+                 this._gridManager.particles.Remove(particle);
+                 SetParticle(null);
+            }*/
         }
         else
         {

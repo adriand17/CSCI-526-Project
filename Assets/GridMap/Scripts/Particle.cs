@@ -32,17 +32,20 @@ public class Particle : MonoBehaviour{
 
     public Tile tile;
     private bool atBottom = false;
+    public bool userPlaced = false;
     private WaterFlow _waterFlow;
+    private GridManager _gridManager;
 
     public Particle(BlockType type)
     {
         blockType = type;
     }
 
-    public void Init(BlockType type, Tile t)
+    public void Init(BlockType type, Tile t, GridManager gridManager)
     {
         blockType = type;
         this.tile = t;
+        this._gridManager = gridManager;
         switch (type)
         {
             case BlockType.Water:
@@ -119,6 +122,35 @@ public class Particle : MonoBehaviour{
             atBottom = true;
            // grid.TakeDamage();
         }
+    }
+
+
+    private void OnMouseDown()
+    {
+
+
+        // changeFlage is a check to see if a building can be placed on the location
+        Debug.Log("clicking on particle");
+
+        bool changeFlage = _gridManager.CanAddBlockToTile(this.tile.location);
+        if (changeFlage)
+        {
+
+            Debug.Log("added or rmoved at tile");
+            /*if (particle == null) {
+                _gridManager.DrawParticle(BlockType.Dirt, this.location);
+
+            } else if (particle.getBlockType() == BlockType.Dirt) {
+                 this._gridManager.particles.Remove(particle);
+                 SetParticle(null);
+            }*/
+        }
+        else
+        {
+            Debug.Log("cancel other buliding to create new one");
+
+        }
+
     }
 
     /// Try to move water.

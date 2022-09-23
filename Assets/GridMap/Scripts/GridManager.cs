@@ -115,7 +115,12 @@ public class GridManager : MonoBehaviour
     {
         var tile = _tiles[pos];
         var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
-        particle.Init(type, tile);
+        //prevent lazer from targeting
+       /* if(type != BlockType.Water)
+        {
+            particle.tag = "Wall";
+        }*/
+        particle.Init(type, tile, this);
         tile.SetParticle(particle);
         particles.Add(particle);
     }
@@ -124,31 +129,31 @@ public class GridManager : MonoBehaviour
     private void SetUnpassableTiles()
     {
 
-        DrawParticle(BlockType.Dirt, new Vector3(5, 6));
-        DrawParticle(BlockType.Dirt, new Vector3(4, 6));
-        DrawParticle(BlockType.Dirt, new Vector3(3, 6));
-        DrawParticle(BlockType.Dirt, new Vector3(2, 6));
-        DrawParticle(BlockType.Dirt, new Vector3(1, 6));
+        DrawParticle(BlockType.Bedrock, new Vector3(5, 6));
+        DrawParticle(BlockType.Bedrock, new Vector3(4, 6));
+        DrawParticle(BlockType.Bedrock, new Vector3(3, 6));
+        DrawParticle(BlockType.Bedrock, new Vector3(2, 6));
+        DrawParticle(BlockType.Bedrock, new Vector3(1, 6));
 
-        DrawParticle(BlockType.Dirt, new Vector3(6, 4));
-        DrawParticle(BlockType.Dirt, new Vector3(5, 4));
-        DrawParticle(BlockType.Dirt, new Vector3(4, 4));
-        DrawParticle(BlockType.Dirt, new Vector3(3, 4));
-        DrawParticle(BlockType.Dirt, new Vector3(2, 4));
-        DrawParticle(BlockType.Dirt, new Vector3(1, 4));
-        DrawParticle(BlockType.Dirt, new Vector3(0, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(6, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(5, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(4, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(3, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(2, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(1, 4));
+        DrawParticle(BlockType.Bedrock, new Vector3(0, 4));
 
-        DrawParticle(BlockType.Dirt, new Vector3(8, 3));
-        DrawParticle(BlockType.Dirt, new Vector3(7, 2));
-        DrawParticle(BlockType.Dirt, new Vector3(6, 2));
-        DrawParticle(BlockType.Dirt, new Vector3(5, 2));
-        DrawParticle(BlockType.Dirt, new Vector3(4, 2));
-        DrawParticle(BlockType.Dirt, new Vector3(3, 2));
-        DrawParticle(BlockType.Dirt, new Vector3(2, 2));
-        DrawParticle(BlockType.Dirt, new Vector3(1, 2));
+        DrawParticle(BlockType.Bedrock, new Vector3(8, 3));
+        DrawParticle(BlockType.Bedrock, new Vector3(7, 2));
+        DrawParticle(BlockType.Bedrock, new Vector3(6, 2));
+        DrawParticle(BlockType.Bedrock, new Vector3(5, 2));
+        DrawParticle(BlockType.Bedrock, new Vector3(4, 2));
+        DrawParticle(BlockType.Bedrock, new Vector3(3, 2));
+        DrawParticle(BlockType.Bedrock, new Vector3(2, 2));
+        DrawParticle(BlockType.Bedrock, new Vector3(1, 2));
 
-        DrawParticle(BlockType.Dirt, new Vector3(1, 1));
-        DrawParticle(BlockType.Dirt, new Vector3(1, 0));
+        DrawParticle(BlockType.Bedrock, new Vector3(1, 1));
+        DrawParticle(BlockType.Bedrock, new Vector3(1, 0));
     }
 
     public Tile GetTileAtPosition(float x, float y)
@@ -164,27 +169,42 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
-   public bool UpdatePassability(Vector3 pos )
+   public bool CanAddBlockToTile(Vector3 pos )
     {
         Tile t = _tiles[pos];
-        Debug.Log(t._isPassable);
+        //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
-        Debug.Log(_buildingCount + "/" + _buildingLimit);
-        if (_buildingCount >= _buildingLimit && t._isPassable)
+        
+        if (_buildingCount >= _buildingLimit)
         {
-            
+            //can only remove
+            if(t.particle != null && t.particle.getBlockType() == BlockType.Dirt)
+            {
+                _buildingCount--;
+                DestroyImmediate(t.particle.gameObject);
+                particles.Remove(t.particle);
+                t.particle = null;
+            }
+            Debug.Log(_buildingCount + "/" + _buildingLimit);
             return false;
         }
         else
         {
-            if (t._isPassable)
+            if (t.particle == null)
             {
                 _buildingCount++;
+                DrawParticle(BlockType.Dirt, pos);
+                t.particle.userPlaced = true;
+               
             }
-            else
+            else if (t.particle.getBlockType() == BlockType.Dirt)
             {
                 _buildingCount--;
+                DestroyImmediate(t.particle.gameObject);
+                particles.Remove(t.particle);
+                t.particle = null;
             }
+            Debug.Log(_buildingCount + "/" + _buildingLimit);
             return true;
         }
     }

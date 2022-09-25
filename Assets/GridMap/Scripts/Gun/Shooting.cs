@@ -21,7 +21,7 @@ public class Shooting : MonoBehaviour {
     
     private IEnumerator coroutineForDestoryLaser;
     private float waitTime = 0.5f;
-    private bool lasering = false;
+    private bool laserIsFiring = false;
     public Transform Square;
 
     void Start() {
@@ -29,8 +29,8 @@ public class Shooting : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown("space") && !lasering) {
-            lasering = true;
+        if (Input.GetKeyDown("space") && !laserIsFiring) {
+            laserIsFiring = true;
             DrawLaser();
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);
             StartCoroutine(coroutineForDestoryLaser);
@@ -41,7 +41,7 @@ public class Shooting : MonoBehaviour {
     private IEnumerator WaitAndDisappear(float waitTime) {
         yield return new WaitForSeconds(waitTime);
         laserRenderer.positionCount = 0;
-        lasering = false;
+        laserIsFiring = false;
     }
     
     void DrawLaser() {

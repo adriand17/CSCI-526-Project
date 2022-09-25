@@ -13,8 +13,12 @@ public class Shooting : MonoBehaviour {
     // Renders line from gun to target.
     private LineRenderer laserRenderer;
     
-    private int laserDistance = 100;
-    private int numberReflectMax = 3;
+    // Furthest distance the laser can reach.
+    private static int maxRange = 100;
+    
+    // Maximum number of times laser can bounce.
+    private static int maxReflections = 3;
+    
     private Vector3 pos = new Vector3();
     private Vector3 directLaser = new Vector3();
     
@@ -53,7 +57,8 @@ public class Shooting : MonoBehaviour {
         laserRenderer.positionCount = countLaser;
         laserRenderer.SetPosition(0, pos);
 
-        while (loopActive) {
+        for (int i = 0; i < Shooting.maxReflections; i++) {
+            Debug.Log($"i = {i}");
             // Find the first opaque object hit by the laser.
             RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
             RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
@@ -72,7 +77,7 @@ public class Shooting : MonoBehaviour {
                 /// Laser shoots off into space.
                 countLaser++;
                 laserRenderer.positionCount = countLaser;
-                laserRenderer.SetPosition(countLaser - 1, pos + (directLaser.normalized * laserDistance));
+                laserRenderer.SetPosition(countLaser - 1, pos + (directLaser.normalized * Shooting.maxRange));
                 break;
             }
 

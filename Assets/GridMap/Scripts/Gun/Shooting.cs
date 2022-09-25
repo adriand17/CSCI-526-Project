@@ -67,6 +67,15 @@ public class Shooting : MonoBehaviour {
                 }
             }
             
+            Particle particle = hit.collider.gameObject.GetComponent<Particle>();
+            if (particle == null) { 
+                /// Laser shoots off into space.
+                countLaser++;
+                laserRenderer.positionCount = countLaser;
+                laserRenderer.SetPosition(countLaser - 1, pos + (directLaser.normalized * laserDistance));
+                break;
+            }
+
             if (!hit || !HandleHit(hit)) {
                 countLaser++;
                 laserRenderer.positionCount = countLaser;

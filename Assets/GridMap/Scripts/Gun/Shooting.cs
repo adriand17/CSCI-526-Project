@@ -18,7 +18,7 @@ public class Shooting : MonoBehaviour {
     private Vector3 pos = new Vector3();
     private Vector3 directLaser = new Vector3();
     
-    [SerializeField] private int CountLaser = 1;
+    [SerializeField] private int countLaser = 1;
     [SerializeField] private bool loopActive = false;
     private IEnumerator coroutineForDestoryLaser;
     private float waitTime = 0.5f;
@@ -45,15 +45,16 @@ public class Shooting : MonoBehaviour {
         lasering = false;
     }
     
-    void DrawLaser(){
+    void DrawLaser() {
         loopActive = true;
-        CountLaser = 1;
+        countLaser = 1;
         pos = firepoint.position;
         directLaser = firepoint.up;
-        laserRenderer.positionCount = CountLaser;
+        laserRenderer.positionCount = countLaser;
         laserRenderer.SetPosition(0, pos);
 
         while (loopActive) {
+            // Find the first opaque object hit by the laser.
             RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
             RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
             foreach (var obj in hits) {
@@ -67,13 +68,13 @@ public class Shooting : MonoBehaviour {
             }
             
             if (!hit || !HandleHit(hit)) {
-                CountLaser++;
-                laserRenderer.positionCount = CountLaser;
-                laserRenderer.SetPosition(CountLaser - 1, pos + (directLaser.normalized * laserDistance));
+                countLaser++;
+                laserRenderer.positionCount = countLaser;
+                laserRenderer.SetPosition(countLaser - 1, pos + (directLaser.normalized * laserDistance));
                 loopActive = false;
             }
-            CountLaser++; //TODO: Avoid infinite loop currently
-            if (CountLaser > numberReflectMax) {
+            countLaser++; //TODO: Avoid infinite loop currently
+            if (countLaser > numberReflectMax) {
                 loopActive = false;
             }
         }
@@ -114,17 +115,17 @@ public class Shooting : MonoBehaviour {
     }
 
     void handleNonReflectLaser(RaycastHit2D hit) {
-        CountLaser++;
-        laserRenderer.positionCount = CountLaser;
-        laserRenderer.SetPosition(CountLaser - 1, hit.point);
+        countLaser++;
+        laserRenderer.positionCount = countLaser;
+        laserRenderer.SetPosition(countLaser - 1, hit.point);
     }
     void handleReflectLaser(RaycastHit2D hit) {
 
-        CountLaser++;
-        laserRenderer.positionCount = CountLaser;
+        countLaser++;
+        laserRenderer.positionCount = countLaser;
         pos = (Vector2)directLaser.normalized + hit.normal;
         directLaser = Vector3.Reflect(directLaser, hit.point);
-        laserRenderer.SetPosition(CountLaser - 1, hit.point);
+        laserRenderer.SetPosition(countLaser - 1, hit.point);
 
     }
 

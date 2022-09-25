@@ -60,8 +60,8 @@ public class Shooting : MonoBehaviour {
         for (int i = 0; i < Shooting.maxReflections; i++) {
             Debug.Log($"i = {i}");
             // Find the first opaque object hit by the laser.
-            RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
-            RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, Shooting.maxRange);
+            RaycastHit2D hit = Physics2D.Raycast(pos, directLaser, Shooting.maxRange);
             foreach (var obj in hits) {
                 if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall) {
                     hit = obj;

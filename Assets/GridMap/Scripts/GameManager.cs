@@ -18,7 +18,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]public List<TextAsset> _textJson = new List<TextAsset>();
     [SerializeField] public JSONParser _parser;
     public List<Tile> _spawnTiles;
-    public JSONParser.DropLocationsArray _dropLocations;
+    public JSONParser.GridLocationsArray _dropLocations;
+    public JSONParser.GridLocationsArray _gridLocations;
     public GridManager _gridManager;
     public GunManager _gunManager;
     private int _wave = 0;
@@ -31,9 +32,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _spawnTiles = new List<Tile>();
-        _dropLocations = new JSONParser.DropLocationsArray();
-        _dropLocations.indicies = new List<JSONParser.DropLocations>();
+        _dropLocations = new JSONParser.GridLocationsArray();
+        _dropLocations.indicies = new List<JSONParser.GridLocations>();
+        _gridLocations = new JSONParser.GridLocationsArray();
+        _gridLocations.indicies = new List<JSONParser.GridLocations>();
         _parser.Parse(_textJson[0]);
+        _parser.ParseLevel(_textJson[1]);
         UpdateGameState();
     }
 

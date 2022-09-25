@@ -19,11 +19,12 @@ public class Shooting : MonoBehaviour {
     // Maximum number of times laser can bounce.
     private static int maxReflections = 3;
     
+    // Whether the laser is currently being fired.
+    private bool laserIsFiring = false;
+    
     private IEnumerator coroutineForDestoryLaser;
     private float waitTime = 0.5f;
-    private bool laserIsFiring = false;
-    public Transform Square;
-
+    
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
     }

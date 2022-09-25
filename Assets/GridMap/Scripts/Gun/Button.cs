@@ -6,16 +6,14 @@ using UnityEngine.Events;
 public class Button : MonoBehaviour
 {
     public UnityEvent click;
-    private void Awake()
-    {
-        if (click == null)
-        {
+    
+    private void Awake() {
+        if (click == null) {
             click= new UnityEvent();
         }
     }
-    private void OnMouseDown()
-    {
+    
+    private void OnMouseDown() {
          click.Invoke();    
-
     }
 }

@@ -5,81 +5,63 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Shooting : MonoBehaviour
-{
-
+public class Shooting : MonoBehaviour {
 
     public Transform rightpivot;
     public Transform firepoint;
-    public GameObject bulletPreFab;
-    public float bulletForce=20f;
+    
+    // Renders line from gun to target.
     private LineRenderer laserRenderer;
-    private int laserDistance = 100;
-    private int numberReflectMax = 3;
+    
+    // Furthest distance the laser can reach.
+    private static int maxRange = 100;
+    
+    // Maximum number of times laser can bounce.
+    private static int maxReflections = 3;
+    
     private Vector3 pos = new Vector3();
+
     private Vector3 directLaser = new Vector3();
     
-    [SerializeField] private int CountLaser = 1;
-    [SerializeField] private bool loopActive = false;
+    [SerializeField] private int countLaser = 1;
     private IEnumerator coroutineForDestoryLaser;
     private float waitTime = 0.5f;
     private bool lasering = false;
     public Transform Square;
 
-    void Start()
-    {
+    void Start() {
         laserRenderer = GetComponent<LineRenderer>();
-
     }
 
-    
-    private IEnumerator WaitAndDisappear(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        laserRenderer.positionCount = 0;
-        lasering = false;
-    }
-
-
-    void Update()
-    {
-        // if(Input.GetButtonDown("Fire1"))
-        // {
-        //     Shoot();
-        // }
-        //if (Input.GetButton("Fire2"))
-        if (Input.GetKeyDown("space") && !lasering)
-        {
+    void Update() {
+        if (Input.GetKeyDown("space") && !lasering) {
             lasering = true;
             DrawLaser();
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);
             StartCoroutine(coroutineForDestoryLaser);
-
         }
     }
 
-
-    void Shoot()
-    {
-        
-
-        GameObject bullet = Instantiate(bulletPreFab, firepoint.position, firepoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
-
+    // Stop rendering laser after set time.
+    private IEnumerator WaitAndDisappear(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        laserRenderer.positionCount = 0;
+        lasering = false;
     }
-    void DrawLaser()
-    {
-        loopActive = true;
-        CountLaser = 1;
+    
+    void DrawLaser() {
+        countLaser = 1;
         pos = firepoint.position;
         directLaser = firepoint.up;
-        laserRenderer.positionCount = CountLaser;
-        laserRenderer.SetPosition(0, pos);
+        
+        // List of positions for line renderer to draw.
+        List<Vector3> positions = new List<Vector3>();
+        positions.Add(pos);
 
-        while (loopActive) {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, laserDistance);
-            RaycastHit2D hit = Physics2D.Raycast(pos,directLaser,laserDistance);
+        for (int i = 0; i < Shooting.maxReflections; i++) {
+            // Find the first opaque object hit by the laser.
+            RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, Shooting.maxRange);
+            RaycastHit2D hit = Physics2D.Raycast(pos, directLaser, Shooting.maxRange);
             foreach (var obj in hits) {
                 if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall) {
                     hit = obj;
@@ -90,81 +72,48 @@ public class Shooting : MonoBehaviour
                 }
             }
             
-            if (!hit || !HandleHit(hit)) {
-                CountLaser++;
-                laserRenderer.positionCount = CountLaser;
-                laserRenderer.SetPosition(CountLaser - 1, pos + (directLaser.normalized * laserDistance));
-                loopActive = false;
+            if (hit.collider == null) {
+                Debug.Log("hit.collider is null");
+                // Laser shoots off into space.
+                positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
+                break;
             }
-            CountLaser++; //TODO: Avoid infinite loop currently
-            if (CountLaser > numberReflectMax) {
-                loopActive = false;
-            }
-        }
-    }
-
-    private bool HandleHit(RaycastHit2D hit) {
-        bool handled = false;
-        if (hit.collider.tag == TagConstant.ReflectWall) {
-            
-        } else if (hit.collider.tag == TagConstant.WaterDrop) {
             Particle particle = hit.collider.gameObject.GetComponent<Particle>();
             if (particle == null) { 
-                Debug.Log("ERROR: Particle is null");
-                return false;
+                // Laser shoots off into space.
+                positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
+                break;
             }
-            switch (particle.getBlockType()) { 
-                case BlockType.Water:
-                    handleWaterHit(hit.collider.gameObject);
-                    break;
-                
-                case BlockType.Bedrock:
-                    handleNonReflectLaser(hit);
-                    handled = true;
-                    loopActive = false;
-                    break;
-                
-                case BlockType.Dirt:
-                    handled = true;
-                    handleNonReflectLaser(hit);
-                    loopActive = false;
 
-                    break;
+            positions.Add(hit.point);
+            Debug.Log($"hit.point = {hit.point}");
+            BlockType blockType = particle.getBlockType();
+            if (blockType == BlockType.Water) {
+                // Logs water position on death.
+                string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={particle.tile.location.x}&entry.962467366={particle.tile.location.y}&entry.1845636193={particle.tile.location.z}&submit=Submit";
+                StartCoroutine(GetRequest(url));
+                Destroy(hit.collider.gameObject);
+                break;
+            } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
+                // No reflections, stop here.
+                break;
+            } else if (blockType == BlockType.Mirror) {
+                // Change direction for next ray.
+                directLaser = Vector3.Reflect(directLaser, hit.normal);
+                
+                // Move slightly away from the wall to avoid re-colliding with it.
+                pos = hit.point + (hit.normal.normalized * 0.001f);
+                
+                continue;
+            } else {
+                Debug.Log("ERROR: Unknown block type");
+                break;
             }
-        } else if (hit.collider.tag == TagConstant.Wall) {
         }
-        
-        return handled;
-    }
 
-    void handleNonReflectLaser(RaycastHit2D hit) {
-        CountLaser++;
-        laserRenderer.positionCount = CountLaser;
-        laserRenderer.SetPosition(CountLaser - 1, hit.point);
-    }
-    void handleReflectLaser(RaycastHit2D hit) {
-
-        CountLaser++;
-        laserRenderer.positionCount = CountLaser;
-        pos = (Vector2)directLaser.normalized + hit.normal;
-        directLaser = Vector3.Reflect(directLaser, hit.point);
-        laserRenderer.SetPosition(CountLaser - 1, hit.point);
-
-    }
-
-
-    void handleWaterHit(GameObject water) {
-        Particle particle = water.GetComponent<Particle>();
-        if (particle == null) { 
-            Debug.Log("ERROR: Particle is null");
-            return;
-        }
-        Debug.Log(particle.tile.location);
-            
-        // TODO: log water position on death.
-        string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={particle.tile.location.x}&entry.962467366={particle.tile.location.y}&entry.1845636193={particle.tile.location.z}&submit=Submit";
-        StartCoroutine(GetRequest(url));
-        Destroy(water);
+        // Assign positions to line renderer.
+        laserRenderer.positionCount = positions.Count;
+        laserRenderer.SetPositions(positions.ToArray());
     }
 
     IEnumerator GetRequest(string uri) {

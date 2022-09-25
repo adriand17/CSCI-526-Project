@@ -132,53 +132,53 @@ public class GridManager : MonoBehaviour
     private void SetUnpassableTiles()
     {
 
-        DrawParticle(BlockType.Bedrock, new Vector3(5, 6));
-        DrawParticle(BlockType.Bedrock, new Vector3(4, 6));
-        DrawParticle(BlockType.Bedrock, new Vector3(3, 6));
-        DrawParticle(BlockType.Bedrock, new Vector3(2, 6));
-        DrawParticle(BlockType.Bedrock, new Vector3(1, 6));
+        DrawParticle(BlockType.Mirror, new Vector3(5, 6));
+        DrawParticle(BlockType.Mirror, new Vector3(4, 6));
+        DrawParticle(BlockType.Mirror, new Vector3(3, 6));
+        DrawParticle(BlockType.Mirror, new Vector3(2, 6));
+        DrawParticle(BlockType.Mirror, new Vector3(1, 6));
 
-        DrawParticle(BlockType.Bedrock, new Vector3(6, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(5, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(4, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(3, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(2, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(1, 4));
-
-
-        DrawParticle(BlockType.Bedrock, new Vector3(6, 2));
-        DrawParticle(BlockType.Bedrock, new Vector3(5, 2));
-        DrawParticle(BlockType.Bedrock, new Vector3(4, 2));
-        DrawParticle(BlockType.Bedrock, new Vector3(3, 2));
-        DrawParticle(BlockType.Bedrock, new Vector3(2, 2));
-        DrawParticle(BlockType.Bedrock, new Vector3(1, 2));
-
-        DrawParticle(BlockType.Bedrock, new Vector3(9, 3));
-        DrawParticle(BlockType.Bedrock, new Vector3(10, 3));
-        DrawParticle(BlockType.Bedrock, new Vector3(11, 3));
-        DrawParticle(BlockType.Bedrock, new Vector3(12, 3));
-        DrawParticle(BlockType.Bedrock, new Vector3(13, 3));
-        DrawParticle(BlockType.Bedrock, new Vector3(14, 3));
-        DrawParticle(BlockType.Bedrock, new Vector3(9, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(14, 4));
-        DrawParticle(BlockType.Bedrock, new Vector3(14, 5));
+        DrawParticle(BlockType.Mirror, new Vector3(6, 4));
+        DrawParticle(BlockType.Mirror, new Vector3(5, 4));
+        DrawParticle(BlockType.Mirror, new Vector3(4, 4));
+        DrawParticle(BlockType.Mirror, new Vector3(3, 4));
+        DrawParticle(BlockType.Mirror, new Vector3(2, 4));
+        DrawParticle(BlockType.Mirror, new Vector3(1, 4));
 
 
-        DrawParticle(BlockType.Bedrock, new Vector3(0, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(1, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(2, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(3, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(4, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(5, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(6, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(6, 2));
+        DrawParticle(BlockType.Mirror, new Vector3(5, 2));
+        DrawParticle(BlockType.Mirror, new Vector3(4, 2));
+        DrawParticle(BlockType.Mirror, new Vector3(3, 2));
+        DrawParticle(BlockType.Mirror, new Vector3(2, 2));
+        DrawParticle(BlockType.Mirror, new Vector3(1, 2));
 
-        DrawParticle(BlockType.Bedrock, new Vector3(9, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(10, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(11, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(12, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(13, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(14, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(15, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(9, 3));
+        DrawParticle(BlockType.Mirror, new Vector3(10, 3));
+        DrawParticle(BlockType.Mirror, new Vector3(11, 3));
+        DrawParticle(BlockType.Mirror, new Vector3(12, 3));
+        DrawParticle(BlockType.Mirror, new Vector3(13, 3));
+        DrawParticle(BlockType.Mirror, new Vector3(14, 3));
+        DrawParticle(BlockType.Mirror, new Vector3(9, 4));
+        DrawParticle(BlockType.Mirror, new Vector3(14, 4));
+        DrawParticle(BlockType.Mirror, new Vector3(14, 5));
+
+
+        DrawParticle(BlockType.Mirror, new Vector3(0, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(1, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(2, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(3, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(4, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(5, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(6, 0));
+
+        DrawParticle(BlockType.Mirror, new Vector3(9, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(10, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(11, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(12, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(13, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(14, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(15, 0));
 
     }
 
@@ -246,7 +246,6 @@ public class GridManager : MonoBehaviour
             if(p.getBlockType() != BlockType.Bedrock && p != null)
             {
                 DestroyImmediate(p.gameObject);
-               
             } 
         }
         _buildingCount = 0;

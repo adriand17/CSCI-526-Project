@@ -29,14 +29,6 @@ public class Shooting : MonoBehaviour {
         laserRenderer = GetComponent<LineRenderer>();
     }
 
-    
-    private IEnumerator WaitAndDisappear(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        laserRenderer.positionCount = 0;
-        lasering = false;
-    }
-
-
     void Update() {
         if (Input.GetKeyDown("space") && !lasering) {
             lasering = true;
@@ -46,6 +38,13 @@ public class Shooting : MonoBehaviour {
         }
     }
 
+    // Stop rendering laser after set time.
+    private IEnumerator WaitAndDisappear(float waitTime) {
+        yield return new WaitForSeconds(waitTime);
+        laserRenderer.positionCount = 0;
+        lasering = false;
+    }
+    
     void DrawLaser(){
         loopActive = true;
         CountLaser = 1;

@@ -13,7 +13,10 @@ public class Shooting : MonoBehaviour
     public Transform firepoint;
     public GameObject bulletPreFab;
     public float bulletForce=20f;
+    
+    // Render's line from gun to target.
     private LineRenderer laserRenderer;
+    
     private int laserDistance = 100;
     private int numberReflectMax = 3;
     private Vector3 pos = new Vector3();
@@ -29,7 +32,6 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         laserRenderer = GetComponent<LineRenderer>();
-
     }
 
     
@@ -43,18 +45,12 @@ public class Shooting : MonoBehaviour
 
     void Update()
     {
-        // if(Input.GetButtonDown("Fire1"))
-        // {
-        //     Shoot();
-        // }
-        //if (Input.GetButton("Fire2"))
         if (Input.GetKeyDown("space") && !lasering)
         {
             lasering = true;
             DrawLaser();
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);
             StartCoroutine(coroutineForDestoryLaser);
-
         }
     }
 

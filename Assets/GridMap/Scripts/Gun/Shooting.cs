@@ -20,10 +20,10 @@ public class Shooting : MonoBehaviour {
     private static int maxReflections = 3;
     
     private Vector3 pos = new Vector3();
+
     private Vector3 directLaser = new Vector3();
     
     [SerializeField] private int countLaser = 1;
-    [SerializeField] private bool loopActive = false;
     private IEnumerator coroutineForDestoryLaser;
     private float waitTime = 0.5f;
     private bool lasering = false;
@@ -50,15 +50,14 @@ public class Shooting : MonoBehaviour {
     }
     
     void DrawLaser() {
-        loopActive = true;
         countLaser = 1;
         pos = firepoint.position;
         directLaser = firepoint.up;
-        laserRenderer.positionCount = countLaser;
-        laserRenderer.SetPosition(0, pos);
+        // List of positions for line renderer to draw.
+        List<Vector3> positions = new List<Vector3>();
+        positions.Add(pos);
 
         for (int i = 0; i < Shooting.maxReflections; i++) {
-            Debug.Log($"i = {i}");
             // Find the first opaque object hit by the laser.
             RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, Shooting.maxRange);
             RaycastHit2D hit = Physics2D.Raycast(pos, directLaser, Shooting.maxRange);
@@ -72,90 +71,46 @@ public class Shooting : MonoBehaviour {
                 }
             }
             
+            if (hit.collider == null) {
+                Debug.Log("hit.collider is null");
+                /// Laser shoots off into space.
+                positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
+                break;
+            }
             Particle particle = hit.collider.gameObject.GetComponent<Particle>();
             if (particle == null) { 
                 /// Laser shoots off into space.
-                countLaser++;
-                laserRenderer.positionCount = countLaser;
-                laserRenderer.SetPosition(countLaser - 1, pos + (directLaser.normalized * Shooting.maxRange));
+                positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
                 break;
             }
 
-            if (!hit || !HandleHit(hit)) {
-                countLaser++;
-                laserRenderer.positionCount = countLaser;
-                laserRenderer.SetPosition(countLaser - 1, pos + (directLaser.normalized * laserDistance));
-                loopActive = false;
-            }
-            countLaser++; //TODO: Avoid infinite loop currently
-            if (countLaser > numberReflectMax) {
-                loopActive = false;
+            Debug.Log($"hit.point = {hit.point}");
+            BlockType blockType = particle.getBlockType();
+            if (blockType == BlockType.Water) {
+                // Logs water position on death.
+                string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={particle.tile.location.x}&entry.962467366={particle.tile.location.y}&entry.1845636193={particle.tile.location.z}&submit=Submit";
+                StartCoroutine(GetRequest(url));
+                Destroy(hit.collider.gameObject);
+                break;
+            } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
+                positions.Add(hit.point);
+                break;
+            } else if (blockType == BlockType.Mirror) {
+                positions.Add(hit.point);
+                    
+                directLaser = Vector3.Reflect(directLaser, hit.normal);
+                    
+                pos = hit.point + (hit.normal.normalized * 0.01f);
+                continue;
+            } else {
+                Debug.Log("ERROR: Unknown block type");
+                break;
             }
         }
-    }
 
-    private bool HandleHit(RaycastHit2D hit) {
-        if (hit.collider.tag == TagConstant.ReflectWall) {
-            return false;
-        } else if (hit.collider.tag == TagConstant.WaterDrop) {
-            Particle particle = hit.collider.gameObject.GetComponent<Particle>();
-            if (particle == null) { 
-                Debug.Log("ERROR: Particle is null");
-                return false;
-            }
-            switch (particle.getBlockType()) { 
-                case BlockType.Water:
-                    handleWaterHit(hit.collider.gameObject);
-                    return true;
-                
-                case BlockType.Bedrock:
-                    handleNonReflectLaser(hit);
-                    loopActive = false;
-                    return true;
-                
-                case BlockType.Dirt:
-                    handleNonReflectLaser(hit);
-                    loopActive = false;
-                    return true;
-                
-                default:
-                    Debug.Log("ERROR: Unknown block type");
-                    return false;  
-            }
-        } else if (hit.collider.tag == TagConstant.Wall) {
-            return false;
-        } else { 
-            Debug.Log("ERROR: Unknown tag");
-            return false;
-        }
-    }
-
-    void handleNonReflectLaser(RaycastHit2D hit) {
-        countLaser++;
-        laserRenderer.positionCount = countLaser;
-        laserRenderer.SetPosition(countLaser - 1, hit.point);
-    }
-    
-    void handleReflectLaser(RaycastHit2D hit) {
-        countLaser++;
-        laserRenderer.positionCount = countLaser;
-        pos = (Vector2)directLaser.normalized + hit.normal;
-        directLaser = Vector3.Reflect(directLaser, hit.point);
-        laserRenderer.SetPosition(countLaser - 1, hit.point);
-    }
-
-    void handleWaterHit(GameObject water) {
-        Particle particle = water.GetComponent<Particle>();
-        if (particle == null) { 
-            Debug.Log("ERROR: Particle is null");
-            return;
-        }
-        Debug.Log(particle.tile.location);
-            
-        // TODO: log water position on death.
-        string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={particle.tile.location.x}&entry.962467366={particle.tile.location.y}&entry.1845636193={particle.tile.location.z}&submit=Submit";
-        StartCoroutine(GetRequest(url));
-        Destroy(water);
+        // Assign positions to line renderer.
+        laserRenderer.positionCount = positions.Count;
+        laserRenderer.SetPositions(positions.ToArray());
     }
 
     IEnumerator GetRequest(string uri) {

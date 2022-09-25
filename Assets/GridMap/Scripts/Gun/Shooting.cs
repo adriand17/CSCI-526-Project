@@ -5,16 +5,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
-public class Shooting : MonoBehaviour
-{
-
+public class Shooting : MonoBehaviour {
 
     public Transform rightpivot;
     public Transform firepoint;
     public GameObject bulletPreFab;
     public float bulletForce=20f;
     
-    // Render's line from gun to target.
+    // Renders line from gun to target.
     private LineRenderer laserRenderer;
     
     private int laserDistance = 100;
@@ -29,24 +27,20 @@ public class Shooting : MonoBehaviour
     private bool lasering = false;
     public Transform Square;
 
-    void Start()
-    {
+    void Start() {
         laserRenderer = GetComponent<LineRenderer>();
     }
 
     
-    private IEnumerator WaitAndDisappear(float waitTime)
-    {
+    private IEnumerator WaitAndDisappear(float waitTime) {
         yield return new WaitForSeconds(waitTime);
         laserRenderer.positionCount = 0;
         lasering = false;
     }
 
 
-    void Update()
-    {
-        if (Input.GetKeyDown("space") && !lasering)
-        {
+    void Update() {
+        if (Input.GetKeyDown("space") && !lasering) {
             lasering = true;
             DrawLaser();
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);
@@ -54,18 +48,13 @@ public class Shooting : MonoBehaviour
         }
     }
 
-
-    void Shoot()
-    {
-        
-
+    void Shoot() {
         GameObject bullet = Instantiate(bulletPreFab, firepoint.position, firepoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
-
     }
-    void DrawLaser()
-    {
+
+    void DrawLaser(){
         loopActive = true;
         CountLaser = 1;
         pos = firepoint.position;

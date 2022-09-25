@@ -9,8 +9,6 @@ public class Shooting : MonoBehaviour {
 
     public Transform rightpivot;
     public Transform firepoint;
-    public GameObject bulletPreFab;
-    public float bulletForce=20f;
     
     // Renders line from gun to target.
     private LineRenderer laserRenderer;
@@ -46,12 +44,6 @@ public class Shooting : MonoBehaviour {
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);
             StartCoroutine(coroutineForDestoryLaser);
         }
-    }
-
-    void Shoot() {
-        GameObject bullet = Instantiate(bulletPreFab, firepoint.position, firepoint.rotation);
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firepoint.up * bulletForce, ForceMode2D.Impulse);
     }
 
     void DrawLaser(){

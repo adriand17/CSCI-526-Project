@@ -2214,6 +2214,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8131458325811062568, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+      propertyPath: m_Parameters.numCornerVertices
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8131458325811062568, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
       propertyPath: m_Parameters.colorGradient.key0.b
       value: 0.08282852
       objectReference: {fileID: 0}

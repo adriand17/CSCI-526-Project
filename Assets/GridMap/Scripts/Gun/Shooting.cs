@@ -19,7 +19,6 @@ public class Shooting : MonoBehaviour {
     // Maximum number of times laser can bounce.
     private static int maxReflections = 3;
     
-    [SerializeField] private int countLaser = 1;
     private IEnumerator coroutineForDestoryLaser;
     private float waitTime = 0.5f;
     private bool lasering = false;
@@ -46,8 +45,6 @@ public class Shooting : MonoBehaviour {
     }
     
     void DrawLaser() {
-        countLaser = 1;
-        
         // List of positions for line renderer to draw.
         List<Vector3> positions = new List<Vector3>();
         

@@ -81,9 +81,8 @@ public class Shooting : MonoBehaviour {
     }
 
     private bool HandleHit(RaycastHit2D hit) {
-        bool handled = false;
         if (hit.collider.tag == TagConstant.ReflectWall) {
-            
+            return false;
         } else if (hit.collider.tag == TagConstant.WaterDrop) {
             Particle particle = hit.collider.gameObject.GetComponent<Particle>();
             if (particle == null) { 
@@ -93,25 +92,28 @@ public class Shooting : MonoBehaviour {
             switch (particle.getBlockType()) { 
                 case BlockType.Water:
                     handleWaterHit(hit.collider.gameObject);
-                    break;
+                    return true;
                 
                 case BlockType.Bedrock:
                     handleNonReflectLaser(hit);
-                    handled = true;
                     loopActive = false;
-                    break;
+                    return true;
                 
                 case BlockType.Dirt:
-                    handled = true;
                     handleNonReflectLaser(hit);
                     loopActive = false;
-
-                    break;
+                    return true;
+                
+                default:
+                    Debug.Log("ERROR: Unknown block type");
+                    return false;  
             }
         } else if (hit.collider.tag == TagConstant.Wall) {
+            return false;
+        } else { 
+            Debug.Log("ERROR: Unknown tag");
+            return false;
         }
-        
-        return handled;
     }
 
     void handleNonReflectLaser(RaycastHit2D hit) {
@@ -119,16 +121,14 @@ public class Shooting : MonoBehaviour {
         laserRenderer.positionCount = countLaser;
         laserRenderer.SetPosition(countLaser - 1, hit.point);
     }
+    
     void handleReflectLaser(RaycastHit2D hit) {
-
         countLaser++;
         laserRenderer.positionCount = countLaser;
         pos = (Vector2)directLaser.normalized + hit.normal;
         directLaser = Vector3.Reflect(directLaser, hit.point);
         laserRenderer.SetPosition(countLaser - 1, hit.point);
-
     }
-
 
     void handleWaterHit(GameObject water) {
         Particle particle = water.GetComponent<Particle>();

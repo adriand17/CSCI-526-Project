@@ -69,7 +69,6 @@ public class Shooting : MonoBehaviour {
             }
             
             if (hit.collider == null) {
-                Debug.Log("hit.collider is null");
                 // Laser shoots off into space.
                 positions.Add(raycastStart + (raycastDirection.normalized * Shooting.maxRange));
                 break;
@@ -82,7 +81,6 @@ public class Shooting : MonoBehaviour {
             }
 
             positions.Add(hit.point);
-            Debug.Log($"hit.point = {hit.point}");
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
                 // Logs water position on death.

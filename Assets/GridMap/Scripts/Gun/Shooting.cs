@@ -19,23 +19,19 @@ public class Shooting : MonoBehaviour {
     // Maximum number of times laser can bounce.
     private static int maxReflections = 3;
     
-    private Vector3 pos = new Vector3();
-
-    private Vector3 directLaser = new Vector3();
+    // Whether the laser is currently being fired.
+    private bool laserIsFiring = false;
     
-    [SerializeField] private int countLaser = 1;
     private IEnumerator coroutineForDestoryLaser;
     private float waitTime = 0.5f;
-    private bool lasering = false;
-    public Transform Square;
-
+    
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
     }
 
     void Update() {
-        if (Input.GetKeyDown("space") && !lasering) {
-            lasering = true;
+        if (Input.GetKeyDown("space") && !laserIsFiring) {
+            laserIsFiring = true;
             DrawLaser();
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);
             StartCoroutine(coroutineForDestoryLaser);
@@ -46,22 +42,22 @@ public class Shooting : MonoBehaviour {
     private IEnumerator WaitAndDisappear(float waitTime) {
         yield return new WaitForSeconds(waitTime);
         laserRenderer.positionCount = 0;
-        lasering = false;
+        laserIsFiring = false;
     }
     
     void DrawLaser() {
-        countLaser = 1;
-        pos = firepoint.position;
-        directLaser = firepoint.up;
-        
         // List of positions for line renderer to draw.
         List<Vector3> positions = new List<Vector3>();
-        positions.Add(pos);
+        
+        // Start at the gun.
+        Vector3 raycastDirection = firepoint.up;
+        Vector3 raycastStart = firepoint.position;
+        positions.Add(raycastStart);
 
         for (int i = 0; i < Shooting.maxReflections; i++) {
             // Find the first opaque object hit by the laser.
-            RaycastHit2D[] hits = Physics2D.RaycastAll(pos, directLaser, Shooting.maxRange);
-            RaycastHit2D hit = Physics2D.Raycast(pos, directLaser, Shooting.maxRange);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(raycastStart, raycastDirection, Shooting.maxRange);
+            RaycastHit2D hit = Physics2D.Raycast(raycastStart, raycastDirection, Shooting.maxRange);
             foreach (var obj in hits) {
                 if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall) {
                     hit = obj;
@@ -73,20 +69,18 @@ public class Shooting : MonoBehaviour {
             }
             
             if (hit.collider == null) {
-                Debug.Log("hit.collider is null");
                 // Laser shoots off into space.
-                positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
+                positions.Add(raycastStart + (raycastDirection.normalized * Shooting.maxRange));
                 break;
             }
             Particle particle = hit.collider.gameObject.GetComponent<Particle>();
             if (particle == null) { 
                 // Laser shoots off into space.
-                positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
+                positions.Add(raycastStart + (raycastDirection.normalized * Shooting.maxRange));
                 break;
             }
 
             positions.Add(hit.point);
-            Debug.Log($"hit.point = {hit.point}");
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
                 // Logs water position on death.
@@ -99,10 +93,10 @@ public class Shooting : MonoBehaviour {
                 break;
             } else if (blockType == BlockType.Mirror) {
                 // Change direction for next ray.
-                directLaser = Vector3.Reflect(directLaser, hit.normal);
+                raycastDirection = Vector3.Reflect(raycastDirection, hit.normal);
                 
                 // Move slightly away from the wall to avoid re-colliding with it.
-                pos = hit.point + (hit.normal.normalized * 0.001f);
+                raycastStart = hit.point + (hit.normal.normalized * 0.001f);
                 
                 continue;
             } else {

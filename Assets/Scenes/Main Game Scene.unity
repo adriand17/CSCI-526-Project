@@ -2111,6 +2111,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8131458325811062582, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
   m_PrefabInstance: {fileID: 1957910048}
   m_PrefabAsset: {fileID: 0}
+--- !u!50 &1721307610 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8131458325811062580, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+  m_PrefabInstance: {fileID: 1957910048}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1898194399
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,6 +2269,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1264035263}
+    - target: {fileID: 8131458325811062583, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
+      propertyPath: rigidBody
+      value: 
+      objectReference: {fileID: 1721307610}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9baac326913dd44f7a61ea868da41e52, type: 3}
 --- !u!224 &1968506781

@@ -13,8 +13,9 @@ public class Movement : MonoBehaviour
     }
     
     void FixedUpdate() {
+        // Rotate towards mouse position.
         Vector2 lookdir = mousePos - rigidBody.position;
-        float angle = Mathf.Atan2(lookdir.y,lookdir.x)*Mathf.Rad2Deg-90f;
+        float angle = Mathf.Atan2(lookdir.y, lookdir.x) * Mathf.Rad2Deg - 90f;
         rigidBody.rotation = angle;
     }
 }

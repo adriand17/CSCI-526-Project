@@ -53,6 +53,7 @@ public class Shooting : MonoBehaviour {
         countLaser = 1;
         pos = firepoint.position;
         directLaser = firepoint.up;
+        
         // List of positions for line renderer to draw.
         List<Vector3> positions = new List<Vector3>();
         positions.Add(pos);
@@ -73,17 +74,18 @@ public class Shooting : MonoBehaviour {
             
             if (hit.collider == null) {
                 Debug.Log("hit.collider is null");
-                /// Laser shoots off into space.
+                // Laser shoots off into space.
                 positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
                 break;
             }
             Particle particle = hit.collider.gameObject.GetComponent<Particle>();
             if (particle == null) { 
-                /// Laser shoots off into space.
+                // Laser shoots off into space.
                 positions.Add(pos + (directLaser.normalized * Shooting.maxRange));
                 break;
             }
 
+            positions.Add(hit.point);
             Debug.Log($"hit.point = {hit.point}");
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
@@ -93,14 +95,15 @@ public class Shooting : MonoBehaviour {
                 Destroy(hit.collider.gameObject);
                 break;
             } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
-                positions.Add(hit.point);
+                // No reflections, stop here.
                 break;
             } else if (blockType == BlockType.Mirror) {
-                positions.Add(hit.point);
-                    
+                // Change direction for next ray.
                 directLaser = Vector3.Reflect(directLaser, hit.normal);
-                    
-                pos = hit.point + (hit.normal.normalized * 0.01f);
+                
+                // Move slightly away from the wall to avoid re-colliding with it.
+                pos = hit.point + (hit.normal.normalized * 0.001f);
+                
                 continue;
             } else {
                 Debug.Log("ERROR: Unknown block type");

@@ -170,9 +170,9 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Bedrock, new Vector3(3, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(4, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(5, 0));
-        DrawParticle(BlockType.Bedrock, new Vector3(6, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(6, 0));
 
-        DrawParticle(BlockType.Bedrock, new Vector3(9, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(9, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(10, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(11, 0));
         DrawParticle(BlockType.Bedrock, new Vector3(12, 0));

@@ -7,6 +7,7 @@ public enum BlockType
     Water,   // Water block.
     Bedrock, // Uneditable level structure block.
     Dirt,    // Player placable block.
+    Mirror,  // Mirror block.
 }
 
 public enum WaterFlowDirection { 
@@ -68,8 +69,10 @@ public class Particle : MonoBehaviour{
             case BlockType.Dirt:
                 _renderer.color = new Color(0.5f, 0.25f, 0);
                 break;
+            case BlockType.Mirror:
+                _renderer.color = Color.white;
+                break;
         }
-
     }
 
     public void Update() {

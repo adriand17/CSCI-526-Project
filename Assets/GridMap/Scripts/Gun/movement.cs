@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float movespeed =5f;
-    public Rigidbody2D rb;
-    Vector2 mousePos;
-    public Camera cam;
+    [SerializeField] private Rigidbody2D rigidBody;
+    [SerializeField] private Vector2 mousePos;
+    [SerializeField] private Camera cam;
     
     void Update() {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
     
     void FixedUpdate() {
-        Vector2 lookdir = mousePos-rb.position;
+        Vector2 lookdir = mousePos - rigidBody.position;
         float angle = Mathf.Atan2(lookdir.y,lookdir.x)*Mathf.Rad2Deg-90f;
-        rb.rotation = angle;
+        rigidBody.rotation = angle;
     }
 }

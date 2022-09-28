@@ -156,6 +156,10 @@ public class GridManager : MonoBehaviour
                 {
                     DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
                 }
+                if (_gameManager._gridLocations.indicies[row].locations[col] == 4)
+                {
+                    DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
+                }
 
             }
         }

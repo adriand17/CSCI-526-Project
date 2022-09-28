@@ -1051,6 +1051,7 @@ MonoBehaviour:
   currentHealth: 0
   _buildingLimit: 3
   _buildingCountText: {fileID: 1184003033}
+  _buidableBlocksText: {fileID: 71246481}
 --- !u!224 &1184003031
 RectTransform:
   m_ObjectHideFlags: 0

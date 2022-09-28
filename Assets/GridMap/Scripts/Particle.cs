@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BlockType
-{
-    Water,   // Water block.
-    Bedrock, // Uneditable level structure block.
-    Dirt,    // Player placable block.
-    Mirror,  // Mirror block.
-}
-
 public enum WaterFlowDirection { 
     Still, 
     Left,  
@@ -26,6 +18,7 @@ public class Particle : MonoBehaviour{
     } 
     public void setBlockType(BlockType blockType) { 
         this.blockType = blockType; 
+        
         /// Reset metadata.
         _waterFlowDirection = WaterFlowDirection.Still;
     }
@@ -71,6 +64,9 @@ public class Particle : MonoBehaviour{
                 break;
             case BlockType.Mirror:
                 _renderer.color = Color.white;
+                break;
+            case BlockType.Glass:
+                _renderer.color = Color.cyan;
                 break;
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using BlockTypeExtension;
 
 public class Shooting : MonoBehaviour {
 
@@ -59,10 +60,14 @@ public class Shooting : MonoBehaviour {
             RaycastHit2D[] hits = Physics2D.RaycastAll(raycastStart, raycastDirection, Shooting.maxRange);
             RaycastHit2D hit = Physics2D.Raycast(raycastStart, raycastDirection, Shooting.maxRange);
             foreach (var obj in hits) {
-                if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall) {
-                    hit = obj;
-                    break;
-                } else if (obj.collider.tag == TagConstant.WaterDrop) {
+                // Find the hit particle's blocktype.
+                Particle _p = obj.collider.gameObject.GetComponent<Particle>();
+                if (_p == null) { 
+                    continue;
+                }
+                BlockType _bt = _p.getBlockType();
+                
+                if (_bt.isOpaqueToLaser()) {
                     hit = obj;
                     break;
                 }

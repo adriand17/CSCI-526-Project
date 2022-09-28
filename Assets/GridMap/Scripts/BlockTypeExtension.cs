@@ -5,7 +5,19 @@ using UnityEngine;
 namespace BlockTypeExtension { 
     public static class Extensions {
         public static bool isOpaqueToLaser(this BlockType blockType) {
-            return blockType == BlockType.Bedrock || blockType == BlockType.Mirror;
+            switch (blockType) {
+                case BlockType.Glass:
+                    return false;
+                
+                case BlockType.Water:
+                case BlockType.Bedrock:
+                case BlockType.Mirror:
+                case BlockType.Dirt:
+                    return true;
+                
+                default:
+                    return true;
+            }
         }
     }
 }

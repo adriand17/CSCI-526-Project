@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using BlockTypeExtension;
 
 public class Shooting : MonoBehaviour {
 
@@ -66,6 +67,10 @@ public class Shooting : MonoBehaviour {
                     continue;
                 }
                 BlockType _bt = _p.getBlockType();
+                if (_bt.isOpaqueToLaser()) {
+                    hit = obj;
+                    break;
+                }
                 
                 if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall) {
                     hit = obj;

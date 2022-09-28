@@ -131,8 +131,37 @@ public class GridManager : MonoBehaviour
     // Create inital level geometry.
     private void SetUnpassableTiles()
     {
+        int rowCount = _gameManager._gridLocations.indicies.Count;
+        int colCount;
+        for(int row = 0; row < rowCount; row++)
+        {
+            colCount = _gameManager._gridLocations.indicies[row].locations.Count;
+            for (int col = 0; col < colCount; col++)
+            {
+                int drawRow = (rowCount - 1) - row;
+                int drawCol = (colCount - 1) - col;
+                if (_gameManager._gridLocations.indicies[row].locations[col] == 0)
+                {
+                    DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));
+                }
+                if (_gameManager._gridLocations.indicies[row].locations[col] == 1)
+                {
+                    DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow));
+                }
+                if (_gameManager._gridLocations.indicies[row].locations[col] == 2)
+                {
+                    DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow));
+                }
+                if (_gameManager._gridLocations.indicies[row].locations[col] == 3)
+                {
+                    DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
+                }
 
-        DrawParticle(BlockType.Mirror, new Vector3(5, 6));
+            }
+        }
+
+        
+        /*DrawParticle(BlockType.Mirror, new Vector3(5, 6));
         DrawParticle(BlockType.Mirror, new Vector3(4, 6));
         DrawParticle(BlockType.Mirror, new Vector3(3, 6));
         DrawParticle(BlockType.Mirror, new Vector3(2, 6));
@@ -178,7 +207,7 @@ public class GridManager : MonoBehaviour
         DrawParticle(BlockType.Mirror, new Vector3(12, 0));
         DrawParticle(BlockType.Mirror, new Vector3(13, 0));
         DrawParticle(BlockType.Mirror, new Vector3(14, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(15, 0));
+        DrawParticle(BlockType.Mirror, new Vector3(15, 0));*/
 
     }
 

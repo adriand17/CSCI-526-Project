@@ -99,7 +99,10 @@ public class GridManager : MonoBehaviour
 
                 // Look up valid adjacent tiles.
                 // null represents the world's borders.
-                Tile underTile = (y > 0)
+                Tile upTile = (y < _height - 1)
+                    ? _tiles[new Vector2(x, y + 1)]
+                    : null;
+                Tile downTile = (y > 0)
                     ? _tiles[new Vector2(x, y - 1)]
                     : null;
                 Tile rightTile = (x < _width - 1)
@@ -109,7 +112,7 @@ public class GridManager : MonoBehaviour
                     ? _tiles[new Vector2(x - 1, y)]
                     : null;
 
-                t.setAdjacentTiles(underTile, leftTile, rightTile);
+                t.setAdjacentTiles(upTile, downTile, leftTile, rightTile);
             }
         }
     }
@@ -163,56 +166,6 @@ public class GridManager : MonoBehaviour
 
             }
         }
-
-        
-        /*DrawParticle(BlockType.Mirror, new Vector3(5, 6));
-        DrawParticle(BlockType.Mirror, new Vector3(4, 6));
-        DrawParticle(BlockType.Mirror, new Vector3(3, 6));
-        DrawParticle(BlockType.Mirror, new Vector3(2, 6));
-        DrawParticle(BlockType.Mirror, new Vector3(1, 6));
-
-        DrawParticle(BlockType.Mirror, new Vector3(6, 4));
-        DrawParticle(BlockType.Mirror, new Vector3(5, 4));
-        DrawParticle(BlockType.Mirror, new Vector3(4, 4));
-        DrawParticle(BlockType.Mirror, new Vector3(3, 4));
-        DrawParticle(BlockType.Mirror, new Vector3(2, 4));
-        DrawParticle(BlockType.Mirror, new Vector3(1, 4));
-
-
-        DrawParticle(BlockType.Mirror, new Vector3(6, 2));
-        DrawParticle(BlockType.Mirror, new Vector3(5, 2));
-        DrawParticle(BlockType.Mirror, new Vector3(4, 2));
-        DrawParticle(BlockType.Mirror, new Vector3(3, 2));
-        DrawParticle(BlockType.Mirror, new Vector3(2, 2));
-        DrawParticle(BlockType.Mirror, new Vector3(1, 2));
-
-        DrawParticle(BlockType.Mirror, new Vector3(9, 3));
-        DrawParticle(BlockType.Mirror, new Vector3(10, 3));
-        DrawParticle(BlockType.Mirror, new Vector3(11, 3));
-        DrawParticle(BlockType.Mirror, new Vector3(12, 3));
-        DrawParticle(BlockType.Mirror, new Vector3(13, 3));
-        DrawParticle(BlockType.Mirror, new Vector3(14, 3));
-        DrawParticle(BlockType.Mirror, new Vector3(9, 4));
-        DrawParticle(BlockType.Mirror, new Vector3(14, 4));
-        DrawParticle(BlockType.Mirror, new Vector3(14, 5));
-
-
-        DrawParticle(BlockType.Mirror, new Vector3(0, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(1, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(2, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(3, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(4, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(5, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(6, 0));
-
-        DrawParticle(BlockType.Mirror, new Vector3(9, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(10, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(11, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(12, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(13, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(14, 0));
-        DrawParticle(BlockType.Mirror, new Vector3(15, 0));*/
-
     }
 
     public Tile GetTileAtPosition(float x, float y)

@@ -21,6 +21,7 @@ public class Particle : MonoBehaviour{
         
         /// Reset metadata.
         _waterFlowDirection = WaterFlowDirection.Still;
+        dirtDurability = Particle.DirtMaxDurability;
     }
 
     /// Amount of time since last update.
@@ -35,11 +36,17 @@ public class Particle : MonoBehaviour{
     private bool atBottom = false;
     public bool userPlaced = false;
 
-    /// Direction that the water is flowing.
-    private WaterFlowDirection _waterFlowDirection;
-    
     /// Parent grid manager.
     private GridManager _gridManager;
+
+    /// [WATER SPECIFIC]
+    /// Direction that the water is flowing.
+    private WaterFlowDirection _waterFlowDirection;
+
+    /// [DIRT SPECIFIC]
+    /// Dirt Durability.
+    private static int DirtMaxDurability = 5;
+    private int dirtDurability = DirtMaxDurability;
 
     public Particle(BlockType type)
     {
@@ -61,6 +68,7 @@ public class Particle : MonoBehaviour{
                 break;
             case BlockType.Dirt:
                 _renderer.color = new Color(0.5f, 0.25f, 0);
+                dirtDurability = Particle.DirtMaxDurability;
                 break;
             case BlockType.Mirror:
                 _renderer.color = Color.white;
@@ -72,20 +80,21 @@ public class Particle : MonoBehaviour{
     }
 
     public void Update() {
+        _timeSinceLastUpdate += Time.deltaTime;
+        if (_timeSinceLastUpdate < Particle._WaterInterval) {
+            return;
+        }
+        _timeSinceLastUpdate = 0;
+        
         if (blockType == BlockType.Water) {
-
-            _timeSinceLastUpdate += Time.deltaTime;
-            if (_timeSinceLastUpdate < Particle._WaterInterval) {
-                return;
-            }
-            _timeSinceLastUpdate = 0;
             WaterTick();
 
-
             //check if water at bottom
-            if(tile.underTile == null) {
+            if(tile.downTile == null) {
                 hasHitBottom();
             }
+        } else if (blockType == BlockType.Dirt) {
+            DirtTick();
         }
     }
 
@@ -123,7 +132,7 @@ public class Particle : MonoBehaviour{
 
     private void hasHitBottom()
     {
-        if (!atBottom && tile.underTile == null)
+        if (!atBottom && tile.downTile == null)
         {
             atBottom = true;
            // grid.TakeDamage();
@@ -164,10 +173,10 @@ public class Particle : MonoBehaviour{
 
         
         // Check if water can flow down.
-        if (tile.underTile != null && tile.underTile.particle == null) {
+        if (tile.downTile != null && tile.downTile.particle == null) {
             this._waterFlowDirection = WaterFlowDirection.Down;
             Tile oldTile = this.tile;
-            tile.underTile.SetParticle(this);
+            tile.downTile.SetParticle(this);
             MoveWater(Vector3.down);
             oldTile.SetParticle(null);
             return;
@@ -231,7 +240,7 @@ public class Particle : MonoBehaviour{
         switch (_waterFlowDirection)
         {
             case WaterFlowDirection.Down:
-                destinationTile = tile.underTile;
+                destinationTile = tile.downTile;
                 break;
             case WaterFlowDirection.Right:
                 destinationTile = tile.rightTile;
@@ -247,6 +256,21 @@ public class Particle : MonoBehaviour{
         this.tile = destinationTile;
 
         transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
+    }
+
+    private void DirtTick() { 
+        bool upIsWater = tile.upTile != null && tile.upTile.particle != null && tile.upTile.particle.blockType == BlockType.Water;
+        bool leftIsWater = tile.leftTile != null && tile.leftTile.particle != null && tile.leftTile.particle.getBlockType() == BlockType.Water;
+        bool rightIsWater = tile.rightTile != null && tile.rightTile.particle != null && tile.rightTile.particle.getBlockType() == BlockType.Water;
+
+        if (upIsWater || leftIsWater || rightIsWater) { 
+            dirtDurability -= 1;
+        }
+        if (dirtDurability <= 0) {    
+            tile.SetParticle(null);
+            _gridManager.particles.Remove(this);
+            Destroy(this.gameObject);
+        }
     }
 
 }

@@ -265,13 +265,11 @@ public class Particle : MonoBehaviour{
 
         if (upIsWater || leftIsWater || rightIsWater) { 
             dirtDurability -= 1;
-            Debug.Log("dirtDurability: " + dirtDurability);
         }
         if (dirtDurability <= 0) {    
             tile.SetParticle(null);
             _gridManager.particles.Remove(this);
             Destroy(this.gameObject);
-            Debug.Log("destoyed at dur: " + dirtDurability);
         }
     }
 

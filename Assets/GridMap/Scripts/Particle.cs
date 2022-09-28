@@ -72,15 +72,14 @@ public class Particle : MonoBehaviour{
     }
 
     public void Update() {
+        _timeSinceLastUpdate += Time.deltaTime;
+        if (_timeSinceLastUpdate < Particle._WaterInterval) {
+            return;
+        }
+        _timeSinceLastUpdate = 0;
+        
         if (blockType == BlockType.Water) {
-
-            _timeSinceLastUpdate += Time.deltaTime;
-            if (_timeSinceLastUpdate < Particle._WaterInterval) {
-                return;
-            }
-            _timeSinceLastUpdate = 0;
             WaterTick();
-
 
             //check if water at bottom
             if(tile.underTile == null) {

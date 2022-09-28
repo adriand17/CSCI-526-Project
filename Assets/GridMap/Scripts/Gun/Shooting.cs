@@ -71,14 +71,6 @@ public class Shooting : MonoBehaviour {
                     hit = obj;
                     break;
                 }
-                
-                if (obj.collider.tag == TagConstant.ReflectWall || obj.collider.tag == TagConstant.Wall) {
-                    hit = obj;
-                    break;
-                } else if (obj.collider.tag == TagConstant.WaterDrop) {
-                    hit = obj;
-                    break;
-                }
             }
             
             if (hit.collider == null) {

@@ -63,10 +63,10 @@ public class Shooting : MonoBehaviour {
                 // Find the hit particle's blocktype.
                 Particle _p = obj.collider.gameObject.GetComponent<Particle>();
                 if (_p == null) { 
-                    Debug.Log("DrawLaser ERROR: Particle is null");
                     continue;
                 }
                 BlockType _bt = _p.getBlockType();
+                
                 if (_bt.isOpaqueToLaser()) {
                     hit = obj;
                     break;

@@ -883,9 +883,14 @@ MonoBehaviour:
   _camera: {fileID: 1264035261}
   _textJson:
   - {fileID: 4900000, guid: 52d9b932bfcb13a4d8590f924d641ae4, type: 3}
+  - {fileID: 4900000, guid: e39c7815928914344886e08cab289083, type: 3}
   _parser: {fileID: 482687994}
   _spawnTiles: []
   _dropLocations:
+    indicies: []
+    rows: 0
+    cols: 0
+  _gridLocations:
     indicies: []
     rows: 0
     cols: 0

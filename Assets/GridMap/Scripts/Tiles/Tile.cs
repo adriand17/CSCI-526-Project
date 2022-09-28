@@ -19,9 +19,10 @@ public class Tile : MonoBehaviour
 
     /// Tile's valid neighbors.
     /// Null indicates the world border.
+    public Tile upTile = null;
+    public Tile downTile = null;
     public Tile leftTile = null;
     public Tile rightTile = null;
-    public Tile underTile = null;
     
     private GridManager _gridManager;
     
@@ -100,9 +101,10 @@ public class Tile : MonoBehaviour
     }
 
     /// Lets manager inform tile of its valid neighbors.
-    public void setAdjacentTiles(Tile underTile, Tile leftTile, Tile rightTile)
+    public void setAdjacentTiles(Tile upTile, Tile downTile, Tile leftTile, Tile rightTile)
     {
-        this.underTile = underTile;
+        this.upTile = upTile;
+        this.downTile = downTile;
         this.rightTile = rightTile;
         this.leftTile = leftTile;
     }

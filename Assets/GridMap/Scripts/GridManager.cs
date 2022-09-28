@@ -99,7 +99,10 @@ public class GridManager : MonoBehaviour
 
                 // Look up valid adjacent tiles.
                 // null represents the world's borders.
-                Tile underTile = (y > 0)
+                Tile upTile = (y < _height - 1)
+                    ? _tiles[new Vector2(x, y + 1)]
+                    : null;
+                Tile downTile = (y > 0)
                     ? _tiles[new Vector2(x, y - 1)]
                     : null;
                 Tile rightTile = (x < _width - 1)
@@ -109,7 +112,7 @@ public class GridManager : MonoBehaviour
                     ? _tiles[new Vector2(x - 1, y)]
                     : null;
 
-                t.setAdjacentTiles(underTile, leftTile, rightTile);
+                t.setAdjacentTiles(upTile, downTile, leftTile, rightTile);
             }
         }
     }

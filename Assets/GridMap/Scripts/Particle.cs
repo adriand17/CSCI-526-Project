@@ -82,7 +82,7 @@ public class Particle : MonoBehaviour{
             WaterTick();
 
             //check if water at bottom
-            if(tile.underTile == null) {
+            if(tile.downTile == null) {
                 hasHitBottom();
             }
         }
@@ -122,7 +122,7 @@ public class Particle : MonoBehaviour{
 
     private void hasHitBottom()
     {
-        if (!atBottom && tile.underTile == null)
+        if (!atBottom && tile.downTile == null)
         {
             atBottom = true;
            // grid.TakeDamage();
@@ -163,10 +163,10 @@ public class Particle : MonoBehaviour{
 
         
         // Check if water can flow down.
-        if (tile.underTile != null && tile.underTile.particle == null) {
+        if (tile.downTile != null && tile.downTile.particle == null) {
             this._waterFlowDirection = WaterFlowDirection.Down;
             Tile oldTile = this.tile;
-            tile.underTile.SetParticle(this);
+            tile.downTile.SetParticle(this);
             MoveWater(Vector3.down);
             oldTile.SetParticle(null);
             return;
@@ -230,7 +230,7 @@ public class Particle : MonoBehaviour{
         switch (_waterFlowDirection)
         {
             case WaterFlowDirection.Down:
-                destinationTile = tile.underTile;
+                destinationTile = tile.downTile;
                 break;
             case WaterFlowDirection.Right:
                 destinationTile = tile.rightTile;

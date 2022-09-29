@@ -60,6 +60,7 @@ public class Particle : MonoBehaviour{
     private static int tempFreeze = 0;
     private static int tempVapor = 10;
     private static int tempInit = 5;
+    public static int TempLaser = +2;
 
     /// [DIRT SPECIFIC]
     /// Dirt Durability.
@@ -76,7 +77,7 @@ public class Particle : MonoBehaviour{
         this._gridManager = gridManager;
         switch (type) {
             case BlockType.Water:
-                _renderer.color = Color.blue;
+                _renderer.color = new Color(0, 0, 1);
                 break;
             
             case BlockType.Bedrock:

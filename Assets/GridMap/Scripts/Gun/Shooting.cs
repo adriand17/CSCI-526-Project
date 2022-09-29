@@ -88,7 +88,7 @@ public class Shooting : MonoBehaviour {
             positions.Add(hit.point);
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
-                particle.DeleteParticle();
+                particle.HeatWater(Particle.TempLaser);
                 break;
             } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
                 // No reflections, stop here.

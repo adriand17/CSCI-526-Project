@@ -66,18 +66,15 @@ public class Particle : MonoBehaviour{
     private static int DirtMaxDurability = 5;
     private int dirtDurability = DirtMaxDurability;
 
-    public Particle(BlockType type)
-    {
+    public Particle(BlockType type) {
         blockType = type;
     }
 
-    public void Init(BlockType type, Tile t, GridManager gridManager)
-    {
+    public void Init(BlockType type, Tile t, GridManager gridManager) {
         setBlockType(type);
         this.tile = t;
         this._gridManager = gridManager;
-        switch (type)
-        {
+        switch (type) {
             case BlockType.Water:
                 _renderer.color = Color.blue;
                 break;
@@ -135,7 +132,6 @@ public class Particle : MonoBehaviour{
             MoveWater(Vector3.left);
             oldTile.SetParticle(null);
             
-            
             return true;
         }
         return false;
@@ -151,48 +147,29 @@ public class Particle : MonoBehaviour{
             MoveWater(Vector3.right);
             oldTile.SetParticle(null);
             
-            
             return true;
         }
         return false;
     }
 
-    private void hasHitBottom()
-    {
-        if (!atBottom && tile.downTile == null)
-        {
+    private void hasHitBottom() {
+        if (!atBottom && tile.downTile == null) {
             atBottom = true;
-           // grid.TakeDamage();
         }
     }
 
 
-    private void OnMouseDown()
-    {
-
-
+    private void OnMouseDown() {
         // changeFlage is a check to see if a building can be placed on the location
         Debug.Log("clicking on particle");
 
         bool changeFlage = _gridManager.CanAddBlockToTile(this.tile.location);
         if (changeFlage)
         {
-
             Debug.Log("added or rmoved at tile");
-            /*if (particle == null) {
-                _gridManager.DrawParticle(BlockType.Dirt, this.location);
-
-            } else if (particle.getBlockType() == BlockType.Dirt) {
-                 this._gridManager.particles.Remove(particle);
-                 SetParticle(null);
-            }*/
-        }
-        else
-        {
+        } else {
             Debug.Log("cancel other buliding to create new one");
-
         }
-
     }
 
     /// Try to move water.
@@ -209,50 +186,39 @@ public class Particle : MonoBehaviour{
             return;
         }
 
-        switch (_waterFlowDirection)
-        {
+        switch (_waterFlowDirection) {
             case WaterFlowDirection.Still:
-                if (Random.value >= 0.5)
-                {
-                    if (!flowLeft() && !flowRight())
-                    {
+                if (Random.value >= 0.5) {
+                    if (!flowLeft() && !flowRight()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
-                }
-                else
-                {
-                    if (!flowRight() && !flowLeft())
-                    {
+                } else {
+                    if (!flowRight() && !flowLeft()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 break;
+            
             case WaterFlowDirection.Down:
-                if (Random.value >= 0.5)
-                {
-                    if (!flowLeft() && !flowRight())
-                    {
+                if (Random.value >= 0.5) {
+                    if (!flowLeft() && !flowRight()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
-                }
-                else
-                {
-                    if (!flowRight() && !flowLeft())
-                    {
+                } else {
+                    if (!flowRight() && !flowLeft()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 break;
+            
             case WaterFlowDirection.Left:
-                if (!flowLeft() && !flowRight())
-                {
+                if (!flowLeft() && !flowRight()) {
                     _waterFlowDirection = WaterFlowDirection.Still;
                 }
                 break;
 
             case WaterFlowDirection.Right:
-                if (!flowRight() && !flowLeft())
-                {
+                if (!flowRight() && !flowLeft()) {
                     _waterFlowDirection = WaterFlowDirection.Still;
                 }
                 break;
@@ -260,12 +226,10 @@ public class Particle : MonoBehaviour{
     }
 
     /// Async coroutine to animate the drop moving.
-    private void MoveWater(Vector3 direction)
-    {
+    private void MoveWater(Vector3 direction) {
         //this.isMoving = true;
         Tile destinationTile;
-        switch (_waterFlowDirection)
-        {
+        switch (_waterFlowDirection) {
             case WaterFlowDirection.Down:
                 destinationTile = tile.downTile;
                 break;
@@ -299,15 +263,19 @@ public class Particle : MonoBehaviour{
             case 5:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt");
                 break;
+            
             case 4:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 1");
                 break;
+            
             case 3:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 2");
                 break;
+            
             case 2:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 3");
                 break;
+            
             case 1: 
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 4");
                 break;
@@ -318,8 +286,7 @@ public class Particle : MonoBehaviour{
         }
     }
 
-    public void DeleteParticle()
-    {
+    public void DeleteParticle() {
         if (blockType == BlockType.Water) {
             // Log water position on death.
             string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={tile.location.x}&entry.962467366={tile.location.y}&entry.1845636193={tile.location.z}&submit=Submit";

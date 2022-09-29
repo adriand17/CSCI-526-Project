@@ -24,7 +24,7 @@ public class Shooting : MonoBehaviour {
     private bool laserIsFiring = false;
     
     private IEnumerator coroutineForDestoryLaser;
-    private float waitTime = 0.5f;
+    private float waitTime = 0.1f;
     
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();

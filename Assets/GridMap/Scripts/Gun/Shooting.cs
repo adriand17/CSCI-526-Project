@@ -92,7 +92,7 @@ public class Shooting : MonoBehaviour {
                 // Logs water position on death.
                 string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={particle.tile.location.x}&entry.962467366={particle.tile.location.y}&entry.1845636193={particle.tile.location.z}&submit=Submit";
                 StartCoroutine(GetRequest(url));
-                Destroy(hit.collider.gameObject);
+                particle.DeleteParticle();
                 break;
             } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
                 // No reflections, stop here.

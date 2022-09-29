@@ -314,10 +314,15 @@ public class Particle : MonoBehaviour{
         }
         
         if (dirtDurability <= 0) {    
-            tile.SetParticle(null);
-            _gridManager.particles.Remove(this);
-            Destroy(this.gameObject);
+            DeleteParticle();
         }
+    }
+
+    public void DeleteParticle()
+    {
+        tile.SetParticle(null);
+        _gridManager.particles.Remove(this);
+        Destroy(this.gameObject);
     }
 
 }

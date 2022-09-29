@@ -12,7 +12,7 @@ public enum WaterFlowDirection {
 /**
 # Water Todo
 - [x] add a temperature value
-- [ ] shed heat to adjacent water / non-water
+- [x] shed heat to adjacent water / non-water
 - [ ] add a a heating "tower" block
 - [ ] add a cooling "tower" block
 - [ ] add an "ice" block
@@ -179,9 +179,11 @@ public class Particle : MonoBehaviour{
 
     /// Try to move water.
     private void WaterTick() {
-
         CoolWater();
-        
+        WaterFlow();
+    }
+
+    private void WaterFlow() { 
         // Check if water can flow down.
         if (tile.downTile != null && tile.downTile.particle == null) {
             this._waterFlowDirection = WaterFlowDirection.Down;

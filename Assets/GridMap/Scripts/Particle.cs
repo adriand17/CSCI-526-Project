@@ -76,18 +76,27 @@ public class Particle : MonoBehaviour{
             case BlockType.Water:
                 _renderer.color = Color.blue;
                 break;
+            
             case BlockType.Bedrock:
                 _renderer.sprite = Resources.Load<Sprite>("Bedrock");
-                break;
-            case BlockType.Dirt:
-                _renderer.sprite = Resources.Load<Sprite>("Dirt");
-                dirtDurability = Particle.DirtMaxDurability;
-                break;
-            case BlockType.Mirror:
                 _renderer.color = Color.white;
                 break;
+            
+            case BlockType.Dirt:
+                dirtDurability = Particle.DirtMaxDurability;
+                
+                _renderer.sprite = Resources.Load<Sprite>("Dirt");
+                _renderer.color = Color.white;
+                break;
+            
+            case BlockType.Mirror:
+                _renderer.sprite = Resources.Load<Sprite>("Mirror");
+                _renderer.color = Color.white;
+                break;
+            
             case BlockType.Glass:
                 _renderer.sprite = Resources.Load<Sprite>("Glass");
+                _renderer.color = Color.white;
                 break;
         }
     }

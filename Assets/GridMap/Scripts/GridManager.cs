@@ -28,9 +28,9 @@ public class GridManager : MonoBehaviour
 
     private Dictionary<Vector2, Tile> _tiles;
 
-    private int _buildingCount = 0;
+    [SerializeField] public int _buildingCount = 0;
     private int _activeWater = 0;
-    [SerializeField] private int _buildingLimit = 3;
+    [SerializeField] public int _buildingLimit = 3;
     [SerializeField] public TextMeshProUGUI _buildingCountText;
     [SerializeField] public TextMeshProUGUI _buidableBlocksText;
     private Coroutine TextFlash;
@@ -145,7 +145,7 @@ public class GridManager : MonoBehaviour
             for (int col = 0; col < colCount; col++)
             {
                 int drawRow = (rowCount - 1) - row;
-                int drawCol = (colCount - 1) - col;
+                int drawCol = col;
                 if (_gameManager._gridLocations.indicies[row].locations[col] == 0)
                 {
                     DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));

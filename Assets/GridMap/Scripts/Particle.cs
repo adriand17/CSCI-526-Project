@@ -77,7 +77,8 @@ public class Particle : MonoBehaviour{
                 _renderer.color = Color.blue;
                 break;
             case BlockType.Bedrock:
-                _renderer.color = Color.black;
+                _renderer.sprite = Resources.Load<Sprite>("Bedrock");
+                
                 break;
             case BlockType.Dirt:
                 _renderer.color = new Color(0.5f, 0.25f, 0);

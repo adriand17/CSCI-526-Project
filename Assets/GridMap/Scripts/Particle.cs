@@ -17,8 +17,8 @@ public enum WaterFlowDirection {
 - [ ] add a cooling "tower" block
 - [ ] add an "ice" block
 - [ ] transform to ice when too cold
-- [ ] have laser increase temperature
-- [ ] destroy water that's too hot
+- [x] have laser increase temperature
+- [x] destroy water that's too hot
 
  */
 

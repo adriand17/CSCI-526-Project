@@ -180,6 +180,7 @@ public class Particle : MonoBehaviour{
     /// Try to move water.
     private void WaterTick() {
 
+        CoolWater();
         
         // Check if water can flow down.
         if (tile.downTile != null && tile.downTile.particle == null) {
@@ -254,13 +255,56 @@ public class Particle : MonoBehaviour{
         transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
     }
 
+    private void CoolWater() { 
+        if (blockType != BlockType.Water) {
+            Debug.LogError("Cool: non-water particle");
+            return;
+        }
+
+        void TradeHeat(Tile neighbor) { 
+            if (neighbor == null || neighbor.particle == null) {
+                return;
+            }
+            Particle p = neighbor.particle;
+            if (p.blockType != BlockType.Water || p.temperature >= this.temperature) {
+                return;
+            }
+            
+            p.temperature += 1;
+            this.temperature -= 1;
+            p.ShowWaterHeat();
+        }
+
+        /// Share heat with neighbors.
+        TradeHeat(tile.upTile);
+        TradeHeat(tile.downTile);
+        TradeHeat(tile.leftTile);
+        TradeHeat(tile.rightTile);
+
+        /// Cool off naturally.
+        if (temperature > Particle.tempInit) {
+            temperature -= 1;
+        }
+
+        ShowWaterHeat();
+    }
+
     public void HeatWater(int tempChange) {
+        if (blockType != BlockType.Water) {
+            Debug.LogError("Heat: non-water particle");
+            return;
+        }
+
         temperature += tempChange;
         if (temperature >= tempVapor) {
             DeleteParticle();
             return;
+        } else { 
+            ShowWaterHeat();
         }
+    }
 
+    private void ShowWaterHeat() { 
         /// Get redder based on temperature.
         float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
         red *= 0.75f; // Dampen effect.

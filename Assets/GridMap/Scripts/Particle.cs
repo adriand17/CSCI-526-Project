@@ -39,7 +39,7 @@ public class Particle : MonoBehaviour{
 
     /// Amount of time since last update.
     private float _timeSinceLastUpdate;
-    private static float _WaterInterval = 0.25f;
+    private static float _WaterInterval = 0.5f;
 
     [SerializeField] private SpriteRenderer _renderer;
     

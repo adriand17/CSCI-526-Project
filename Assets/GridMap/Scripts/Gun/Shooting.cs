@@ -31,7 +31,8 @@ public class Shooting : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetKeyDown("space") && !laserIsFiring) {
+        /// `GetKey` instead of `GetKeyDown` allows continuous firing.
+        if (Input.GetKey("space") && !laserIsFiring) {
             laserIsFiring = true;
             DrawLaser();
             coroutineForDestoryLaser = WaitAndDisappear(waitTime);

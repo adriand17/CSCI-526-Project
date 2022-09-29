@@ -105,6 +105,18 @@ public class Particle : MonoBehaviour{
                 _renderer.sprite = Resources.Load<Sprite>("Glass");
                 _renderer.color = Color.white;
                 break;
+
+            case BlockType.Heater:
+                _renderer.sprite = Resources.Load<Sprite>("Magma");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.Cooler:
+                break;
+
+            default:
+                Debug.LogError("Unhandled block type: " + type);
+                break;
         }
     }
 

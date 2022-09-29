@@ -249,6 +249,19 @@ public class Particle : MonoBehaviour{
         transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
     }
 
+    public void HeatWater(int tempChange) {
+        temperature += tempChange;
+        if (temperature >= tempVapor) {
+            DeleteParticle();
+            return;
+        }
+
+        /// Get redder based on temperature.
+        float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
+        red *= 0.75f; // Dampen effect.
+        _renderer.color = new Color(red, 0, 1);
+    }
+
     private void DirtTick() { 
         bool upIsWater = tile.upTile != null && tile.upTile.particle != null && tile.upTile.particle.blockType == BlockType.Water;
         bool leftIsWater = tile.leftTile != null && tile.leftTile.particle != null && tile.leftTile.particle.getBlockType() == BlockType.Water;

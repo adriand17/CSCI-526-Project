@@ -53,12 +53,10 @@ public class GameManager : MonoBehaviour
         //Check if all particles are still
         if (_wave == _totalWaves)
         {
-            Debug.Log("on last wave");
             DetermineWinState();
         }
         else
         {
-            Debug.Log("on wave:" + _wave + "  of " + _totalWaves);
         }
     }
 
@@ -90,14 +88,20 @@ public class GameManager : MonoBehaviour
         handleGun();
     }
 
+    public void resetLevel()
+    {
+        _WinScreenText.SetActive(false);
+        _wave = 0;
+        _gridManager.ResetGrid();
+    }
+
 
     void DetermineWinState()
     {
        
         //check is water is present on map if so then bring up win screen
-        if(_gridManager.GetWaterCount() == 0)
+        if(_gridManager.GetCurrentHealth() > 0 &&  _gridManager.GetWaterCount() == 0)
         {
-            Debug.Log("No more water on map and all waves completed");
             _WinScreenText.SetActive(true);
         }
 

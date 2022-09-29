@@ -252,6 +252,7 @@ public class GridManager : MonoBehaviour
         particles.Clear();
         ResetHealth();
         _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
+        
 
     }
 
@@ -360,6 +361,11 @@ public class GridManager : MonoBehaviour
         }
 
         return count;
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public int getHeight()

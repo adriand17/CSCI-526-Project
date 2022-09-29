@@ -11,7 +11,7 @@ public enum WaterFlowDirection {
 
 /**
 # Water Todo
-- [ ] add a temperature value
+- [x] add a temperature value
 - [ ] shed heat to adjacent water / non-water
 - [ ] add a a heating "tower" block
 - [ ] add a cooling "tower" block
@@ -35,6 +35,7 @@ public class Particle : MonoBehaviour{
         /// Reset metadata.
         _waterFlowDirection = WaterFlowDirection.Still;
         dirtDurability = Particle.DirtMaxDurability;
+        temperature = Particle.tempInit;
     }
 
     /// Amount of time since last update.
@@ -55,6 +56,10 @@ public class Particle : MonoBehaviour{
     /// [WATER SPECIFIC]
     /// Direction that the water is flowing.
     private WaterFlowDirection _waterFlowDirection;
+    private int temperature; 
+    private static int tempFreeze = 0;
+    private static int tempVapor = 10;
+    private static int tempInit = 5;
 
     /// [DIRT SPECIFIC]
     /// Dirt Durability.
@@ -68,7 +73,7 @@ public class Particle : MonoBehaviour{
 
     public void Init(BlockType type, Tile t, GridManager gridManager)
     {
-        blockType = type;
+        setBlockType(type);
         this.tile = t;
         this._gridManager = gridManager;
         switch (type)

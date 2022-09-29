@@ -320,9 +320,14 @@ public class Particle : MonoBehaviour{
 
     public void DeleteParticle()
     {
+        if (blockType == BlockType.Water) {
+            // Log water position on death.
+            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={tile.location.x}&entry.962467366={tile.location.y}&entry.1845636193={tile.location.z}&submit=Submit";
+            _gridManager.MakeGetRequest(url);
+        }
+
         tile.SetParticle(null);
         _gridManager.particles.Remove(this);
         Destroy(this.gameObject);
     }
-
 }

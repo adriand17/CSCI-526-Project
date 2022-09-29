@@ -9,6 +9,19 @@ public enum WaterFlowDirection {
     Down
 }
 
+/**
+# Water Todo
+- [ ] add a temperature value
+- [ ] shed heat to adjacent water / non-water
+- [ ] add a a heating "tower" block
+- [ ] add a cooling "tower" block
+- [ ] add an "ice" block
+- [ ] transform to ice when too cold
+- [ ] have laser increase temperature
+- [ ] destroy water that's too hot
+
+ */
+
 public class Particle : MonoBehaviour{
 
     /// Kind of block this particle is.
@@ -26,7 +39,7 @@ public class Particle : MonoBehaviour{
 
     /// Amount of time since last update.
     private float _timeSinceLastUpdate;
-    private static float _WaterInterval = 0.25f;
+    private static float _WaterInterval = 0.5f;
 
     [SerializeField] private SpriteRenderer _renderer;
     
@@ -63,18 +76,27 @@ public class Particle : MonoBehaviour{
             case BlockType.Water:
                 _renderer.color = Color.blue;
                 break;
+            
             case BlockType.Bedrock:
-                _renderer.color = Color.black;
-                break;
-            case BlockType.Dirt:
-                _renderer.color = new Color(0.5f, 0.25f, 0);
-                dirtDurability = Particle.DirtMaxDurability;
-                break;
-            case BlockType.Mirror:
+                _renderer.sprite = Resources.Load<Sprite>("Bedrock");
                 _renderer.color = Color.white;
                 break;
+            
+            case BlockType.Dirt:
+                dirtDurability = Particle.DirtMaxDurability;
+                
+                _renderer.sprite = Resources.Load<Sprite>("Dirt");
+                _renderer.color = Color.white;
+                break;
+            
+            case BlockType.Mirror:
+                _renderer.sprite = Resources.Load<Sprite>("Mirror");
+                _renderer.color = Color.white;
+                break;
+            
             case BlockType.Glass:
-                _renderer.color = Color.cyan;
+                _renderer.sprite = Resources.Load<Sprite>("Glass");
+                _renderer.color = Color.white;
                 break;
         }
     }
@@ -266,6 +288,26 @@ public class Particle : MonoBehaviour{
         if (upIsWater || leftIsWater || rightIsWater) { 
             dirtDurability -= 1;
         }
+        
+        /// Swap in a broken sprite.
+        switch (dirtDurability) { 
+            case 5:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt");
+                break;
+            case 4:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 1");
+                break;
+            case 3:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 2");
+                break;
+            case 2:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 3");
+                break;
+            case 1: 
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 4");
+                break;
+        }
+        
         if (dirtDurability <= 0) {    
             tile.SetParticle(null);
             _gridManager.particles.Remove(this);

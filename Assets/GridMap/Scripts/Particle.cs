@@ -75,6 +75,10 @@ public class Particle : MonoBehaviour{
         setBlockType(type);
         this.tile = t;
         this._gridManager = gridManager;
+        
+        /// Prevents particle hiding behind tile.
+        _renderer.sortingLayerName = "ParticleLayer";
+        
         switch (type) {
             case BlockType.Water:
                 _renderer.color = new Color(0, 0, 1);

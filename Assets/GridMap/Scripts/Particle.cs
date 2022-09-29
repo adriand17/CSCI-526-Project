@@ -78,17 +78,16 @@ public class Particle : MonoBehaviour{
                 break;
             case BlockType.Bedrock:
                 _renderer.sprite = Resources.Load<Sprite>("Bedrock");
-                
                 break;
             case BlockType.Dirt:
-                _renderer.color = new Color(0.5f, 0.25f, 0);
+                _renderer.sprite = Resources.Load<Sprite>("Dirt");
                 dirtDurability = Particle.DirtMaxDurability;
                 break;
             case BlockType.Mirror:
                 _renderer.color = Color.white;
                 break;
             case BlockType.Glass:
-                _renderer.color = Color.cyan;
+                _renderer.sprite = Resources.Load<Sprite>("Glass");
                 break;
         }
     }
@@ -280,6 +279,26 @@ public class Particle : MonoBehaviour{
         if (upIsWater || leftIsWater || rightIsWater) { 
             dirtDurability -= 1;
         }
+        
+        /// Swap in a broken sprite.
+        switch (dirtDurability) { 
+            case 5:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt");
+                break;
+            case 4:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 1");
+                break;
+            case 3:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 2");
+                break;
+            case 2:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 3");
+                break;
+            case 1: 
+                _renderer.sprite = Resources.Load<Sprite>("Dirt Break 4");
+                break;
+        }
+        
         if (dirtDurability <= 0) {    
             tile.SetParticle(null);
             _gridManager.particles.Remove(this);

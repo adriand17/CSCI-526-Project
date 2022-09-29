@@ -883,8 +883,9 @@ MonoBehaviour:
   _camera: {fileID: 1264035261}
   _textJson:
   - {fileID: 4900000, guid: 52d9b932bfcb13a4d8590f924d641ae4, type: 3}
-  - {fileID: 4900000, guid: e39c7815928914344886e08cab289083, type: 3}
+  - {fileID: 4900000, guid: 37e36736a3f7d443aa31ef66755443be, type: 3}
   _parser: {fileID: 482687994}
+  _WinScreenText: {fileID: 0}
   _spawnTiles: []
   _dropLocations:
     indicies: []
@@ -1047,9 +1048,10 @@ MonoBehaviour:
   _GameOverText: {fileID: 456217524}
   healthBar: {fileID: 1417842684}
   maxHealth: 50
-  damage: 10
+  damage: 2
   currentHealth: 0
-  _buildingLimit: 3
+  _buildingCount: 6
+  _buildingLimit: 6
   _buildingCountText: {fileID: 1184003033}
   _buidableBlocksText: {fileID: 71246481}
 --- !u!224 &1184003031
@@ -1556,9 +1558,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 4
+  m_MaxValue: 10
   m_WholeNumbers: 1
-  m_Value: 4
+  m_Value: 10
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -3,9 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="d19417c3-65cc-4ff3-9595-48c67da2e1fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GridMap/Scripts/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GridMap/Scripts/GridManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/JSONParser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GridMap/Scripts/JSONParser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/blocktutorialinput.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/blocktutorialinput.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/blocktutoriallevel.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/blocktutoriallevel.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/levelmaker.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/levelmaker.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Parsing Test Scene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Parsing Test Scene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,10 +65,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="82264">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="82264" />
+      <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -80,6 +90,8 @@
       <workItem from="1664145353850" duration="632000" />
       <workItem from="1664146137164" duration="495000" />
       <workItem from="1664146680005" duration="3152000" />
+      <workItem from="1664419713990" duration="235000" />
+      <workItem from="1664420036696" duration="44000" />
     </task>
     <servers />
   </component>

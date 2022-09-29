@@ -29,6 +29,7 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2, Tile> _tiles;
 
     private int _buildingCount = 0;
+    private int _activeWater = 0;
     [SerializeField] private int _buildingLimit = 3;
     [SerializeField] public TextMeshProUGUI _buildingCountText;
     [SerializeField] public TextMeshProUGUI _buidableBlocksText;
@@ -124,10 +125,10 @@ public class GridManager : MonoBehaviour
         var tile = _tiles[pos];
         var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
         //prevent lazer from targeting
-        /* if(type != BlockType.Water)
+        if(type != BlockType.Water)
          {
-             particle.tag = "Wall";
-         }*/
+            _activeWater++;
+         }
         particle.Init(type, tile, this);
         tile.SetParticle(particle);
         particles.Add(particle);
@@ -247,6 +248,7 @@ public class GridManager : MonoBehaviour
             }
         }
         _buildingCount = 0;
+        _activeWater = 0;
         particles.Clear();
         ResetHealth();
         _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
@@ -300,12 +302,14 @@ public class GridManager : MonoBehaviour
                 particles.Remove(t.particle);
                 DestroyImmediate(t.particle.gameObject);
                 t.particle = null;
+               
 
                 TakeDamage();
 
             }
         }
     }
+
 
     private IEnumerator FlashCountText()
     {
@@ -337,6 +341,26 @@ public class GridManager : MonoBehaviour
 
          }
      }*/
+
+
+    public int GetWaterCount()
+    {
+        int count = 0;
+        //if check if all waves are complete
+        for (int x = 0; x < _width; x++)
+        {
+            for (int y = 0; y < _height; y++)
+            {
+                Tile t = _tiles[new Vector3(x,y)];
+                if (t.particle != null && t.particle.getBlockType() == BlockType.Water)
+                {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
 
     public int getHeight()
     {

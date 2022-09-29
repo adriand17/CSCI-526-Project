@@ -17,12 +17,17 @@ public class GameManager : MonoBehaviour
     [Tooltip("The following are used for level loading and wave progression.")]
     [SerializeField]public List<TextAsset> _textJson = new List<TextAsset>();
     [SerializeField] public JSONParser _parser;
+    [SerializeField] public GameObject _WinScreenText;
+
     public List<Tile> _spawnTiles;
     public JSONParser.GridLocationsArray _dropLocations;
     public JSONParser.GridLocationsArray _gridLocations;
     public GridManager _gridManager;
     public GunManager _gunManager;
+
+
     private int _wave = 0;
+    private int _totalWaves;
     
     void Awake() {
         Instance = this;
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour
         _gridLocations.indicies = new List<JSONParser.GridLocations>();
         _parser.Parse(_textJson[0]);
         _parser.ParseLevel(_textJson[1]);
+        this._totalWaves = _dropLocations.indicies.Count;
         UpdateGameState();
     }
 
@@ -45,11 +51,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Check if all particles are still
-        
+        if (_wave == _totalWaves)
+        {
+            Debug.Log("on last wave");
+            DetermineWinState();
+        }
+        else
+        {
+            Debug.Log("on wave:" + _wave + "  of " + _totalWaves);
+        }
     }
 
     public void SpawnNextWave()
     {
+
         if (_wave >= _dropLocations.indicies.Count)
         {
             _wave = 0;
@@ -74,4 +89,22 @@ public class GameManager : MonoBehaviour
         handleGrid();
         handleGun();
     }
+
+
+    void DetermineWinState()
+    {
+       
+        //check is water is present on map if so then bring up win screen
+        if(_gridManager.GetWaterCount() == 0)
+        {
+            Debug.Log("No more water on map and all waves completed");
+            _WinScreenText.SetActive(true);
+        }
+
+        //else start short time after last wave and no water is coming down, it end of timer then win
+    }
+
 }
+
+
+

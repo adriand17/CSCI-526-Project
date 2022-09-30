@@ -305,6 +305,10 @@ public class Particle : MonoBehaviour{
         ShowWaterHeat();
     }
 
+    private void WaterCheckTowers() { 
+        // TODO: check heater and cooler towers.
+    }
+
     public void HeatWater(int tempChange) {
         if (blockType != BlockType.Water) {
             Debug.LogError("Heat: non-water particle");

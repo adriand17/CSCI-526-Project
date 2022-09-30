@@ -11,14 +11,14 @@ public enum WaterFlowDirection {
 
 /**
 # Water Todo
-- [ ] add a temperature value
-- [ ] shed heat to adjacent water / non-water
+- [x] add a temperature value
+- [x] shed heat to adjacent water / non-water
 - [ ] add a a heating "tower" block
 - [ ] add a cooling "tower" block
 - [ ] add an "ice" block
 - [ ] transform to ice when too cold
-- [ ] have laser increase temperature
-- [ ] destroy water that's too hot
+- [x] have laser increase temperature
+- [x] destroy water that's too hot
 
  */
 
@@ -35,6 +35,7 @@ public class Particle : MonoBehaviour{
         /// Reset metadata.
         _waterFlowDirection = WaterFlowDirection.Still;
         dirtDurability = Particle.DirtMaxDurability;
+        temperature = Particle.tempInit;
     }
 
     /// Amount of time since last update.
@@ -56,25 +57,33 @@ public class Particle : MonoBehaviour{
     /// Direction that the water is flowing.
     private WaterFlowDirection _waterFlowDirection;
 
+    /// Water Temperature.
+    private int temperature; 
+    private static int tempFreeze = 0;
+    private static int tempVapor = 10;
+    private static int tempInit = 5;
+    public static int TempLaser = +2;
+
     /// [DIRT SPECIFIC]
     /// Dirt Durability.
     private static int DirtMaxDurability = 5;
     private int dirtDurability = DirtMaxDurability;
 
-    public Particle(BlockType type)
-    {
+    public Particle(BlockType type) {
         blockType = type;
     }
 
-    public void Init(BlockType type, Tile t, GridManager gridManager)
-    {
-        blockType = type;
+    public void Init(BlockType type, Tile t, GridManager gridManager) {
+        setBlockType(type);
         this.tile = t;
         this._gridManager = gridManager;
-        switch (type)
-        {
+        
+        /// Prevents particle hiding behind tile.
+        _renderer.sortingLayerName = "ParticleLayer";
+        
+        switch (type) {
             case BlockType.Water:
-                _renderer.color = Color.blue;
+                _renderer.color = new Color(0, 0, 1);
                 break;
             
             case BlockType.Bedrock:
@@ -97,6 +106,18 @@ public class Particle : MonoBehaviour{
             case BlockType.Glass:
                 _renderer.sprite = Resources.Load<Sprite>("Glass");
                 _renderer.color = Color.white;
+                break;
+
+            case BlockType.Heater:
+                _renderer.sprite = Resources.Load<Sprite>("Magma");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.Cooler:
+                break;
+
+            default:
+                Debug.LogError("Unhandled block type: " + type);
                 break;
         }
     }
@@ -130,7 +151,6 @@ public class Particle : MonoBehaviour{
             MoveWater(Vector3.left);
             oldTile.SetParticle(null);
             
-            
             return true;
         }
         return false;
@@ -146,54 +166,38 @@ public class Particle : MonoBehaviour{
             MoveWater(Vector3.right);
             oldTile.SetParticle(null);
             
-            
             return true;
         }
         return false;
     }
 
-    private void hasHitBottom()
-    {
-        if (!atBottom && tile.downTile == null)
-        {
+    private void hasHitBottom() {
+        if (!atBottom && tile.downTile == null) {
             atBottom = true;
-           // grid.TakeDamage();
         }
     }
 
-
-    private void OnMouseDown()
-    {
-        if (Time.timeScale == 0f) return;
-
+    private void OnMouseDown() {
+         if (Time.timeScale == 0f) return;
         // changeFlage is a check to see if a building can be placed on the location
         Debug.Log("clicking on particle");
 
         bool changeFlage = _gridManager.CanAddBlockToTile(this.tile.location);
         if (changeFlage)
         {
-
             Debug.Log("added or rmoved at tile");
-            /*if (particle == null) {
-                _gridManager.DrawParticle(BlockType.Dirt, this.location);
-
-            } else if (particle.getBlockType() == BlockType.Dirt) {
-                 this._gridManager.particles.Remove(particle);
-                 SetParticle(null);
-            }*/
-        }
-        else
-        {
+        } else {
             Debug.Log("cancel other buliding to create new one");
-
         }
-
     }
 
     /// Try to move water.
     private void WaterTick() {
+        CoolWater();
+        WaterFlow();
+    }
 
-        
+    private void WaterFlow() { 
         // Check if water can flow down.
         if (tile.downTile != null && tile.downTile.particle == null) {
             this._waterFlowDirection = WaterFlowDirection.Down;
@@ -204,50 +208,39 @@ public class Particle : MonoBehaviour{
             return;
         }
 
-        switch (_waterFlowDirection)
-        {
+        switch (_waterFlowDirection) {
             case WaterFlowDirection.Still:
-                if (Random.value >= 0.5)
-                {
-                    if (!flowLeft() && !flowRight())
-                    {
+                if (Random.value >= 0.5) {
+                    if (!flowLeft() && !flowRight()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
-                }
-                else
-                {
-                    if (!flowRight() && !flowLeft())
-                    {
+                } else {
+                    if (!flowRight() && !flowLeft()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 break;
+            
             case WaterFlowDirection.Down:
-                if (Random.value >= 0.5)
-                {
-                    if (!flowLeft() && !flowRight())
-                    {
+                if (Random.value >= 0.5) {
+                    if (!flowLeft() && !flowRight()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
-                }
-                else
-                {
-                    if (!flowRight() && !flowLeft())
-                    {
+                } else {
+                    if (!flowRight() && !flowLeft()) {
                         _waterFlowDirection = WaterFlowDirection.Still;
                     }
                 }
                 break;
+            
             case WaterFlowDirection.Left:
-                if (!flowLeft() && !flowRight())
-                {
+                if (!flowLeft() && !flowRight()) {
                     _waterFlowDirection = WaterFlowDirection.Still;
                 }
                 break;
 
             case WaterFlowDirection.Right:
-                if (!flowRight() && !flowLeft())
-                {
+                if (!flowRight() && !flowLeft()) {
                     _waterFlowDirection = WaterFlowDirection.Still;
                 }
                 break;
@@ -255,12 +248,10 @@ public class Particle : MonoBehaviour{
     }
 
     /// Async coroutine to animate the drop moving.
-    private void MoveWater(Vector3 direction)
-    {
+    private void MoveWater(Vector3 direction) {
         //this.isMoving = true;
         Tile destinationTile;
-        switch (_waterFlowDirection)
-        {
+        switch (_waterFlowDirection) {
             case WaterFlowDirection.Down:
                 destinationTile = tile.downTile;
                 break;
@@ -280,6 +271,62 @@ public class Particle : MonoBehaviour{
         transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
     }
 
+    private void CoolWater() { 
+        if (blockType != BlockType.Water) {
+            Debug.LogError("Cool: non-water particle");
+            return;
+        }
+
+        void TradeHeat(Tile neighbor) { 
+            if (neighbor == null || neighbor.particle == null) {
+                return;
+            }
+            Particle p = neighbor.particle;
+            if (p.blockType != BlockType.Water || p.temperature >= this.temperature) {
+                return;
+            }
+            
+            p.temperature += 1;
+            this.temperature -= 1;
+            p.ShowWaterHeat();
+        }
+
+        /// Share heat with neighbors.
+        TradeHeat(tile.upTile);
+        TradeHeat(tile.downTile);
+        TradeHeat(tile.leftTile);
+        TradeHeat(tile.rightTile);
+
+        /// Cool off naturally.
+        if (temperature > Particle.tempInit) {
+            temperature -= 1;
+        }
+
+        ShowWaterHeat();
+    }
+
+    public void HeatWater(int tempChange) {
+        if (blockType != BlockType.Water) {
+            Debug.LogError("Heat: non-water particle");
+            return;
+        }
+
+        temperature += tempChange;
+        if (temperature >= tempVapor) {
+            DeleteParticle();
+            return;
+        } else { 
+            ShowWaterHeat();
+        }
+    }
+
+    private void ShowWaterHeat() { 
+        /// Get redder based on temperature.
+        float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
+        red *= 0.75f; // Dampen effect.
+        _renderer.color = new Color(red, 0, 1);
+    }
+
     private void DirtTick() { 
         bool upIsWater = tile.upTile != null && tile.upTile.particle != null && tile.upTile.particle.blockType == BlockType.Water;
         bool leftIsWater = tile.leftTile != null && tile.leftTile.particle != null && tile.leftTile.particle.getBlockType() == BlockType.Water;
@@ -294,25 +341,44 @@ public class Particle : MonoBehaviour{
             case 5:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt");
                 break;
+            
             case 4:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 1");
                 break;
+            
             case 3:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 2");
                 break;
+            
             case 2:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 3");
                 break;
+            
             case 1: 
                 _renderer.sprite = Resources.Load<Sprite>("Dirt Break 4");
                 break;
         }
         
         if (dirtDurability <= 0) {    
-            tile.SetParticle(null);
-            _gridManager.particles.Remove(this);
-            Destroy(this.gameObject);
+            DeleteParticle();
         }
     }
 
+    public void DeleteParticle() {
+        if (blockType == BlockType.Water) {
+            // Log water position on death.
+            int level = 0;
+            string cause = "Laser";
+            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd8VI1L_HMJ3GxVBSVzR44PyB3NPiK_6GqeYe7zqZqafrFtIQ/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={tile.location.x}&entry.1372862866={tile.location.y}&entry.1572288735={cause}&submit=Submit";
+
+            /// Make request on object that isn't about to die.
+            /// Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
+            /// > Coroutines are ... stopped when the MonoBehaviour is destroyed
+            _gridManager.MakeGetRequest(url);
+        }
+
+        tile.SetParticle(null);
+        _gridManager.particles.Remove(this);
+        Destroy(this.gameObject);
+    }
 }

@@ -2,7 +2,6 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 using UnityEngine.UI;
 using BlockTypeExtension;
 
@@ -23,31 +22,33 @@ public class Shooting : MonoBehaviour {
     // Whether the laser is currently being fired.
     private bool laserIsFiring = false;
     
-    private IEnumerator coroutineForDestoryLaser;
-    private float waitTime = 0.1f;
+    /// How often to apply heat.
+    private static float laserHeatInterval = 0.1f;
+    private float timeSinceHeat = 0f;
     
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
     }
 
     void Update() {
+        timeSinceHeat += Time.deltaTime;
+
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
-        if (Input.GetKey("space") && !laserIsFiring) {
-            laserIsFiring = true;
-            DrawLaser();
-            coroutineForDestoryLaser = WaitAndDisappear(waitTime);
-            StartCoroutine(coroutineForDestoryLaser);
+        if (Input.GetKey("space")) {
+            bool heatWater = false;
+            if (timeSinceHeat > laserHeatInterval) {
+                heatWater = true;
+                timeSinceHeat = 0f;
+                timeSinceHeat = 0f;
+            }
+
+            DrawLaser(heatWater);
+        } else if (Input.GetKeyUp("space")) {
+            laserRenderer.positionCount = 0;
         }
     }
 
-    // Stop rendering laser after set time.
-    private IEnumerator WaitAndDisappear(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        laserRenderer.positionCount = 0;
-        laserIsFiring = false;
-    }
-    
-    void DrawLaser() {
+    void DrawLaser(bool heatWater) {
         // List of positions for line renderer to draw.
         List<Vector3> positions = new List<Vector3>();
         
@@ -89,10 +90,10 @@ public class Shooting : MonoBehaviour {
             positions.Add(hit.point);
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
-                // Logs water position on death.
-                string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={particle.tile.location.x}&entry.962467366={particle.tile.location.y}&entry.1845636193={particle.tile.location.z}&submit=Submit";
-                StartCoroutine(GetRequest(url));
-                Destroy(hit.collider.gameObject);
+                if (heatWater) {
+                    particle.HeatWater(Particle.TempLaser);
+                }
+                
                 break;
             } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
                 // No reflections, stop here.
@@ -114,30 +115,5 @@ public class Shooting : MonoBehaviour {
         // Assign positions to line renderer.
         laserRenderer.positionCount = positions.Count;
         laserRenderer.SetPositions(positions.ToArray());
-    }
-
-    IEnumerator GetRequest(string uri) {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-        {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
-
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-
-            switch (webRequest.result)
-            {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
-                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                    break;
-            }
-        }
     }
 }

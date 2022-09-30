@@ -19,12 +19,13 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
 
+
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
     public int damage = 2;
     public int currentHealth;
-
+    public int BuildingType = 1; // 1 for dirt, 2 for glass, 3 for mirror, default dirt 
 
     private Dictionary<Vector2, Tile> _tiles;
 
@@ -41,9 +42,6 @@ public class GridManager : MonoBehaviour
         _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
         GenerateGrid();
         ResetHealth();
-        // A correct website page.
-        StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
-
     }
 
     void Update()
@@ -184,28 +182,40 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+    public void clickDirt()
+    {
+        Debug.Log("clickDirt");
+        BuildingType = 1;
+    }
+
+    public void clickGlass()
+    {
+        BuildingType = 2;
+    }
+
+    public void clickMirror()
+    {
+        BuildingType = 3;
+    }
+
+
     public bool CanAddBlockToTile(Vector3 pos)
     {
         Tile t = _tiles[pos];
         //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
 
-        if (_buildingCount >= _buildingLimit)
-        {
-            //can only remove
-            if (t.particle != null && t.particle.getBlockType() == BlockType.Dirt)
-            {
+        if (_buildingCount >= _buildingLimit) {
+            /// Can only remove.
+            if (t.particle != null && (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror)) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
-            }
-            //if tile is empty
-            else if (t.particle == null)
-            {
-                if (TextFlash != null)
-                {
+            } else if (t.particle == null) {
+                // Tile is empty.
+                if (TextFlash != null) {
                     StopCoroutine(TextFlash);
                 }
                 TextFlash = StartCoroutine(FlashCountText());
@@ -213,25 +223,37 @@ public class GridManager : MonoBehaviour
 
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return false;
-        }
-        else
-        {
-            if (t.particle == null)
-            {
+        } else {
+            if (t.particle == null) {
                 _buildingCount++;
-                DrawParticle(BlockType.Dirt, pos);
+                if (BuildingType == 1)
+                {
+                    DrawParticle(BlockType.Dirt, pos);
+                }
+                else if (BuildingType == 2)
+                {
+                    DrawParticle(BlockType.Glass, pos);
+                }
+                else if (BuildingType == 3)
+                {
+                    DrawParticle(BlockType.Mirror, pos);
+                }
+
                 t.particle.userPlaced = true;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
 
-            }
-            else if (t.particle.getBlockType() == BlockType.Dirt)
-            {
+                /// Log block placement.
+                int level = 0;
+                string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
+                MakeGetRequest(uri);
+            } else if (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
             }
+            
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return true;
         }
@@ -260,35 +282,6 @@ public class GridManager : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
-    }
-
-
-
-
-    IEnumerator GetRequest(string uri)
-    {
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
-        {
-            // Request and wait for the desired page.
-            yield return webRequest.SendWebRequest();
-
-            string[] pages = uri.Split('/');
-            int page = pages.Length - 1;
-
-            switch (webRequest.result)
-            {
-                case UnityWebRequest.Result.ConnectionError:
-                case UnityWebRequest.Result.DataProcessingError:
-                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.ProtocolError:
-                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
-                    break;
-                case UnityWebRequest.Result.Success:
-                    Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
-                    break;
-            }
-        }
     }
 
     private void checkWaterAtBottom()
@@ -378,4 +371,35 @@ public class GridManager : MonoBehaviour
         return _width;
     }
 
+
+    /// Allow other classes to make requests via the grid.
+    public void MakeGetRequest(string uri)
+    {
+        StartCoroutine(GetRequest(uri));
+    }
+
+    IEnumerator GetRequest(string uri) {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uri))
+        {
+            // Request and wait for the desired page.
+            yield return webRequest.SendWebRequest();
+
+            string[] pages = uri.Split('/');
+            int page = pages.Length - 1;
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    Debug.Log("GET Request successful");
+                    break;
+            }
+        }
+    }
 }

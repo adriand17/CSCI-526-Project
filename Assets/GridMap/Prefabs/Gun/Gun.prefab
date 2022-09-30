@@ -253,6 +253,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e47420fe5b85c4a86f226d8552f23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movespeed: 5
+  rb: {fileID: 8131458325811062580}
+  cam: {fileID: 0}
 --- !u!114 &8131458325811062571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +270,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightpivot: {fileID: 8131458324748295080}
   firepoint: {fileID: 8131458324748295080}
+  bulletPreFab: {fileID: 3671300895034263570, guid: 88c165a2a6cb0644eb5b622b1ef93605, type: 3}
+  bulletForce: 20
+  CountLaser: 5
+  Square: {fileID: 8131458324748295080}
 --- !u!120 &8131458325811062568
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -287,7 +294,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f2ab4eef4672e4b27b98068ef3be03d1, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -313,7 +320,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 1
     widthCurve:
       serializedVersion: 2
       m_Curve:

@@ -42,9 +42,6 @@ public class GridManager : MonoBehaviour
         _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
         GenerateGrid();
         ResetHealth();
-        // A correct website page.
-        StartCoroutine(GetRequest("https://docs.google.com/forms/d/e/1FAIpQLSdH4rGRcgwsHFzd5gCYm-uOJ6yOjeC1HQWpnNTCZkM3o7l-BA/formResponse?usp=pp_url&entry.49243494=Yes&submit=Submit"));
-
     }
 
     void Update()
@@ -208,22 +205,17 @@ public class GridManager : MonoBehaviour
         //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
 
-        if (_buildingCount >= _buildingLimit)
-        {
-            //can only remove
-            if (t.particle != null && (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror))
-            {
+        if (_buildingCount >= _buildingLimit) {
+            /// Can only remove.
+            if (t.particle != null && (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror)) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
-            }
-            //if tile is empty
-            else if (t.particle == null)
-            {
-                if (TextFlash != null)
-                {
+            } else if (t.particle == null) {
+                // Tile is empty.
+                if (TextFlash != null) {
                     StopCoroutine(TextFlash);
                 }
                 TextFlash = StartCoroutine(FlashCountText());
@@ -231,12 +223,8 @@ public class GridManager : MonoBehaviour
 
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return false;
-        }
-        else
-        {
-            
-            if (t.particle == null)
-            {
+        } else {
+            if (t.particle == null) {
                 _buildingCount++;
                 if (BuildingType == 1)
                 {
@@ -254,15 +242,18 @@ public class GridManager : MonoBehaviour
                 t.particle.userPlaced = true;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
 
-            }
-            else if (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror)
-            {
+                /// Log block placement.
+                int level = 0;
+                string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
+                MakeGetRequest(uri);
+            } else if (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
             }
+            
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return true;
         }

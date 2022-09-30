@@ -56,6 +56,8 @@ public class Particle : MonoBehaviour{
     /// [WATER SPECIFIC]
     /// Direction that the water is flowing.
     private WaterFlowDirection _waterFlowDirection;
+
+    /// Water Temperature.
     private int temperature; 
     private static int tempFreeze = 0;
     private static int tempVapor = 10;
@@ -365,7 +367,9 @@ public class Particle : MonoBehaviour{
     public void DeleteParticle() {
         if (blockType == BlockType.Water) {
             // Log water position on death.
-            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd02iSGLy70_8jzmnZtIZbMc4KJNCfetrs7eo3PnL4dFIE2Ww/formResponse?usp=pp_url&entry.1386653628={tile.location.x}&entry.962467366={tile.location.y}&entry.1845636193={tile.location.z}&submit=Submit";
+            int level = 0;
+            string cause = "Laser";
+            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd8VI1L_HMJ3GxVBSVzR44PyB3NPiK_6GqeYe7zqZqafrFtIQ/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={tile.location.x}&entry.1372862866={tile.location.y}&entry.1572288735={cause}&submit=Submit";
 
             /// Make request on object that isn't about to die.
             /// Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html

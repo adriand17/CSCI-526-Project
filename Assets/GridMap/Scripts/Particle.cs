@@ -108,7 +108,7 @@ public class Particle : MonoBehaviour{
                 _renderer.color = Color.white;
                 break;
 
-            case BlockType.Heater:
+            case BlockType.Magma:
                 _renderer.sprite = Resources.Load<Sprite>("Magma");
                 _renderer.color = Color.white;
                 break;

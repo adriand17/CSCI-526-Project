@@ -38,13 +38,6 @@ public class Shooting : MonoBehaviour {
         }
     }
 
-    // Stop rendering laser after set time.
-    private IEnumerator WaitAndDisappear(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        laserRenderer.positionCount = 0;
-        laserIsFiring = false;
-    }
-    
     void DrawLaser() {
         // List of positions for line renderer to draw.
         List<Vector3> positions = new List<Vector3>();

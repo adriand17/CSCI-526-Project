@@ -211,6 +211,11 @@ public class GridManager : MonoBehaviour
                 DrawParticle(BlockType.Dirt, pos);
                 t.particle.userPlaced = true;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
+
+                /// Log block placement.
+                int level = 0;
+                string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
+                MakeGetRequest(uri);
             } else if (t.particle.getBlockType() == BlockType.Dirt) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);

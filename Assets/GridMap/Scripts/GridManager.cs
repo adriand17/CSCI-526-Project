@@ -123,7 +123,7 @@ public class GridManager : MonoBehaviour
     public void DrawParticle(BlockType type, Vector3 pos)
     {
         var tile = _tiles[pos];
-        var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y, pos.z), Quaternion.identity);
+        var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
         //prevent lazer from targeting
         if(type != BlockType.Water)
          {
@@ -148,23 +148,23 @@ public class GridManager : MonoBehaviour
                 int drawCol = col;
                 if (_gameManager._gridLocations.indicies[row].locations[col] == 0)
                 {
-                    DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow,-1));
+                    DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));
                 }
                 if (_gameManager._gridLocations.indicies[row].locations[col] == 1)
                 {
-                    DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow,-1));
+                    DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow));
                 }
                 if (_gameManager._gridLocations.indicies[row].locations[col] == 2)
                 {
-                    DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow,-1));
+                    DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow));
                 }
                 if (_gameManager._gridLocations.indicies[row].locations[col] == 3)
                 {
-                    DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow,-1));
+                    DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
                 }
                 if (_gameManager._gridLocations.indicies[row].locations[col] == 4)
                 {
-                    DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow,-1));
+                    DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
                 }
 
             }
@@ -186,8 +186,6 @@ public class GridManager : MonoBehaviour
 
     public bool CanAddBlockToTile(Vector3 pos)
     {
-
-        pos.z = -1;
         Tile t = _tiles[pos];
         //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos

@@ -84,6 +84,7 @@ public class Particle : MonoBehaviour{
             
             case BlockType.Dirt:
                 dirtDurability = Particle.DirtMaxDurability;
+                
                 _renderer.sprite = Resources.Load<Sprite>("Dirt");
                 _renderer.color = Color.white;
                 break;

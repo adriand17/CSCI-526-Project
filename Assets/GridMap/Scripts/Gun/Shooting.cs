@@ -31,11 +31,10 @@ public class Shooting : MonoBehaviour {
 
     void Update() {
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
-        if (Input.GetKey("space") && !laserIsFiring) {
-            laserIsFiring = true;
+        if (Input.GetKey("space")) {
             DrawLaser();
-            coroutineForDestoryLaser = WaitAndDisappear(waitTime);
-            StartCoroutine(coroutineForDestoryLaser);
+        } else if (Input.GetKeyUp("space")) {
+            laserRenderer.positionCount = 0;
         }
     }
 

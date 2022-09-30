@@ -19,12 +19,13 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
 
+
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
     public int damage = 2;
     public int currentHealth;
-
+    public int BuildingType = 1; // 1 for dirt, 2 for glass, 3 for mirror, default dirt 
 
     private Dictionary<Vector2, Tile> _tiles;
 
@@ -181,6 +182,23 @@ public class GridManager : MonoBehaviour
         return null;
     }
 
+    public void clickDirt()
+    {
+        Debug.Log("clickDirt");
+        BuildingType = 1;
+    }
+
+    public void clickGlass()
+    {
+        BuildingType = 2;
+    }
+
+    public void clickMirror()
+    {
+        BuildingType = 3;
+    }
+
+
     public bool CanAddBlockToTile(Vector3 pos)
     {
         Tile t = _tiles[pos];
@@ -189,7 +207,7 @@ public class GridManager : MonoBehaviour
 
         if (_buildingCount >= _buildingLimit) {
             /// Can only remove.
-            if (t.particle != null && t.particle.getBlockType() == BlockType.Dirt) {
+            if (t.particle != null && (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror)) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
@@ -208,7 +226,19 @@ public class GridManager : MonoBehaviour
         } else {
             if (t.particle == null) {
                 _buildingCount++;
-                DrawParticle(BlockType.Dirt, pos);
+                if (BuildingType == 1)
+                {
+                    DrawParticle(BlockType.Dirt, pos);
+                }
+                else if (BuildingType == 2)
+                {
+                    DrawParticle(BlockType.Glass, pos);
+                }
+                else if (BuildingType == 3)
+                {
+                    DrawParticle(BlockType.Mirror, pos);
+                }
+
                 t.particle.userPlaced = true;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
 
@@ -216,7 +246,7 @@ public class GridManager : MonoBehaviour
                 int level = 0;
                 string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
                 MakeGetRequest(uri);
-            } else if (t.particle.getBlockType() == BlockType.Dirt) {
+            } else if (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);

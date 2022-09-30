@@ -14,6 +14,7 @@ public class Button : MonoBehaviour
     }
     
     private void OnMouseDown() {
+        if (Time.timeScale == 0f) return;
          click.Invoke();    
     }
 }

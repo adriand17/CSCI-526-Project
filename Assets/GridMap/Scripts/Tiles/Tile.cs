@@ -76,7 +76,8 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown() {
-       
+
+        if (Time.timeScale == 0f) return;
 
         // changeFlage is a check to see if a building can be placed on the location
         changeFlage = _gridManager.CanAddBlockToTile(location);

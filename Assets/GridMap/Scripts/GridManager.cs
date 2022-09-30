@@ -187,22 +187,17 @@ public class GridManager : MonoBehaviour
         //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
 
-        if (_buildingCount >= _buildingLimit)
-        {
-            //can only remove
-            if (t.particle != null && t.particle.getBlockType() == BlockType.Dirt)
-            {
+        if (_buildingCount >= _buildingLimit) {
+            /// Can only remove.
+            if (t.particle != null && t.particle.getBlockType() == BlockType.Dirt) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
-            }
-            //if tile is empty
-            else if (t.particle == null)
-            {
-                if (TextFlash != null)
-                {
+            } else if (t.particle == null) {
+                // Tile is empty.
+                if (TextFlash != null) {
                     StopCoroutine(TextFlash);
                 }
                 TextFlash = StartCoroutine(FlashCountText());
@@ -210,25 +205,20 @@ public class GridManager : MonoBehaviour
 
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return false;
-        }
-        else
-        {
-            if (t.particle == null)
-            {
+        } else {
+            if (t.particle == null) {
                 _buildingCount++;
                 DrawParticle(BlockType.Dirt, pos);
                 t.particle.userPlaced = true;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
-
-            }
-            else if (t.particle.getBlockType() == BlockType.Dirt)
-            {
+            } else if (t.particle.getBlockType() == BlockType.Dirt) {
                 _buildingCount--;
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
             }
+            
             Debug.Log(_buildingCount + "/" + _buildingLimit);
             return true;
         }

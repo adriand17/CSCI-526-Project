@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class GunManager : MonoBehaviour
 {
-    private GameObject _gunObject;
-    [SerializeField] private GameObject _gunPrefab;
-    public void buildGun() {
-        _gunObject = Instantiate(_gunPrefab, new Vector3(0, 0), Quaternion.identity);
-    }
+    [SerializeField] private GameObject _gunObject;
+    [SerializeField] private GameObject _camera;
 
     public void handleGunPosition() {
-        float w = Screen.width;
-        float objcheight = _gunObject.GetComponent<SpriteRenderer>().bounds.size.y;
-        Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(w / 2f, 0.0f, 0f));
+        float height = 2f * Camera.main.orthographicSize;
+        Vector3 pos = _camera.transform.position + new Vector3(0.0f, -height / 2f, 0f);
         pos.z = -5f;
-        pos.y -= objcheight / 5;
+
         _gunObject.transform.position = pos;
     }
 }

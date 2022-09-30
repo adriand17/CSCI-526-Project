@@ -67,17 +67,21 @@ public class GameManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
+        if (_wave < _totalWaves)
+        {
+            if (_wave >= _dropLocations.indicies.Count)
+            {
+                _wave = 0;
+            }
 
-        if (_wave >= _dropLocations.indicies.Count)
-        {
-            _wave = 0;
+            foreach (int index in _dropLocations.indicies[_wave].locations)
+            {
+                _gridManager.DrawParticle(BlockType.Water, new Vector3(index, _gridManager.getHeight() - 1));
+            } 
+
+            _wave++;
+            _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
         }
-        foreach (int index in _dropLocations.indicies[_wave].locations)
-        {
-            _gridManager.DrawParticle(BlockType.Water, new Vector3( index, _gridManager.getHeight() -1));
-        }
-        _wave++;
-        _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
     }
     
     void handleGrid() {

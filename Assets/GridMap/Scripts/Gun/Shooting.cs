@@ -22,30 +22,33 @@ public class Shooting : MonoBehaviour {
     // Whether the laser is currently being fired.
     private bool laserIsFiring = false;
     
-    private IEnumerator coroutineForDestoryLaser;
-    private float waitTime = 0.1f;
+    /// How often to apply heat.
+    private static float laserHeatInterval = 0.1f;
+    private float timeSinceHeat = 0f;
     
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
     }
 
     void Update() {
+        timeSinceHeat += Time.deltaTime;
+
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
         if (Input.GetKey("space")) {
-            DrawLaser();
+            bool heatWater = false;
+            if (timeSinceHeat > laserHeatInterval) {
+                heatWater = true;
+                timeSinceHeat = 0f;
+                timeSinceHeat = 0f;
+            }
+
+            DrawLaser(heatWater);
         } else if (Input.GetKeyUp("space")) {
             laserRenderer.positionCount = 0;
         }
     }
 
-    // Stop rendering laser after set time.
-    private IEnumerator WaitAndDisappear(float waitTime) {
-        yield return new WaitForSeconds(waitTime);
-        laserRenderer.positionCount = 0;
-        laserIsFiring = false;
-    }
-    
-    void DrawLaser() {
+    void DrawLaser(bool heatWater) {
         // List of positions for line renderer to draw.
         List<Vector3> positions = new List<Vector3>();
         
@@ -87,7 +90,10 @@ public class Shooting : MonoBehaviour {
             positions.Add(hit.point);
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
-                particle.HeatWater(Particle.TempLaser);
+                if (heatWater) {
+                    particle.HeatWater(Particle.TempLaser);
+                }
+                
                 break;
             } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
                 // No reflections, stop here.

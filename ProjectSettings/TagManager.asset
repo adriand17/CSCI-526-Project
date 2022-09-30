@@ -46,6 +46,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: ParticleLayer
+    uniqueID: 2370900239
+    locked: 0
   - name: LaserLayer
     uniqueID: 3630668407
     locked: 0

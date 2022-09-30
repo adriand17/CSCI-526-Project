@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     public JSONParser.GridLocationsArray _gridLocations;
     public GridManager _gridManager;
     public GunManager _gunManager;
-
+    public TextMeshProUGUI _WaveText;
 
     private int _wave = 0;
     private int _totalWaves;

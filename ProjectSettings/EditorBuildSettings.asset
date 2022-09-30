@@ -6,11 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/InstructionOverlay.unity
     guid: 2db82d994e4824bbf8e0e806aa8db3c3
+  - enabled: 1
+    path: Assets/Scenes/Shooting Tutorial.unity
+    guid: d4cd5ee8118cf9341b711812ff5841d7
+  - enabled: 1
+    path: Assets/Scenes/Block Placing Tutorial.unity
+    guid: 94e0a713d158f23459e208ef43112ce8
+  - enabled: 1
+    path: Assets/Scenes/Level 1.unity
+    guid: 3b0c232f401dc2a4eb9da851f8c2a909
+  - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: 383abbc8f4ec84c1bba9df0276f099e4
   - enabled: 1
     path: Assets/Scenes/Main Game Scene.unity
     guid: dd8b888e1fde0994bac12a4f141fc6cd

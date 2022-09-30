@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting.Antlr3.Runtime;
 using Unity.VisualScripting.FullSerializer;
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]public List<TextAsset> _textJson = new List<TextAsset>();
     [SerializeField] public JSONParser _parser;
     [SerializeField] public GameObject _WinScreenText;
+    [SerializeField] private TextMeshProUGUI _WaveText;
 
     public List<Tile> _spawnTiles;
     public JSONParser.GridLocationsArray _dropLocations;
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     private int _wave = 0;
     private int _totalWaves;
+    public float timeToWin = 10.0f;
     
     void Awake() {
         Instance = this;
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
         _parser.Parse(_textJson[0]);
         _parser.ParseLevel(_textJson[1]);
         this._totalWaves = _dropLocations.indicies.Count;
+        _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
         UpdateGameState();
     }
 
@@ -72,6 +77,7 @@ public class GameManager : MonoBehaviour
             _gridManager.DrawParticle(BlockType.Water, new Vector3( index, _gridManager.getHeight() -1));
         }
         _wave++;
+        _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
     }
     
     void handleGrid() {
@@ -99,14 +105,62 @@ public class GameManager : MonoBehaviour
 
     void DetermineWinState()
     {
-       
         //check is water is present on map if so then bring up win screen
         if(_gridManager.GetCurrentHealth() > 0 &&  _gridManager.GetWaterCount() == 0)
         {
             _WinScreenText.SetActive(true);
         }
+        else if (_gridManager.GetCurrentHealth() > 0 && _gridManager.GetWaterCount() > 0)
+        {
+            timeToWin -= Time.deltaTime;
+            if(timeToWin == 0.0f)
+            {
+                _WinScreenText.SetActive(true);
+            }
+        }
 
         //else start short time after last wave and no water is coming down, it end of timer then win
+    }
+
+
+    public void loadNextScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        switch (currentScene.name)
+        {
+            case "Block Placing Tutorial":
+                Debug.Log("block scene");
+                SceneManager.LoadScene("Level 1");
+                break;
+            case "Shooting Tutorial":
+                Debug.Log("shooting scene");
+                SceneManager.LoadScene("Block Placing Tutorial");
+                break;
+            case "Level 1":
+                Debug.Log("level 1 scene");
+                SceneManager.LoadScene("Level 2");
+                break;
+            case "Level 2":
+                Debug.Log("level 2 scene");
+                SceneManager.LoadScene("Main Game Scene");
+                break;
+            case "Main Game Scene":
+                Debug.Log("main scene");
+                SceneManager.LoadScene("InstructionOverlay");
+                break;
+            default:
+                SceneManager.LoadScene("InstructionOverlay");
+                break;
+
+        }
+
+    }
+
+
+    public void returnToMainMenu()
+    {
+        SceneManager.LoadScene("InstructionOverlay");
     }
 
 }

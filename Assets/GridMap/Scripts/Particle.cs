@@ -56,6 +56,8 @@ public class Particle : MonoBehaviour{
     /// [WATER SPECIFIC]
     /// Direction that the water is flowing.
     private WaterFlowDirection _waterFlowDirection;
+
+    /// Water Temperature.
     private int temperature; 
     private static int tempFreeze = 0;
     private static int tempVapor = 10;

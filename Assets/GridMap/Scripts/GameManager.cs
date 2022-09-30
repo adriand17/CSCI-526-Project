@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
 
     public void resetLevel()
     {
+        timeToWin = 10.0f;
         _WinScreenText.SetActive(false);
         _wave = 0;
         _gridManager.ResetGrid();

@@ -57,11 +57,6 @@ public class Particle : MonoBehaviour {
                 Debug.LogError("Unknown block type: " + blockType);
                 break;
         }
-        
-        /// Reset metadata.
-        _waterFlowDirection = WaterFlowDirection.Still;
-        dirtDurability = Particle.DirtMaxDurability;
-        temperature = Particle.tempInit;
     }
 
     /// Amount of time since last update.
@@ -79,22 +74,7 @@ public class Particle : MonoBehaviour {
     /// Parent grid manager.
     private GridManager _gridManager;
 
-    /// [WATER SPECIFIC]
-    /// Direction that the water is flowing.
-    private WaterFlowDirection _waterFlowDirection;
-
-    /// Water Temperature.
-    private int temperature; 
-    private static int tempFreeze = 0;
-    private static int tempVapor = 10;
-    private static int tempInit = 5;
     public static int TempLaser = +2;
-
-    /// [DIRT SPECIFIC]
-    /// Dirt Durability.
-    private static int DirtMaxDurability = 5;
-    private int dirtDurability = DirtMaxDurability;
-
     public void Init(BlockType type, Tile t, GridManager gridManager) {
         setBlockType(type);
         this.tile = t;
@@ -114,8 +94,6 @@ public class Particle : MonoBehaviour {
                 break;
             
             case BlockType.Dirt:
-                dirtDurability = Particle.DirtMaxDurability;
-                
                 _renderer.sprite = Resources.Load<Sprite>("Dirt");
                 _renderer.color = Color.white;
                 break;

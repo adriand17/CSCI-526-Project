@@ -20,8 +20,10 @@ public class WaterBlock: Block {
     }
 
     public override void Tick() {
-        CoolWater();
-        WaterFlow();
+        if (temperature >= tempFreeze) {
+            CoolWater();
+            WaterFlow();
+        }
     }
 
     private void CoolWater() { 
@@ -68,7 +70,7 @@ public class WaterBlock: Block {
         if (temperature >= tempVapor) {
             particle.DeleteParticle();
             return;
-        } else if (temperature <= tempFreeze) { 
+        } else if (temperature < tempFreeze) { 
             /// Set sprite to ice.
             particle._renderer.sprite = Resources.Load<Sprite>("Ice");
             particle._renderer.color = Color.white;

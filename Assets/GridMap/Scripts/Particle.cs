@@ -74,7 +74,6 @@ public class Particle : MonoBehaviour {
     /// Parent grid manager.
     private GridManager _gridManager;
 
-    public static int TempLaser = +2;
     public void Init(BlockType type, Tile t, GridManager gridManager) {
         setBlockType(type);
         this.tile = t;

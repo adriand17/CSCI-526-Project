@@ -121,25 +121,21 @@ public class GameManager : MonoBehaviour
 
         switch (currentScene.name)
         {
-            case "Block Placing Tutorial":
+            case "LVL0-Blocks":
                 Debug.Log("block scene");
-                SceneManager.LoadScene("Level 1");
+                SceneManager.LoadScene("LVL0-Shooting");
                 break;
-            case "Shooting Tutorial":
+            case "LVL0-Shooting":
                 Debug.Log("shooting scene");
-                SceneManager.LoadScene("Block Placing Tutorial");
+                SceneManager.LoadScene("LVL1");
                 break;
-            case "Level 1":
+            case "LVL1":
                 Debug.Log("level 1 scene");
-                SceneManager.LoadScene("Level 2");
+                SceneManager.LoadScene("LVL2");
                 break;
-            case "Level 2":
+            case "LVL2":
                 Debug.Log("level 2 scene");
                 SceneManager.LoadScene("Main Game Scene");
-                break;
-            case "Main Game Scene":
-                Debug.Log("main scene");
-                SceneManager.LoadScene("InstructionOverlay");
                 break;
             default:
                 SceneManager.LoadScene("InstructionOverlay");

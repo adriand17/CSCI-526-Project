@@ -4,6 +4,8 @@
     <list default="true" id="d19417c3-65cc-4ff3-9595-48c67da2e1fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +82,7 @@
       <workItem from="1664419713990" duration="235000" />
       <workItem from="1664420036696" duration="44000" />
       <workItem from="1664572952706" duration="123000" />
-      <workItem from="1664661698100" duration="223000" />
+      <workItem from="1664661698100" duration="729000" />
     </task>
     <servers />
   </component>

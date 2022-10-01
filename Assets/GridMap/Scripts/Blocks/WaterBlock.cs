@@ -9,22 +9,26 @@ public class WaterBlock: Block {
 
     /// Temperature of water.
     public float temperature { get; set; }
-    private static int tempFreeze = 0;
-    private static int tempVapor = 10;
-    private static int tempInit = 5;
-    public static int TempLaser = +2;
-
+    private static float tempFreeze = 0f;
+    private static float tempMin = -2f;
+    private static float tempVapor = 10f;
+    private static float tempInit = 5f;
+    
     public WaterBlock(Particle particle): base(BlockType.Water, particle) {
         this.temperature = tempInit;
         this.flowDirection = WaterFlowDirection.Still;
     }
 
     public override void Tick() {
-        CoolWater();
-        WaterFlow();
+        if (temperature >= tempFreeze) {
+            CoolWater();
+            WaterFlow();
+        }
     }
 
     private void CoolWater() { 
+        float tempChange = 0f;
+
         if (blockType != BlockType.Water) {
             Debug.LogError("Cool: non-water particle");
             return;
@@ -39,13 +43,12 @@ public class WaterBlock: Block {
                 return;
             }
             WaterBlock wb = (WaterBlock)p.block;
-            if (wb.temperature >= this.temperature) {
+            if (wb.temperature >= this.temperature + tempChange) {
                 return;
             }
             
-            wb.temperature += 1;
-            this.temperature -= 1;
-            wb.ShowWaterHeat();
+            wb.ChangeTemperature(+1f);
+            tempChange += -1f;
         }
 
         /// Share heat with neighbors.
@@ -56,82 +59,90 @@ public class WaterBlock: Block {
 
         /// Cool off naturally.
         if (temperature > WaterBlock.tempInit) {
-            temperature -= 1;
+            tempChange += -1f;
         }
 
-        ShowWaterHeat();
+        ChangeTemperature(tempChange);
     }
 
-    public void HeatWater(int tempChange) {
+    public void ChangeTemperature(float tempChange) {
         temperature += tempChange;
         if (temperature >= tempVapor) {
             particle.DeleteParticle();
             return;
-        } else { 
-            ShowWaterHeat();
-        }
-    }
+        } else if (temperature < tempFreeze) { 
+            /// Set sprite to ice.
+            particle._renderer.sprite = Resources.Load<Sprite>("Ice");
+            particle._renderer.color = Color.white;
 
-    /// Try to move the water particle to the left.
-    /// Returns true if the particle moved.
-    private bool flowLeft() {
-        if (particle.tile.leftTile != null && particle.tile.leftTile.particle == null) {
-            this.flowDirection = WaterFlowDirection.Left;
-            Tile oldTile = this.particle.tile;
-            particle.tile.leftTile.SetParticle(this.particle);
-            MoveWater(Vector3.left);
-            oldTile.SetParticle(null);
+            /// Don't allow temperature to go below "absolute zero".
+            if (temperature < tempMin) {
+                temperature = tempMin;
+            }
+        } else {
+            /// Set sprite to water.
+            particle._renderer.sprite = Resources.Load<Sprite>("Water");
             
-            return true;
+            /// Get redder based on temperature.
+            float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
+            red *= 0.75f; // Dampen effect.
+            particle._renderer.color = new Color(red, 0, 1);
         }
-        return false;
-    }
-
-    /// Try to move the particle to the right.
-    /// Returns true if the particle moved.
-    private bool flowRight() {
-        if (particle.tile.rightTile != null && particle.tile.rightTile.particle == null) {
-            this.flowDirection = WaterFlowDirection.Right;
-            Tile oldTile = this.particle.tile;
-            particle.tile.rightTile.SetParticle(this.particle);
-            MoveWater(Vector3.right);
-            oldTile.SetParticle(null);
-            
-            return true;
-        }
-        return false;
-    }
-
-    private void MoveWater(Vector3 direction) {
-        Tile destinationTile;
-        switch (flowDirection) {
-            case WaterFlowDirection.Down:
-                destinationTile = particle.tile.downTile;
-                break;
-            case WaterFlowDirection.Right:
-                destinationTile = particle.tile.rightTile;
-                break;
-            case WaterFlowDirection.Left:
-                destinationTile = particle.tile.leftTile;
-                break;
-            default:
-                destinationTile = particle.tile;
-                break;
-        }
-     
-        this.particle.tile = destinationTile;
-
-        particle.transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
-    }
-
-    private void ShowWaterHeat() { 
-        /// Get redder based on temperature.
-        float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
-        red *= 0.75f; // Dampen effect.
-        particle._renderer.color = new Color(red, 0, 1);
     }
 
     private void WaterFlow() { 
+        void MoveWater(Vector3 direction) {
+            Tile destinationTile;
+            switch (flowDirection) {
+                case WaterFlowDirection.Down:
+                    destinationTile = particle.tile.downTile;
+                    break;
+                case WaterFlowDirection.Right:
+                    destinationTile = particle.tile.rightTile;
+                    break;
+                case WaterFlowDirection.Left:
+                    destinationTile = particle.tile.leftTile;
+                    break;
+                default:
+                    destinationTile = particle.tile;
+                    break;
+            }
+        
+            this.particle.tile = destinationTile;
+
+            particle.transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
+        }
+
+        /// Try to move the water particle to the left.
+        /// Returns true if the particle moved.
+        bool flowLeft() {
+            if (particle.tile.leftTile != null && particle.tile.leftTile.particle == null) {
+                this.flowDirection = WaterFlowDirection.Left;
+                Tile oldTile = this.particle.tile;
+                particle.tile.leftTile.SetParticle(this.particle);
+                MoveWater(Vector3.left);
+                oldTile.SetParticle(null);
+                
+                return true;
+            }
+            return false;
+        }
+
+        /// Try to move the particle to the right.
+        /// Returns true if the particle moved.
+        bool flowRight() {
+            if (particle.tile.rightTile != null && particle.tile.rightTile.particle == null) {
+                this.flowDirection = WaterFlowDirection.Right;
+                Tile oldTile = this.particle.tile;
+                particle.tile.rightTile.SetParticle(this.particle);
+                MoveWater(Vector3.right);
+                oldTile.SetParticle(null);
+                
+                return true;
+            }
+            return false;
+        }
+
         // Check if water can flow down.
         if (particle.tile.downTile != null && particle.tile.downTile.particle == null) {
             this.flowDirection = WaterFlowDirection.Down;

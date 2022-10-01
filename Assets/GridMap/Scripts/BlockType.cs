@@ -12,3 +12,16 @@ public enum BlockType
     Magma,   // 5: Makes water hot.
     Cooler,  // Makes water cold.
 }
+
+// TODO: TNT
+// - lit by laser
+// - lit by magma
+//   - leave this for player discovery?
+
+// TODO: Sponge
+// - absorbs water in an area
+// - when containing water, leaks it out slowly
+// - shoot with laser to dry it out
+// - how to prevent pick-n-place abuse?
+
+// Note: ice might thaw naturally (at a slow rate) to avoid buildup.

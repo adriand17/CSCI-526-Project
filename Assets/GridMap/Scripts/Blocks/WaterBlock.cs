@@ -44,7 +44,7 @@ public class WaterBlock: Block {
                 return;
             }
             
-            wb.HeatWater(+1f);
+            wb.ChangeTemperature(+1f);
             tempChange += -1f;
         }
 
@@ -59,10 +59,10 @@ public class WaterBlock: Block {
             tempChange += -1f;
         }
 
-        HeatWater(tempChange);
+        ChangeTemperature(tempChange);
     }
 
-    public void HeatWater(float tempChange) {
+    public void ChangeTemperature(float tempChange) {
         temperature += tempChange;
         if (temperature >= tempVapor) {
             particle.DeleteParticle();

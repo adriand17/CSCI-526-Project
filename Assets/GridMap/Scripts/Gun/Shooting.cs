@@ -37,20 +37,20 @@ public class Shooting : MonoBehaviour {
 
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
         if (Input.GetKey("space")) {
-            bool heatWater = false;
+            bool ChangeTemperature = false;
             if (timeSinceHeat > laserHeatInterval) {
-                heatWater = true;
+                ChangeTemperature = true;
                 timeSinceHeat = 0f;
                 timeSinceHeat = 0f;
             }
 
-            DrawLaser(heatWater);
+            DrawLaser(ChangeTemperature);
         } else if (Input.GetKeyUp("space")) {
             laserRenderer.positionCount = 0;
         }
     }
 
-    void DrawLaser(bool heatWater) {
+    void DrawLaser(bool ChangeTemperature) {
         // List of positions for line renderer to draw.
         List<Vector3> positions = new List<Vector3>();
         
@@ -92,8 +92,8 @@ public class Shooting : MonoBehaviour {
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
                 WaterBlock waterBlock = (WaterBlock)particle.block;
-                if (heatWater) {
-                    waterBlock.HeatWater(TempLaser);
+                if (ChangeTemperature) {
+                    waterBlock.ChangeTemperature(TempLaser);
                 }
                 
                 break;

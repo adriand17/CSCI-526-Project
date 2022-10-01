@@ -604,8 +604,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ab2c0cb7aa04b2da37b5e63dde1eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gunObject: {fileID: 0}
-  _camera: {fileID: 0}
+  _gunObject: {fileID: 858915941}
+  _camera: {fileID: 1264035261}
 --- !u!1 &281272881 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8368217554290493994, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}

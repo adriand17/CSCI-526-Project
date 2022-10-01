@@ -7,7 +7,7 @@ using BlockTypeExtension;
 
 public class Shooting : MonoBehaviour {
 
-    private static readonly string FireKey = "space"
+    private static readonly string FireKey = "space";
 
     public Transform rightpivot;
     public Transform firepoint;

@@ -75,36 +75,6 @@ public class WaterBlock: Block {
         }
     }
 
-    /// Try to move the water particle to the left.
-    /// Returns true if the particle moved.
-    private bool flowLeft() {
-        if (particle.tile.leftTile != null && particle.tile.leftTile.particle == null) {
-            this.flowDirection = WaterFlowDirection.Left;
-            Tile oldTile = this.particle.tile;
-            particle.tile.leftTile.SetParticle(this.particle);
-            MoveWater(Vector3.left);
-            oldTile.SetParticle(null);
-            
-            return true;
-        }
-        return false;
-    }
-
-    /// Try to move the particle to the right.
-    /// Returns true if the particle moved.
-    private bool flowRight() {
-        if (particle.tile.rightTile != null && particle.tile.rightTile.particle == null) {
-            this.flowDirection = WaterFlowDirection.Right;
-            Tile oldTile = this.particle.tile;
-            particle.tile.rightTile.SetParticle(this.particle);
-            MoveWater(Vector3.right);
-            oldTile.SetParticle(null);
-            
-            return true;
-        }
-        return false;
-    }
-
     private void MoveWater(Vector3 direction) {
         Tile destinationTile;
         switch (flowDirection) {
@@ -128,6 +98,36 @@ public class WaterBlock: Block {
     }
 
     private void WaterFlow() { 
+        /// Try to move the water particle to the left.
+        /// Returns true if the particle moved.
+        bool flowLeft() {
+            if (particle.tile.leftTile != null && particle.tile.leftTile.particle == null) {
+                this.flowDirection = WaterFlowDirection.Left;
+                Tile oldTile = this.particle.tile;
+                particle.tile.leftTile.SetParticle(this.particle);
+                MoveWater(Vector3.left);
+                oldTile.SetParticle(null);
+                
+                return true;
+            }
+            return false;
+        }
+
+        /// Try to move the particle to the right.
+        /// Returns true if the particle moved.
+        bool flowRight() {
+            if (particle.tile.rightTile != null && particle.tile.rightTile.particle == null) {
+                this.flowDirection = WaterFlowDirection.Right;
+                Tile oldTile = this.particle.tile;
+                particle.tile.rightTile.SetParticle(this.particle);
+                MoveWater(Vector3.right);
+                oldTile.SetParticle(null);
+                
+                return true;
+            }
+            return false;
+        }
+
         // Check if water can flow down.
         if (particle.tile.downTile != null && particle.tile.downTile.particle == null) {
             this.flowDirection = WaterFlowDirection.Down;

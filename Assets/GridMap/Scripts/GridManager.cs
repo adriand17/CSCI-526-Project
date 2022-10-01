@@ -164,6 +164,10 @@ public class GridManager : MonoBehaviour
                 {
                     DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
                 }
+                if (_gameManager._gridLocations.indicies[row].locations[col] == 5)
+                {
+                    DrawParticle(BlockType.Magma, new Vector3(drawCol, drawRow));
+                }
 
             }
         }

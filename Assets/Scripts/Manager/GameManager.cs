@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -112,6 +113,40 @@ public class GameManager : MonoBehaviour
         }
 
         //else start short time after last wave and no water is coming down, it end of timer then win
+    }
+    
+    public void loadNextScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        switch (currentScene.name)
+        {
+            case "Block Placing Tutorial":
+                Debug.Log("block scene");
+                SceneManager.LoadScene("Level 1");
+                break;
+            case "Shooting Tutorial":
+                Debug.Log("shooting scene");
+                SceneManager.LoadScene("Block Placing Tutorial");
+                break;
+            case "Level 1":
+                Debug.Log("level 1 scene");
+                SceneManager.LoadScene("Level 2");
+                break;
+            case "Level 2":
+                Debug.Log("level 2 scene");
+                SceneManager.LoadScene("Main Game Scene");
+                break;
+            case "Main Game Scene":
+                Debug.Log("main scene");
+                SceneManager.LoadScene("InstructionOverlay");
+                break;
+            default:
+                SceneManager.LoadScene("InstructionOverlay");
+                break;
+
+        }
+
     }
 }
 

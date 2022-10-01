@@ -613,6 +613,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1371074781}
     m_Modifications:
+    - target: {fileID: 8368217553985091112, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 508784909}
+    - target: {fileID: 8368217553985091112, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: loadNextScene
+      objectReference: {fileID: 0}
     - target: {fileID: 8368217554290493993, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

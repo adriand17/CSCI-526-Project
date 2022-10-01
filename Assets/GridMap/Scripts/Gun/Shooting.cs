@@ -26,7 +26,7 @@ public class Shooting : MonoBehaviour {
     private static float laserHeatInterval = 0.1f;
     private float timeSinceHeat = 0f;
 
-    public static int TempLaser = +2;
+    public static int TempLaser = -2;
     
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();

@@ -72,7 +72,6 @@ public class WaterBlock: Block {
         }
     }
 
-
     /// Try to move the water particle to the left.
     /// Returns true if the particle moved.
     private bool flowLeft() {

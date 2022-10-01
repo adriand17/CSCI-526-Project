@@ -24,3 +24,4 @@ public enum BlockType
 // - shoot with laser to dry it out
 // - how to prevent pick-n-place abuse?
 
+// Note: ice might thaw naturally (at a slow rate) to avoid buildup.

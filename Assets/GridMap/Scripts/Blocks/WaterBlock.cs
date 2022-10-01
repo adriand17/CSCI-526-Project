@@ -75,29 +75,29 @@ public class WaterBlock: Block {
         }
     }
 
-    private void MoveWater(Vector3 direction) {
-        Tile destinationTile;
-        switch (flowDirection) {
-            case WaterFlowDirection.Down:
-                destinationTile = particle.tile.downTile;
-                break;
-            case WaterFlowDirection.Right:
-                destinationTile = particle.tile.rightTile;
-                break;
-            case WaterFlowDirection.Left:
-                destinationTile = particle.tile.leftTile;
-                break;
-            default:
-                destinationTile = particle.tile;
-                break;
-        }
-     
-        this.particle.tile = destinationTile;
-
-        particle.transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
-    }
-
     private void WaterFlow() { 
+        void MoveWater(Vector3 direction) {
+            Tile destinationTile;
+            switch (flowDirection) {
+                case WaterFlowDirection.Down:
+                    destinationTile = particle.tile.downTile;
+                    break;
+                case WaterFlowDirection.Right:
+                    destinationTile = particle.tile.rightTile;
+                    break;
+                case WaterFlowDirection.Left:
+                    destinationTile = particle.tile.leftTile;
+                    break;
+                default:
+                    destinationTile = particle.tile;
+                    break;
+            }
+        
+            this.particle.tile = destinationTile;
+
+            particle.transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
+        }
+
         /// Try to move the water particle to the left.
         /// Returns true if the particle moved.
         bool flowLeft() {

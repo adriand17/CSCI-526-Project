@@ -25,6 +25,8 @@ public class Shooting : MonoBehaviour {
     /// How often to apply heat.
     private static float laserHeatInterval = 0.1f;
     private float timeSinceHeat = 0f;
+
+    public static int TempLaser = +2;
     
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
@@ -74,7 +76,6 @@ public class Shooting : MonoBehaviour {
                     break;
                 }
             }
-            
             if (hit.collider == null) {
                 // Laser shoots off into space.
                 positions.Add(raycastStart + (raycastDirection.normalized * Shooting.maxRange));
@@ -92,7 +93,7 @@ public class Shooting : MonoBehaviour {
             if (blockType == BlockType.Water) {
                 WaterBlock waterBlock = (WaterBlock)particle.block;
                 if (heatWater) {
-                    waterBlock.HeatWater(Particle.TempLaser);
+                    waterBlock.HeatWater(TempLaser);
                 }
                 
                 break;

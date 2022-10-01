@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeaterBlock: Block {
+public class MagmaBlock: Block {
 
-    public HeaterBlock(Particle particle): base(BlockType.Heater, particle) {
+    public MagmaBlock(Particle particle): base(BlockType.Magma, particle) {
     }
 
     public override void Tick() {

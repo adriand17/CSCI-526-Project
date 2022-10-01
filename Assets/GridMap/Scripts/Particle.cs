@@ -47,8 +47,8 @@ public class Particle : MonoBehaviour {
             case BlockType.Glass:
                 block = new GlassBlock(this);
                 break;
-            case BlockType.Heater:
-                block = new HeaterBlock(this);
+            case BlockType.Magma:
+                block = new MagmaBlock(this);
                 break;
             case BlockType.Cooler:
                 block = new CoolerBlock(this);
@@ -107,7 +107,7 @@ public class Particle : MonoBehaviour {
                 _renderer.color = Color.white;
                 break;
 
-            case BlockType.Heater:
+            case BlockType.Magma:
                 _renderer.sprite = Resources.Load<Sprite>("Magma");
                 _renderer.color = Color.white;
                 break;

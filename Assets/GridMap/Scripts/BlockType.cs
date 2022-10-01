@@ -9,6 +9,6 @@ public enum BlockType
     Dirt,    // Player placable block.
     Mirror,  // Mirror block.
     Glass,   // Glass block.
-    Heater,  // Makes water hot.
+    Magma,  // Makes water hot.
     Cooler,  // Makes water cold.
 }

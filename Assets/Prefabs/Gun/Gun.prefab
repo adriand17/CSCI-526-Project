@@ -160,7 +160,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8131458325811062582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.04, y: -0.18, z: 0}
+  m_LocalPosition: {x: 7.5, y: -2, z: -5}
   m_LocalScale: {x: 1, y: 2.6674, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74e47420fe5b85c4a86f226d8552f23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movespeed: 5
-  rb: {fileID: 8131458325811062580}
+  rigidBody: {fileID: 0}
+  mousePos: {x: 0, y: 0}
   cam: {fileID: 0}
 --- !u!114 &8131458325811062571
 MonoBehaviour:
@@ -270,10 +270,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightpivot: {fileID: 8131458324748295080}
   firepoint: {fileID: 8131458324748295080}
-  bulletPreFab: {fileID: 3671300895034263570, guid: 88c165a2a6cb0644eb5b622b1ef93605, type: 3}
-  bulletForce: 20
-  CountLaser: 5
-  Square: {fileID: 8131458324748295080}
 --- !u!120 &8131458325811062568
 LineRenderer:
   m_ObjectHideFlags: 0

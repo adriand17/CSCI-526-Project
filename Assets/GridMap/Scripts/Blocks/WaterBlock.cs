@@ -68,7 +68,10 @@ public class WaterBlock: Block {
             particle.DeleteParticle();
             return;
         } else { 
-            ShowWaterHeat();
+            /// Get redder based on temperature.
+            float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
+            red *= 0.75f; // Dampen effect.
+            particle._renderer.color = new Color(red, 0, 1);
         }
     }
 
@@ -122,13 +125,6 @@ public class WaterBlock: Block {
         this.particle.tile = destinationTile;
 
         particle.transform.position = new Vector3(destinationTile.transform.position.x, destinationTile.transform.position.y, -1);
-    }
-
-    private void ShowWaterHeat() { 
-        /// Get redder based on temperature.
-        float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
-        red *= 0.75f; // Dampen effect.
-        particle._renderer.color = new Color(red, 0, 1);
     }
 
     private void WaterFlow() { 

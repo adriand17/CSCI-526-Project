@@ -22,7 +22,7 @@ public enum WaterFlowDirection {
 
  */
 
-public class Particle : MonoBehaviour{
+public class Particle : MonoBehaviour {
 
     /// Kind of block this particle is.
     private BlockType blockType;
@@ -68,10 +68,6 @@ public class Particle : MonoBehaviour{
     /// Dirt Durability.
     private static int DirtMaxDurability = 5;
     private int dirtDurability = DirtMaxDurability;
-
-    public Particle(BlockType type) {
-        blockType = type;
-    }
 
     public void Init(BlockType type, Tile t, GridManager gridManager) {
         setBlockType(type);

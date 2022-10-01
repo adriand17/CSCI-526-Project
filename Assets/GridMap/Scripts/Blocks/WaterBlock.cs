@@ -9,11 +9,10 @@ public class WaterBlock: Block {
 
     /// Temperature of water.
     public float temperature { get; set; }
-    private static int tempFreeze = 0;
-    private static int tempVapor = 10;
-    private static int tempInit = 5;
-    public static int TempLaser = +2;
-
+    private static float tempFreeze = 0f;
+    private static float tempVapor = 10f;
+    private static float tempInit = 5f;
+    
     public WaterBlock(Particle particle): base(BlockType.Water, particle) {
         this.temperature = tempInit;
         this.flowDirection = WaterFlowDirection.Still;

@@ -7,47 +7,50 @@ using BlockTypeExtension;
 
 public class Shooting : MonoBehaviour {
 
+    private static readonly string FireKey = "space"
+
     public Transform rightpivot;
     public Transform firepoint;
     
     // Renders line from gun to target.
     private LineRenderer laserRenderer;
     
-    // Furthest distance the laser can reach.
-    private static int maxRange = 100;
-    
-    // Maximum number of times laser can bounce.
-    private static int maxReflections = 3;
-    
-    // Whether the laser is currently being fired.
-    private bool laserIsFiring = false;
-    
     /// How often to apply heat.
     private static float laserHeatInterval = 0.1f;
     private float timeSinceHeat = 0f;
 
     public static int TempLaser = -2;
+    private LaserStatus laserStatus;
     
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
+        laserStatus = new LaserStatus();
     }
 
     void Update() {
         timeSinceHeat += Time.deltaTime;
 
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
-        if (Input.GetKey("space")) {
+        if (Input.GetKey(Shooting.FireKey) && laserStatus.canFire()) {
             bool ChangeTemperature = false;
             if (timeSinceHeat > laserHeatInterval) {
                 ChangeTemperature = true;
                 timeSinceHeat = 0f;
                 timeSinceHeat = 0f;
             }
-
+            laserStatus.isFiring = true;
             DrawLaser(ChangeTemperature);
-        } else if (Input.GetKeyUp("space")) {
+        } else if (Input.GetKeyUp(Shooting.FireKey)) {
+            laserStatus.isFiring = false;
             laserRenderer.positionCount = 0;
+        } 
+        //If user keep press fire and no energy, do nothing.
+        if (!laserStatus.canFire() && laserStatus.isFiring) {
+            laserRenderer.positionCount = 0;
+        } else {
+            laserStatus.updateLaserEnergyLevel();
         }
+
     }
 
     void DrawLaser(bool ChangeTemperature) {
@@ -59,10 +62,10 @@ public class Shooting : MonoBehaviour {
         Vector3 raycastStart = firepoint.position;
         positions.Add(raycastStart);
 
-        for (int i = 0; i < Shooting.maxReflections; i++) {
+        for (int i = 0; i < laserStatus.getCurrentReflectLevel(); i++) {
             // Find the first opaque object hit by the laser.
-            RaycastHit2D[] hits = Physics2D.RaycastAll(raycastStart, raycastDirection, Shooting.maxRange);
-            RaycastHit2D hit = Physics2D.Raycast(raycastStart, raycastDirection, Shooting.maxRange);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(raycastStart, raycastDirection, laserStatus.maxRange());
+            RaycastHit2D hit = Physics2D.Raycast(raycastStart, raycastDirection, laserStatus.maxRange());
             foreach (var obj in hits) {
                 // Find the hit particle's blocktype.
                 Particle _p = obj.collider.gameObject.GetComponent<Particle>();
@@ -76,15 +79,17 @@ public class Shooting : MonoBehaviour {
                     break;
                 }
             }
+
+            Vector3 targetPosition = raycastStart + (raycastDirection.normalized * laserStatus.maxRange());
             if (hit.collider == null) {
                 // Laser shoots off into space.
-                positions.Add(raycastStart + (raycastDirection.normalized * Shooting.maxRange));
+                positions.Add(targetPosition);
                 break;
             }
             Particle particle = hit.collider.gameObject.GetComponent<Particle>();
             if (particle == null) { 
                 // Laser shoots off into space.
-                positions.Add(raycastStart + (raycastDirection.normalized * Shooting.maxRange));
+                positions.Add(targetPosition);
                 break;
             }
 

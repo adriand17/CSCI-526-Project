@@ -61,7 +61,7 @@ public class Particle : MonoBehaviour {
 
     /// Amount of time since last update.
     private float _timeSinceLastUpdate;
-    private static float _WaterInterval = 0.5f;
+    public static float TickInterval = 0.3f;
     private float delay;
 
     [SerializeField] public SpriteRenderer _renderer;
@@ -77,7 +77,7 @@ public class Particle : MonoBehaviour {
 
     public void Init(BlockType type, Tile t, GridManager gridManager) {
         /// Calculate a random delay.
-        delay = Random.Range(0, _WaterInterval);
+        delay = Random.Range(0, TickInterval);
 
         setBlockType(type);
         this.tile = t;
@@ -127,7 +127,7 @@ public class Particle : MonoBehaviour {
 
     public void Update() {
         _timeSinceLastUpdate += Time.deltaTime;
-        if (_timeSinceLastUpdate < Particle._WaterInterval + delay) {
+        if (_timeSinceLastUpdate < Particle.TickInterval + delay) {
             return;
         }
         _timeSinceLastUpdate = delay;

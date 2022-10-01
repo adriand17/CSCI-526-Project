@@ -24,6 +24,8 @@ public class WaterBlock: Block {
     }
 
     private void CoolWater() { 
+        float tempChange = 0f;
+
         if (blockType != BlockType.Water) {
             Debug.LogError("Cool: non-water particle");
             return;
@@ -38,13 +40,12 @@ public class WaterBlock: Block {
                 return;
             }
             WaterBlock wb = (WaterBlock)p.block;
-            if (wb.temperature >= this.temperature) {
+            if (wb.temperature >= this.temperature + tempChange) {
                 return;
             }
             
-            wb.temperature += 1;
-            this.temperature -= 1;
-            wb.ShowWaterHeat();
+            wb.HeatWater(+1f);
+            tempChange += -1f;
         }
 
         /// Share heat with neighbors.
@@ -55,13 +56,13 @@ public class WaterBlock: Block {
 
         /// Cool off naturally.
         if (temperature > WaterBlock.tempInit) {
-            temperature -= 1;
+            tempChange += -1f;
         }
 
-        ShowWaterHeat();
+        HeatWater(tempChange);
     }
 
-    public void HeatWater(int tempChange) {
+    public void HeatWater(float tempChange) {
         temperature += tempChange;
         if (temperature >= tempVapor) {
             particle.DeleteParticle();

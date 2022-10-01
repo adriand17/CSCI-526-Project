@@ -10,6 +10,7 @@ public class WaterBlock: Block {
     /// Temperature of water.
     public float temperature { get; set; }
     private static float tempFreeze = 0f;
+    private static float tempMin = -2f;
     private static float tempVapor = 10f;
     private static float tempInit = 5f;
     
@@ -67,7 +68,19 @@ public class WaterBlock: Block {
         if (temperature >= tempVapor) {
             particle.DeleteParticle();
             return;
-        } else { 
+        } else if (temperature <= tempFreeze) { 
+            /// Set sprite to ice.
+            particle._renderer.sprite = Resources.Load<Sprite>("Ice");
+            particle._renderer.color = Color.white;
+
+            /// Don't allow temperature to go below "absolute zero".
+            if (temperature < tempMin) {
+                temperature = tempMin;
+            }
+        } else {
+            /// Set sprite to water.
+            particle._renderer.sprite = Resources.Load<Sprite>("Water");
+            
             /// Get redder based on temperature.
             float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
             red *= 0.75f; // Dampen effect.

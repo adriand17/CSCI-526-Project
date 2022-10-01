@@ -90,8 +90,9 @@ public class Shooting : MonoBehaviour {
             positions.Add(hit.point);
             BlockType blockType = particle.getBlockType();
             if (blockType == BlockType.Water) {
+                WaterBlock waterBlock = (WaterBlock)particle.block;
                 if (heatWater) {
-                    particle.HeatWater(Particle.TempLaser);
+                    waterBlock.HeatWater(Particle.TempLaser);
                 }
                 
                 break;

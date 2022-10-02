@@ -26,6 +26,14 @@ public class BreakableBlock : Block {
             if (neighbor.particle.getBlockType() != BlockType.Water) {
                 return false;
             }
+            
+            WaterBlock waterBlock = (WaterBlock)neighbor.particle.block;
+            if (waterBlock.flowDirection != WaterFlowDirection.Still) {
+                return false;
+            }
+            if (waterBlock.IsFrozen()) {
+                return false;
+            }
             return true;
         }
 

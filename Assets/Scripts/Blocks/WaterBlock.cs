@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaterBlock: Block {
 
     /// Direction that the water is flowing.
-    private WaterFlowDirection flowDirection;
+    public WaterFlowDirection flowDirection { get; private set; }
 
     /// Temperature of water.
     public float temperature { get; set; }
@@ -190,5 +190,9 @@ public class WaterBlock: Block {
                 }
                 break;
         }
+    }
+
+    public bool IsFrozen() {
+        return temperature < tempFreeze;
     }
 }

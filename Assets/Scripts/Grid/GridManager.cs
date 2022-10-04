@@ -68,52 +68,21 @@ public class GridManager : MonoBehaviour
         {
             for (int y = 0; y < _height; y++)
             {
-                //Debug.Log(x + " " + y);
+                Vector2 gridPosition = new Vector2(x, y);
                 var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 
                 //for checker board patter...
                 var isOffset = (x + y) % 2 == 1;
-                spawnedTile.Init(isOffset, _towerPrefab, new Vector3(x, y), this);
+                spawnedTile.Init(isOffset, gridPosition, _towerPrefab, new Vector3(x, y), this);
 
-                _tiles[new Vector2(x, y)] = spawnedTile;
+                _tiles[gridPosition] = spawnedTile;
             }
         }
 
         SetUnpassableTiles();
-        SetAdjacentTiles();
 
         _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
-    }
-
-    /// Provides each tile with a reference to its valid neighbors.
-    public void SetAdjacentTiles()
-    {
-        for (int x = 0; x < _width; x++)
-        {
-            for (int y = 0; y < _height; y++)
-            {
-                Vector2 pos = new Vector2(x, y);
-                Tile t = _tiles[pos];
-
-                // Look up valid adjacent tiles.
-                // null represents the world's borders.
-                Tile upTile = (y < _height - 1)
-                    ? _tiles[new Vector2(x, y + 1)]
-                    : null;
-                Tile downTile = (y > 0)
-                    ? _tiles[new Vector2(x, y - 1)]
-                    : null;
-                Tile rightTile = (x < _width - 1)
-                    ? _tiles[new Vector2(x + 1, y)]
-                    : null;
-                Tile leftTile = (x > 0)
-                    ? _tiles[new Vector2(x - 1, y)]
-                    : null;
-
-                t.setAdjacentTiles(upTile, downTile, leftTile, rightTile);
-            }
-        }
     }
 
     public void DrawParticle(BlockType type, Vector3 pos)
@@ -174,17 +143,12 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public Tile GetTileAtPosition(float x, float y)
-    {
-        Debug.Log(x + " " + y);
-        Vector2 pos = new Vector2(x, y);
-        if (_tiles.TryGetValue(pos, out var tile))
-        {
-            Debug.Log("return tile");
-            return tile;
+    public Tile GetTileAt(Vector2 position) {
+        if (_tiles.ContainsKey(position)) {
+            return _tiles[position];
+        } else { 
+            return null;
         }
-
-        return null;
     }
 
     public void clickDirt()

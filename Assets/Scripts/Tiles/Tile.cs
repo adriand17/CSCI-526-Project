@@ -17,21 +17,15 @@ public class Tile : MonoBehaviour
     private bool changeFlage = true;
     public bool _isPassable = true;
 
-    /// Tile's valid neighbors.
-    /// Null indicates the world border.
-    public Tile upTile = null;
-    public Tile downTile = null;
-    public Tile leftTile = null;
-    public Tile rightTile = null;
-    
+    /// Tile's grid coordinates.
+    public Vector2 gridPosition;
+
     private GridManager _gridManager;
     
-
     public Particle particle;
     public void SetParticle(Particle p)
     {
         this.particle = p;
-
     }
 
     public Color baseColor = Color.gray;
@@ -39,7 +33,7 @@ public class Tile : MonoBehaviour
 
     public bool Buildable => _isBuildable && Occupied == false;
 
-    public void Init(bool isOffset, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
+    public void Init(bool isOffset, Vector2 gridPosition, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
         this._towerPrefab = towerPrefab;
@@ -47,6 +41,7 @@ public class Tile : MonoBehaviour
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         baseColor = isOffset ? _offsetColor : _baseColor;
 
+        this.gridPosition = gridPosition;
         this.location = location;
         this._gridManager = gridManager;
     }
@@ -100,16 +95,6 @@ public class Tile : MonoBehaviour
 
     }
 
-    /// Lets manager inform tile of its valid neighbors.
-    public void setAdjacentTiles(Tile upTile, Tile downTile, Tile leftTile, Tile rightTile)
-    {
-        this.upTile = upTile;
-        this.downTile = downTile;
-        this.rightTile = rightTile;
-        this.leftTile = leftTile;
-    }
-
-
     public void SetBuilding()
     {
 
@@ -124,4 +109,24 @@ public class Tile : MonoBehaviour
 
     }
 
+    /// [TILE GRID COORDINATES]
+    Tile getRelativeTile(Vector2 position) {
+        return _gridManager.GetTileAt(gridPosition + position);
+    }
+
+    public Tile upTile {
+        get { return getRelativeTile(Vector2.up); }
+    }
+
+    public Tile downTile {
+        get { return getRelativeTile(Vector2.down); }
+    }
+
+    public Tile leftTile {
+        get { return getRelativeTile(Vector2.left); }
+    }
+
+    public Tile rightTile {
+        get { return getRelativeTile(Vector2.right); }
+    }
 }

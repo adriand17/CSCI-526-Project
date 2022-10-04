@@ -29,7 +29,6 @@ public class GridManager : MonoBehaviour
     private Dictionary<Vector2, Tile> _tiles;
 
     [SerializeField] public int _buildingCount = 0;
-    private int _activeWater = 0;
     [SerializeField] public int _buildingLimit = 3;
     [SerializeField] public TextMeshProUGUI _buildingCountText;
     [SerializeField] public TextMeshProUGUI _buidableBlocksText;
@@ -89,11 +88,6 @@ public class GridManager : MonoBehaviour
     {
         var tile = _tiles[pos];
         var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
-        //prevent lazer from targeting
-        if(type != BlockType.Water)
-         {
-            _activeWater++;
-         }
         particle.Init(type, tile, this);
         tile.SetParticle(particle);
         particles.Add(particle);
@@ -242,7 +236,6 @@ public class GridManager : MonoBehaviour
             }
         }
         _buildingCount = 0;
-        _activeWater = 0;
         particles.Clear();
         ResetHealth();
         _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();

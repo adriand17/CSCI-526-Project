@@ -96,6 +96,12 @@ public class Shooting : MonoBehaviour {
                     }
                     breakLoop = true;
                     break;
+
+                case BlockType.TNT:
+                    TNTBlock tntBlock = (TNTBlock)particle.block;
+                    tntBlock.StartCountdown();
+                    breakLoop = true;
+                    break;
                 
                 case BlockType.Bedrock:
                 case BlockType.Dirt:

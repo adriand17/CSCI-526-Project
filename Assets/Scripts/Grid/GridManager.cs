@@ -19,7 +19,6 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
 
-
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
@@ -64,7 +63,6 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-
         _tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < _width; x++)
         {
@@ -144,31 +142,34 @@ public class GridManager : MonoBehaviour
             {
                 int drawRow = (rowCount - 1) - row;
                 int drawCol = col;
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 0)
+                int blockID = _gameManager._gridLocations.indicies[row].locations[col];
+                switch (blockID)
                 {
-                    DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));
+                    case -1:
+                        /// Represents air.
+                        break;
+                    case 0:
+                        DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));
+                        break;
+                    case 1:
+                        DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow));
+                        break;
+                    case 2:
+                        DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow));
+                        break;
+                    case 3:
+                        DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
+                        break;
+                    case 4:
+                        DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
+                        break;
+                    case 5:
+                        DrawParticle(BlockType.Magma, new Vector3(drawCol, drawRow));
+                        break;
+                    default:
+                        Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
+                        break;
                 }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 1)
-                {
-                    DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 2)
-                {
-                    DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 3)
-                {
-                    DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 4)
-                {
-                    DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 5)
-                {
-                    DrawParticle(BlockType.Magma, new Vector3(drawCol, drawRow));
-                }
-
             }
         }
     }

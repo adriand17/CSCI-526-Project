@@ -33,8 +33,15 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] public int _buildingCount = 0;
     [SerializeField] public int _buildingLimit = 3;
-    [SerializeField] public TextMeshProUGUI _buildingCountText;
-    [SerializeField] public TextMeshProUGUI _buidableBlocksText;
+    /// [BUILD LIMIT HUD]
+    
+    /// Displays number of available building blocks.
+    [SerializeField] private TextMeshProUGUI _buildingCountText;
+    
+    /// Displays the "Buildable Blocks" label.
+    [SerializeField] private TextMeshProUGUI _buildableBlocksLabelText;
+    
+    /// Empty flashing animation.
     private Coroutine TextFlash;
 
     // Start is called before the first frame update

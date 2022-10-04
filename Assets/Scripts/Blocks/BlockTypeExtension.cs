@@ -44,7 +44,6 @@ namespace BlockTypeExtension {
                 case BlockType.BlueIce:
                     return false;
                 
-
                 /// Never destroyed.
                 case BlockType.Bedrock:
                     return false;

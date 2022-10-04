@@ -40,6 +40,9 @@ public class Particle : MonoBehaviour {
             case BlockType.BlueIce:
                 block = new BlueIceBlock(this);
                 break;
+            case BlockType.TNT:
+                block = new TNTBlock(this);
+                break;
             default:
                 Debug.LogError("Unknown block type: " + blockType);
                 break;
@@ -106,6 +109,11 @@ public class Particle : MonoBehaviour {
                 _renderer.sprite = Resources.Load<Sprite>("BlueIce");
                 _renderer.color = Color.white;
                 break;
+
+            case BlockType.TNT:
+                _renderer.sprite = Resources.Load<Sprite>("TNT");
+                _renderer.color = Color.white;
+                break;  
 
             default:
                 Debug.LogError("Unhandled block type: " + type);

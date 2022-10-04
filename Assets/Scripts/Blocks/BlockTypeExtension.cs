@@ -15,6 +15,7 @@ namespace BlockTypeExtension {
                 case BlockType.Dirt:
                 case BlockType.Magma:
                 case BlockType.BlueIce:
+                case BlockType.TNT:
                     return true;
                 
                 default:

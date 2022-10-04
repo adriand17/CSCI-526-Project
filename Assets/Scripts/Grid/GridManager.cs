@@ -143,6 +143,9 @@ public class GridManager : MonoBehaviour
                     case 6:
                         DrawParticle(BlockType.BlueIce, pos);
                         break;
+                    case 7:
+                        DrawParticle(BlockType.TNT, pos);
+                        break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
                         break;

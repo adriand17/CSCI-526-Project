@@ -70,8 +70,7 @@ public class Particle : MonoBehaviour {
     public Tile tile;
 
     private bool atBottom = false;
-    public bool userPlaced = false;
-
+    
     /// Parent grid manager.
     private GridManager _gridManager;
 

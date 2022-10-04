@@ -19,17 +19,18 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
 
+    /// Type of block placed when player builds.
+    public BlockType buildType = BlockType.Dirt;
+
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
     public int damage = 2;
     public int currentHealth;
-    public int BuildingType = 1; // 1 for dirt, 2 for glass, 3 for mirror, default dirt 
 
     private Dictionary<Vector2, Tile> _tiles;
 
     [SerializeField] public int _buildingCount = 0;
-    private int _activeWater = 0;
     [SerializeField] public int _buildingLimit = 3;
     [SerializeField] public TextMeshProUGUI _buildingCountText;
     [SerializeField] public TextMeshProUGUI _buidableBlocksText;
@@ -80,7 +81,7 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        SetUnpassableTiles();
+        AddLevelBlocks();
 
         _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
     }
@@ -89,18 +90,13 @@ public class GridManager : MonoBehaviour
     {
         var tile = _tiles[pos];
         var particle = Instantiate(_particlePrefab, new Vector3(pos.x, pos.y), Quaternion.identity);
-        //prevent lazer from targeting
-        if(type != BlockType.Water)
-         {
-            _activeWater++;
-         }
         particle.Init(type, tile, this);
         tile.SetParticle(particle);
         particles.Add(particle);
     }
 
     // Create inital level geometry.
-    private void SetUnpassableTiles()
+    private void AddLevelBlocks()
     {
         int rowCount = _gameManager._gridLocations.indicies.Count;
         int colCount;
@@ -155,20 +151,16 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void clickDirt()
-    {
-        Debug.Log("clickDirt");
-        BuildingType = 1;
+    public void clickDirt() {
+        buildType = BlockType.Dirt;
     }
 
-    public void clickGlass()
-    {
-        BuildingType = 2;
+    public void clickGlass() {
+        buildType = BlockType.Glass;
     }
 
-    public void clickMirror()
-    {
-        BuildingType = 3;
+    public void clickMirror() {
+        buildType = BlockType.Mirror;
     }
 
 
@@ -199,20 +191,8 @@ public class GridManager : MonoBehaviour
         } else {
             if (t.particle == null) {
                 _buildingCount++;
-                if (BuildingType == 1)
-                {
-                    DrawParticle(BlockType.Dirt, pos);
-                }
-                else if (BuildingType == 2)
-                {
-                    DrawParticle(BlockType.Glass, pos);
-                }
-                else if (BuildingType == 3)
-                {
-                    DrawParticle(BlockType.Mirror, pos);
-                }
+                DrawParticle(buildType, pos);
 
-                t.particle.userPlaced = true;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
 
                 /// Log block placement.
@@ -243,12 +223,9 @@ public class GridManager : MonoBehaviour
             }
         }
         _buildingCount = 0;
-        _activeWater = 0;
         particles.Clear();
         ResetHealth();
         _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
-        
-
     }
 
     public void TakeDamage()
@@ -277,24 +254,28 @@ public class GridManager : MonoBehaviour
         }
     }
 
-
-    private IEnumerator FlashCountText()
-    {
-        Color currentColor = _buildingCountText.color;
+    /// How long to play pulse animation.
+    [SerializeField] private float flashDuration = 2.4f;
+    
+    /// Pulses building count text red. 
+    /// Reminds player they can't build.
+    private IEnumerator FlashCountText() {
         float counter = 0;
-        while (counter <= 2.4f)
-        {
-            if (_buildingLimit - _buildingCount > 0)
-            {
+        while (counter <= flashDuration) {
+            /// Reset immediately if player can build.
+            if (_buildingLimit - _buildingCount > 0) {
                 _buildingCountText.color = Color.white;
                 _buidableBlocksText.color = Color.white;
                 yield break;
             }
+
             _buildingCountText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
             _buidableBlocksText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
             counter += Time.deltaTime;
             yield return null;
         }
+
+        /// Final color reset.
         _buildingCountText.color = Color.white;
         _buidableBlocksText.color = Color.white;
         yield return null;

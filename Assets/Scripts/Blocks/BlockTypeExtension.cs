@@ -24,7 +24,7 @@ namespace BlockTypeExtension {
             }
         }
 
-        public static isExplodable(this BlockType blockType) {
+        public static bool isExplodable(this BlockType blockType) {
             switch (blockType) {
                 /// Custom chain explosion.
                 case BlockType.TNT:

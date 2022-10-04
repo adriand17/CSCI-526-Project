@@ -263,6 +263,26 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    public Tile[,] setInRangeTiles(Vector3 position, int range)
+    {
+        var length = 2 * range + 1;
+       Tile[,] inRangeTiles = new Tile[length, length];
+       for (int x = (int)position.x - range; x < (int)position.x + range; x++)
+        {
+            for (int y = (int)position.y - range; y < (int)position.y + range; y++)
+            {
+                Tile t = GetTileAtPosition(x, y);
+                
+            }
+        }
+
+
+
+
+
+        return null;
+    }
+
     public void ResetGrid()
     {
         /// TODO
@@ -331,14 +351,7 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    /* public void DestroyWaterParticle(Particle p)
-     {
-         if (p != null && p.getBlockType() == BlockType.Water)
-         {
-             DestroyImmediate(p.gameObject);
-
-         }
-     }*/
+   
 
 
     public int GetWaterCount()

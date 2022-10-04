@@ -332,16 +332,6 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    /* public void DestroyWaterParticle(Particle p)
-     {
-         if (p != null && p.getBlockType() == BlockType.Water)
-         {
-             DestroyImmediate(p.gameObject);
-
-         }
-     }*/
-
-
     public int GetWaterCount()
     {
         int count = 0;
@@ -375,7 +365,6 @@ public class GridManager : MonoBehaviour
     {
         return _width;
     }
-
 
     /// Allow other classes to make requests via the grid.
     /// The grid is never destroyed, and won't "drop" the co-routines.

@@ -27,13 +27,3 @@ public class GlassBlock: Block {
         // Do nothing.
     }
 }
-
-public class CoolerBlock: Block {
-
-    public CoolerBlock(Particle particle): base(BlockType.Cooler, particle) {
-    }
-
-    public override void Tick() {
-        // Do nothing.
-    }
-}

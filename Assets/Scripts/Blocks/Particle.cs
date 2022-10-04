@@ -50,8 +50,8 @@ public class Particle : MonoBehaviour {
             case BlockType.Magma:
                 block = new MagmaBlock(this);
                 break;
-            case BlockType.Cooler:
-                block = new CoolerBlock(this);
+            case BlockType.BlueIce:
+                block = new BlueIceBlock(this);
                 break;
             default:
                 Debug.LogError("Unknown block type: " + blockType);
@@ -116,7 +116,9 @@ public class Particle : MonoBehaviour {
                 _renderer.color = Color.white;
                 break;
 
-            case BlockType.Cooler:
+            case BlockType.BlueIce:
+                _renderer.sprite = Resources.Load<Sprite>("BlueIce");
+                _renderer.color = Color.white;
                 break;
 
             default:

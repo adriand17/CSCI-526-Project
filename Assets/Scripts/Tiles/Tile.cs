@@ -71,28 +71,8 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown() {
-       
-
         // changeFlage is a check to see if a building can be placed on the location
         changeFlage = _gridManager.CanAddBlockToTile(location);
-        if (changeFlage)
-        {
-
-            Debug.Log("added or removed at tile");
-            /*if (particle == null) {
-                _gridManager.DrawParticle(BlockType.Dirt, this.location);
-
-            } else if (particle.getBlockType() == BlockType.Dirt) {
-                 this._gridManager.particles.Remove(particle);
-                 SetParticle(null);
-            }*/
-        }
-        else
-        {
-            Debug.Log("cancel other buliding to create new one");
-
-        }
-
     }
 
     public void SetBuilding()
@@ -105,12 +85,10 @@ public class Tile : MonoBehaviour
         tower.transform.position = tPostion;
         this.OccupiedTower = tower;
         tower.OccupiedTile = this;
-
-
     }
 
     /// [TILE GRID COORDINATES]
-    Tile getRelativeTile(Vector2 position) {
+    public Tile getRelativeTile(Vector2 position) {
         return _gridManager.GetTileAt(gridPosition + position);
     }
 

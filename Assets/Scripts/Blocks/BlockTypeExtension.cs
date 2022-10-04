@@ -18,6 +18,7 @@ namespace BlockTypeExtension {
                     return true;
                 
                 default:
+                    Debug.LogError("Unknown block type: " + blockType);
                     return true;
             }
         }

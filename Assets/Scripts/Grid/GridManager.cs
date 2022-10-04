@@ -273,19 +273,19 @@ public class GridManager : MonoBehaviour
             /// Reset immediately if player can build.
             if (_buildingLimit - _buildingCount > 0) {
                 _buildingCountText.color = Color.white;
-                _buidableBlocksText.color = Color.white;
+                _buildableBlocksLabelText.color = Color.white;
                 yield break;
             }
 
             _buildingCountText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
-            _buidableBlocksText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
+            _buildableBlocksLabelText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
             counter += Time.deltaTime;
             yield return null;
         }
 
         /// Final color reset.
         _buildingCountText.color = Color.white;
-        _buidableBlocksText.color = Color.white;
+        _buildableBlocksLabelText.color = Color.white;
         yield return null;
     }
 

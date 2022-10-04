@@ -9,19 +9,6 @@ public enum WaterFlowDirection {
     Down
 }
 
-/**
-# Water Todo
-- [x] add a temperature value
-- [x] shed heat to adjacent water / non-water
-- [ ] add a a heating "tower" block
-- [ ] add a cooling "tower" block
-- [ ] add an "ice" block
-- [ ] transform to ice when too cold
-- [x] have laser increase temperature
-- [x] destroy water that's too hot
-
- */
-
 public class Particle : MonoBehaviour {
 
     public Block block { get; private set; }

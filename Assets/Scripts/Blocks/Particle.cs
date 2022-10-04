@@ -117,6 +117,8 @@ public class Particle : MonoBehaviour {
                 break;
 
             case BlockType.BlueIce:
+                _renderer.sprite = Resources.Load<Sprite>("BlueIce");
+                _renderer.color = Color.white;
                 break;
 
             default:

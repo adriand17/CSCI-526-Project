@@ -1321,15 +1321,16 @@ MonoBehaviour:
   buildingManager: {fileID: 506064124}
   _nextWaveButton: {fileID: 1499160033}
   _GameOverText: {fileID: 456217524}
+  buildType: 2
   healthBar: {fileID: 1417842684}
   maxHealth: 50
   damage: 2
   currentHealth: 0
-  BuildingType: 1
   _buildingCount: 6
   _buildingLimit: 6
   _buildingCountText: {fileID: 1184003033}
-  _buidableBlocksText: {fileID: 71246481}
+  _buildableBlocksLabelText: {fileID: 1184003033}
+  flashDuration: 2.4
 --- !u!224 &1184003031
 RectTransform:
   m_ObjectHideFlags: 0

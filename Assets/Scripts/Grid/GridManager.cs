@@ -212,7 +212,6 @@ public class GridManager : MonoBehaviour
                     DrawParticle(BlockType.Mirror, pos);
                 }
 
-                t.particle.userPlaced = true;
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
 
                 /// Log block placement.

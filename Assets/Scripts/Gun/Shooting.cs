@@ -95,9 +95,8 @@ public class Shooting : MonoBehaviour {
                 if (ChangeTemperature) {
                     waterBlock.ChangeTemperature(TempLaser);
                 }
-                
                 break;
-            } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
+            } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt || blockType == BlockType.Magma || blockType == BlockType.BlueIce) {
                 // No reflections, stop here.
                 break;
             } else if (blockType == BlockType.Mirror) {

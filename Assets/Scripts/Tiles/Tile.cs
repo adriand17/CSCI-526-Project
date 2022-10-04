@@ -88,7 +88,7 @@ public class Tile : MonoBehaviour
     }
 
     /// [TILE GRID COORDINATES]
-    Tile getRelativeTile(Vector2 position) {
+    public Tile getRelativeTile(Vector2 position) {
         return _gridManager.GetTileAt(gridPosition + position);
     }
 

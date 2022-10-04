@@ -87,25 +87,39 @@ public class Shooting : MonoBehaviour {
 
             positions.Add(hit.point);
             BlockType blockType = particle.getBlockType();
-            if (blockType == BlockType.Water) {
-                WaterBlock waterBlock = (WaterBlock)particle.block;
-                if (ChangeTemperature) {
-                    waterBlock.ChangeTemperature(TempLaser);
-                }
-                break;
-            } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt || blockType == BlockType.Magma || blockType == BlockType.BlueIce) {
-                // No reflections, stop here.
-                break;
-            } else if (blockType == BlockType.Mirror) {
-                // Change direction for next ray.
-                raycastDirection = Vector3.Reflect(raycastDirection, hit.normal);
+            bool breakLoop = false;
+            switch (blockType) {
+                case BlockType.Water:
+                    WaterBlock waterBlock = (WaterBlock)particle.block;
+                    if (ChangeTemperature) {
+                        waterBlock.ChangeTemperature(TempLaser);
+                    }
+                    breakLoop = true;
+                    break;
                 
-                // Move slightly away from the wall to avoid re-colliding with it.
-                raycastStart = hit.point + (hit.normal.normalized * 0.001f);
+                case BlockType.Bedrock:
+                case BlockType.Dirt:
+                case BlockType.Magma:
+                case BlockType.BlueIce:
+                    // No reflections, stop here.
+                    breakLoop = true;
+                    break;
                 
-                continue;
-            } else {
-                Debug.Log("ERROR: Unknown block type");
+                case BlockType.Mirror:
+                    // Change direction for next ray.
+                    raycastDirection = Vector3.Reflect(raycastDirection, hit.normal);
+                    
+                    // Move slightly away from the wall to avoid re-colliding with it.
+                    raycastStart = hit.point + (hit.normal.normalized * 0.001f);
+                    
+                    break;
+                
+                default:
+                    Debug.Log("ERROR: Unknown block type");
+                    breakLoop = true;
+                    break;
+            }
+            if (breakLoop) {
                 break;
             }
         }

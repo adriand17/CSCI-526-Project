@@ -246,8 +246,6 @@ public class GridManager : MonoBehaviour
         particles.Clear();
         ResetHealth();
         _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
-        
-
     }
 
     public void TakeDamage()
@@ -276,12 +274,15 @@ public class GridManager : MonoBehaviour
         }
     }
 
-
-    private IEnumerator FlashCountText()
-    {
+    /// How long to play pulse animation.
+    [SerializeField] private float flashDuration = 2.4f;
+    
+    /// Pulses building count text red. 
+    /// Reminds player they can't build.
+    private IEnumerator FlashCountText() {
         Color currentColor = _buildingCountText.color;
         float counter = 0;
-        while (counter <= 2.4f)
+        while (counter <= flashDuration)
         {
             if (_buildingLimit - _buildingCount > 0)
             {

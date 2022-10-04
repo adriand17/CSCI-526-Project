@@ -112,28 +112,32 @@ public class GridManager : MonoBehaviour
                 int drawRow = (rowCount - 1) - row;
                 int drawCol = col;
                 int blockID = _gameManager._gridLocations.indicies[row].locations[col];
+                Vector3 pos = new Vector3(drawCol, drawRow);
                 switch (blockID)
                 {
                     case -1:
                         /// Represents air.
                         break;
                     case 0:
-                        DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));
+                        DrawParticle(BlockType.Water, pos);
                         break;
                     case 1:
-                        DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow));
+                        DrawParticle(BlockType.Bedrock, pos);
                         break;
                     case 2:
-                        DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow));
+                        DrawParticle(BlockType.Dirt, pos);
                         break;
                     case 3:
-                        DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
+                        DrawParticle(BlockType.Mirror, pos);
                         break;
                     case 4:
-                        DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
+                        DrawParticle(BlockType.Glass, pos);
                         break;
                     case 5:
-                        DrawParticle(BlockType.Magma, new Vector3(drawCol, drawRow));
+                        DrawParticle(BlockType.Magma, pos);
+                        break;
+                    case 6:
+                        DrawParticle(BlockType.BlueIce, pos);
                         break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");

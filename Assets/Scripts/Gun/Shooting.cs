@@ -19,9 +19,6 @@ public class Shooting : MonoBehaviour {
     // Maximum number of times laser can bounce.
     private static int maxReflections = 3;
     
-    // Whether the laser is currently being fired.
-    private bool laserIsFiring = false;
-    
     /// How often to apply heat.
     private static float laserHeatInterval = 0.1f;
     private float timeSinceHeat = 0f;
@@ -90,26 +87,45 @@ public class Shooting : MonoBehaviour {
 
             positions.Add(hit.point);
             BlockType blockType = particle.getBlockType();
-            if (blockType == BlockType.Water) {
-                WaterBlock waterBlock = (WaterBlock)particle.block;
-                if (ChangeTemperature) {
-                    waterBlock.ChangeTemperature(TempLaser);
-                }
+            bool breakLoop = false;
+            switch (blockType) {
+                case BlockType.Water:
+                    WaterBlock waterBlock = (WaterBlock)particle.block;
+                    if (ChangeTemperature) {
+                        waterBlock.ChangeTemperature(TempLaser);
+                    }
+                    breakLoop = true;
+                    break;
+
+                case BlockType.TNT:
+                    TNTBlock tntBlock = (TNTBlock)particle.block;
+                    tntBlock.StartCountdown();
+                    breakLoop = true;
+                    break;
                 
-                break;
-            } else if (blockType == BlockType.Bedrock || blockType == BlockType.Dirt) {
-                // No reflections, stop here.
-                break;
-            } else if (blockType == BlockType.Mirror) {
-                // Change direction for next ray.
-                raycastDirection = Vector3.Reflect(raycastDirection, hit.normal);
+                case BlockType.Bedrock:
+                case BlockType.Dirt:
+                case BlockType.Magma:
+                case BlockType.BlueIce:
+                    // No reflections, stop here.
+                    breakLoop = true;
+                    break;
                 
-                // Move slightly away from the wall to avoid re-colliding with it.
-                raycastStart = hit.point + (hit.normal.normalized * 0.001f);
+                case BlockType.Mirror:
+                    // Change direction for next ray.
+                    raycastDirection = Vector3.Reflect(raycastDirection, hit.normal);
+                    
+                    // Move slightly away from the wall to avoid re-colliding with it.
+                    raycastStart = hit.point + (hit.normal.normalized * 0.001f);
+                    
+                    break;
                 
-                continue;
-            } else {
-                Debug.Log("ERROR: Unknown block type");
+                default:
+                    Debug.Log("ERROR: Unknown block type");
+                    breakLoop = true;
+                    break;
+            }
+            if (breakLoop) {
                 break;
             }
         }

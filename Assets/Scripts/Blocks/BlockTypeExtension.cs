@@ -15,11 +15,42 @@ namespace BlockTypeExtension {
                 case BlockType.Dirt:
                 case BlockType.Magma:
                 case BlockType.BlueIce:
+                case BlockType.TNT:
                     return true;
                 
                 default:
                     Debug.LogError("Unknown block type: " + blockType);
                     return true;
+            }
+        }
+
+        public static bool isExplodable(this BlockType blockType) {
+            switch (blockType) {
+                /// Custom chain explosion.
+                case BlockType.TNT:
+                    return true;
+                
+                /// Custom interaction.
+                case BlockType.Water:
+
+                /// Place-able blocks are explodable.
+                case BlockType.Glass:
+                case BlockType.Dirt:
+                case BlockType.Mirror:
+                    return true;
+
+                /// Towers aren't explodable.
+                case BlockType.Magma:
+                case BlockType.BlueIce:
+                    return false;
+                
+                /// Never destroyed.
+                case BlockType.Bedrock:
+                    return false;
+                
+                default:
+                    Debug.LogError("Unknown block type: " + blockType);
+                    return false;
             }
         }
     }

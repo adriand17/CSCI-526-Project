@@ -9,19 +9,6 @@ public enum WaterFlowDirection {
     Down
 }
 
-/**
-# Water Todo
-- [x] add a temperature value
-- [x] shed heat to adjacent water / non-water
-- [ ] add a a heating "tower" block
-- [ ] add a cooling "tower" block
-- [ ] add an "ice" block
-- [ ] transform to ice when too cold
-- [x] have laser increase temperature
-- [x] destroy water that's too hot
-
- */
-
 public class Particle : MonoBehaviour {
 
     public Block block { get; private set; }
@@ -52,6 +39,9 @@ public class Particle : MonoBehaviour {
                 break;
             case BlockType.BlueIce:
                 block = new BlueIceBlock(this);
+                break;
+            case BlockType.TNT:
+                block = new TNTBlock(this);
                 break;
             default:
                 Debug.LogError("Unknown block type: " + blockType);
@@ -119,6 +109,11 @@ public class Particle : MonoBehaviour {
                 _renderer.sprite = Resources.Load<Sprite>("BlueIce");
                 _renderer.color = Color.white;
                 break;
+
+            case BlockType.TNT:
+                _renderer.sprite = Resources.Load<Sprite>("TNT");
+                _renderer.color = Color.white;
+                break;  
 
             default:
                 Debug.LogError("Unhandled block type: " + type);

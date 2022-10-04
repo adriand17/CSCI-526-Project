@@ -23,17 +23,25 @@ public class GridManager : MonoBehaviour
     public BlockType buildType = BlockType.Dirt;
 
     public HashSet<Particle> particles = new HashSet<Particle>();
+    private Dictionary<Vector2, Tile> _tiles;
+    
+    /// [HEALTH SYSTEM]
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
     public int damage = 2;
     public int currentHealth;
 
-    private Dictionary<Vector2, Tile> _tiles;
-
-    [SerializeField] public int _buildingCount = 0;
-    [SerializeField] public int _buildingLimit = 3;
-    [SerializeField] public TextMeshProUGUI _buildingCountText;
-    [SerializeField] public TextMeshProUGUI _buidableBlocksText;
+    /// [BUILD LIMIT HUD]
+    private int _buildingCount = 0;
+    private int _buildingLimit = 300;
+    
+    /// Displays number of available building blocks.
+    [SerializeField] private TextMeshProUGUI _buildingCountText;
+    
+    /// Displays the "Buildable Blocks" label.
+    [SerializeField] private TextMeshProUGUI _buildableBlocksLabelText;
+    
+    /// Empty flashing animation.
     private Coroutine TextFlash;
 
     // Start is called before the first frame update
@@ -134,6 +142,9 @@ public class GridManager : MonoBehaviour
                         break;
                     case 6:
                         DrawParticle(BlockType.BlueIce, pos);
+                        break;
+                    case 7:
+                        DrawParticle(BlockType.TNT, pos);
                         break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
@@ -265,19 +276,19 @@ public class GridManager : MonoBehaviour
             /// Reset immediately if player can build.
             if (_buildingLimit - _buildingCount > 0) {
                 _buildingCountText.color = Color.white;
-                _buidableBlocksText.color = Color.white;
+                _buildableBlocksLabelText.color = Color.white;
                 yield break;
             }
 
             _buildingCountText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
-            _buidableBlocksText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
+            _buildableBlocksLabelText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
             counter += Time.deltaTime;
             yield return null;
         }
 
         /// Final color reset.
         _buildingCountText.color = Color.white;
-        _buidableBlocksText.color = Color.white;
+        _buildableBlocksLabelText.color = Color.white;
         yield return null;
     }
 

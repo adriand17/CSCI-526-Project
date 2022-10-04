@@ -19,12 +19,14 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
 
+    /// Type of block placed when player builds.
+    public BlockType buildType = BlockType.Dirt;
+
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
     public int damage = 2;
     public int currentHealth;
-    public int BuildingType = 1; // 1 for dirt, 2 for glass, 3 for mirror, default dirt 
 
     private Dictionary<Vector2, Tile> _tiles;
 
@@ -149,20 +151,16 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public void clickDirt()
-    {
-        Debug.Log("clickDirt");
-        BuildingType = 1;
+    public void clickDirt() {
+        buildType = BlockType.Dirt;
     }
 
-    public void clickGlass()
-    {
-        BuildingType = 2;
+    public void clickGlass() {
+        buildType = BlockType.Glass;
     }
 
-    public void clickMirror()
-    {
-        BuildingType = 3;
+    public void clickMirror() {
+        buildType = BlockType.Mirror;
     }
 
 
@@ -193,18 +191,7 @@ public class GridManager : MonoBehaviour
         } else {
             if (t.particle == null) {
                 _buildingCount++;
-                if (BuildingType == 1)
-                {
-                    DrawParticle(BlockType.Dirt, pos);
-                }
-                else if (BuildingType == 2)
-                {
-                    DrawParticle(BlockType.Glass, pos);
-                }
-                else if (BuildingType == 3)
-                {
-                    DrawParticle(BlockType.Mirror, pos);
-                }
+                DrawParticle(buildType, pos);
 
                 _buildingCountText.text = (_buildingLimit - _buildingCount).ToString();
 

@@ -10,7 +10,8 @@ public enum BlockType
     Mirror,  // 3: Mirror block.
     Glass,   // 4: Glass block.
     Magma,   // 5: Makes water hot.
-    BlueIce,  // Makes water cold.
+    BlueIce, // 6: Makes water cold.
+    TNT,     // 7: Explodes non-water blocks.
 }
 
 // TODO: TNT

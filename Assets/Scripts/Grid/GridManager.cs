@@ -31,9 +31,9 @@ public class GridManager : MonoBehaviour
     public int damage = 2;
     public int currentHealth;
 
-    [SerializeField] public int _buildingCount = 0;
-    [SerializeField] public int _buildingLimit = 3;
     /// [BUILD LIMIT HUD]
+    private int _buildingCount = 0;
+    private int _buildingLimit = 300;
     
     /// Displays number of available building blocks.
     [SerializeField] private TextMeshProUGUI _buildingCountText;

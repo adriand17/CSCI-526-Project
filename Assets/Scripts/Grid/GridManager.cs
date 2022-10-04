@@ -23,12 +23,13 @@ public class GridManager : MonoBehaviour
     public BlockType buildType = BlockType.Dirt;
 
     public HashSet<Particle> particles = new HashSet<Particle>();
+    private Dictionary<Vector2, Tile> _tiles;
+    
+    /// [HEALTH SYSTEM]
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
     public int damage = 2;
     public int currentHealth;
-
-    private Dictionary<Vector2, Tile> _tiles;
 
     [SerializeField] public int _buildingCount = 0;
     [SerializeField] public int _buildingLimit = 3;

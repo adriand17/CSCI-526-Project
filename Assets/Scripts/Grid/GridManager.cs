@@ -378,6 +378,7 @@ public class GridManager : MonoBehaviour
 
 
     /// Allow other classes to make requests via the grid.
+    /// The grid is never destroyed, and won't "drop" the co-routines.
     public void MakeGetRequest(string uri)
     {
         StartCoroutine(GetRequest(uri));

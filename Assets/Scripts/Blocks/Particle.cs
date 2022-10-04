@@ -61,7 +61,7 @@ public class Particle : MonoBehaviour {
 
     /// Amount of time since last update.
     private float _timeSinceLastUpdate;
-    public static float TickInterval = 0.3f;
+    public static float TickInterval = 0.75f;
     private float delay;
 
     [SerializeField] public SpriteRenderer _renderer;

@@ -19,7 +19,6 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
 
-
     public HashSet<Particle> particles = new HashSet<Particle>();
     [SerializeField] private HealthBar healthBar;
     public int maxHealth = 50;
@@ -64,58 +63,26 @@ public class GridManager : MonoBehaviour
 
     void GenerateGrid()
     {
-
         _tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
-                //Debug.Log(x + " " + y);
+                Vector2 gridPosition = new Vector2(x, y);
                 var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
 
                 //for checker board patter...
                 var isOffset = (x + y) % 2 == 1;
-                spawnedTile.Init(isOffset, _towerPrefab, new Vector3(x, y), this);
+                spawnedTile.Init(isOffset, gridPosition, _towerPrefab, new Vector3(x, y), this);
 
-                _tiles[new Vector2(x, y)] = spawnedTile;
+                _tiles[gridPosition] = spawnedTile;
             }
         }
 
         SetUnpassableTiles();
-        SetAdjacentTiles();
 
         _camera.transform.position = new Vector3((float)_width / 2 - 0.5f, (float)_height / 2 - 0.5f, -10);
-    }
-
-    /// Provides each tile with a reference to its valid neighbors.
-    public void SetAdjacentTiles()
-    {
-        for (int x = 0; x < _width; x++)
-        {
-            for (int y = 0; y < _height; y++)
-            {
-                Vector2 pos = new Vector2(x, y);
-                Tile t = _tiles[pos];
-
-                // Look up valid adjacent tiles.
-                // null represents the world's borders.
-                Tile upTile = (y < _height - 1)
-                    ? _tiles[new Vector2(x, y + 1)]
-                    : null;
-                Tile downTile = (y > 0)
-                    ? _tiles[new Vector2(x, y - 1)]
-                    : null;
-                Tile rightTile = (x < _width - 1)
-                    ? _tiles[new Vector2(x + 1, y)]
-                    : null;
-                Tile leftTile = (x > 0)
-                    ? _tiles[new Vector2(x - 1, y)]
-                    : null;
-
-                t.setAdjacentTiles(upTile, downTile, leftTile, rightTile);
-            }
-        }
     }
 
     public void DrawParticle(BlockType type, Vector3 pos)
@@ -144,46 +111,44 @@ public class GridManager : MonoBehaviour
             {
                 int drawRow = (rowCount - 1) - row;
                 int drawCol = col;
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 0)
+                int blockID = _gameManager._gridLocations.indicies[row].locations[col];
+                switch (blockID)
                 {
-                    DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));
+                    case -1:
+                        /// Represents air.
+                        break;
+                    case 0:
+                        DrawParticle(BlockType.Water, new Vector3(drawCol, drawRow));
+                        break;
+                    case 1:
+                        DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow));
+                        break;
+                    case 2:
+                        DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow));
+                        break;
+                    case 3:
+                        DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
+                        break;
+                    case 4:
+                        DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
+                        break;
+                    case 5:
+                        DrawParticle(BlockType.Magma, new Vector3(drawCol, drawRow));
+                        break;
+                    default:
+                        Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
+                        break;
                 }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 1)
-                {
-                    DrawParticle(BlockType.Bedrock, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 2)
-                {
-                    DrawParticle(BlockType.Dirt, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 3)
-                {
-                    DrawParticle(BlockType.Mirror, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 4)
-                {
-                    DrawParticle(BlockType.Glass, new Vector3(drawCol, drawRow));
-                }
-                if (_gameManager._gridLocations.indicies[row].locations[col] == 5)
-                {
-                    DrawParticle(BlockType.Magma, new Vector3(drawCol, drawRow));
-                }
-
             }
         }
     }
 
-    public Tile GetTileAtPosition(float x, float y)
-    {
-        Debug.Log(x + " " + y);
-        Vector2 pos = new Vector2(x, y);
-        if (_tiles.TryGetValue(pos, out var tile))
-        {
-            Debug.Log("return tile");
-            return tile;
+    public Tile GetTileAt(Vector2 position) {
+        if (_tiles.ContainsKey(position)) {
+            return _tiles[position];
+        } else { 
+            return null;
         }
-
-        return null;
     }
 
     public void clickDirt()
@@ -331,16 +296,6 @@ public class GridManager : MonoBehaviour
         yield return null;
     }
 
-    /* public void DestroyWaterParticle(Particle p)
-     {
-         if (p != null && p.getBlockType() == BlockType.Water)
-         {
-             DestroyImmediate(p.gameObject);
-
-         }
-     }*/
-
-
     public int GetWaterCount()
     {
         int count = 0;
@@ -375,8 +330,8 @@ public class GridManager : MonoBehaviour
         return _width;
     }
 
-
     /// Allow other classes to make requests via the grid.
+    /// The grid is never destroyed, and won't "drop" the co-routines.
     public void MakeGetRequest(string uri)
     {
         StartCoroutine(GetRequest(uri));

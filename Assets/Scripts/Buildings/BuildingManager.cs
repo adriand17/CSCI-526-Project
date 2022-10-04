@@ -19,14 +19,6 @@ public class BuildingManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            //grid.SetValue(Grid.GetMouseWorldPosition(), 56);
-            //var spawnedTower = Instantiate(_towerPrefab);
-            //Tile selectedTile =  gridManager.GetTileAtPosition(Input.mousePosition.x, Input.mousePosition.y);
-            //selectedTile.SetBuilding(spawnedTower); 
-
-        }
     }
 
 

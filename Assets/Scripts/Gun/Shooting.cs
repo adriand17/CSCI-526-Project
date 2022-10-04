@@ -19,9 +19,6 @@ public class Shooting : MonoBehaviour {
     // Maximum number of times laser can bounce.
     private static int maxReflections = 3;
     
-    // Whether the laser is currently being fired.
-    private bool laserIsFiring = false;
-    
     /// How often to apply heat.
     private static float laserHeatInterval = 0.1f;
     private float timeSinceHeat = 0f;

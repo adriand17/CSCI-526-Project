@@ -14,7 +14,7 @@ namespace BlockTypeExtension {
                 case BlockType.Mirror:
                 case BlockType.Dirt:
                 case BlockType.Magma:
-                case BlockType.Cooler:
+                case BlockType.BlueIce:
                     return true;
                 
                 default:

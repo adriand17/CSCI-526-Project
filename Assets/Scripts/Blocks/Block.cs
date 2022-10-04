@@ -28,9 +28,9 @@ public class GlassBlock: Block {
     }
 }
 
-public class CoolerBlock: Block {
+public class BlueIceBlock: Block {
 
-    public CoolerBlock(Particle particle): base(BlockType.Cooler, particle) {
+    public BlueIceBlock(Particle particle): base(BlockType.BlueIce, particle) {
     }
 
     public override void Tick() {

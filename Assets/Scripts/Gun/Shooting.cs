@@ -22,9 +22,12 @@ public class Shooting : MonoBehaviour {
     public static int TempLaser = -2;
     private LaserStatus laserStatus;
     
+    public void setLaserStatus(LaserStatus status) {
+        this.laserStatus = status;
+    }
+
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
-        laserStatus = new LaserStatus();
     }
 
     void Update() {

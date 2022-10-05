@@ -25,14 +25,12 @@ public class ProjectileTowerLaser : MonoBehaviour
         Vector3 direction = (targetPosition - transform.position).normalized;
 
         float moveSpeed = 30f;
-
+        float angle = GetAngleFromVector(direction);
+        transform.eulerAngles = new Vector3(0, 0, angle);
         transform.position += direction * moveSpeed * Time.deltaTime;
 
         float destroySelfDistance = 1f;
 
-
-        float angle = GetAngleFromVector(direction);
-        transform.eulerAngles = new Vector3(0, 0, angle);
         if (Vector3.Distance(transform.position, targetPosition) < destroySelfDistance)
         {
             Destroy(gameObject);
@@ -43,7 +41,7 @@ public class ProjectileTowerLaser : MonoBehaviour
     {
         dir = dir.normalized;
         float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        if (n < 0) n += 350;
+        if (n < 0) n += 360;
         return n;
     }
 

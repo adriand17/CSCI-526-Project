@@ -6,12 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/InstructionOverlay.unity
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/New Features/InstructionOverlay.unity
     guid: 2db82d994e4824bbf8e0e806aa8db3c3
-  - enabled: 1
-    path: Assets/Scenes/Main Game Scene.unity
+  - enabled: 0
+    path: Assets/Scenes/New Features/Main Game Scene.unity
     guid: dd8b888e1fde0994bac12a4f141fc6cd
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Title Screen.unity
+    guid: 75b2986fe6c1d44998f83f337a66399d
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL0-Blocks.unity
+    guid: c81b56af5822b49b2bc477cc7429eb2a
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL0-Shooting.unity
+    guid: bf0d4dcbc6a584cb883f69617e1fc58c
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL1.unity
+    guid: 9018a55ee59cc46b2a9f752e8e8f2666
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL2.unity
+    guid: cef2faceee5ac4135a6852a46a227b39
   m_configObjects: {}

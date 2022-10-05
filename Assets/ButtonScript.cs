@@ -17,7 +17,6 @@ public class ButtonScript : MonoBehaviour
         }
         gameObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ButtonClicked);
         gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>(Type.ToString());
-        gameObject.GetComponentInChildren<TextMeshProUGUI>().text = Type.ToString();
     }
 
     public void ButtonClicked()

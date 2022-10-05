@@ -9,15 +9,15 @@ using UnityEngine.UI;
 public class GridManager : MonoBehaviour
 {
     [SerializeField] public GameManager _gameManager;
+    [SerializeField] public TowerManager _towerManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
-    [SerializeField] private BaseTower _towerPrefab;
     [SerializeField] private Particle _particlePrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
-    [SerializeField] private BuildingManager buildingManager;
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
+ 
 
 
     public HashSet<Particle> particles = new HashSet<Particle>();
@@ -76,7 +76,7 @@ public class GridManager : MonoBehaviour
 
                 //for checker board patter...
                 var isOffset = (x + y) % 2 == 1;
-                spawnedTile.Init(isOffset, _towerPrefab, new Vector3(x, y), this);
+                spawnedTile.Init(isOffset, new Vector3(x, y), this);
 
                 _tiles[new Vector2(x, y)] = spawnedTile;
             }
@@ -175,11 +175,11 @@ public class GridManager : MonoBehaviour
 
     public Tile GetTileAtPosition(float x, float y)
     {
-        Debug.Log(x + " " + y);
+        //Debug.Log(x + " " + y);
         Vector2 pos = new Vector2(x, y);
         if (_tiles.TryGetValue(pos, out var tile))
         {
-            Debug.Log("return tile");
+           // Debug.Log("return tile");
             return tile;
         }
 
@@ -263,24 +263,52 @@ public class GridManager : MonoBehaviour
         }
     }
 
-    public Tile[,] setInRangeTiles(Vector3 position, int range)
+
+    public bool CanAddTowerToTile(Vector3 pos)
     {
-        var length = 2 * range + 1;
-       Tile[,] inRangeTiles = new Tile[length, length];
-       for (int x = (int)position.x - range; x < (int)position.x + range; x++)
+        Tile t = _tiles[pos];
+        Debug.Log("Can I add tower here?");
+        // if the existing building count excess the limit and player want to add budling on the pos
+        if(t.particle == null)
         {
-            for (int y = (int)position.y - range; y < (int)position.y + range; y++)
-            {
-                Tile t = GetTileAtPosition(x, y);
-                
-            }
+            _towerManager.BuildTowerOnTile(t);
+            return true;
         }
 
+        return false;
+    }
 
+    public List<Tile> GetTowerTiles(Vector3 position, int range)
+    {
+       List<Tile> inRangeTiles = new List<Tile>();
+       int posx = (int)position.x;
+       int posy = (int)position.y;
+        Debug.Log("(" + posx + ", " + posy + ")");
+       for(int r = 1; r < range + 1; r++)
+       {
+            Debug.Log("Checking range:  " + r);
+            for (int x = posx - r; x < posx + r + 1; x++)
+            {
+                for (int y = posy - r; y < posy + r + 1; y++)
+                {
+                   // Debug.Log("trying: " +  x + ", " + y);
+                    if((((posx + r) == x) || ((posx - r) == x)) ||
+                            (((posy + r) == y) || ((posy - r) == y)))
+                    {
+                        Debug.Log("Setting at: " + x + ", " + y);
+                        Tile t = GetTileAtPosition(x, y);
+                        if(t != null)
+                        {
+                            inRangeTiles.Add(t);
+                        }
+                        
+                    }
+                }
+            }
 
+        }
 
-
-        return null;
+        return inRangeTiles;
     }
 
     public void ResetGrid()
@@ -326,6 +354,12 @@ public class GridManager : MonoBehaviour
 
             }
         }
+    }
+
+    public void DestoryWateratTile(Tile t)
+    {
+        particles.Remove(t.particle);
+        DestroyImmediate(t.particle.gameObject);
     }
 
 

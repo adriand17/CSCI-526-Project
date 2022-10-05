@@ -13,6 +13,7 @@ public class EnergyBar : MonoBehaviour
     }
 
     public void SetEnergy(int energy){
+        Debug.Log("AAA "+ energy);
         slider.value = energy;
     }
 

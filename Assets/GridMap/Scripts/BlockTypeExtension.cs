@@ -13,7 +13,7 @@ namespace BlockTypeExtension {
                 case BlockType.Bedrock:
                 case BlockType.Mirror:
                 case BlockType.Dirt:
-                case BlockType.Heater:
+                case BlockType.Magma:
                 case BlockType.Cooler:
                     return true;
                 

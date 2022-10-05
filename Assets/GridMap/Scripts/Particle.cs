@@ -108,7 +108,7 @@ public class Particle : MonoBehaviour{
                 _renderer.color = Color.white;
                 break;
 
-            case BlockType.Heater:
+            case BlockType.Magma:
                 _renderer.sprite = Resources.Load<Sprite>("Magma");
                 _renderer.color = Color.white;
                 break;
@@ -303,6 +303,10 @@ public class Particle : MonoBehaviour{
         }
 
         ShowWaterHeat();
+    }
+
+    private void WaterCheckTowers() { 
+        // TODO: check heater and cooler towers.
     }
 
     public void HeatWater(int tempChange) {

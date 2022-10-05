@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] public GameManager _gameManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
     [SerializeField] private BaseTower _towerPrefab;
@@ -20,7 +19,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] private GameObject _GameOverText;
 
     /// Type of block placed when player builds.
-    public BlockType buildType = BlockType.Dirt;
+    protected BlockType buildType = BlockType.Dirt;
 
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
@@ -106,6 +105,7 @@ public class GridManager : MonoBehaviour
     // Create inital level geometry.
     private void AddLevelBlocks()
     {
+        GameManager _gameManager = GameManager.Instance;
         int rowCount = _gameManager._gridLocations.indicies.Count;
         int colCount;
         for (int row = 0; row < rowCount; row++)
@@ -160,18 +160,6 @@ public class GridManager : MonoBehaviour
         } else { 
             return null;
         }
-    }
-
-    public void clickDirt() {
-        buildType = BlockType.Dirt;
-    }
-
-    public void clickGlass() {
-        buildType = BlockType.Glass;
-    }
-
-    public void clickMirror() {
-        buildType = BlockType.Mirror;
     }
 
 
@@ -356,5 +344,10 @@ public class GridManager : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public void SetBlockBuildType(BlockType type)
+    {
+        buildType = type;
     }
 }

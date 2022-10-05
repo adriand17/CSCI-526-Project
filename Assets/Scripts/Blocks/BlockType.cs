@@ -12,6 +12,7 @@ public enum BlockType
     Magma,   // 5: Makes water hot.
     BlueIce, // 6: Makes water cold.
     TNT,     // 7: Explodes non-water blocks.
+    None
 }
 
 // TODO: TNT

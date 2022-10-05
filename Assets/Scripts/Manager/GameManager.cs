@@ -10,8 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    
+    private static GameManager _instance;
+    [Header("Gun Initializations")]
     [SerializeField] private GameObject _gunObject;
     [SerializeField] private GameObject _camera;
     
@@ -20,19 +20,27 @@ public class GameManager : MonoBehaviour
     [SerializeField]public List<TextAsset> _textJson = new List<TextAsset>();
     [SerializeField] public JSONParser _parser;
     [SerializeField] public GameObject _WinScreenText;
-
-    public List<Tile> _spawnTiles;
+    private List<Tile> _spawnTiles;
     public JSONParser.GridLocationsArray _dropLocations;
     public JSONParser.GridLocationsArray _gridLocations;
+    
+    [Header("Reference Managers")]
     public GridManager _gridManager;
     public GunManager _gunManager;
     public TextMeshProUGUI _WaveText;
 
+
+    [Header("Block Selection Buttons")] [SerializeField]
+    public List<GameObject> _blockSelectionButtons;
     private int _wave = 0;
     private int _totalWaves;
-    
+
     void Awake() {
-        Instance = this;
+        _instance = this;
+        foreach (GameObject button in _blockSelectionButtons)
+        {
+            button.GetComponent<ButtonScript>().InitializeButton();
+        }
     }
 
     // Start is called before the first frame update
@@ -143,6 +151,17 @@ public class GameManager : MonoBehaviour
 
         }
 
+    }
+    public static GameManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                Debug.LogError("Instance Is Null");
+            }
+            return _instance;
+        }
     }
 }
 

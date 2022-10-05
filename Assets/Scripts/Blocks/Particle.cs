@@ -113,8 +113,8 @@ public class Particle : MonoBehaviour {
             case BlockType.TNT:
                 _renderer.sprite = Resources.Load<Sprite>("TNT");
                 _renderer.color = Color.white;
-                break;  
-
+                break;
+            
             default:
                 Debug.LogError("Unhandled block type: " + type);
                 break;

@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     }
 
     void handleGun(){
+        _gunManager.buildGun();
         _gunManager.handleGunPosition();
     }
     

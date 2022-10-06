@@ -6,8 +6,25 @@ public class TutorialManager : MonoBehaviour
 {
     public GameObject[] popUps;
     private int popUpIndex;
-    
+
+    [SerializeField]
+    private GameObject nextWaveButton;
+
+    [SerializeField]
+    private GameObject dirtButton;
+
+    [SerializeField]
+    private GameObject glassButton;
+
+    [SerializeField]
+    private GameObject mirrorButton;
+
+
+    [SerializeField]
+    private bool showTutorial;
+
     void update(){
+        if (!showTutorial) return;
         for (int i = 0; i < popUps.Length; i++){
             if(i == popUpIndex){
                 popUps[popUpIndex].SetActive(true);
@@ -25,6 +42,14 @@ public class TutorialManager : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Mouse0)){
                 popUpIndex++;
             }
+        }
+
+
+        // add logic if on final index -> reset the
+        if (popUpIndex >= popUps.Length) {
+            showTutorial = false;
+     
+
         }
     }
 }

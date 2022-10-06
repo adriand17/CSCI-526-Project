@@ -5,36 +5,30 @@ using UnityEngine;
 public class TutorialManager : MonoBehaviour
 {
     public GameObject[] popUps;
-    private int popUpIndex;
 
-    [SerializeField]
-    private GameObject nextWaveButton;
-
-    [SerializeField]
-    private GameObject dirtButton;
-
-    [SerializeField]
-    private GameObject glassButton;
-
-    [SerializeField]
-    private GameObject mirrorButton;
+    static private int popUpIndex = 0;
 
 
-    [SerializeField]
-    private bool showTutorial;
+    //[SerializeField] GameObject nextWaveButton;
 
-    void update(){
+    //[SerializeField] GameObject dirtButton;
+
+    //[SerializeField] GameObject glassButton;
+
+    //[SerializeField] GameObject mirrorButton;
+
+    private static bool showTutorial = true;
+
+    void Update(){
+        Debug.Log("Tutorial Manager was called!" + popUpIndex + " length-  " + popUps.Length);
         if (!showTutorial) return;
         for (int i = 0; i < popUps.Length; i++){
-            if(i == popUpIndex){
-                popUps[popUpIndex].SetActive(true);
-            }
-            else{
-                popUps[popUpIndex].SetActive(false);
-            }
+            popUps[popUpIndex].SetActive(i == popUpIndex);
         }
+        Time.timeScale = 0f;
         if(popUpIndex == 0){//Tutorial has just started
-            if(Input.GetKeyDown(KeyCode.Space)){
+            Debug.Log("in here - !" + popUpIndex);
+            if (Input.GetKeyDown(KeyCode.Space)){
                 popUpIndex++;
             }
         }
@@ -44,12 +38,18 @@ public class TutorialManager : MonoBehaviour
             }
         }
 
+        if (popUpIndex == 2)
+        {//Tutorial has just started
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                popUpIndex++;
+            }
+        }
+
 
         // add logic if on final index -> reset the
         if (popUpIndex >= popUps.Length) {
             showTutorial = false;
-     
-
         }
     }
 }

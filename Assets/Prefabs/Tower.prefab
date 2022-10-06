@@ -433,6 +433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectile: {fileID: 6540814203598458434, guid: 7c8dd64b1ee317a4e89976fb9e01b679, type: 3}
   cam: {fileID: 0}
+  eb: {fileID: 8493773034162214488}
   towerPosition: {x: 0, y: 0, z: 0}
 --- !u!61 &-5012420754392572908
 BoxCollider2D:

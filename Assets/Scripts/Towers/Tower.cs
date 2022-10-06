@@ -8,6 +8,8 @@ public class Tower : MonoBehaviour
     private Vector3 projectileShootFromPosition;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Camera cam;
+    
+
     public Vector3 towerPosition;
     private Tile towerTile;
     private int range;
@@ -15,6 +17,8 @@ public class Tower : MonoBehaviour
     private GridManager gridManager;
     private float shootTimerMax;
     private float shootTimer;
+    private float energyMax = 100f;
+    private float energy = 0f;
 
 
     public void Init(Tile t, GridManager gridManager)
@@ -59,6 +63,8 @@ public class Tower : MonoBehaviour
 
     }
 
+   
+
     
 
     public void CheckTilesInRange()
@@ -73,6 +79,38 @@ public class Tower : MonoBehaviour
         }
       
    
+    }
+
+    public float GetEnergy()
+    {
+        return this.energy;
+    }
+
+
+    public float GetEnergyPercentage()
+    {
+        return energy / energyMax;
+    }
+
+
+    public void UseEnergy(float used)
+    {
+        if (energy < 0)
+        {
+            energy = 0;
+        }
+
+        Debug.Log("energy level: " + this.energy);
+    }
+
+    public void IncreaseEnergy(float laser_energy)
+    {
+        this.energy += laser_energy;
+        if(energy > energyMax)
+        {
+            energy = energyMax;
+        }
+        Debug.Log("energy level: " + this.energy);
     }
 
 

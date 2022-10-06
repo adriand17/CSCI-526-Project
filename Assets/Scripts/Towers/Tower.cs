@@ -138,13 +138,10 @@ public class Tower : MonoBehaviour
 
     public void ShootWater(Tile t)
     {
-        //Vector3 pos = cam.ScreenToWorldPoint(Input.mousePosition);
-        //pos.z = -1;
-        
+
         ProjectileTowerLaser.Create(projectileShootFromPosition, t.location, projectile);
         gridManager.DestoryWateratTile(t);
 
-        //destory the water
     }
 
   

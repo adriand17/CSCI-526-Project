@@ -31,7 +31,7 @@ public class Tile : MonoBehaviour
 
     public bool Buildable => _isBuildable && Occupied == false;
 
-    public void Init(bool isOffset,  Vector3 location, GridManager gridManager)
+    public void Init(bool isOffset,  Vector2 gridPosition, GridManager gridManager)
     {
         _isBuildable = false;
         
@@ -39,7 +39,7 @@ public class Tile : MonoBehaviour
         baseColor = isOffset ? _offsetColor : _baseColor;
 
         this.gridPosition = gridPosition;
-        this.location = location;
+        this.location = new Vector3(gridPosition.x, gridPosition.y, -1);
         this._gridManager = gridManager;
     }
 
@@ -71,7 +71,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown() {
         // changeFlage is a check to see if a building can be placed on the location
-        changeFlage = _gridManager.CanAddBlockToTile(location);
+        //changeFlage = _gridManager.CanAddBlockToTile(location);
         _gridManager.CanAddTowerToTile(location);
         if (changeFlage)
         {
@@ -100,16 +100,7 @@ public class Tile : MonoBehaviour
 
     public void SetTower(Tower t)
     {
-        Debug.Log("setting building");
         tower = t;
-       /* var tower = Instantiate(_towerPrefab);
-        if (tower.OccupiedTile != null) tower.OccupiedTile.OccupiedTower = null;
-        Vector3 tPostion = new  Vector3(transform.position.x, transform.position.y, -1);
-        tower.transform.position = tPostion;
-        this.OccupiedTower = tower;
-        tower.OccupiedTile = this;*/
-
-
     }
 
     /// [TILE GRID COORDINATES]

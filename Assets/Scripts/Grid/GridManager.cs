@@ -217,8 +217,7 @@ public class GridManager : MonoBehaviour
 
     public bool CanAddTowerToTile(Vector3 pos)
     {
-        Tile t = _tiles[pos];
-        // if the existing building count excess the limit and player want to add budling on the pos
+        Tile t = GetTileAt(pos);
         if(t.particle == null)
         {
             _towerManager.BuildTowerOnTile(t);
@@ -242,7 +241,7 @@ public class GridManager : MonoBehaviour
                     if((((posx + r) == x) || ((posx - r) == x)) ||
                             (((posy + r) == y) || ((posy - r) == y)))
                     {
-                        Tile t = GetTileAtPosition(x, y);
+                        Tile t = GetTileAt(new Vector3(x, y));
                         if(t != null)
                         {
                             inRangeTiles.Add(t);

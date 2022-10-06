@@ -8,17 +8,22 @@ public class Tower : MonoBehaviour
     private Vector3 projectileShootFromPosition;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Camera cam;
+    [SerializeField] public EnergyBar eb;
     
 
     public Vector3 towerPosition;
+    public bool inEnergizedState = false;
     private Tile towerTile;
     private int range;
     private List<Tile> inRangeTiles;
     private GridManager gridManager;
+    private float energizedTimerMax;
+    private float engergizedTimer;
     private float shootTimerMax;
     private float shootTimer;
     private float energyMax = 100f;
     private float energy = 0f;
+    
 
 
     public void Init(Tile t, GridManager gridManager)
@@ -32,7 +37,6 @@ public class Tower : MonoBehaviour
         this.gridManager = gridManager;
 
         inRangeTiles = gridManager.GetTowerTiles(towerPosition, range);
-        Debug.Log(inRangeTiles.Count);
     }
     // Start is called before the first frame update
     void Start()
@@ -43,16 +47,30 @@ public class Tower : MonoBehaviour
 
     private void Awake()
     {
-        shootTimerMax = 0.5f;
+        shootTimerMax = 2f;
+        energizedTimerMax = 12f;
+        engergizedTimer = energizedTimerMax;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-  
-        
 
+
+        if (inEnergizedState)
+        {
+
+            engergizedTimer -= Time.deltaTime;
+            if (engergizedTimer <= 0f)
+            {
+                engergizedTimer = energizedTimerMax;
+                inEnergizedState = false;
+                shootTimerMax = 2f;
+                energy = 0;
+            }
+        }
+      
         shootTimer -= Time.deltaTime;
 
         if(shootTimer <= 0f)
@@ -100,17 +118,21 @@ public class Tower : MonoBehaviour
             energy = 0;
         }
 
-        Debug.Log("energy level: " + this.energy);
     }
 
     public void IncreaseEnergy(float laser_energy)
     {
         this.energy += laser_energy;
-        if(energy > energyMax)
+        if(energy >= energyMax)
         {
             energy = energyMax;
         }
-        Debug.Log("energy level: " + this.energy);
+
+        if(energy == energyMax)
+        {
+            inEnergizedState = true;
+            shootTimerMax = 0.5f;
+        }
     }
 
 

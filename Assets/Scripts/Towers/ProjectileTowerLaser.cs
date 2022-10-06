@@ -24,7 +24,7 @@ public class ProjectileTowerLaser : MonoBehaviour
     {
         Vector3 direction = (targetPosition - transform.position).normalized;
 
-        float moveSpeed = 30f;
+        float moveSpeed = 20f;
         float angle = GetAngleFromVector(direction);
         transform.eulerAngles = new Vector3(0, 0, angle);
         transform.position += direction * moveSpeed * Time.deltaTime;

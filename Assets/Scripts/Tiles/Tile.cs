@@ -31,7 +31,6 @@ public class Tile : MonoBehaviour
 
     public bool Buildable => _isBuildable && Occupied == false;
 
-
     public void Init(bool isOffset,  Vector3 location, GridManager gridManager)
     {
         _isBuildable = false;
@@ -109,6 +108,7 @@ public class Tile : MonoBehaviour
         tower.transform.position = tPostion;
         this.OccupiedTower = tower;
         tower.OccupiedTile = this;*/
+
 
     }
 

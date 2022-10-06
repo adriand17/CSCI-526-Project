@@ -29,7 +29,7 @@ public class TowerManager : MonoBehaviour
     public void BuildTowerOnTile(Tile t)
     {
         //Instantiate new tower and add to list
-        var tower = Instantiate(_laserTowerPf, new Vector3(t.location.x, t.location.y), Quaternion.identity);
+        var tower = Instantiate(_laserTowerPf, new Vector3(t.location.x, t.location.y,-2), Quaternion.identity);
         tower.Init(t, _gridManager);
         //Tile selectedTile =  gridManager.GetTileAtPosition(Input.mousePosition.x, Input.mousePosition.y);
         //selectedTile.SetBuilding(spawnedTower); 

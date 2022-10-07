@@ -118,7 +118,7 @@ public class Shooting : MonoBehaviour {
                 case BlockType.Water:
                     WaterBlock waterBlock = (WaterBlock)particle.block;
                     if (ChangeTemperature) {
-                        waterBlock.ChangeTemperature(TempLaser);
+                        waterBlock.ChangeTemperature(TempLaser, "laser");
                     }
                     breakLoop = true;
                     break;

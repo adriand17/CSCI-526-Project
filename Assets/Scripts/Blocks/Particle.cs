@@ -160,7 +160,7 @@ public class Particle : MonoBehaviour {
         }
     }
 
-    public void DeleteParticle() {
+    public void DeleteParticle(string cause, BlockType blockType) {
         if (getBlockType() == BlockType.Water) {
             // Log water position on death.
             int level = 0;

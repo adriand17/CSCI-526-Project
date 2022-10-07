@@ -20,7 +20,7 @@ public class MagmaBlock: Block {
                 return;
             }
             WaterBlock wb = (WaterBlock)p.block;
-            wb.ChangeTemperature(tempChange);
+            wb.ChangeTemperature(tempChange, "Magma");
         }
 
         /// Heat up adjacent water.

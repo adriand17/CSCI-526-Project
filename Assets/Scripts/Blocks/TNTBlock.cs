@@ -74,17 +74,17 @@ public class TNTBlock: Block {
                 case BlockType.Water:
                     WaterBlock waterBlock = (WaterBlock)p.block;
                     if (waterBlock.IsFrozen()) {
-                        p.DeleteParticle();
+                        p.DeleteParticle("explosion", getBlockType());
                     }
                     break;
 
                 default:
                     if (p.getBlockType().isExplodable()) {
-                        p.DeleteParticle();
+                        p.DeleteParticle("explosion", getBlockType());
                     }
                     break;
             }
         }
-        particle.DeleteParticle();
+        p.DeleteParticle("explosion", getBlockType());
     }
 }

@@ -68,7 +68,7 @@ public class WaterBlock: Block {
     public void ChangeTemperature(float tempChange, string cause) {
         temperature += tempChange;
         if (temperature >= tempVapor) {
-            particle.DeleteParticle(cause, getBlockType());
+            particle.DeleteParticle(cause, blockType);
             return;
         } else  if (temperature < tempMin) {
             /// Don't allow temperature to go below "absolute zero".

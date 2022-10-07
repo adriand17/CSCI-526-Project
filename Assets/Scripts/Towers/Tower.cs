@@ -8,7 +8,7 @@ public class Tower : MonoBehaviour
     private Vector3 projectileShootFromPosition;
     [SerializeField] private GameObject projectile;
     [SerializeField] private Camera cam;
-    [SerializeField] public EnergyBar eb;
+    [SerializeField] public TowerEnergyBar eb;
     
 
     public Vector3 towerPosition;

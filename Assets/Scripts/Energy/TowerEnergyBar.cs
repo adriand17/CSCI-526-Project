@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnergyBar : MonoBehaviour
+public class TowerEnergyBar : MonoBehaviour
 {
     [SerializeField] public Tower t;
     public void Setup(float energy)

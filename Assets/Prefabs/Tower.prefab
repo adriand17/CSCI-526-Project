@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6928138317719704967}
   - component: {fileID: 8493773034162214488}
   m_Layer: 0
-  m_Name: Energy Bar
+  m_Name: Tower Energy Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   cam: {fileID: 0}
   eb: {fileID: 8493773034162214488}
   towerPosition: {x: 0, y: 0, z: 0}
+  inEnergizedState: 0
 --- !u!61 &-5012420754392572908
 BoxCollider2D:
   m_ObjectHideFlags: 0

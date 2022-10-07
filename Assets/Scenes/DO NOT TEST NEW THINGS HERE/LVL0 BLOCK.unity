@@ -653,7 +653,7 @@ MonoBehaviour:
   _textJson:
   - {fileID: 4900000, guid: f7468a5d0b0d5c647a26c44dccbcf674, type: 3}
   - {fileID: 4900000, guid: 4e21efa4bb7d51748bf4285b205f1b2a, type: 3}
-  - {fileID: 4900000, guid: fb1f835487e6a5541a4a9f89b72b547a, type: 3}
+  - {fileID: 4900000, guid: 6afe38daf42cdac4491f5142f08892ef, type: 3}
   _parser: {fileID: 482687994}
   _WinScreenText: {fileID: 1235541180}
   _dropLocations:
@@ -935,7 +935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7e2665f5c114c41b674bed768344c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 7
+  Type: 8
 --- !u!1001 &832716693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1665,11 +1665,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8368217554290493993, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1091
+      value: 920.4
       objectReference: {fileID: 0}
     - target: {fileID: 8368217554290493993, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 563
+      value: 426
       objectReference: {fileID: 0}
     - target: {fileID: 8368217554290493993, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1701,11 +1701,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8368217554290493993, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -476.50494
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8368217554290493993, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -257.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8368217554290493993, guid: 8c0bad1eecb5c406a9e86249291b31e9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3047,7 +3047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7e2665f5c114c41b674bed768344c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  Type: 8
 --- !u!1 &2042705409
 GameObject:
   m_ObjectHideFlags: 0

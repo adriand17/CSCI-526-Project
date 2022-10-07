@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: " Hit  Space Bar  to shoot from\n                   laser!!"
+  m_text: " Hit  Space Bar  to shoot from\n                        laser !!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -426,11 +426,11 @@ RectTransform:
   m_Father: {fileID: 1371074781}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -313, y: -116}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 9, y: 126}
   m_SizeDelta: {x: 57.331116, y: 61.749207}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &71246481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1364,8 +1364,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.699997, y: -7.600006}
-  m_SizeDelta: {x: 54.5672, y: 44.5511}
+  m_AnchoredPosition: {x: 29, y: -21.2593}
+  m_SizeDelta: {x: 46.9787, y: 30.8918}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &511720235
 MonoBehaviour:
@@ -2182,10 +2182,10 @@ RectTransform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -165.41724, y: -61.21527}
-  m_SizeDelta: {x: -358.888, y: -348.8229}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 24, y: 98}
+  m_SizeDelta: {x: 410.5753, y: 100.4157}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &804594636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2394,7 +2394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.5141, y: -0.00033283}
+  m_AnchoredPosition: {x: 12, y: -5}
   m_SizeDelta: {x: 303.9859, y: 122.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &838123674
@@ -2417,7 +2417,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "  \"Next Wave\" to start\n spawning \nwater  drops !!"
+  m_text: '   "Next Wave" to start spawning water drops !!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2722,10 +2722,10 @@ RectTransform:
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -180.7, y: -87.3}
-  m_SizeDelta: {x: -394.8774, y: -338.1915}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 23, y: 89.366486}
+  m_SizeDelta: {x: 322.1237, y: 101.6729}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &961717032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2799,7 +2799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.356, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -25, y: 9}
+  m_AnchoredPosition: {x: -18, y: 9}
   m_SizeDelta: {x: 56.423, y: 48.6658}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1031425640
@@ -3248,11 +3248,11 @@ RectTransform:
   m_Father: {fileID: 1371074781}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -383, y: -140}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -130, y: 108}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1184003032
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4966,11 +4966,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popUps:
-  - {fileID: 804594634}
   - {fileID: 1956830471}
   - {fileID: 704472291}
   - {fileID: 961717030}
+  - {fileID: 804594634}
   - {fileID: 1058040080}
+  waitTime: 2
 --- !u!1 &1956830471
 GameObject:
   m_ObjectHideFlags: 0

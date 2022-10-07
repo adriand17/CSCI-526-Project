@@ -141,13 +141,12 @@ public class Shooting : MonoBehaviour {
                     // Change direction for next ray.
                     raycastDirection = Vector3.Reflect(raycastDirection, hit.normal);
                     
-                    // Move slightly away from the wall to avoid re-colliding with it.
-                    raycastStart = hit.point + (hit.normal.normalized * 0.001f);
 
+                    // Move slightly away from the wall to avoid re-colliding with it.
+                    Vector3 start = hit.point + (hit.normal.normalized * 0.001f);
                     //Avoid z position lost.
-                    //Vector3 start = hit.point + (hit.normal.normalized * 0.001f);
-                    //start.z = raycastStart.z;
-                    //raycastStart = start;
+                    start.z = raycastStart.z;
+                    raycastStart = start;
                     break;
                 
                 default:

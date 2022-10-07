@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d19417c3-65cc-4ff3-9595-48c67da2e1fc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GridMap/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GridMap/Scripts/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ButtonScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ButtonScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/GridMap/Scripts/GameManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ButtonScript.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.burst@1.6.6/Editor/BurstDisassembler.Core.ARM64.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Canvas/UISystemProfilerAddMarkerWithNullObjectDoesNotCrash.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/612a2c65aaf843d698f8d38b2ad7654a469200/54/86658277/List`1.cs" root0="SKIP_HIGHLIGHTING" />
@@ -81,6 +81,8 @@
       <workItem from="1664419713990" duration="235000" />
       <workItem from="1664420036696" duration="44000" />
       <workItem from="1664572952706" duration="123000" />
+      <workItem from="1664661698100" duration="729000" />
+      <workItem from="1664927380486" duration="4619000" />
     </task>
     <servers />
   </component>

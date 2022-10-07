@@ -14,8 +14,8 @@ public class GunManager : MonoBehaviour
     public void buildGun() {
         _gunObject = Instantiate(_gunPrefab, new Vector3(0, 0), Quaternion.identity);
         shootingScript = _gunObject.GetComponent<Shooting>();
-        laserStatus = new LaserStatus();
-        shootingScript.setLaserStatus(laserStatus);
+        //LaserStatus laserStatus = new LaserStatus();
+        //shootingScript.setLaserStatus(laserStatus);
         //buildGunBar();
     }
 
@@ -43,8 +43,7 @@ public class GunManager : MonoBehaviour
     // }
 
     void Update() {
-        int level = laserStatus.getCurrentReflectLevel();
-        Debug.Log(level);
+        int level = shootingScript.getLaserStatus().getCurrentReflectLevel();
         _gunBarPrefab.SetEnergy(level);
     }
 

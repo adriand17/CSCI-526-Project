@@ -8,15 +8,17 @@ using UnityEngine.UI;
 
 public class GridManager : MonoBehaviour
 {
+
+    [SerializeField] public GameManager _gameManager;
+    [SerializeField] public TowerManager _towerManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
-    [SerializeField] private BaseTower _towerPrefab;
     [SerializeField] private Particle _particlePrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
-    [SerializeField] private BuildingManager buildingManager;
     [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
+ 
 
     /// Type of block placed when player builds.
     protected BlockType buildType = BlockType.Dirt;
@@ -82,7 +84,7 @@ public class GridManager : MonoBehaviour
 
                 //for checker board patter...
                 var isOffset = (x + y) % 2 == 1;
-                spawnedTile.Init(isOffset, gridPosition, _towerPrefab, new Vector3(x, y), this);
+                spawnedTile.Init(isOffset, new Vector3(x, y), this);
 
                 _tiles[gridPosition] = spawnedTile;
             }
@@ -163,6 +165,7 @@ public class GridManager : MonoBehaviour
         else
         {
             return null;
+
         }
     }
 
@@ -248,6 +251,48 @@ public class GridManager : MonoBehaviour
         }
     }
 
+
+    public bool CanAddTowerToTile(Vector3 pos)
+    {
+        Tile t = GetTileAt(pos);
+        if(t.particle == null)
+        {
+            _towerManager.BuildTowerOnTile(t);
+            return true;
+        }
+
+        return false;
+    }
+
+    public List<Tile> GetTowerTiles(Vector3 position, int range)
+    {
+       List<Tile> inRangeTiles = new List<Tile>();
+       int posx = (int)position.x;
+       int posy = (int)position.y;
+       for(int r = 1; r < range + 1; r++)
+       {
+            for (int x = posx - r; x < posx + r + 1; x++)
+            {
+                for (int y = posy - r; y < posy + r + 1; y++)
+                {
+                    if((((posx + r) == x) || ((posx - r) == x)) ||
+                            (((posy + r) == y) || ((posy - r) == y)))
+                    {
+                        Tile t = GetTileAt(new Vector3(x, y));
+                        if(t != null)
+                        {
+                            inRangeTiles.Add(t);
+                        }
+                        
+                    }
+                }
+            }
+
+        }
+
+        return inRangeTiles;
+    }
+
     public void ResetGrid()
     {
         /// TODO
@@ -288,6 +333,12 @@ public class GridManager : MonoBehaviour
 
             }
         }
+    }
+  
+    public void DestoryWateratTile(Tile t)
+    {
+        particles.Remove(t.particle);
+        DestroyImmediate(t.particle.gameObject);
     }
 
     /// How long to play pulse animation.

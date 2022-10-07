@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public class TutorialManager : MonoBehaviour
 
     static private int popUpIndex = 0;
 
-    public float waitTime = 2f;
+    public float waitTime = 1f;
 
     void Update()
     {
@@ -22,58 +21,61 @@ public class TutorialManager : MonoBehaviour
             return;
         }
 
+        int pre = popUpIndex - 1;
+
+        // particle selection
         if (popUpIndex == 0)
-        {//Tutorial has just started
+        {
             popUps[popUpIndex].SetActive(true);
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                popUps[popUpIndex].SetActive(false);
                 popUpIndex++;
-                waitTime = 2f;
+                waitTime = 1f;
             }
         }
+
+        // place tile 
         else if (popUpIndex == 1)
         {
+            popUps[pre].SetActive(false);
             popUps[popUpIndex].SetActive(true);
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                popUps[popUpIndex].SetActive(false);
                 popUpIndex++;
                 waitTime = 4f;
             }
         }
+
+        // spawn next wave
         else if (popUpIndex == 2)
         {
+            popUps[pre].SetActive(false);
             popUps[popUpIndex].SetActive(true);
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                popUps[popUpIndex].SetActive(false);
                 popUpIndex++;
-                waitTime = 4f;
+                waitTime = 3f;
             }
         }
+
+        // use laser
         else if (popUpIndex == 3)
         {
+            popUps[pre].SetActive(false);
             popUps[popUpIndex].SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                popUps[popUpIndex].SetActive(false);
                 popUpIndex++;
                 waitTime = 4f;
             }
         }
+
+        // start game
         else if (popUpIndex == 4)
         {
+            popUps[pre].SetActive(false);
             popUps[popUpIndex].SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                popUps[popUpIndex].SetActive(false);
-                popUpIndex++;
-                SceneManager.LoadScene("MENU");
-            }
         }
-
-
 
     }
 }

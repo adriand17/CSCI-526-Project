@@ -26,11 +26,20 @@ public class Shooting : MonoBehaviour {
     private float timeSinceHeat = 0f;
 
     public static int TempLaser = -2;
-    private LaserStatus laserStatus;
+    private LaserStatus laserStatus = new LaserStatus();
+
     
+    public void setLaserStatus(LaserStatus status) {
+        this.laserStatus = status;
+    }
+
+    public LaserStatus getLaserStatus()
+    {
+        return laserStatus;
+    }
+
     void Start() {
         laserRenderer = GetComponent<LineRenderer>();
-        laserStatus = new LaserStatus();
     }
 
     void Update() {
@@ -50,6 +59,7 @@ public class Shooting : MonoBehaviour {
             laserStatus.isFiring = false;
             laserRenderer.positionCount = 0;
         } 
+
         //If user keep press fire and no energy, do nothing.
         if (!laserStatus.canFire() && laserStatus.isFiring) {
             laserRenderer.positionCount = 0;

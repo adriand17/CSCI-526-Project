@@ -10,7 +10,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] public TowerEnergyBar eb;
     
-
     public Vector3 towerPosition;
     public bool inEnergizedState = false;
     private Tile towerTile;
@@ -24,11 +23,8 @@ public class Tower : MonoBehaviour
     private float shootTimer;
     private float energyMax = 100f;
     private float energy = 0f;
-    
 
-
-    public void Init(Tile t, GridManager gridManager, TowerManager towerMan)
-    {
+    public void Init(Tile t, GridManager gridManager, TowerManager towerMan) {
         range = 2;
         int rangeArrayLength = 2 * range + 1;
         towerTile = t;
@@ -40,28 +36,20 @@ public class Tower : MonoBehaviour
 
         inRangeTiles = gridManager.GetTowerTiles(towerPosition, range);
     }
+    
     // Start is called before the first frame update
-    void Start()
-    {
-
-        
+    void Start() {
     }
 
-    private void Awake()
-    {
+    private void Awake() {
         shootTimerMax = 2f;
         energizedTimerMax = 12f;
         engergizedTimer = energizedTimerMax;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-
-
-        if (inEnergizedState)
-        {
+    void Update() {
+        if (inEnergizedState) {
 
             engergizedTimer -= Time.deltaTime;
             if (engergizedTimer <= 0f)
@@ -75,84 +63,55 @@ public class Tower : MonoBehaviour
       
         shootTimer -= Time.deltaTime;
 
-        if(shootTimer <= 0f)
-        {
+        if(shootTimer <= 0f) {
             shootTimer = shootTimerMax;
             CheckTilesInRange();
         }
-
     }
 
 
-    public void OnMouseDown()
-    {
+    public void OnMouseDown() {
         Debug.Log("clicked on tower");
         towerManager.RemoveTowerFromTile(towerTile);
     }
 
-
-
-
-
-    public void CheckTilesInRange()
-    {
-        foreach(var tile in inRangeTiles)
-        {
-            if(tile.particle != null && tile.particle.getBlockType() == BlockType.Water)
-            {
+    public void CheckTilesInRange() {
+        foreach(var tile in inRangeTiles) {
+            if(tile.particle != null && tile.particle.getBlockType() == BlockType.Water) {
                 ShootWater(tile);
                 break;
             }
         }
-      
-   
     }
 
-    public float GetEnergy()
-    {
+    public float GetEnergy() {
         return this.energy;
     }
 
-
-    public float GetEnergyPercentage()
-    {
+    public float GetEnergyPercentage() {
         return energy / energyMax;
     }
 
-
-    public void UseEnergy(float used)
-    {
-        if (energy < 0)
-        {
+    public void UseEnergy(float used) {
+        if (energy < 0) {
             energy = 0;
         }
-
     }
 
-    public void IncreaseEnergy(float laser_energy)
-    {
+    public void IncreaseEnergy(float laser_energy) {
         this.energy += laser_energy;
-        if(energy >= energyMax)
-        {
+        if(energy >= energyMax) {
             energy = energyMax;
         }
 
-        if(energy == energyMax)
-        {
+        if(energy == energyMax) {
             inEnergizedState = true;
             shootTimerMax = 0.5f;
         }
     }
 
-
-    public void ShootWater(Tile t)
-    {
-
+    public void ShootWater(Tile t) {
         ProjectileTowerLaser.Create(projectileShootFromPosition, t.location, projectile);
         gridManager.DestoryWateratTile(t);
-
     }
-
-  
-
 }

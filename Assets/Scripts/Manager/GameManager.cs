@@ -196,11 +196,11 @@ public class GameManager : MonoBehaviour
 
         switch (currentScene.name)
         {
-            case "LVL0-Blocks":
+            case "LVL0 BLOCK":
                 Debug.Log("block scene");
-                SceneManager.LoadScene("LVL0-Shooting");
+                SceneManager.LoadScene("LVL0 SHOOT");
                 break;
-            case "LVL0-Shooting":
+            case "LVL0 SHOOT":
                 Debug.Log("shooting scene");
                 SceneManager.LoadScene("LVL1");
                 break;

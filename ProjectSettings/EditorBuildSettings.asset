@@ -17,12 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/New Features/MENU.unity
     guid: 0330709aecd8c4725b97c8fec3b5c03f
-  - enabled: 0
-    path: Assets/Scenes/New Features/Main Game Scene.unity
-    guid: dd8b888e1fde0994bac12a4f141fc6cd
-  - enabled: 0
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Title Screen.unity
-    guid: 75b2986fe6c1d44998f83f337a66399d
   - enabled: 1
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL0 BLOCK.unity
     guid: c70f81a251d094ca4b9fb726632255fc
@@ -32,3 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL1.unity
     guid: 98ed11e17d2da4e64823a43f8e166b2c
+  - enabled: 0
+    path: Assets/Scenes/New Features/Main Game Scene.unity
+    guid: dd8b888e1fde0994bac12a4f141fc6cd
+  - enabled: 0
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Title Screen.unity
+    guid: 75b2986fe6c1d44998f83f337a66399d
+  m_configObjects: {}

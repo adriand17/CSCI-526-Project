@@ -34,7 +34,7 @@ public class GridManager : MonoBehaviour
 
     /// [BUILD LIMIT HUD]
     private int _goldSpent = 0;
-    private int _goldLimit = 300;
+    private int _goldLimit = 100;
 
     /// Displays number of available building blocks.
     [SerializeField] private TextMeshProUGUI _remainingGoldText;

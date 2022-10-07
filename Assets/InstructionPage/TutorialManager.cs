@@ -62,16 +62,6 @@ public class TutorialManager : MonoBehaviour
                 waitTime = 4f;
             }
         }
-        else if (popUpIndex == 4)
-        {
-            popUps[popUpIndex].SetActive(true);
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                popUps[popUpIndex].SetActive(false);
-                popUpIndex++;
-                SceneManager.LoadScene("MENU");
-            }
-        }
 
 
 

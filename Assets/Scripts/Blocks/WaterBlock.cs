@@ -116,7 +116,7 @@ public class WaterBlock: Block {
         /// Try to move the water particle to the left.
         /// Returns true if the particle moved.
         bool flowLeft() {
-            if (particle.tile.leftTile != null && particle.tile.leftTile.particle == null) {
+            if (particle.tile.leftTile != null && particle.tile.leftTile.particle == null && particle.tile.leftTile.tower == null) {
                 this.flowDirection = WaterFlowDirection.Left;
                 Tile oldTile = this.particle.tile;
                 particle.tile.leftTile.SetParticle(this.particle);
@@ -131,7 +131,7 @@ public class WaterBlock: Block {
         /// Try to move the particle to the right.
         /// Returns true if the particle moved.
         bool flowRight() {
-            if (particle.tile.rightTile != null && particle.tile.rightTile.particle == null) {
+            if (particle.tile.rightTile != null && particle.tile.rightTile.particle == null && particle.tile.rightTile.tower == null) {
                 this.flowDirection = WaterFlowDirection.Right;
                 Tile oldTile = this.particle.tile;
                 particle.tile.rightTile.SetParticle(this.particle);
@@ -144,7 +144,7 @@ public class WaterBlock: Block {
         }
 
         // Check if water can flow down.
-        if (particle.tile.downTile != null && particle.tile.downTile.particle == null) {
+        if (particle.tile.downTile != null && particle.tile.downTile.particle == null && particle.tile.downTile.tower == null) {
             this.flowDirection = WaterFlowDirection.Down;
             Tile oldTile = this.particle.tile;
             particle.tile.downTile.SetParticle(this.particle);

@@ -27,6 +27,7 @@ public class Shooting : MonoBehaviour {
 
     public static int TempLaser = -2;
     private LaserStatus laserStatus = new LaserStatus();
+
     
     public void setLaserStatus(LaserStatus status) {
         this.laserStatus = status;

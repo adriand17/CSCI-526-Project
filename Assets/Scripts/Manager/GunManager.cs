@@ -16,6 +16,7 @@ public class GunManager : MonoBehaviour
         shootingScript = _gunObject.GetComponent<Shooting>();
         //LaserStatus laserStatus = new LaserStatus();
         //shootingScript.setLaserStatus(laserStatus);
+
         //buildGunBar();
     }
 

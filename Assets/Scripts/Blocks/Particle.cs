@@ -77,7 +77,8 @@ public class Particle : MonoBehaviour {
         
         switch (type) {
             case BlockType.Water:
-                _renderer.color = new Color(0, 0, 1);
+                WaterBlock waterBlock = (WaterBlock)block;
+                waterBlock.UpdateSprite();
                 break;
             
             case BlockType.Bedrock:

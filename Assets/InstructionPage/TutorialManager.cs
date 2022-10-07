@@ -14,13 +14,13 @@ public class TutorialManager : MonoBehaviour
             return;
         }
         
-        if(popUpIndex == 0){//Tutorial has just started
+        if(popUpIndex == 0) {//Tutorial has just started
             popUps[popUpIndex].SetActive(true);
             if (Input.GetKeyDown(KeyCode.Space)){
                 popUps[popUpIndex].SetActive(false);
                 popUpIndex++;
             }
-        } else if(popUpIndex == 1){//Tutorial has just started
+        } else if(popUpIndex == 1) {
             popUps[popUpIndex].SetActive(true);
             if (Input.GetKeyDown(KeyCode.Mouse0)){
                 popUps[popUpIndex].SetActive(false);

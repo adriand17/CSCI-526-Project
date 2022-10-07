@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -33,6 +34,25 @@ public class TutorialManager : MonoBehaviour
             {
                 popUps[popUpIndex].SetActive(false);
                 popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 3)
+        {//Tutorial has just started
+            popUps[popUpIndex].SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                popUps[popUpIndex].SetActive(false);
+                popUpIndex++;
+            }
+        }
+        else if (popUpIndex == 4)
+        {//Tutorial has just started
+            popUps[popUpIndex].SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                popUps[popUpIndex].SetActive(false);
+                popUpIndex++;
+                SceneManager.LoadScene("MENU");
             }
         }
 

@@ -17,6 +17,7 @@ public class Tower : MonoBehaviour
     private int range;
     private List<Tile> inRangeTiles;
     private GridManager gridManager;
+    private TowerManager towerManager;
     private float energizedTimerMax;
     private float engergizedTimer;
     private float shootTimerMax;
@@ -26,7 +27,7 @@ public class Tower : MonoBehaviour
     
 
 
-    public void Init(Tile t, GridManager gridManager)
+    public void Init(Tile t, GridManager gridManager, TowerManager towerMan)
     {
         range = 2;
         int rangeArrayLength = 2 * range + 1;
@@ -35,6 +36,7 @@ public class Tower : MonoBehaviour
         towerPosition = t.location;
         projectileShootFromPosition = transform.Find("ProjectileShootFromPosition").position;
         this.gridManager = gridManager;
+        this.towerManager = towerMan;
 
         inRangeTiles = gridManager.GetTowerTiles(towerPosition, range);
     }
@@ -81,9 +83,16 @@ public class Tower : MonoBehaviour
 
     }
 
-   
 
-    
+    public void OnMouseDown()
+    {
+        Debug.Log("clicked on tower");
+        towerManager.RemoveTowerFromTile(towerTile);
+    }
+
+
+
+
 
     public void CheckTilesInRange()
     {

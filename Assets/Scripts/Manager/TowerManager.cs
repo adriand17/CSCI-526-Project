@@ -30,9 +30,8 @@ public class TowerManager : MonoBehaviour
     {
         //Instantiate new tower and add to list
         var tower = Instantiate(_laserTowerPf, new Vector3(t.location.x, t.location.y,-2), Quaternion.identity);
-        tower.Init(t, _gridManager);
-        //Tile selectedTile =  gridManager.GetTileAtPosition(Input.mousePosition.x, Input.mousePosition.y);
-        //selectedTile.SetBuilding(spawnedTower); 
+        tower.Init(t, _gridManager, this);
+        t.tower = tower;
         _towers.Add(tower);
     }
 
@@ -43,7 +42,10 @@ public class TowerManager : MonoBehaviour
 
     public void RemoveTowerFromTile(Tile tile)
     {
-
+        Tower t = tile.tower;
+        Destroy(t.gameObject);
+        _towers.Remove(t);
+        tile.tower = null;
     }
 
     public int GetTowerCount()

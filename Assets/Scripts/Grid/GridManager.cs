@@ -253,9 +253,10 @@ public class GridManager : MonoBehaviour
 
 
     public bool CanAddTowerToTile(Vector3 pos)
-    {
+    {      
         Tile t = GetTileAt(pos);
-        if(t.particle == null)
+
+        if (t.particle == null)
         {
             _towerManager.BuildTowerOnTile(t);
             return true;

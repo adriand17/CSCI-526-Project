@@ -619,8 +619,8 @@ MonoBehaviour:
   _gunObject: {fileID: 771243110}
   _camera: {fileID: 1264035261}
   _textJson:
-  - {fileID: 4900000, guid: 52d9b932bfcb13a4d8590f924d641ae4, type: 3}
-  - {fileID: 4900000, guid: 37e36736a3f7d443aa31ef66755443be, type: 3}
+  - {fileID: 4900000, guid: bcc301d8c4e87264e8d75b819c229140, type: 3}
+  - {fileID: 4900000, guid: 204a2cb485f812e479b0794ec0c81f17, type: 3}
   _parser: {fileID: 482687994}
   _WinScreenText: {fileID: 1235541180}
   _dropLocations:

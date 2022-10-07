@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     private List<Tile> _spawnTiles;
     public JSONParser.GridLocationsArray _dropLocations;
     public JSONParser.GridLocationsArray _gridLocations;
+    public JSONParser.WaveArray _wavesArray;
+    public JSONParser.Wave _waveLocations;
+ 
     
     [Header("Reference Managers")]
     public GridManager _gridManager;
@@ -32,8 +35,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Block Selection Buttons")] [SerializeField]
     public List<GameObject> _blockSelectionButtons;
-    private int _wave = 0;
-    private int _totalWaves;
+    private int _wave = 0; //current wave index
+    private int _totalWaves; //total amount of waves
+    private int _subWave = 0; //current subwave index
+    private int _totalSubWaves; //total amount of subwaves in a wave
+    public bool waveSpawning = false;
+    public float subwaveTimerMax = 2f; //time between subwaves
+    public float subwaveTimer;
 
     void Awake() {
         _instance = this;
@@ -47,13 +55,23 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _spawnTiles = new List<Tile>();
+        _wavesArray = new JSONParser.WaveArray();
+        _wavesArray.waves = new List<JSONParser.Wave>();
         _dropLocations = new JSONParser.GridLocationsArray();
         _dropLocations.indicies = new List<JSONParser.GridLocations>();
         _gridLocations = new JSONParser.GridLocationsArray();
         _gridLocations.indicies = new List<JSONParser.GridLocations>();
         _parser.Parse(_textJson[0]);
         _parser.ParseLevel(_textJson[1]);
-        this._totalWaves = _dropLocations.indicies.Count;
+        _parser.ParseWaves(_textJson[2]);
+
+        _waveLocations = _wavesArray.waves[0]; //set to first wave
+        subwaveTimer = subwaveTimerMax;
+
+        //this._totalWaves = _dropLocations.indicies.Count;
+       
+        this._totalWaves = _wavesArray.waves.Count;
+        _WaveText.text = (_wave + 1).ToString() + "/" + _totalWaves.ToString();
         UpdateGameState();
     }
 
@@ -65,28 +83,76 @@ public class GameManager : MonoBehaviour
         {
             DetermineWinState();
         }
-        else
+
+        //times
+
+        if (waveSpawning)
         {
+            Debug.Log("waveSpawing is true");
+            subwaveTimer -= Time.deltaTime;
+            Debug.Log(_totalSubWaves);
+            if (subwaveTimer <= 0f)
+            {
+                
+                Debug.Log("wave is spawning");
+                subwaveTimer = subwaveTimerMax;
+                SpawnNextSubWave();
+                
+            }
+            if (_subWave >= _totalSubWaves)
+            {
+                //finished a wave
+                Debug.Log("wave is done");
+                waveSpawning = false;
+                _wave++;
+            }
         }
+        
     }
 
     public void SpawnNextWave()
     {
+        /* if (_wave < _totalWaves)
+         {
+             if (_wave >= _dropLocations.indicies.Count)
+             {
+                 _wave = 0;
+             }
+
+             foreach (int index in _dropLocations.indicies[_wave].locations)
+             {
+                 _gridManager.DrawParticle(BlockType.Water, new Vector3(index, _gridManager.getHeight() - 1));
+             } 
+
+             _wave++;
+             _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
+         }*/
         if (_wave < _totalWaves)
         {
-            if (_wave >= _dropLocations.indicies.Count)
+            if (_wave >= _wavesArray.waves.Count)
             {
                 _wave = 0;
             }
 
-            foreach (int index in _dropLocations.indicies[_wave].locations)
-            {
-                _gridManager.DrawParticle(BlockType.Water, new Vector3(index, _gridManager.getHeight() - 1));
-            } 
-
-            _wave++;
-            _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
+            waveSpawning = true;
+            _waveLocations = _wavesArray.waves[_wave];
+            _subWave = 0;
+            _totalSubWaves = _waveLocations.wavelocations.Count;
+            _WaveText.text = (_wave + 1).ToString() + "/" + _totalWaves.ToString();
         }
+
+    }
+
+
+    public void SpawnNextSubWave()
+    {
+        //timer here to pause between subwaves
+        Debug.Log("current subwave:" + _subWave + " of wave: "  + _wave);
+        foreach (int index in _waveLocations.wavelocations[_subWave].locations)
+        {
+            _gridManager.DrawParticle(BlockType.Water, new Vector3(index, _gridManager.getHeight() - 1));
+        }
+        _subWave++;
     }
     
     void handleGrid() {
@@ -94,6 +160,7 @@ public class GameManager : MonoBehaviour
     }
 
     void handleGun(){
+        _gunManager.buildGun();
         _gunManager.handleGunPosition();
     }
     
@@ -129,11 +196,11 @@ public class GameManager : MonoBehaviour
 
         switch (currentScene.name)
         {
-            case "LVL0-Blocks":
+            case "LVL0 BLOCK":
                 Debug.Log("block scene");
-                SceneManager.LoadScene("LVL0-Shooting");
+                SceneManager.LoadScene("LVL0 SHOOT");
                 break;
-            case "LVL0-Shooting":
+            case "LVL0 SHOOT":
                 Debug.Log("shooting scene");
                 SceneManager.LoadScene("LVL1");
                 break;

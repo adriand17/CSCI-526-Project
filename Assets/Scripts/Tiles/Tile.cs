@@ -9,9 +9,6 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
     [SerializeField] private bool _isBuildable;
-    
-    [SerializeField] public BaseTower OccupiedTower;
-    [SerializeField] private BaseTower _towerPrefab;
 
     public bool Occupied = false;
     private bool changeFlage = true;
@@ -23,6 +20,7 @@ public class Tile : MonoBehaviour
     private GridManager _gridManager;
     
     public Particle particle;
+    public Tower tower;
     public void SetParticle(Particle p)
     {
         this.particle = p;
@@ -33,16 +31,15 @@ public class Tile : MonoBehaviour
 
     public bool Buildable => _isBuildable && Occupied == false;
 
-    public void Init(bool isOffset, Vector2 gridPosition, BaseTower towerPrefab, Vector3 location, GridManager gridManager)
+    public void Init(bool isOffset,  Vector2 gridPosition, GridManager gridManager)
     {
         _isBuildable = false;
-        this._towerPrefab = towerPrefab;
         
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         baseColor = isOffset ? _offsetColor : _baseColor;
 
         this.gridPosition = gridPosition;
-        this.location = location;
+        this.location = new Vector3(gridPosition.x, gridPosition.y, -1);
         this._gridManager = gridManager;
     }
 
@@ -57,6 +54,8 @@ public class Tile : MonoBehaviour
         {
 
         }
+
+        
     }
 
     
@@ -73,18 +72,35 @@ public class Tile : MonoBehaviour
     private void OnMouseDown() {
         // changeFlage is a check to see if a building can be placed on the location
         changeFlage = _gridManager.CanAddBlockToTile(location);
+        //_gridManager.CanAddTowerToTile(location);
+        if (changeFlage)
+        {
+
+            Debug.Log("added or removed at tile");
+        }
+        else
+        {
+            Debug.Log("cancel other buliding to create new one");
+
+        }
+
     }
 
-    public void SetBuilding()
-    {
+    
 
-        Debug.Log("setting building");
-        var tower = Instantiate(_towerPrefab);
-        if (tower.OccupiedTile != null) tower.OccupiedTile.OccupiedTower = null;
-        Vector3 tPostion = new  Vector3(transform.position.x, transform.position.y, -1);
-        tower.transform.position = tPostion;
-        this.OccupiedTower = tower;
-        tower.OccupiedTile = this;
+    /// Lets manager inform tile of its valid neighbors.
+    public void setAdjacentTiles(Tile upTile, Tile downTile, Tile leftTile, Tile rightTile)
+    {
+        //this.upTile = upTile;
+        //this.downTile = downTile;
+        //this.rightTile = rightTile;
+        //this.leftTile = leftTile;
+    }
+
+
+    public void SetTower(Tower t)
+    {
+        tower = t;
     }
 
     /// [TILE GRID COORDINATES]

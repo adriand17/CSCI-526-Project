@@ -70,15 +70,18 @@ public class WaterBlock: Block {
         if (temperature >= tempVapor) {
             particle.DeleteParticle();
             return;
-        } else if (temperature < tempFreeze) { 
+        } else  if (temperature < tempMin) {
+            /// Don't allow temperature to go below "absolute zero".
+            temperature = tempMin;
+        }
+        UpdateSprite();
+    }
+
+    public void UpdateSprite() { 
+        if (temperature < tempFreeze) { 
             /// Set sprite to ice.
             particle._renderer.sprite = Resources.Load<Sprite>("Ice");
             particle._renderer.color = Color.white;
-
-            /// Don't allow temperature to go below "absolute zero".
-            if (temperature < tempMin) {
-                temperature = tempMin;
-            }
         } else {
             /// Set sprite to water.
             particle._renderer.sprite = Resources.Load<Sprite>("Water");

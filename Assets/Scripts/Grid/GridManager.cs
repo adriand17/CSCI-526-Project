@@ -443,4 +443,12 @@ public class GridManager : MonoBehaviour
     {
         buildType = type;
     }
+
+    public void setGridHeight(int h) {
+        _height = h;
+    }
+
+    public void setGridWidth(int w) {
+        _width = w;
+    }
 }

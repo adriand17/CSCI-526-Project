@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: _textJson.Array.data[1]
       value: 
       objectReference: {fileID: 4900000, guid: e76df80a73e0c4e2194770fce54f3548, type: 3}
+    - target: {fileID: 2033372718125171360, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: Type
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -145,6 +149,10 @@ PrefabInstance:
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718885334289, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: Type
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_RootOrder

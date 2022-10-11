@@ -47,7 +47,7 @@ public class WaterBlock: Block {
                 return;
             }
             
-            wb.ChangeTemperature(+1f);
+            wb.ChangeTemperature(+1f, "CoolWater");
             tempChange += -1f;
         }
 
@@ -62,13 +62,13 @@ public class WaterBlock: Block {
             tempChange += -1f;
         }
 
-        ChangeTemperature(tempChange);
+        ChangeTemperature(tempChange, "CoolWater");
     }
 
-    public void ChangeTemperature(float tempChange) {
+    public void ChangeTemperature(float tempChange, string cause) {
         temperature += tempChange;
         if (temperature >= tempVapor) {
-            particle.DeleteParticle();
+            particle.DeleteParticle(cause, blockType);
             return;
         } else  if (temperature < tempMin) {
             /// Don't allow temperature to go below "absolute zero".

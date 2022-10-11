@@ -156,6 +156,8 @@ public class GameManager : MonoBehaviour
     }
     
     void handleGrid() {
+        _gridManager.setGridHeight(_gridLocations.rows);
+        _gridManager.setGridWidth(_gridLocations.cols);
         _gridManager.onStart();
     }
 

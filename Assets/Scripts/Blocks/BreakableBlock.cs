@@ -79,7 +79,7 @@ public class BreakableBlock : Block {
         }
 
         if (durability <= 0) {    
-            particle.DeleteParticle();
+            particle.DeleteParticle("erosion", blockType);
         }
     }
 }

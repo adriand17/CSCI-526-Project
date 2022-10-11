@@ -18,7 +18,7 @@ public class BlueIceBlock: Block {
                 return;
             }
             WaterBlock wb = (WaterBlock)p.block;
-            wb.ChangeTemperature(tempChange);
+            wb.ChangeTemperature(tempChange, "BlueIce");
         }
 
         /// Cool distance 1.

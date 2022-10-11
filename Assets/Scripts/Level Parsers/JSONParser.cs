@@ -64,6 +64,8 @@ public class JSONParser : MonoBehaviour
             }
             _gameManager._gridLocations.indicies.Add(gridLocations);
         }
+        _gameManager._gridLocations.rows = data["rows"];
+        _gameManager._gridLocations.cols = data["cols"];
     }
 
 

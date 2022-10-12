@@ -77,7 +77,8 @@ public class Particle : MonoBehaviour {
         
         switch (type) {
             case BlockType.Water:
-                _renderer.color = new Color(0, 0, 1);
+                WaterBlock waterBlock = (WaterBlock)block;
+                waterBlock.UpdateSprite();
                 break;
             
             case BlockType.Bedrock:
@@ -159,11 +160,10 @@ public class Particle : MonoBehaviour {
         }
     }
 
-    public void DeleteParticle() {
+    public void DeleteParticle(string cause, BlockType blockType) {
         if (getBlockType() == BlockType.Water) {
             // Log water position on death.
             int level = 0;
-            string cause = "Laser";
             string url = $"https://docs.google.com/forms/d/e/1FAIpQLSd8VI1L_HMJ3GxVBSVzR44PyB3NPiK_6GqeYe7zqZqafrFtIQ/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={tile.location.x}&entry.1372862866={tile.location.y}&entry.1572288735={cause}&submit=Submit";
 
             /// Make request on object that isn't about to die.

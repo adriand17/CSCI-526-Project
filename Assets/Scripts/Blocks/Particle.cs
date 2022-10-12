@@ -5,7 +5,8 @@ using UnityEngine;
 public enum WaterFlowDirection { 
     Still, 
     Left,  
-    Right, 
+    Right,
+    Up,
     Down
 }
 
@@ -42,6 +43,12 @@ public class Particle : MonoBehaviour {
                 break;
             case BlockType.TNT:
                 block = new TNTBlock(this);
+                break;
+            case BlockType.Vapor:
+                block = new VaporBlock(this);
+                break;
+            case BlockType.Evaporator:
+                block = new EvaporationBlock(this);
                 break;
             default:
                 Debug.LogError("Unknown block type: " + blockType);
@@ -115,7 +122,15 @@ public class Particle : MonoBehaviour {
                 _renderer.sprite = Resources.Load<Sprite>("TNT");
                 _renderer.color = Color.white;
                 break;
-            
+            case BlockType.Vapor:
+                _renderer.sprite = Resources.Load<Sprite>("Water");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.Evaporator:
+                _renderer.sprite = Resources.Load<Sprite>("BlueIce");
+                //_renderer.color = Color.white;
+                break;
+
             default:
                 Debug.LogError("Unhandled block type: " + type);
                 break;

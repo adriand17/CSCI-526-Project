@@ -205,7 +205,9 @@ public class GridManager : MonoBehaviour
             if (t.particle == null)
             {
                 _goldSpent += buildTypePrice(buildType);
-                DrawParticle(buildType, pos);
+                // DrawParticle(buildType, pos);
+                DrawParticle(BlockType.Vapor, pos);
+                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
 
                 /// Log block placement.
                 int level = 0;

@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d19417c3-65cc-4ff3-9595-48c67da2e1fc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/InstructionPage/TutorialManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/InstructionPage/TutorialManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CSCI 526 Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ButtonScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ButtonScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level Input JSON/Adrian Levels/levelmaker 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level Input JSON/Adrian Levels/levelmaker 2.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TeamSC Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TeamSC Prefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Adrian Prototype levels/Template Scene 1.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Adrian Prototype levels/Template Scene 1.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Template Scene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Template Scene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blocks/Particle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blocks/Particle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/GridManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,10 +63,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15471">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="15471" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -83,6 +93,7 @@
       <workItem from="1664572952706" duration="123000" />
       <workItem from="1664661698100" duration="729000" />
       <workItem from="1664927380486" duration="4619000" />
+      <workItem from="1665624223567" duration="5110000" />
     </task>
     <servers />
   </component>
@@ -107,6 +118,23 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs</url>
+          <line>165</line>
+          <properties documentPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" initialLine="165" containingFunctionPresentation="method 'DetermineWinState'">
+            <startOffsets>
+              <option value="4957" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4994" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="Frame#GridManager.SetUnpassableTiles" memberName="this" />

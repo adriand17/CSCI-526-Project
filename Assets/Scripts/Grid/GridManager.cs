@@ -16,7 +16,6 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Particle _particlePrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
-    [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
  
 
@@ -26,48 +25,26 @@ public class GridManager : MonoBehaviour
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
 
-    /// [HEALTH SYSTEM]
-    [SerializeField] private HealthBar healthBar;
-    public int maxHealth = 50;
-    public int damage = 2;
-    public int currentHealth;
-
     /// [BUILD LIMIT HUD]
     private int _goldSpent = 0;
-    private int _goldLimit = 100;
-
-    /// Displays number of available building blocks.
-    [SerializeField] private TextMeshProUGUI _remainingGoldText;
-
-    /// Displays the "Buildable Blocks" label.
-    [SerializeField] private TextMeshProUGUI _goldLabelText;
+    private int _goldLimit = 10000;
 
     /// Empty flashing animation.
     private Coroutine TextFlash;
 
+
+    public int waterCount;
+
     // Start is called before the first frame update
     public void onStart()
     {
-        _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
+        waterCount = 0;
         GenerateGrid();
         ResetHealth();
     }
 
-    void Update()
-    {
-        checkWaterAtBottom();
-        if (currentHealth == 0)
-        {
-            _nextWaveButton.SetActive(false);
-            _GameOverText.SetActive(true);
-        }
-    }
-
     void ResetHealth()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-        _nextWaveButton.SetActive(true);
         _GameOverText.SetActive(false);
     }
 
@@ -126,6 +103,7 @@ public class GridManager : MonoBehaviour
                         break;
                     case 0:
                         DrawParticle(BlockType.Water, pos);
+                        waterCount++;
                         break;
                     case 1:
                         DrawParticle(BlockType.Bedrock, pos);
@@ -208,7 +186,6 @@ public class GridManager : MonoBehaviour
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
-                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
             }
             else if (t.particle == null)
             {
@@ -217,7 +194,7 @@ public class GridManager : MonoBehaviour
                 {
                     StopCoroutine(TextFlash);
                 }
-                TextFlash = StartCoroutine(FlashCountText());
+                /*TextFlash = StartCoroutine(FlashCountText());*/
             }
 
             Debug.Log(_goldSpent + "/" + _goldLimit);
@@ -230,8 +207,6 @@ public class GridManager : MonoBehaviour
                 _goldSpent += buildTypePrice(buildType);
                 DrawParticle(buildType, pos);
 
-                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
-
                 /// Log block placement.
                 int level = 0;
                 string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
@@ -243,7 +218,6 @@ public class GridManager : MonoBehaviour
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
-                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
             }
 
             Debug.Log(_goldSpent + "/" + _goldLimit);
@@ -305,41 +279,16 @@ public class GridManager : MonoBehaviour
             }
         }
         _goldSpent = 0;
+        waterCount = 0;
         particles.Clear();
         ResetHealth();
-        _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
     }
 
-    public void TakeDamage()
-    {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-    }
-
-    private void checkWaterAtBottom()
-    {
-        //for now check if bottom row has water
-        for (int x = 0; x < _width; x++)
-        {
-
-            Tile t = _tiles[new Vector3(x, 0)];
-            if (t.particle != null && t.particle.getBlockType() == BlockType.Water)
-            {
-                particles.Remove(t.particle);
-                DestroyImmediate(t.particle.gameObject);
-                t.particle = null;
-
-
-                TakeDamage();
-
-            }
-        }
-    }
-  
     public void DestoryWateratTile(Tile t)
     {
         particles.Remove(t.particle);
         DestroyImmediate(t.particle.gameObject);
+        waterCount--;
     }
 
     /// How long to play pulse animation.
@@ -347,7 +296,7 @@ public class GridManager : MonoBehaviour
 
     /// Pulses building count text red. 
     /// Reminds player they can't build.
-    private IEnumerator FlashCountText()
+    /*private IEnumerator FlashCountText()
     {
         float counter = 0;
         while (counter <= flashDuration)
@@ -355,8 +304,6 @@ public class GridManager : MonoBehaviour
             /// Reset immediately if player can build.
             if (_goldLimit - _goldSpent >= buildTypePrice(buildType))
             {
-                _remainingGoldText.color = Color.white;
-                _goldLabelText.color = Color.white;
                 yield break;
             }
 
@@ -370,11 +317,11 @@ public class GridManager : MonoBehaviour
         _remainingGoldText.color = Color.white;
         _goldLabelText.color = Color.white;
         yield return null;
-    }
+    }*/
 
     public int GetWaterCount()
     {
-        int count = 0;
+        /*int count = 0;
         //if check if all waves are complete
         for (int x = 0; x < _width; x++)
         {
@@ -388,12 +335,8 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        return count;
-    }
-
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
+        return count;*/
+        return waterCount;
     }
 
     public int getHeight()

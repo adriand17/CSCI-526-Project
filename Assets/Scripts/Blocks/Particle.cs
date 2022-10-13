@@ -170,6 +170,7 @@ public class Particle : MonoBehaviour {
             /// Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html
             /// > Coroutines are ... stopped when the MonoBehaviour is destroyed
             _gridManager.MakeGetRequest(url);
+            _gridManager.waterCount--;
         }
 
         tile.SetParticle(null);

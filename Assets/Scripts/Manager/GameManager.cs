@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]public List<TextAsset> _textJson = new List<TextAsset>();
     [SerializeField] public JSONParser _parser;
     [SerializeField] public GameObject _WinScreenText;
-    private List<Tile> _spawnTiles;
     public JSONParser.GridLocationsArray _dropLocations;
     public JSONParser.GridLocationsArray _gridLocations;
     public JSONParser.WaveArray _wavesArray;
@@ -30,11 +29,11 @@ public class GameManager : MonoBehaviour
     [Header("Reference Managers")]
     public GridManager _gridManager;
     public GunManager _gunManager;
-    public TextMeshProUGUI _WaveText;
 
 
-    [Header("Block Selection Buttons")] [SerializeField]
-    public List<GameObject> _blockSelectionButtons;
+    [Header("Block Selection Buttons")]
+    [SerializeField] public List<BlockType> _blockSelectionButtonTypes;
+    [SerializeField] public List<GameObject> _blockSelectionButtons;
     private int _wave = 0; //current wave index
     private int _totalWaves; //total amount of waves
     private int _subWave = 0; //current subwave index
@@ -45,16 +44,16 @@ public class GameManager : MonoBehaviour
 
     void Awake() {
         _instance = this;
+        int counter = 0;
         foreach (GameObject button in _blockSelectionButtons)
         {
-            button.GetComponent<ButtonScript>().InitializeButton();
+            button.GetComponent<ButtonScript>().InitializeButton(_blockSelectionButtonTypes[counter++]);
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _spawnTiles = new List<Tile>();
         _wavesArray = new JSONParser.WaveArray();
         _wavesArray.waves = new List<JSONParser.Wave>();
         _dropLocations = new JSONParser.GridLocationsArray();
@@ -71,7 +70,6 @@ public class GameManager : MonoBehaviour
         //this._totalWaves = _dropLocations.indicies.Count;
        
         this._totalWaves = _wavesArray.waves.Count;
-        _WaveText.text = (_wave + 1).ToString() + "/" + _totalWaves.ToString();
         UpdateGameState();
     }
 
@@ -79,14 +77,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Check if all particles are still
-        if (_wave == _totalWaves)
-        {
-            DetermineWinState();
-        }
+        DetermineWinState();
 
         //times
 
-        if (waveSpawning)
+        if (false)
         {
             Debug.Log("waveSpawing is true");
             subwaveTimer -= Time.deltaTime;
@@ -112,21 +107,6 @@ public class GameManager : MonoBehaviour
 
     public void SpawnNextWave()
     {
-        /* if (_wave < _totalWaves)
-         {
-             if (_wave >= _dropLocations.indicies.Count)
-             {
-                 _wave = 0;
-             }
-
-             foreach (int index in _dropLocations.indicies[_wave].locations)
-             {
-                 _gridManager.DrawParticle(BlockType.Water, new Vector3(index, _gridManager.getHeight() - 1));
-             } 
-
-             _wave++;
-             _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
-         }*/
         if (_wave < _totalWaves)
         {
             if (_wave >= _wavesArray.waves.Count)
@@ -138,7 +118,6 @@ public class GameManager : MonoBehaviour
             _waveLocations = _wavesArray.waves[_wave];
             _subWave = 0;
             _totalSubWaves = _waveLocations.wavelocations.Count;
-            _WaveText.text = (_wave + 1).ToString() + "/" + _totalWaves.ToString();
         }
 
     }
@@ -184,7 +163,7 @@ public class GameManager : MonoBehaviour
     {
        
         //check is water is present on map if so then bring up win screen
-        if(_gridManager.GetCurrentHealth() > 0 &&  _gridManager.GetWaterCount() == 0)
+        if(_gridManager.GetWaterCount() == 0)
         {
             _WinScreenText.SetActive(true);
         }

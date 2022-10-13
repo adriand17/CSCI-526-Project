@@ -186,9 +186,9 @@ public class GridManager : MonoBehaviour
             case BlockType.BlueIce:
                 return 60;
             case BlockType.Evaporator:
-                return 50;
+                return 10;
             case BlockType.Condensation:
-                return 50;
+                return 10;
             default:
                 Debug.LogError("Non placeable block type have no price: " + buildType);
                 return 0;
@@ -394,10 +394,11 @@ public class GridManager : MonoBehaviour
         return count;
     }
 
-    public void ReplaceBlockAtTile (Tile t, BlockType replace)
+    public Block ReplaceBlockAtTile (Tile t, BlockType replace)
     {
         DestoryWateratTile(t);
         DrawParticle(replace, t.location);
+        return t.particle.block;
   
     }
 

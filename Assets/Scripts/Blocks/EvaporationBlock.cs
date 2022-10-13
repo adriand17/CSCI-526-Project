@@ -5,13 +5,16 @@ using UnityEngine;
 public class EvaporationBlock: Block {
 
     /// How much this heats surrounding blocks.
-    public static int TempChange = +3;
+   // public static int TempChange = +3;
 
-    public EvaporationBlock(Particle particle): base(BlockType.Magma, particle) {
+    private GridManager _gridManager;
+
+    public EvaporationBlock(Particle particle, GridManager gridManger): base(BlockType.Evaporator, particle) {
+        _gridManager = gridManger;
     }
 
     public override void Tick() {
-        void ConvertWatertoVapor(Tile neighbor, int tempChange) { 
+        void ConvertWatertoVapor(Tile neighbor) { 
             if (neighbor == null || neighbor.particle == null) {
                 return;
             }
@@ -20,14 +23,15 @@ public class EvaporationBlock: Block {
                 return;
             }
             WaterBlock wb = (WaterBlock)p.block;
-            wb.ChangeTemperature(tempChange, "Magma");
+            _gridManager.ReplaceBlockAtTile(neighbor, BlockType.Vapor);
+            
         }
 
-        /// Heat up adjacent water.
-        ConvertWatertoVapor(particle.tile.upTile,    +3);
-        ConvertWatertoVapor(particle.tile.downTile,  +3);
-        ConvertWatertoVapor(particle.tile.leftTile,  +3);
-        ConvertWatertoVapor(particle.tile.rightTile, +3);
+        /// Convert adjacent water.
+        ConvertWatertoVapor(particle.tile.upTile);
+        ConvertWatertoVapor(particle.tile.downTile);
+        ConvertWatertoVapor(particle.tile.leftTile);
+        ConvertWatertoVapor(particle.tile.rightTile);
 
     }
 }

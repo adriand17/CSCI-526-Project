@@ -11,6 +11,7 @@ namespace BlockTypeExtension
             switch (blockType)
             {
                 case BlockType.Glass:
+                case BlockType.Vapor:
                     return false;
 
                 case BlockType.Water:
@@ -20,6 +21,8 @@ namespace BlockTypeExtension
                 case BlockType.Magma:
                 case BlockType.BlueIce:
                 case BlockType.TNT:
+                case BlockType.Evaporator:
+                case BlockType.Condensation:
                     return true;
 
                 default:

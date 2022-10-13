@@ -21,7 +21,7 @@ public class VaporBlock: Block {
 
     public override void Tick() {
         if (temperature >= tempFreeze) {
-            CoolWater();
+            //CoolWater();
             VaporFlow();
         }
     }

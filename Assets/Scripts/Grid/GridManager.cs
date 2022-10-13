@@ -185,7 +185,10 @@ public class GridManager : MonoBehaviour
             case BlockType.Bedrock:
             case BlockType.BlueIce:
                 return 60;
-
+            case BlockType.Evaporator:
+                return 50;
+            case BlockType.Condensation:
+                return 50;
             default:
                 Debug.LogError("Non placeable block type have no price: " + buildType);
                 return 0;
@@ -228,8 +231,8 @@ public class GridManager : MonoBehaviour
             if (t.particle == null)
             {
                 _goldSpent += buildTypePrice(buildType);
-                // DrawParticle(buildType, pos);
-                DrawParticle(BlockType.Vapor, pos);
+                DrawParticle(buildType, pos);
+                //DrawParticle(BlockType.Vapor, pos);
                 _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
 
                 /// Log block placement.
@@ -389,6 +392,13 @@ public class GridManager : MonoBehaviour
         }
 
         return count;
+    }
+
+    public void ReplaceBlockAtTile (Tile t, BlockType replace)
+    {
+        DestoryWateratTile(t);
+        DrawParticle(replace, t.location);
+  
     }
 
     public int GetCurrentHealth()

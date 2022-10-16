@@ -211,6 +211,7 @@ public class GridManager : MonoBehaviour
                 DrawParticle(buildType, pos);
                 //DrawParticle(BlockType.Vapor, pos);
 
+
                 /// Log block placement.
                 int level = 0;
                 string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
@@ -344,6 +345,14 @@ public class GridManager : MonoBehaviour
     }
 
     public Block ReplaceBlockAtTile (Tile t, BlockType replace)
+    {
+        DestoryWateratTile(t);
+        DrawParticle(replace, t.location);
+        return t.particle.block;
+  
+    }
+
+    public int GetCurrentHealth()
     {
         DestoryWateratTile(t);
         DrawParticle(replace, t.location);

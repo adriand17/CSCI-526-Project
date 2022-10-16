@@ -126,6 +126,16 @@ public class GridManager : MonoBehaviour
                     case 7:
                         DrawParticle(BlockType.TNT, pos);
                         break;
+                    case 8:
+                        DrawParticle(BlockType.Evaporator, pos);
+                        break;
+                    case 9:
+                        DrawParticle(BlockType.Condensation, pos);
+                        break;
+                    case 10:
+                        DrawParticle(BlockType.Vapor, pos);
+                        waterCount++;
+                        break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
                         break;
@@ -289,11 +299,10 @@ public class GridManager : MonoBehaviour
         ResetHealth();
     }
 
-    public void DestoryWateratTile(Tile t)
+    public void DestoryParticleAtTile(Tile t)
     {
         particles.Remove(t.particle);
         DestroyImmediate(t.particle.gameObject);
-        waterCount--;
     }
 
     /// How long to play pulse animation.
@@ -346,20 +355,21 @@ public class GridManager : MonoBehaviour
 
     public Block ReplaceBlockAtTile (Tile t, BlockType replace)
     {
-        DestoryWateratTile(t);
+        DestoryParticleAtTile(t);
         DrawParticle(replace, t.location);
         return t.particle.block;
   
     }
 
-    public int GetCurrentHealth()
+
+
+/*    public int GetCurrentHealth()
     {
         DestoryWateratTile(t);
         DrawParticle(replace, t.location);
         return t.particle.block;
   
-    }
-
+    }*/
 
     public int getHeight()
     {

@@ -210,7 +210,6 @@ public class GridManager : MonoBehaviour
                 _goldSpent += buildTypePrice(buildType);
                 DrawParticle(buildType, pos);
                 //DrawParticle(BlockType.Vapor, pos);
-                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
 
                 /// Log block placement.
                 int level = 0;
@@ -352,10 +351,6 @@ public class GridManager : MonoBehaviour
   
     }
 
-    public int GetCurrentHealth()
-    {
-        return currentHealth;
-    }
 
     public int getHeight()
     {

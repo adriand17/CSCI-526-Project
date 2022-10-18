@@ -164,13 +164,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
-      value: 'TNT can break certain blocks.
+      value: 'TNT can break certain blocks, shoot it to detonate it!
 
-        Magma blocks burns destroy water.'
+'
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_fontSize
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_margin.z
+      value: 207.58716
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_fontSizeBase
@@ -196,9 +200,13 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -58
       objectReference: {fileID: 0}
+    - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_text
+      value: Magma Blocks will burn Water.
+      objectReference: {fileID: 0}
     - target: {fileID: 7163065207806698985, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_RootOrder

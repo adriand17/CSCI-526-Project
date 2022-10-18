@@ -3698,6 +3698,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8752319747630743487, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752319747630743487, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2033372717248814546}

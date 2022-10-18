@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BlueIceBlock: Block {
 
-    public BlueIceBlock(Particle particle): base(BlockType.BlueIce, particle) {
+    GridManager gridManager;
+    public BlueIceBlock(Particle particle, GridManager gm): base(BlockType.BlueIce, particle) {
+        gridManager = gm;
     }
 
     /// Cools water in a diamond pattern.
@@ -14,6 +16,17 @@ public class BlueIceBlock: Block {
                 return;
             }
             Particle p = neighbor.particle;
+
+            if(p.block.GetType() == typeof(VaporBlock))
+            {
+                VaporBlock vb = (VaporBlock)p.block;
+                //vb.ChangeTemperature(tempChange, "BlueIce");
+                WaterBlock w = (WaterBlock) gridManager.ReplaceBlockAtTile(neighbor, BlockType.Water);
+                w.ChangeTemperature(-5, "BlueIce");
+                
+
+                return;
+            }
             if (p.block.GetType() != typeof(WaterBlock)) {
                 return;
             }

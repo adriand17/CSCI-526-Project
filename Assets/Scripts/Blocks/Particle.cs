@@ -5,7 +5,8 @@ using UnityEngine;
 public enum WaterFlowDirection { 
     Still, 
     Left,  
-    Right, 
+    Right,
+    Up,
     Down
 }
 
@@ -17,7 +18,7 @@ public class Particle : MonoBehaviour {
     public BlockType getBlockType() { 
         return block.blockType; 
     } 
-    public void setBlockType(BlockType blockType) { 
+    public void setBlockType(BlockType blockType, GridManager gridManager) { 
         switch (blockType) {
             case BlockType.Water:
                 block = new WaterBlock(this);
@@ -38,10 +39,19 @@ public class Particle : MonoBehaviour {
                 block = new MagmaBlock(this);
                 break;
             case BlockType.BlueIce:
-                block = new BlueIceBlock(this);
+                block = new BlueIceBlock(this, gridManager);
                 break;
             case BlockType.TNT:
                 block = new TNTBlock(this);
+                break;
+            case BlockType.Vapor:
+                block = new VaporBlock(this);
+                break;
+            case BlockType.Evaporator:
+                block = new EvaporationBlock(this, gridManager);
+                break;
+            case BlockType.Condensation:
+                block = new CondensationBlock(this, gridManager);
                 break;
             default:
                 Debug.LogError("Unknown block type: " + blockType);
@@ -68,7 +78,7 @@ public class Particle : MonoBehaviour {
         /// Calculate a random delay.
         delay = Random.Range(0, TickInterval);
 
-        setBlockType(type);
+        setBlockType(type, gridManager);
         this.tile = t;
         this._gridManager = gridManager;
         
@@ -115,7 +125,18 @@ public class Particle : MonoBehaviour {
                 _renderer.sprite = Resources.Load<Sprite>("TNT");
                 _renderer.color = Color.white;
                 break;
-            
+            case BlockType.Vapor:
+                _renderer.sprite = Resources.Load<Sprite>("Water");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.Evaporator:
+                _renderer.sprite = Resources.Load<Sprite>("BlueIce");
+                //_renderer.color = Color.white;
+                break;
+            case BlockType.Condensation:
+                _renderer.sprite = Resources.Load<Sprite>("Magma");
+                _renderer.color = Color.blue;
+                break;
             default:
                 Debug.LogError("Unhandled block type: " + type);
                 break;

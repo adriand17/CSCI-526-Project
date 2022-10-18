@@ -126,6 +126,16 @@ public class GridManager : MonoBehaviour
                     case 7:
                         DrawParticle(BlockType.TNT, pos);
                         break;
+                    case 8:
+                        DrawParticle(BlockType.Evaporator, pos);
+                        break;
+                    case 9:
+                        DrawParticle(BlockType.Condensation, pos);
+                        break;
+                    case 10:
+                        DrawParticle(BlockType.Vapor, pos);
+                        waterCount++;
+                        break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
                         break;
@@ -163,7 +173,10 @@ public class GridManager : MonoBehaviour
             case BlockType.Bedrock:
             case BlockType.BlueIce:
                 return 60;
-
+            case BlockType.Evaporator:
+                return 10;
+            case BlockType.Condensation:
+                return 10;
             default:
                 Debug.LogError("Non placeable block type have no price: " + buildType);
                 return 0;
@@ -206,6 +219,8 @@ public class GridManager : MonoBehaviour
             {
                 _goldSpent += buildTypePrice(buildType);
                 DrawParticle(buildType, pos);
+                //DrawParticle(BlockType.Vapor, pos);
+
 
                 /// Log block placement.
                 int level = 0;
@@ -284,11 +299,10 @@ public class GridManager : MonoBehaviour
         ResetHealth();
     }
 
-    public void DestoryWateratTile(Tile t)
+    public void DestoryParticleAtTile(Tile t)
     {
         particles.Remove(t.particle);
         DestroyImmediate(t.particle.gameObject);
-        waterCount--;
     }
 
     /// How long to play pulse animation.
@@ -338,6 +352,24 @@ public class GridManager : MonoBehaviour
         return count;*/
         return waterCount;
     }
+
+    public Block ReplaceBlockAtTile (Tile t, BlockType replace)
+    {
+        DestoryParticleAtTile(t);
+        DrawParticle(replace, t.location);
+        return t.particle.block;
+  
+    }
+
+
+
+/*    public int GetCurrentHealth()
+    {
+        DestoryWateratTile(t);
+        DrawParticle(replace, t.location);
+        return t.particle.block;
+  
+    }*/
 
     public int getHeight()
     {

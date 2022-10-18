@@ -16,6 +16,7 @@ public class ButtonScript : MonoBehaviour
             Type = type;
             gameObject.SetActive(false);
         }
+        Type = type;
         gameObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ButtonClicked);
         gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>(type.ToString());
     }

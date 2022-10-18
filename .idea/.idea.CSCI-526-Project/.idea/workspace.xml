@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22ff49e4-1601-4124-a769-8353baeb24df" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CSCI-526-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CSCI-526-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TeamSC Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TeamSC Prefab.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +77,7 @@
       <workItem from="1663122209212" duration="674000" />
       <workItem from="1663344979097" duration="1946000" />
       <workItem from="1663633582995" duration="10154000" />
-      <workItem from="1666064387602" duration="5377000" />
+      <workItem from="1666064387602" duration="6150000" />
     </task>
     <servers />
   </component>
@@ -126,10 +128,10 @@
           <line>51</line>
           <properties documentPath="H:\CSCI-526-Project\Assets\Scripts\Manager\GameManager.cs" initialLine="51" containingFunctionPresentation="method 'Awake'">
             <startOffsets>
-              <option value="1889" />
+              <option value="1924" />
             </startOffsets>
             <endOffsets>
-              <option value="1906" />
+              <option value="1941" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="19" />

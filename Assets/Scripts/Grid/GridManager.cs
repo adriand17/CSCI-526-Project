@@ -47,6 +47,9 @@ public class GridManager : MonoBehaviour
     void GenerateGrid()
     {
         _tiles = new Dictionary<Vector2, Tile>();
+        _gameManager.textPlaceBoxes[0].text = _gameManager.blocksPlaced[0].ToString();
+        _gameManager.textPlaceBoxes[1].text = _gameManager.blocksPlaced[1].ToString();
+        _gameManager.textPlaceBoxes[2].text = _gameManager.blocksPlaced[2].ToString();
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
@@ -270,6 +273,7 @@ public class GridManager : MonoBehaviour
         }
         waterCount = 0;
         particles.Clear();
+        GenerateGrid();
         ResetHealth();
     }
 

@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     [Header("Reference Managers")]
     public GridManager _gridManager;
     public GunManager _gunManager;
-
+    
 
     [Header("Block Selection Buttons")]
     [SerializeField] public List<BlockType> _blockSelectionButtonTypes;
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     public bool waveSpawning = false;
     public float subwaveTimerMax = 2f; //time between subwaves
     public float subwaveTimer;
-
+    private bool reset = false;
     void Awake() {
         _instance = this;
         int counter = 0;
@@ -87,7 +87,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Check if all particles are still
-        DetermineWinState();
+        if (!reset)
+        {
+            DetermineWinState();
+        }
     }
 
     public void SpawnNextWave()
@@ -138,9 +141,12 @@ public class GameManager : MonoBehaviour
 
     public void resetLevel()
     {
+        reset = true;
         _WinScreenText.SetActive(false);
         _wave = 0;
         _gridManager.ResetGrid();
+        
+        reset = false;
     }
 
 

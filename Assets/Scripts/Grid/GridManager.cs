@@ -25,10 +25,6 @@ public class GridManager : MonoBehaviour
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
 
-    /// [BUILD LIMIT HUD]
-    private int _goldSpent = 0;
-    private int _goldLimit = 10000;
-
     /// Empty flashing animation.
     private Coroutine TextFlash;
 
@@ -189,55 +185,30 @@ public class GridManager : MonoBehaviour
         Tile t = _tiles[pos];
         //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
+        int index = _gameManager.whichButtonPressed(buildType);
 
-        if (_goldSpent + buildTypePrice(buildType) > _goldLimit)
-        {
-            /// Can only remove.
-            if (t.particle != null && (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror))
+            if (t.particle == null && index != -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
             {
-                _goldSpent -= buildTypePrice(t.particle.getBlockType());
-                DestroyImmediate(t.particle.gameObject);
-                particles.Remove(t.particle);
-                t.particle = null;
-            }
-            else if (t.particle == null)
-            {
-                // Tile is empty.
-                if (TextFlash != null)
-                {
-                    StopCoroutine(TextFlash);
-                }
-                /*TextFlash = StartCoroutine(FlashCountText());*/
-            }
-
-            Debug.Log(_goldSpent + "/" + _goldLimit);
-            return false;
-        }
-        else
-        {
-            if (t.particle == null)
-            {
-                _goldSpent += buildTypePrice(buildType);
                 DrawParticle(buildType, pos);
                 //DrawParticle(BlockType.Vapor, pos);
-
-
                 /// Log block placement.
                 int level = 0;
                 string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
                 MakeGetRequest(uri);
+                _gameManager.blocksPlaced[index]++;
+                _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
+                return true;
             }
-            else if (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror)
+            else if (t.particle != null && t.particle.getBlockType() == buildType && index!= -1 && _gameManager.blocksPlaced[index] > 0)
             {
-                _goldSpent -= buildTypePrice(buildType);
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
+                _gameManager.blocksPlaced[index]--;
+                _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
+                return true;
             }
-
-            Debug.Log(_goldSpent + "/" + _goldLimit);
-            return true;
-        }
+            return false;
     }
 
 
@@ -293,7 +264,10 @@ public class GridManager : MonoBehaviour
                 DestroyImmediate(p.gameObject);
             }
         }
-        _goldSpent = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            _gameManager.blocksPlaced[i] = 0;
+        }
         waterCount = 0;
         particles.Clear();
         ResetHealth();

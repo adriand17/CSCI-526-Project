@@ -33,7 +33,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Block Selection Buttons")]
     [SerializeField] public List<BlockType> _blockSelectionButtonTypes;
+    [SerializeField] public List<TextMeshProUGUI> textLimitBoxes;
+    [SerializeField] public List<TextMeshProUGUI> textPlaceBoxes;
+    [SerializeField] public List<int> _blocksGiven;
+    public List<int> blocksPlaced;
+    
     [SerializeField] public List<GameObject> _blockSelectionButtons;
+    
     private int _wave = 0; //current wave index
     private int _totalWaves; //total amount of waves
     private int _subWave = 0; //current subwave index
@@ -47,7 +53,9 @@ public class GameManager : MonoBehaviour
         int counter = 0;
         foreach (GameObject button in _blockSelectionButtons)
         {
-            button.GetComponent<ButtonScript>().InitializeButton(_blockSelectionButtonTypes[counter++]);
+            button.GetComponent<ButtonScript>().InitializeButton(_blockSelectionButtonTypes[counter]);
+            textLimitBoxes[counter].text = _blocksGiven[counter].ToString();
+            counter++;
         }
     }
 
@@ -63,10 +71,12 @@ public class GameManager : MonoBehaviour
         _parser.Parse(_textJson[0]);
         _parser.ParseLevel(_textJson[1]);
         _parser.ParseWaves(_textJson[2]);
-
+        blocksPlaced = new List<int>();
+        blocksPlaced.Add(0);
+        blocksPlaced.Add(0);
+        blocksPlaced.Add(0);
         _waveLocations = _wavesArray.waves[0]; //set to first wave
         subwaveTimer = subwaveTimerMax;
-
         //this._totalWaves = _dropLocations.indicies.Count;
        
         this._totalWaves = _wavesArray.waves.Count;
@@ -78,31 +88,6 @@ public class GameManager : MonoBehaviour
     {
         //Check if all particles are still
         DetermineWinState();
-
-        //times
-
-        if (false)
-        {
-            Debug.Log("waveSpawing is true");
-            subwaveTimer -= Time.deltaTime;
-            Debug.Log(_totalSubWaves);
-            if (subwaveTimer <= 0f)
-            {
-                
-                Debug.Log("wave is spawning");
-                subwaveTimer = subwaveTimerMax;
-                SpawnNextSubWave();
-                
-            }
-            if (_subWave >= _totalSubWaves)
-            {
-                //finished a wave
-                Debug.Log("wave is done");
-                waveSpawning = false;
-                _wave++;
-            }
-        }
-        
     }
 
     public void SpawnNextWave()
@@ -210,6 +195,18 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
+    }
+
+    public int whichButtonPressed(BlockType type)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            if (_blockSelectionButtonTypes[i] == type)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 

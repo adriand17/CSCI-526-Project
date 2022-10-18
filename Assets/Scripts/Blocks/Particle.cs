@@ -130,12 +130,12 @@ public class Particle : MonoBehaviour {
                 _renderer.color = Color.white;
                 break;
             case BlockType.Evaporator:
-                _renderer.sprite = Resources.Load<Sprite>("BlueIce");
-                //_renderer.color = Color.white;
+                _renderer.sprite = Resources.Load<Sprite>("Evaporator");
+                _renderer.color = Color.white;
                 break;
             case BlockType.Condensation:
-                _renderer.sprite = Resources.Load<Sprite>("Magma");
-                _renderer.color = Color.blue;
+                _renderer.sprite = Resources.Load<Sprite>("Condensation");
+                _renderer.color = Color.white;
                 break;
             default:
                 Debug.LogError("Unhandled block type: " + type);

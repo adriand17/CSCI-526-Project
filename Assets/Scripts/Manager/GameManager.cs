@@ -168,24 +168,32 @@ public class GameManager : MonoBehaviour
 
         switch (currentScene.name)
         {
-            case "LVL0 BLOCK":
-                Debug.Log("block scene");
-                SceneManager.LoadScene("LVL0 SHOOT");
+            case "1 Glass Level":
+                Debug.Log("1 Glass Level");
+                SceneManager.LoadScene("2 Mirror Level");
                 break;
-            case "LVL0 SHOOT":
-                Debug.Log("shooting scene");
-                SceneManager.LoadScene("LVL1");
+            case "2 Mirror Level":
+                Debug.Log("2 Mirror Level");
+                SceneManager.LoadScene("3 Dirt Level");
                 break;
-            case "LVL1":
-                Debug.Log("level 1 scene");
-                SceneManager.LoadScene("LVL2");
+            case "3 Dirt Level":
+                Debug.Log("3 Dirt Level");
+                SceneManager.LoadScene("4 Magma_TNT");
                 break;
-            case "LVL2":
-                Debug.Log("level 2 scene");
-                SceneManager.LoadScene("Main Game Scene");
+            case "4 Magma_TNT":
+                Debug.Log("4 Magma_TNTe");
+                SceneManager.LoadScene("5 Vapor");
                 break;
+            case "5 Vapor":
+                Debug.Log("5 Vapor");
+                SceneManager.LoadScene("Mixed Level");
+                break;
+            case "Mixed Level":
+                Debug.Log("Mixed Level");
+                SceneManager.LoadScene("Title Screen");
+                break;        
             default:
-                SceneManager.LoadScene("InstructionOverlay");
+                SceneManager.LoadScene("Title Screen");
                 break;
 
         }

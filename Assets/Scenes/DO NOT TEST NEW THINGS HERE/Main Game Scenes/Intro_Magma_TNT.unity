@@ -139,6 +139,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: 88171c00901454fa78c18a9240b25686, type: 3}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blocksGiven.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blockSelectionButtonTypes.Array.data[0]
       value: 7
       objectReference: {fileID: 0}

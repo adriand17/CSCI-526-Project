@@ -30,6 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/New Features/Main Game Scene.unity
     guid: dd8b888e1fde0994bac12a4f141fc6cd
   - enabled: 0
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Title Screen.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Title Screen.unity
     guid: 75b2986fe6c1d44998f83f337a66399d
   m_configObjects: {}

@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22ff49e4-1601-4124-a769-8353baeb24df" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.CSCI-526-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CSCI-526-Project/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ButtonScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ButtonScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level Input JSON/Adrian Levels/Mixed Level.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level Input JSON/Adrian Levels/Mixed Level.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TeamSC Prefab.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TeamSC Prefab.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/GridManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Manager/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/2 Mirror Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/2 Mirror Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Dirt Level.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Dirt Level.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Intro_Magma_TNT.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Intro_Magma_TNT.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Title Screen.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/DO NOT TEST NEW THINGS HERE/Title Screen.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +83,7 @@
       <workItem from="1663122209212" duration="674000" />
       <workItem from="1663344979097" duration="1946000" />
       <workItem from="1663633582995" duration="10154000" />
-      <workItem from="1666064387602" duration="4257000" />
+      <workItem from="1666064387602" duration="4931000" />
     </task>
     <servers />
   </component>

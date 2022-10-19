@@ -21,7 +21,6 @@ public class Tooltip : MonoBehaviour
         tooltipTextRectTransform = gameObject.transform.Find("text").GetComponent<RectTransform>();
         backgroundRectTransform = transform.Find("background").GetComponent<RectTransform>();
 
-        ShowTooltip("my tooltip");
         HideTooltip();
     }
 

@@ -12,10 +12,11 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void InitializeButton(BlockType type)
     {
+        Type = type;
         if (type == BlockType.None)
         {
-            Type = type;
             gameObject.SetActive(false);
+            return;
         }
         Type = type;
         gameObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ButtonClicked);

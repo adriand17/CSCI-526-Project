@@ -149,7 +149,7 @@ public class Tower : MonoBehaviour
     {
 
         ProjectileTowerLaser.Create(projectileShootFromPosition, t.location, projectile);
-        gridManager.DestoryWateratTile(t);
+        //gridManager.DestoryParticleAtTile(t);
 
     }
 

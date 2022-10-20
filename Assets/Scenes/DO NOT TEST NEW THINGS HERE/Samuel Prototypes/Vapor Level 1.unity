@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 417578093949212205, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1662282350937959471, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_Name
       value: TeamSC Prefab
@@ -137,14 +141,22 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: e5b5f2f6de8cd4f64a2551fde325a74d, type: 3}
+      objectReference: {fileID: 4900000, guid: 455ec63691694324e829693605e8a2e8, type: 3}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blocksGiven.Array.data[2]
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blockSelectionButtonTypes.Array.data[0]
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 2033372718125171364, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -65
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.data[1]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.data[2]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x
@@ -154,33 +166,13 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_text
-      value: '-select a block
-
-        -click to place
-
-        -click again to remove'
+    - target: {fileID: 2033372718725747321, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: Type
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 2033372718725747325, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 77
-      objectReference: {fileID: 0}
-    - target: {fileID: 2033372718885334293, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_text
-      value: retry the level with the reset button!
-      objectReference: {fileID: 0}
-    - target: {fileID: 6605713859589768977, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6605713859589768977, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 18
+    - target: {fileID: 7163065207806698985, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_RootOrder
@@ -225,14 +217,6 @@ PrefabInstance:
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8210100013513872665, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_text
-      value: Lasers cannot pass through bedrock!
-      objectReference: {fileID: 0}
-    - target: {fileID: 8210100013513872665, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_margin.z
-      value: 16.292908
       objectReference: {fileID: 0}
     - target: {fileID: 8331829191146134385, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x

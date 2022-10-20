@@ -8,28 +8,28 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/New Features/InstructionOverlay.unity
-    guid: 2db82d994e4824bbf8e0e806aa8db3c3
   - enabled: 1
-    path: Assets/Scenes/New Features/Tutorial_1.unity
-    guid: fc0d64cccd4b149ad969e677335fab6a
-  - enabled: 1
-    path: Assets/Scenes/New Features/MENU.unity
-    guid: 0330709aecd8c4725b97c8fec3b5c03f
-  - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL0 BLOCK.unity
-    guid: c70f81a251d094ca4b9fb726632255fc
-  - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL0 SHOOT.unity
-    guid: 738ee723212d8427ebcd2abe7a0a726c
-  - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/LVL1.unity
-    guid: 98ed11e17d2da4e64823a43f8e166b2c
-  - enabled: 0
-    path: Assets/Scenes/New Features/Main Game Scene.unity
-    guid: dd8b888e1fde0994bac12a4f141fc6cd
-  - enabled: 0
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Title Screen.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Title Screen.unity
     guid: 75b2986fe6c1d44998f83f337a66399d
+  - enabled: 1
+    path: Assets/Scenes/New Features/Level Selector Screen.unity
+    guid: a8c7856b5e9be4ac48a12422a9e798b4
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/1 Glass Level.unity
+    guid: b05f7cec81ac7ce41a0bf92bdce3bd12
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/2 Mirror Level.unity
+    guid: d5ffc10f47a65422480ac1c3fd662775
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/3 Dirt Level.unity
+    guid: c56ba2121699a43a3971318a2bbc1fcd
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/4 Magma_TNT.unity
+    guid: 1580c5e062e0a48e7a14e77102e74e12
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/5 Vapor.unity
+    guid: ea840089a36b00e4f9126b427f613ef1
+  - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Mixed Level.unity
+    guid: 25c00ff99cb234b6ebe55886e6b6a9a5
   m_configObjects: {}

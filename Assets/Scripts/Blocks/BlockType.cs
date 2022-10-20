@@ -12,6 +12,9 @@ public enum BlockType
     Magma,   // 5: Makes water hot.
     BlueIce, // 6: Makes water cold.
     TNT,     // 7: Explodes non-water blocks.
+    Evaporator, //8: Converts liquid water to gas
+    Condensation, //9. Convert vapor to water
+    Vapor, //10: Gas form of water, moves up instead
     None
 }
 

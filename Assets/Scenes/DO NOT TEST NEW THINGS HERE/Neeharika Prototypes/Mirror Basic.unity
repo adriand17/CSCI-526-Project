@@ -137,15 +137,7 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: 0daeaf74790d14c3dae350a9ba6537e7, type: 3}
-    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: _blockSelectionButtonTypes.Array.data[0]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2033372718125171364, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -65
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4900000, guid: 3f845814d39b3422a9091559ae107e24, type: 3}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -153,34 +145,6 @@ PrefabInstance:
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_text
-      value: '-select a block
-
-        -click to place
-
-        -click again to remove'
-      objectReference: {fileID: 0}
-    - target: {fileID: 2033372718725747325, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 77
-      objectReference: {fileID: 0}
-    - target: {fileID: 2033372718885334293, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_text
-      value: retry the level with the reset button!
-      objectReference: {fileID: 0}
-    - target: {fileID: 6605713859589768977, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6605713859589768977, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_RootOrder
@@ -225,14 +189,6 @@ PrefabInstance:
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8210100013513872665, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_text
-      value: Lasers cannot pass through bedrock!
-      objectReference: {fileID: 0}
-    - target: {fileID: 8210100013513872665, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_margin.z
-      value: 16.292908
       objectReference: {fileID: 0}
     - target: {fileID: 8331829191146134385, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x

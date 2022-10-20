@@ -1,13 +1,13 @@
 using UnityEngine;
 
 public class LaserStatus {
-    private const int MAX_LASER_LEVEL = 6;
+    private const int MAX_LASER_LEVEL = 8;
     
     private const float laserFireRate = 1f;
 
-    private int currentLaserLevel = 6;
+    private int currentLaserLevel = 8;
     //Store laser engergy with deltaTime
-    private float laserEnergy = 6.0f;
+    private float laserEnergy = 8.0f;
     public bool isFiring;
 
     // Furthest distance the laser can reach.

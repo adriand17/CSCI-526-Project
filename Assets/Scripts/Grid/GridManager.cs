@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.Networking;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GridManager : MonoBehaviour
 {
@@ -193,10 +194,10 @@ public class GridManager : MonoBehaviour
             if (t.particle == null && index != -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
             {
                 DrawParticle(buildType, pos);
-                //DrawParticle(BlockType.Vapor, pos);
+                
                 /// Log block placement.
-                int level = 0;
-                string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
+                string level = SceneManager.GetActiveScene().name;
+                string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSfP2foRoq7thSwuBci5e3pqX4SAXmmWIHdhKSGDei93TckhgQ/formResponse?usp=pp_url&entry.1767141370={pos.x}&entry.1642741263={pos.y}&entry.913150214={buildType}&entry.274409603={level}&submit";
                 MakeGetRequest(uri);
                 _gameManager.blocksPlaced[index]++;
                 _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();

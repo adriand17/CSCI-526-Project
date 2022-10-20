@@ -8,6 +8,8 @@ public class GunManager : MonoBehaviour
     // private EnergyBar _gunBarPrefab;
     [SerializeField] private GameObject _gunPrefab;
     [SerializeField] private EnergyBar _gunBarPrefab;
+    [SerializeField] public float gunXPositionFromCenter = 0f;
+
     private Shooting shootingScript;
     private LaserStatus laserStatus;
 
@@ -26,6 +28,7 @@ public class GunManager : MonoBehaviour
         Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(w / 2f, 0.0f, 0f));
         pos.z = -5f;
         pos.y -= objcheight / 5;
+        pos.x += gunXPositionFromCenter;
         _gunObject.transform.position = pos;
         //handleGunBarPosition();
     }

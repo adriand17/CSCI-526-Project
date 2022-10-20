@@ -7,16 +7,19 @@ using UnityEngine.UI;
 
 public class ButtonScript : MonoBehaviour
 {
-    [SerializeField] public BlockType Type;
+    private BlockType Type;
 
-    public void InitializeButton()
+    public void InitializeButton(BlockType type)
     {
-        if (Type == BlockType.None)
+        Type = type;
+        if (type == BlockType.None)
         {
             gameObject.SetActive(false);
+            return;
         }
+        Type = type;
         gameObject.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(ButtonClicked);
-        gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>(Type.ToString());
+        gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>(type.ToString());
     }
 
     public void ButtonClicked()

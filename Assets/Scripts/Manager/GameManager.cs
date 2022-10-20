@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]public List<TextAsset> _textJson = new List<TextAsset>();
     [SerializeField] public JSONParser _parser;
     [SerializeField] public GameObject _WinScreenText;
-    private List<Tile> _spawnTiles;
     public JSONParser.GridLocationsArray _dropLocations;
     public JSONParser.GridLocationsArray _gridLocations;
     public JSONParser.WaveArray _wavesArray;
@@ -30,11 +29,17 @@ public class GameManager : MonoBehaviour
     [Header("Reference Managers")]
     public GridManager _gridManager;
     public GunManager _gunManager;
-    public TextMeshProUGUI _WaveText;
+    
 
-
-    [Header("Block Selection Buttons")] [SerializeField]
-    public List<GameObject> _blockSelectionButtons;
+    [Header("Block Selection Buttons")]
+    [SerializeField] public List<BlockType> _blockSelectionButtonTypes;
+    [SerializeField] public List<TextMeshProUGUI> textLimitBoxes;
+    [SerializeField] public List<TextMeshProUGUI> textPlaceBoxes;
+    [SerializeField] public List<int> _blocksGiven;
+    public List<int> blocksPlaced;
+    
+    [SerializeField] public List<GameObject> _blockSelectionButtons;
+    
     private int _wave = 0; //current wave index
     private int _totalWaves; //total amount of waves
     private int _subWave = 0; //current subwave index
@@ -42,19 +47,21 @@ public class GameManager : MonoBehaviour
     public bool waveSpawning = false;
     public float subwaveTimerMax = 2f; //time between subwaves
     public float subwaveTimer;
-
+    private bool reset = false;
     void Awake() {
         _instance = this;
+        int counter = 0;
         foreach (GameObject button in _blockSelectionButtons)
         {
-            button.GetComponent<ButtonScript>().InitializeButton();
+            button.GetComponent<ButtonScript>().InitializeButton(_blockSelectionButtonTypes[counter]);
+            textLimitBoxes[counter].text = _blocksGiven[counter].ToString();
+            counter++;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        _spawnTiles = new List<Tile>();
         _wavesArray = new JSONParser.WaveArray();
         _wavesArray.waves = new List<JSONParser.Wave>();
         _dropLocations = new JSONParser.GridLocationsArray();
@@ -64,14 +71,15 @@ public class GameManager : MonoBehaviour
         _parser.Parse(_textJson[0]);
         _parser.ParseLevel(_textJson[1]);
         _parser.ParseWaves(_textJson[2]);
-
+        blocksPlaced = new List<int>();
+        blocksPlaced.Add(0);
+        blocksPlaced.Add(0);
+        blocksPlaced.Add(0);
         _waveLocations = _wavesArray.waves[0]; //set to first wave
         subwaveTimer = subwaveTimerMax;
-
         //this._totalWaves = _dropLocations.indicies.Count;
        
         this._totalWaves = _wavesArray.waves.Count;
-        _WaveText.text = (_wave + 1).ToString() + "/" + _totalWaves.ToString();
         UpdateGameState();
     }
 
@@ -79,54 +87,14 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Check if all particles are still
-        if (_wave == _totalWaves)
+        if (!reset)
         {
             DetermineWinState();
         }
-
-        //times
-
-        if (waveSpawning)
-        {
-            Debug.Log("waveSpawing is true");
-            subwaveTimer -= Time.deltaTime;
-            Debug.Log(_totalSubWaves);
-            if (subwaveTimer <= 0f)
-            {
-                
-                Debug.Log("wave is spawning");
-                subwaveTimer = subwaveTimerMax;
-                SpawnNextSubWave();
-                
-            }
-            if (_subWave >= _totalSubWaves)
-            {
-                //finished a wave
-                Debug.Log("wave is done");
-                waveSpawning = false;
-                _wave++;
-            }
-        }
-        
     }
 
     public void SpawnNextWave()
     {
-        /* if (_wave < _totalWaves)
-         {
-             if (_wave >= _dropLocations.indicies.Count)
-             {
-                 _wave = 0;
-             }
-
-             foreach (int index in _dropLocations.indicies[_wave].locations)
-             {
-                 _gridManager.DrawParticle(BlockType.Water, new Vector3(index, _gridManager.getHeight() - 1));
-             } 
-
-             _wave++;
-             _WaveText.text = _wave.ToString() + "/" + _totalWaves.ToString();
-         }*/
         if (_wave < _totalWaves)
         {
             if (_wave >= _wavesArray.waves.Count)
@@ -138,7 +106,6 @@ public class GameManager : MonoBehaviour
             _waveLocations = _wavesArray.waves[_wave];
             _subWave = 0;
             _totalSubWaves = _waveLocations.wavelocations.Count;
-            _WaveText.text = (_wave + 1).ToString() + "/" + _totalWaves.ToString();
         }
 
     }
@@ -174,9 +141,12 @@ public class GameManager : MonoBehaviour
 
     public void resetLevel()
     {
+        reset = true;
         _WinScreenText.SetActive(false);
         _wave = 0;
         _gridManager.ResetGrid();
+        
+        reset = false;
     }
 
 
@@ -184,7 +154,7 @@ public class GameManager : MonoBehaviour
     {
        
         //check is water is present on map if so then bring up win screen
-        if(_gridManager.GetCurrentHealth() > 0 &&  _gridManager.GetWaterCount() == 0)
+        if(_gridManager.GetWaterCount() == 0)
         {
             _WinScreenText.SetActive(true);
         }
@@ -198,24 +168,32 @@ public class GameManager : MonoBehaviour
 
         switch (currentScene.name)
         {
-            case "LVL0 BLOCK":
-                Debug.Log("block scene");
-                SceneManager.LoadScene("LVL0 SHOOT");
+            case "1 Glass Level":
+                Debug.Log("1 Glass Level");
+                SceneManager.LoadScene("2 Mirror Level");
                 break;
-            case "LVL0 SHOOT":
-                Debug.Log("shooting scene");
-                SceneManager.LoadScene("LVL1");
+            case "2 Mirror Level":
+                Debug.Log("2 Mirror Level");
+                SceneManager.LoadScene("3 Dirt Level");
                 break;
-            case "LVL1":
-                Debug.Log("level 1 scene");
-                SceneManager.LoadScene("LVL2");
+            case "3 Dirt Level":
+                Debug.Log("3 Dirt Level");
+                SceneManager.LoadScene("4 Magma_TNT");
                 break;
-            case "LVL2":
-                Debug.Log("level 2 scene");
-                SceneManager.LoadScene("Main Game Scene");
+            case "4 Magma_TNT":
+                Debug.Log("4 Magma_TNTe");
+                SceneManager.LoadScene("5 Vapor");
                 break;
+            case "5 Vapor":
+                Debug.Log("5 Vapor");
+                SceneManager.LoadScene("Mixed Level");
+                break;
+            case "Mixed Level":
+                Debug.Log("Mixed Level");
+                SceneManager.LoadScene("Title Screen");
+                break;        
             default:
-                SceneManager.LoadScene("InstructionOverlay");
+                SceneManager.LoadScene("Title Screen");
                 break;
 
         }
@@ -231,6 +209,18 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
+    }
+
+    public int whichButtonPressed(BlockType type)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            if (_blockSelectionButtonTypes[i] == type)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 

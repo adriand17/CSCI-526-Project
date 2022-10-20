@@ -14,13 +14,7 @@ public class Shooting : MonoBehaviour {
     
     // Renders line from gun to target.
     private LineRenderer laserRenderer;
-    
-    // Furthest distance the laser can reach.
-    private static int maxRange = 100;
-    
-    // Maximum number of times laser can bounce.
-    private static int maxReflections = 3;
-
+        
     /// How often to apply heat.
     private static float laserHeatInterval = 0.1f;
     private float timeSinceHeat = 0f;

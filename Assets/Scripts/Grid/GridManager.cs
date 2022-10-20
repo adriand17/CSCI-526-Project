@@ -16,7 +16,6 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Particle _particlePrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
-    [SerializeField] private GameObject _nextWaveButton;
     [SerializeField] private GameObject _GameOverText;
  
 
@@ -26,54 +25,31 @@ public class GridManager : MonoBehaviour
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
 
-    /// [HEALTH SYSTEM]
-    [SerializeField] private HealthBar healthBar;
-    public int maxHealth = 50;
-    public int damage = 2;
-    public int currentHealth;
-
-    /// [BUILD LIMIT HUD]
-    private int _goldSpent = 0;
-    private int _goldLimit = 100;
-
-    /// Displays number of available building blocks.
-    [SerializeField] private TextMeshProUGUI _remainingGoldText;
-
-    /// Displays the "Buildable Blocks" label.
-    [SerializeField] private TextMeshProUGUI _goldLabelText;
-
     /// Empty flashing animation.
     private Coroutine TextFlash;
+
+
+    public int waterCount;
 
     // Start is called before the first frame update
     public void onStart()
     {
-        _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
+        waterCount = 0;
         GenerateGrid();
         ResetHealth();
     }
 
-    void Update()
-    {
-        checkWaterAtBottom();
-        if (currentHealth == 0)
-        {
-            _nextWaveButton.SetActive(false);
-            _GameOverText.SetActive(true);
-        }
-    }
-
     void ResetHealth()
     {
-        currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
-        _nextWaveButton.SetActive(true);
         _GameOverText.SetActive(false);
     }
 
     void GenerateGrid()
     {
         _tiles = new Dictionary<Vector2, Tile>();
+        _gameManager.textPlaceBoxes[0].text = _gameManager.blocksPlaced[0].ToString();
+        _gameManager.textPlaceBoxes[1].text = _gameManager.blocksPlaced[1].ToString();
+        _gameManager.textPlaceBoxes[2].text = _gameManager.blocksPlaced[2].ToString();
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
@@ -126,6 +102,7 @@ public class GridManager : MonoBehaviour
                         break;
                     case 0:
                         DrawParticle(BlockType.Water, pos);
+                        waterCount++;
                         break;
                     case 1:
                         DrawParticle(BlockType.Bedrock, pos);
@@ -147,6 +124,16 @@ public class GridManager : MonoBehaviour
                         break;
                     case 7:
                         DrawParticle(BlockType.TNT, pos);
+                        break;
+                    case 8:
+                        DrawParticle(BlockType.Evaporator, pos);
+                        break;
+                    case 9:
+                        DrawParticle(BlockType.Condensation, pos);
+                        break;
+                    case 10:
+                        DrawParticle(BlockType.Vapor, pos);
+                        waterCount++;
                         break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
@@ -185,7 +172,10 @@ public class GridManager : MonoBehaviour
             case BlockType.Bedrock:
             case BlockType.BlueIce:
                 return 60;
-
+            case BlockType.Evaporator:
+                return 10;
+            case BlockType.Condensation:
+                return 10;
             default:
                 Debug.LogError("Non placeable block type have no price: " + buildType);
                 return 0;
@@ -198,57 +188,30 @@ public class GridManager : MonoBehaviour
         Tile t = _tiles[pos];
         //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
+        int index = _gameManager.whichButtonPressed(buildType);
 
-        if (_goldSpent + buildTypePrice(buildType) > _goldLimit)
-        {
-            /// Can only remove.
-            if (t.particle != null && (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror))
+            if (t.particle == null && index != -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
             {
-                _goldSpent -= buildTypePrice(t.particle.getBlockType());
-                DestroyImmediate(t.particle.gameObject);
-                particles.Remove(t.particle);
-                t.particle = null;
-                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
-            }
-            else if (t.particle == null)
-            {
-                // Tile is empty.
-                if (TextFlash != null)
-                {
-                    StopCoroutine(TextFlash);
-                }
-                TextFlash = StartCoroutine(FlashCountText());
-            }
-
-            Debug.Log(_goldSpent + "/" + _goldLimit);
-            return false;
-        }
-        else
-        {
-            if (t.particle == null)
-            {
-                _goldSpent += buildTypePrice(buildType);
                 DrawParticle(buildType, pos);
-
-                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
-
+                //DrawParticle(BlockType.Vapor, pos);
                 /// Log block placement.
                 int level = 0;
                 string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSdfkfxAYRFo31DSvEuicQb5tr1xx7a3Q-DvU4ZpT_inCt7xtA/formResponse?usp=pp_url&entry.1421622821={level}&entry.2002566203={pos.x}&entry.1372862866={pos.y}&entry.1572288735={BlockType.Dirt}";
                 MakeGetRequest(uri);
+                _gameManager.blocksPlaced[index]++;
+                _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
+                return true;
             }
-            else if (t.particle.getBlockType() == BlockType.Dirt || t.particle.getBlockType() == BlockType.Glass || t.particle.getBlockType() == BlockType.Mirror)
+            else if (t.particle != null && t.particle.getBlockType() == buildType && index!= -1 && _gameManager.blocksPlaced[index] > 0)
             {
-                _goldSpent -= buildTypePrice(buildType);
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
                 t.particle = null;
-                _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
+                _gameManager.blocksPlaced[index]--;
+                _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
+                return true;
             }
-
-            Debug.Log(_goldSpent + "/" + _goldLimit);
-            return true;
-        }
+            return false;
     }
 
 
@@ -304,39 +267,17 @@ public class GridManager : MonoBehaviour
                 DestroyImmediate(p.gameObject);
             }
         }
-        _goldSpent = 0;
-        particles.Clear();
-        ResetHealth();
-        _remainingGoldText.text = (_goldLimit - _goldSpent).ToString();
-    }
-
-    public void TakeDamage()
-    {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-    }
-
-    private void checkWaterAtBottom()
-    {
-        //for now check if bottom row has water
-        for (int x = 0; x < _width; x++)
+        for (int i = 0; i < 3; i++)
         {
-
-            Tile t = _tiles[new Vector3(x, 0)];
-            if (t.particle != null && t.particle.getBlockType() == BlockType.Water)
-            {
-                particles.Remove(t.particle);
-                DestroyImmediate(t.particle.gameObject);
-                t.particle = null;
-
-
-                TakeDamage();
-
-            }
+            _gameManager.blocksPlaced[i] = 0;
         }
+        waterCount = 0;
+        particles.Clear();
+        GenerateGrid();
+        ResetHealth();
     }
-  
-    public void DestoryWateratTile(Tile t)
+
+    public void DestoryParticleAtTile(Tile t)
     {
         particles.Remove(t.particle);
         DestroyImmediate(t.particle.gameObject);
@@ -347,7 +288,7 @@ public class GridManager : MonoBehaviour
 
     /// Pulses building count text red. 
     /// Reminds player they can't build.
-    private IEnumerator FlashCountText()
+    /*private IEnumerator FlashCountText()
     {
         float counter = 0;
         while (counter <= flashDuration)
@@ -355,8 +296,6 @@ public class GridManager : MonoBehaviour
             /// Reset immediately if player can build.
             if (_goldLimit - _goldSpent >= buildTypePrice(buildType))
             {
-                _remainingGoldText.color = Color.white;
-                _goldLabelText.color = Color.white;
                 yield break;
             }
 
@@ -370,11 +309,11 @@ public class GridManager : MonoBehaviour
         _remainingGoldText.color = Color.white;
         _goldLabelText.color = Color.white;
         yield return null;
-    }
+    }*/
 
     public int GetWaterCount()
     {
-        int count = 0;
+        /*int count = 0;
         //if check if all waves are complete
         for (int x = 0; x < _width; x++)
         {
@@ -388,13 +327,27 @@ public class GridManager : MonoBehaviour
             }
         }
 
-        return count;
+        return count;*/
+        return waterCount;
     }
 
-    public int GetCurrentHealth()
+    public Block ReplaceBlockAtTile (Tile t, BlockType replace)
     {
-        return currentHealth;
+        DestoryParticleAtTile(t);
+        DrawParticle(replace, t.location);
+        return t.particle.block;
+  
     }
+
+
+
+/*    public int GetCurrentHealth()
+    {
+        DestoryWateratTile(t);
+        DrawParticle(replace, t.location);
+        return t.particle.block;
+  
+    }*/
 
     public int getHeight()
     {

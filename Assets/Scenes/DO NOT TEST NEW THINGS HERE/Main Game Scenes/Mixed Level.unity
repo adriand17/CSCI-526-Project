@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamSC Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 4627713171952174333, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: InfoPanel
+      value: 
+      objectReference: {fileID: 2033372717419687137}
     - target: {fileID: 7296255561840110508, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -263,3 +267,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6099ef4b0dc0b4b43842a46bbabc0056, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2033372717419687137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4320598742315407600, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+  m_PrefabInstance: {fileID: 2033372717419687135}
+  m_PrefabAsset: {fileID: 0}

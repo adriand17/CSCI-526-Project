@@ -4,7 +4,7 @@ public class InfoPopup : MonoBehaviour
 {
     public GameObject InfoPanel;
 
-    public float waitTime = 2f;
+    public float waitTime = 3f;
     bool skip = false;
 
     void Update()

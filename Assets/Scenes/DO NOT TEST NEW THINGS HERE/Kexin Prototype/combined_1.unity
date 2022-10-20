@@ -282,6 +282,11 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 2033372718641105248, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
   m_PrefabInstance: {fileID: 2033372717419687135}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1848601683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2033372718885334294, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+  m_PrefabInstance: {fileID: 2033372717419687135}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2126078966
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +381,19 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: 9633c27e55fa94d3e8feba4bebe26765, type: 3}
+      objectReference: {fileID: 4900000, guid: f3baf6aa81c7b421588e803b91d44b91, type: 3}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 1848601683}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtons.Array.data[3]
+      value: 
+      objectReference: {fileID: 1848601683}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blockSelectionButtonTypes.Array.size
       value: 3
@@ -387,15 +404,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blockSelectionButtonTypes.Array.data[1]
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blockSelectionButtonTypes.Array.data[2]
-      value: 1
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blockSelectionButtonTypes.Array.data[3]
-      value: 8
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x

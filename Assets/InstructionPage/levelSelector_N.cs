@@ -36,15 +36,24 @@ public class levelSelector_N : MonoBehaviour
     {
         SceneManager.LoadScene("Mixed Level");
     }
-//        public void OpenLevel1()
+//        public void OpenLevel7()
 //    {
 //        SceneManager.LoadScene("");
 //    }
-//        public void OpenLevel1()
+//        public void OpenLevel8()
 //    {
 //        SceneManager.LoadScene("");
 //    }
-//        public void OpenLevel1()
+//        public void OpenLevel9()
+//    {
+//        SceneManager.LoadScene("");
+//    }public void OpenLevel10()
+//    {
+//        SceneManager.LoadScene("");
+//    }public void OpenLevel11()
+//    {
+//        SceneManager.LoadScene("");
+//    }public void OpenLeve12()
 //    {
 //        SceneManager.LoadScene("");
 //    }

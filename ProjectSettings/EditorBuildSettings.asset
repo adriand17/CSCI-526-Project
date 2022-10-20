@@ -10,9 +10,10 @@ EditorBuildSettings:
     guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Title Screen.unity
-    guid: 75b2986fe6c1d44998f83f337a66399d
+    guid: 2d8da739b29624bc5969a3ffd0f3f3c7
   - enabled: 1
-    path: Assets/Scenes/New Features/Level Selector Screen.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Level Selector
+      Screen.unity
     guid: a8c7856b5e9be4ac48a12422a9e798b4
   - enabled: 1
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/1 Glass Level.unity

@@ -148,8 +148,14 @@ public class GameManager : MonoBehaviour
         _WinScreenText.SetActive(false);
         _wave = 0;
         _gridManager.ResetGrid();
-        
+        logReset();
         reset = false;
+    }
+
+    private void logReset() { 
+        string level = currentScene.name;
+        string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSfviyNFA3yDEbnJlsuuWuY3di26yUYloZ_K5yuGg-wdc46SUw/formResponse?usp=pp_url&entry.55836778=Yes&entry.594947595={level}&submit";
+        _gridManager.MakeGetRequest(uri);
     }
 
 

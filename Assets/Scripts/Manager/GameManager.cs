@@ -48,9 +48,12 @@ public class GameManager : MonoBehaviour
     public float subwaveTimerMax = 2f; //time between subwaves
     public float subwaveTimer;
     private bool reset = false;
+    private Scene currentScene;
     void Awake() {
         _instance = this;
         int counter = 0;
+        currentScene = SceneManager.GetActiveScene();
+        Debug.Log("Started level: " + currentScene.name);
         foreach (GameObject button in _blockSelectionButtons)
         {
             button.GetComponent<ButtonScript>().InitializeButton(_blockSelectionButtonTypes[counter]);

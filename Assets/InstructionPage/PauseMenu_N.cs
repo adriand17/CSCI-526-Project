@@ -11,13 +11,13 @@ public class PauseMenu_N : MonoBehaviour
      //Update is called once per frame
     void Update()
     {
-        Debug.Log("Inside UPDATE");
+        //Debug.Log("Inside UPDATE");
         if(Input.GetKeyDown(KeyCode.P))
 //      if(Input.GetKeyDown("escape"))
         {
-            Debug.Log("PRESSED P");
+            //Debug.Log("PRESSED P");
             if(GameIsPaused){
-                Debug.Log("InsIde CALL TO RESUME");
+                //Debug.Log("InsIde CALL TO RESUME");
                 Resume_N();
             }
             else{
@@ -26,7 +26,7 @@ public class PauseMenu_N : MonoBehaviour
         }
     }
     public void Resume_N(){
-        Debug.Log("InsIde RESUME");
+       // Debug.Log("InsIde RESUME");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;

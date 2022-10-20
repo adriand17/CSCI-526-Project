@@ -60,6 +60,11 @@ public class GameManager : MonoBehaviour
             textLimitBoxes[counter].text = _blocksGiven[counter].ToString();
             counter++;
         }
+
+        // Telemetry: level start
+        string level = currentScene.name;
+        string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSfZ8JI_YZx-d-JoHURLWdkNi7IuAWH_X7hsVfNPRcfTK4bxUQ/formResponse?usp=pp_url&entry.1841436937=Start&entry.177939367={level}&submit";
+        _gridManager.MakeGetRequest(uri);
     }
 
     // Start is called before the first frame update
@@ -206,7 +211,6 @@ public class GameManager : MonoBehaviour
                 break;
 
         }
-
     }
     public static GameManager Instance
     {

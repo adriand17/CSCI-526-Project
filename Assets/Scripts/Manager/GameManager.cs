@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]public List<TextAsset> _textJson = new List<TextAsset>();
     [SerializeField] public JSONParser _parser;
     [SerializeField] public GameObject _WinScreenText;
+    private bool didWin = false;
+
     public JSONParser.GridLocationsArray _dropLocations;
     public JSONParser.GridLocationsArray _gridLocations;
     public JSONParser.WaveArray _wavesArray;
@@ -168,9 +170,15 @@ public class GameManager : MonoBehaviour
     {
        
         //check is water is present on map if so then bring up win screen
-        if(_gridManager.GetWaterCount() == 0)
+        if(_gridManager.GetWaterCount() == 0 && !didWin)
         {
             _WinScreenText.SetActive(true);
+            didWin = true;
+            
+            // Telemetry: level finish
+            string level = SceneManager.GetActiveScene().name;
+            string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSfZ8JI_YZx-d-JoHURLWdkNi7IuAWH_X7hsVfNPRcfTK4bxUQ/formResponse?usp=pp_url&entry.1841436937=Finish&entry.177939367={level}&submit";
+            _gridManager.MakeGetRequest(uri);
         }
 
         //else start short time after last wave and no water is coming down, it end of timer then win
@@ -179,7 +187,6 @@ public class GameManager : MonoBehaviour
     public void loadNextScene()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-
         switch (currentScene.name)
         {
             case "1 Glass Level":

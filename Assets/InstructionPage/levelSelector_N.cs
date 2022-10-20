@@ -34,27 +34,76 @@ public class levelSelector_N : MonoBehaviour
     }
     public void OpenLevel6()
     {
-        SceneManager.LoadScene("Mixed Level");
+        SceneManager.LoadScene("6 TNT");
     }
-//        public void OpenLevel7()
-//    {
-//        SceneManager.LoadScene("");
-//    }
-//        public void OpenLevel8()
-//    {
-//        SceneManager.LoadScene("");
-//    }
-//        public void OpenLevel9()
-//    {
-//        SceneManager.LoadScene("");
-//    }public void OpenLevel10()
-//    {
-//        SceneManager.LoadScene("");
-//    }public void OpenLevel11()
-//    {
-//        SceneManager.LoadScene("");
-//    }public void OpenLeve12()
-//    {
-//        SceneManager.LoadScene("");
-//    }
+    public void OpenLevel7()
+    {
+        SceneManager.LoadScene("7 TNT 2");
+    }
+    public void OpenLevel8()
+    {
+        SceneManager.LoadScene("8 Mirror 2");
+    }
+    public void OpenLevel9()
+    {
+        SceneManager.LoadScene("9 Mixed Level 1");
+    }
+    public void OpenLevel10()
+    {
+        SceneManager.LoadScene("10 Mixed Level 2");
+    }
+    public void OpenLevel11()
+    {
+        SceneManager.LoadScene("11 Advance Level 1");
+    }
+    public void OpenLevel12()
+    {
+        SceneManager.LoadScene("12 Advance Level 2");
+    }
+    public void OpenLevel13()
+    {
+        SceneManager.LoadScene("13 Mixed Level 3");
+    }
+    public void OpenLevel14()
+    {
+        SceneManager.LoadScene("14 Mirror 3 Hard");
+    }
+    public void OpenLevel15()
+    {
+        SceneManager.LoadScene("15 Vapor 2");
+    }
+    public void OpenLevel16()
+    {
+        SceneManager.LoadScene("16 TNT Mirror");
+    }
+    public void OpenLevel17()
+    {
+        SceneManager.LoadScene("17 Mixed Level 3");
+    }
+    public void OpenLevel18()
+    {
+        SceneManager.LoadScene("18 Mixed Level 4");
+    }
+
+    //        public void OpenLevel7()
+    //    {
+    //        SceneManager.LoadScene("");
+    //    }
+    //        public void OpenLevel8()
+    //    {
+    //        SceneManager.LoadScene("");
+    //    }
+    //        public void OpenLevel9()
+    //    {
+    //        SceneManager.LoadScene("");
+    //    }public void OpenLevel10()
+    //    {
+    //        SceneManager.LoadScene("");
+    //    }public void OpenLevel11()
+    //    {
+    //        SceneManager.LoadScene("");
+    //    }public void OpenLeve12()
+    //    {
+    //        SceneManager.LoadScene("");
+    //    }
 }

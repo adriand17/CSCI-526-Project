@@ -215,9 +215,9 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("6 TNT");
                 break;
             case "6 TNT":
-                SceneManager.LoadScene("7 TNT 2");
+                SceneManager.LoadScene("7 TNT Mirror");
                 break;
-            case "7 TNT 2":
+            case "7 TNT Mirror":
                 SceneManager.LoadScene("8 Mirror 2");
                 break;
             case "8 Mirror 2":
@@ -242,9 +242,9 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("15 Vapor 2");
                 break;
             case "15 Vapor 2":
-                SceneManager.LoadScene("16 TNT Mirror");
+                SceneManager.LoadScene("16 TNT 2");
                 break;
-            case "16 TNT Mirror":
+            case "16 TNT 2":
                 SceneManager.LoadScene("17 Mixed Level 3");
                 break;
             case "17 Mixed Level 3":

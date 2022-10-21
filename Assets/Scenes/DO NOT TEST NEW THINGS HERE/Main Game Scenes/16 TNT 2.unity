@@ -433,6 +433,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: GridManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 7296255561840110499, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296255561840110508, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296255561840110508, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296255561840110508, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 853.6403
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296255561840110508, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 476.88098
+      objectReference: {fileID: 0}
     - target: {fileID: 7500213229730065728, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

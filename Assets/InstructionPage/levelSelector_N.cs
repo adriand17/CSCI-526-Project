@@ -38,7 +38,7 @@ public class levelSelector_N : MonoBehaviour
     }
     public void OpenLevel7()
     {
-        SceneManager.LoadScene("7 TNT 2");
+        SceneManager.LoadScene("7 TNT Mirror");
     }
     public void OpenLevel8()
     {
@@ -74,7 +74,7 @@ public class levelSelector_N : MonoBehaviour
     }
     public void OpenLevel16()
     {
-        SceneManager.LoadScene("16 TNT Mirror");
+        SceneManager.LoadScene("16 TNT 2");
     }
     public void OpenLevel17()
     {

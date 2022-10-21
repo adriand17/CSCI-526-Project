@@ -233,7 +233,7 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("12 Advanced Lavel 2");
                 break;
             case "12 Advanced Lavel 2":
-                SceneManager.LoadScene("3 Mixed Level 3");
+                SceneManager.LoadScene("13 Mixed Level 3");
                 break;
             case "13 Mixed Level 3":
                 SceneManager.LoadScene("14 Mirror 3 Hard");

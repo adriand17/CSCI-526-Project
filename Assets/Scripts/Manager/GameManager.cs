@@ -212,13 +212,47 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("5 Vapor");
                 break;
             case "5 Vapor":
-                Debug.Log("5 Vapor");
-                SceneManager.LoadScene("Mixed Level");
+                SceneManager.LoadScene("6 TNT");
                 break;
-            case "Mixed Level":
-                Debug.Log("Mixed Level");
+            case "6 TNT":
+                SceneManager.LoadScene("7 TNT 2");
+                break;
+            case "7 TNT 2":
+                SceneManager.LoadScene("8 Mirror 2");
+                break;
+            case "8 Mirror 2":
+                SceneManager.LoadScene("9 Mixed Level 1");
+                break;
+            case "9 Mixed Level 1":
+                SceneManager.LoadScene("10 Mixed Level 2");
+                break;
+            case "10 Mixed Level 2":
+                SceneManager.LoadScene("11 Advanced Level 1");
+                break;
+            case "11 Advanced Level 1":
+                SceneManager.LoadScene("12 Advanced Lavel 2");
+                break;
+            case "12 Advanced Lavel 2":
+                SceneManager.LoadScene("3 Mixed Level 3");
+                break;
+            case "13 Mixed Level 3":
+                SceneManager.LoadScene("14 Mirror 3 Hard");
+                break;
+            case "14 Mirror 3 Hard":
+                SceneManager.LoadScene("15 Vapor 2");
+                break;
+            case "15 Vapor 2":
+                SceneManager.LoadScene("16 TNT Mirror");
+                break;
+            case "16 TNT Mirror":
+                SceneManager.LoadScene("17 Mixed Level 3");
+                break;
+            case "17 Mixed Level 3":
+                SceneManager.LoadScene("18 Mixed Level 4");
+                break;
+            case "18 Mixed Level 4":
                 SceneManager.LoadScene("Title Screen");
-                break;        
+                break;
             default:
                 SceneManager.LoadScene("Title Screen");
                 break;

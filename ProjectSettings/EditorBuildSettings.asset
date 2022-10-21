@@ -34,7 +34,7 @@ EditorBuildSettings:
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/6 TNT.unity
     guid: 0c05195c602436441814045f43da67e0
   - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/7 TNT 2.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/16 TNT 2.unity
     guid: abef225b905064c4798420dd6990d0e6
   - enabled: 1
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/8 Mirror 2.unity
@@ -67,7 +67,7 @@ EditorBuildSettings:
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/15 Vapor 2.unity
     guid: a0e079923393b6c4a989d080b534f8ea
   - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/16 TNT Mirror.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/7 TNT Mirror.unity
     guid: 9badf7776461a9247bfa14807a6232e9
   - enabled: 1
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/17 Mixed Level

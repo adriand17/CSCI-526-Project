@@ -51,6 +51,15 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         else if (Type == BlockType.TNT){
             Tooltip.ShowTooltip_static("TNT");
         }
+        else if (Type == BlockType.Bedrock){
+            Tooltip.ShowTooltip_static("Bedrock");
+        }
+        else if (Type == BlockType.Evaporator){
+            Tooltip.ShowTooltip_static("Evaporator");
+        }
+        else if (Type == BlockType.Condensation){
+            Tooltip.ShowTooltip_static("Condensation");
+        }
     }
     
     public void OnPointerExit(PointerEventData pointerEventData)

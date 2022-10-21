@@ -3750,11 +3750,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchorMin.y
@@ -3762,11 +3762,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: -839
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: -456
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3798,11 +3798,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 485
+      value: 954.5
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -151
+      value: -429
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3814,6 +3814,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7958182935975040185, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752319746401967847, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 953.6403
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752319746401967847, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 576.881
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752319746401967848, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8752319747630743487, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}

@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<TextMeshProUGUI> textLimitBoxes;
     [SerializeField] public List<TextMeshProUGUI> textPlaceBoxes;
     [SerializeField] public List<int> _blocksGiven;
+    [SerializeField] public TextMeshProUGUI waterCount;
     public List<int> blocksPlaced;
     
     [SerializeField] public List<GameObject> _blockSelectionButtons;
@@ -97,6 +98,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Check if all particles are still
+        setRemainingWater();
         if (!reset)
         {
             DetermineWinState();
@@ -188,6 +190,11 @@ public class GameManager : MonoBehaviour
         }
 
         //else start short time after last wave and no water is coming down, it end of timer then win
+    }
+
+    void setRemainingWater()
+    {
+        waterCount.text = _gridManager.waterCount.ToString();
     }
     
     public void loadNextScene()

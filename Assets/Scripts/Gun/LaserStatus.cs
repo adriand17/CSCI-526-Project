@@ -47,9 +47,9 @@ public class LaserStatus {
 
     public void updateLaserEnergyLevel() {
         if (isFiring) {
-            decreaseLaserLevel();
+            //decreaseLaserLevel();
         } else {
-            increaseLaserLevel();
+            //increaseLaserLevel();
         }
         currentLaserLevel = (int)laserEnergy;
 

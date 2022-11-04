@@ -4150,6 +4150,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8752319747630743360, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1297
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752319747630743360, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 452
+      objectReference: {fileID: 0}
     - target: {fileID: 8752319747630743487, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_Navigation.m_Mode
       value: 0
@@ -4177,6 +4185,14 @@ PrefabInstance:
     - target: {fileID: 8752319748108794133, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseMenu_N, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752319748108794135, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -1297
+      objectReference: {fileID: 0}
+    - target: {fileID: 8752319748108794135, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 510
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}

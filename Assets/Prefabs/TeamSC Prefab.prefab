@@ -847,6 +847,7 @@ MonoBehaviour:
   - {fileID: 2853309650642117993}
   _blocksGiven: 010000000100000000000000
   waterCount: {fileID: 2495412834033856783}
+  pickaxeCursor: {fileID: 0}
   blocksPlaced: 
   _blockSelectionButtons:
   - {fileID: 561200539232867070}
@@ -4152,11 +4153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752319747630743360, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1297
+      value: -539
       objectReference: {fileID: 0}
     - target: {fileID: 8752319747630743360, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 452
+      value: 217
       objectReference: {fileID: 0}
     - target: {fileID: 8752319747630743487, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_Navigation.m_Mode
@@ -4188,11 +4189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8752319748108794135, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1297
+      value: -540
       objectReference: {fileID: 0}
     - target: {fileID: 8752319748108794135, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 510
+      value: 277
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7194a4f52c2434760a30e4e2aa23aceb, type: 3}

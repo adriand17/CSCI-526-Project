@@ -31,7 +31,7 @@ public class PauseMenu_N : MonoBehaviour
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
-    void Pause_N(){
+    public void Pause_N(){
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
@@ -40,7 +40,7 @@ public class PauseMenu_N : MonoBehaviour
     {
         GameIsPaused = false;
         Time.timeScale=1f;
-        SceneManager.LoadScene("Title Screen 1");
+        SceneManager.LoadScene("Title Screen");
         Debug.Log("Loading Game");
     }
     public void QuitGame_N()

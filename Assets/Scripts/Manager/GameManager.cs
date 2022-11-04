@@ -84,9 +84,9 @@ public class GameManager : MonoBehaviour
         _parser.ParseLevel(_textJson[1]);
         _parser.ParseWaves(_textJson[2]);
         blocksPlaced = new List<int>();
-        blocksPlaced.Add(0);
-        blocksPlaced.Add(0);
-        blocksPlaced.Add(0);
+        blocksPlaced.Add(_blocksGiven[0]);
+        blocksPlaced.Add(_blocksGiven[1]);
+        blocksPlaced.Add(_blocksGiven[2]);
         _waveLocations = _wavesArray.waves[0]; //set to first wave
         subwaveTimer = subwaveTimerMax;
         //this._totalWaves = _dropLocations.indicies.Count;

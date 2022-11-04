@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamSC Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 297915057}
     - target: {fileID: 7296255561840110508, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1

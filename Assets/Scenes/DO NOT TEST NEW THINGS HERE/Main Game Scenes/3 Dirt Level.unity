@@ -342,6 +342,10 @@ PrefabInstance:
       propertyPath: m_text
       value: retry the level with the reset button!
       objectReference: {fileID: 0}
+    - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
+      objectReference: {fileID: 1482617452}
     - target: {fileID: 6605713859589768977, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -3

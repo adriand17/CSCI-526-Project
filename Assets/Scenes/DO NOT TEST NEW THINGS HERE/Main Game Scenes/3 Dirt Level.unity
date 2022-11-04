@@ -324,15 +324,68 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
-      value: '-select a block
+      value: 'Click to place!
 
-        -click to place
+        Click again to remove!
 
-        -click again to remove'
+        You can only
+        place up to a limit. Remove to place more.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_margin.z
+      value: 238.35571
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718379747767, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718379747768, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.1375
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718379747768, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7625
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718379747768, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 309
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718725747325, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 77
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718746913087, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718746913087, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718746913087, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 284.7112
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718746913087, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.86653125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718746913087, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2765626
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718746913087, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -126
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718746913087, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 206
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718885334293, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -340,7 +393,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
-      value: retry the level with the reset button!
+      value: Select a this dirt block!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI
@@ -348,11 +405,11 @@ PrefabInstance:
       objectReference: {fileID: 1482617452}
     - target: {fileID: 6605713859589768977, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 6605713859589768977, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 18
+      value: 254
       objectReference: {fileID: 0}
     - target: {fileID: 7296255561840110508, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y

@@ -21,7 +21,7 @@ public class GridManager : MonoBehaviour
  
 
     /// Type of block placed when player builds.
-    protected BlockType buildType = BlockType.Dirt;
+    protected BlockType buildType = BlockType.None;
 
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
@@ -191,7 +191,7 @@ public class GridManager : MonoBehaviour
         // if the existing building count excess the limit and player want to add budling on the pos
         int index = _gameManager.whichButtonPressed(buildType);
 
-            if (t.particle == null && index != -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
+            if (t.particle == null && buildType != BlockType.None && index != -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
             {
                 DrawParticle(buildType, pos);
                 
@@ -213,6 +213,11 @@ public class GridManager : MonoBehaviour
                 return true;
             }
             return false;
+    }
+
+    public BlockType getBuildType()
+    {
+        return buildType;
     }
 
 

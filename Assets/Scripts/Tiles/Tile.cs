@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour
     public bool Occupied = false;
     private bool changeFlage = true;
     public bool _isPassable = true;
+    private Sprite defaultSprite;
 
     /// Tile's grid coordinates.
     public Vector2 gridPosition;
@@ -41,6 +42,7 @@ public class Tile : MonoBehaviour
         this.gridPosition = gridPosition;
         this.location = new Vector3(gridPosition.x, gridPosition.y, -1);
         this._gridManager = gridManager;
+        defaultSprite = _renderer.sprite;
     }
 
     private void Update()
@@ -62,11 +64,92 @@ public class Tile : MonoBehaviour
     private void OnMouseEnter()
     {
         _highlight.SetActive(true);
+        if(particle == null)
+        {
+            showPreview();
+        }
+        
+        
     }
 
     private void OnMouseExit()
     {
         _highlight.SetActive(false);
+       
+        hidePreview();
+       
+        
+    }
+
+    private void showPreview()
+    {
+        BlockType b = _gridManager.getBuildType();
+        Debug.Log(_renderer.sprite);
+        var c = Color.white;
+        c.a = 0.5f;
+        switch (b)
+        {
+            case BlockType.Bedrock:
+                _renderer.sprite = Resources.Load<Sprite>("Bedrock");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.Dirt:
+                _renderer.sprite = Resources.Load<Sprite>("Dirt");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.Mirror:
+                _renderer.sprite = Resources.Load<Sprite>("Mirror");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.Glass:
+                _renderer.sprite = Resources.Load<Sprite>("Glass");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.Magma:
+                _renderer.sprite = Resources.Load<Sprite>("Magma");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.BlueIce:
+                _renderer.sprite = Resources.Load<Sprite>("BlueIce");
+                _renderer.color = Color.white;
+                break;
+
+            case BlockType.TNT:
+                _renderer.sprite = Resources.Load<Sprite>("TNT");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.Vapor:
+                _renderer.sprite = Resources.Load<Sprite>("Water");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.Evaporator:
+                _renderer.sprite = Resources.Load<Sprite>("Evaporator");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.Condensation:
+                _renderer.sprite = Resources.Load<Sprite>("Condensation");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.None:
+                break;
+            default:
+                //Debug.LogError("Unhandled block type: " + type);
+                break;
+        }
+        _renderer.color = c;
+    }
+
+
+    private void hidePreview()
+    {
+        Debug.Log(_renderer.sprite);
+        _renderer.sprite = defaultSprite;
+        _renderer.color = baseColor;
     }
 
     private void OnMouseDown() {

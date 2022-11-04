@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildableTile
       objectReference: {fileID: 0}
+    - target: {fileID: 503380013076866145, guid: 6192c2dacd9154344a52002a8abf1c74, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6401559999207349107, guid: 6192c2dacd9154344a52002a8abf1c74, type: 3}
       propertyPath: m_RootOrder
       value: 0

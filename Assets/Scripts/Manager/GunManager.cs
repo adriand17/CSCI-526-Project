@@ -47,8 +47,8 @@ public class GunManager : MonoBehaviour
     // }
 
     void Update() {
-        //int level = shootingScript.getLaserStatus().getCurrentReflectLevel();
-        //_gunBarPrefab.SetEnergy(level);
+        int level = shootingScript.getLaserStatus().getCurrentReflectLevel();
+        _gunBarPrefab.SetEnergy(level);
     }
 
 }

@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<TextMeshProUGUI> textPlaceBoxes;
     [SerializeField] public List<int> _blocksGiven;
     [SerializeField] public TextMeshProUGUI waterCount;
+    [SerializeField] public Texture2D pickaxeCursor;
     public List<int> blocksPlaced;
     
     [SerializeField] public List<GameObject> _blockSelectionButtons;
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
         this._totalWaves = _wavesArray.waves.Count;
         UpdateGameState();
     }
+
 
     // Update is called once per frame
     void Update()

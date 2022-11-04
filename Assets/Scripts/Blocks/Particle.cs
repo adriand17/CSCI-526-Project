@@ -55,7 +55,7 @@ public class Particle : MonoBehaviour {
                 block = new CondensationBlock(this, gridManager);
                 break;
             default:
-                Debug.LogError("Unknown block type: " + blockType);
+                //Debug.LogError("Unknown block type: " + blockType);
                 break;
         }
     }
@@ -137,6 +137,8 @@ public class Particle : MonoBehaviour {
             case BlockType.Condensation:
                 _renderer.sprite = Resources.Load<Sprite>("Condensation");
                 _renderer.color = Color.white;
+                break;
+            case BlockType.None:
                 break;
             default:
                 Debug.LogError("Unhandled block type: " + type);

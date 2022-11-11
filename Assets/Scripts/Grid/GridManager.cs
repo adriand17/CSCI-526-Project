@@ -36,6 +36,7 @@ public class GridManager : MonoBehaviour
     public void onStart()
     {
         waterCount = 0;
+        SetBlockBuildType(_gameManager._blockSelectionButtonTypes[0]);
         GenerateGrid();
         ResetHealth();
     }
@@ -273,10 +274,10 @@ public class GridManager : MonoBehaviour
                 DestroyImmediate(p.gameObject);
             }
         }
-        for (int i = 0; i < 3; i++)
+        /*for (int i = 0; i < 3; i++)
         {
             _gameManager.blocksPlaced[i] = 0;
-        }
+        }*/
         waterCount = 0;
         particles.Clear();
         GenerateGrid();

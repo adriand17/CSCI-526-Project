@@ -107,6 +107,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+     public void ResetInventory()
+    {
+        blocksPlaced[0] = _blocksGiven[0];
+        blocksPlaced[1] = _blocksGiven[1];
+        blocksPlaced[2] = _blocksGiven[2];
+        Debug.Log(_blocksGiven[0]);
+        Debug.Log(_blocksGiven[1]);
+        Debug.Log(_blocksGiven[2]);
+
+        textPlaceBoxes[0].text = _blocksGiven[0].ToString();
+        textPlaceBoxes[1].text = _blocksGiven[1].ToString();
+        textPlaceBoxes[2].text = _blocksGiven[2].ToString();
+    }
+
     public void SpawnNextWave()
     {
         if (_wave < _totalWaves)
@@ -158,6 +172,7 @@ public class GameManager : MonoBehaviour
         reset = true;
         _WinScreenText.SetActive(false);
         _wave = 0;
+        ResetInventory();
         _gridManager.ResetGrid();
         logReset();
         reset = false;

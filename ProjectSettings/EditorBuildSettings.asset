@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Title Screen.unity
     guid: 2d8da739b29624bc5969a3ffd0f3f3c7
   - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Title Screen_AIM.unity
+    guid: 926f3d6a5b7434e3fb5f67988365f00a
+  - enabled: 1
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/Level Selector
       Screen.unity
     guid: 854f4dde85aa2c547a91ac69d5ad14ea

@@ -123,6 +123,12 @@ public class Shooting : MonoBehaviour {
                     breakLoop = true;
                     break;
                 
+                case BlockType.RainTrigger:
+                    RainTriggerBlock rtBlock = (RainTriggerBlock)particle.block;
+                    rtBlock.SpawnWater();
+                    breakLoop = true;
+                    break;
+                
                 case BlockType.Bedrock:
                 case BlockType.Dirt:
                 case BlockType.Magma:

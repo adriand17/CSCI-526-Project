@@ -19,6 +19,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Transform _camera;
     [SerializeField] private GameObject _GameOverText;
  
+    //Keep Track of Rain Makers
+    public List<RainMakerBlock> _rainMakerBlocks;
 
     /// Type of block placed when player builds.
     protected BlockType buildType = BlockType.None;
@@ -36,6 +38,7 @@ public class GridManager : MonoBehaviour
     public void onStart()
     {
         waterCount = 0;
+        _rainMakerBlocks = new List<RainMakerBlock>();
         SetBlockBuildType(_gameManager._blockSelectionButtonTypes[0]);
         GenerateGrid();
         ResetHealth();
@@ -80,6 +83,11 @@ public class GridManager : MonoBehaviour
         particle.Init(type, tile, this);
         tile.SetParticle(particle);
         particles.Add(particle);
+
+        if (type == BlockType.RainMaker)
+        {
+            _rainMakerBlocks.Add((RainMakerBlock)particle.block);
+        }
     }
 
     // Create inital level geometry.
@@ -136,6 +144,12 @@ public class GridManager : MonoBehaviour
                     case 10:
                         DrawParticle(BlockType.Vapor, pos);
                         waterCount++;
+                        break;
+                    case 11:
+                        DrawParticle(BlockType.RainMaker, pos);
+                        break;
+                    case 12:
+                        DrawParticle(BlockType.RainTrigger, pos);
                         break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");

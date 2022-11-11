@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22ff49e4-1601-4124-a769-8353baeb24df" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Level Input JSON/Adrian Levels/Mixed Level.json" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level Input JSON/Adrian Levels/Mixed Level.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CSCI-526-Project/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CSCI-526-Project/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blocks/BlockType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blocks/BlockType.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Blocks/Particle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Blocks/Particle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grid/GridManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grid/GridManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Gun/Shooting.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Gun/Shooting.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Bangers SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Roboto-Bold SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,10 +52,10 @@
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="7716">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="7716" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -77,6 +86,7 @@
       <workItem from="1663633582995" duration="10154000" />
       <workItem from="1666064387602" duration="6150000" />
       <workItem from="1666121805013" duration="9000" />
+      <workItem from="1668188911099" duration="2820000" />
     </task>
     <servers />
   </component>
@@ -110,17 +120,17 @@
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/ButtonScript.cs</url>
-          <line>13</line>
-          <properties documentPath="H:\CSCI-526-Project\Assets\ButtonScript.cs" initialLine="13" containingFunctionPresentation="method 'InitializeButton'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/Gun/Shooting.cs</url>
+          <line>126</line>
+          <properties documentPath="H:\CSCI-526-Project\Assets\Scripts\Gun\Shooting.cs" initialLine="126" containingFunctionPresentation="method 'DrawLaser'">
             <startOffsets>
-              <option value="265" />
+              <option value="4361" />
             </startOffsets>
             <endOffsets>
-              <option value="277" />
+              <option value="4421" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="18" />
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -54,6 +54,12 @@ public class Particle : MonoBehaviour {
             case BlockType.Condensation:
                 block = new CondensationBlock(this, gridManager);
                 break;
+            case BlockType.RainMaker:
+                block = new RainMakerBlock(this);
+                break;
+            case BlockType.RainTrigger:
+                block = new RainTriggerBlock(this);
+                break;
             default:
                 //Debug.LogError("Unknown block type: " + blockType);
                 break;
@@ -136,6 +142,14 @@ public class Particle : MonoBehaviour {
                 break;
             case BlockType.Condensation:
                 _renderer.sprite = Resources.Load<Sprite>("Condensation");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.RainTrigger:
+                _renderer.sprite = Resources.Load<Sprite>("RainTrigger");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.RainMaker:
+                _renderer.sprite = Resources.Load<Sprite>("RainMaker");
                 _renderer.color = Color.white;
                 break;
             case BlockType.None:

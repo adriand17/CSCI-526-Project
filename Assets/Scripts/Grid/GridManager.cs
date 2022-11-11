@@ -34,6 +34,7 @@ public class GridManager : MonoBehaviour
 
     public int waterCount;
 
+    private List<Particle> portalList = new List<Particle>();
     // Start is called before the first frame update
     public void onStart()
     {
@@ -150,6 +151,11 @@ public class GridManager : MonoBehaviour
                         break;
                     case 12:
                         DrawParticle(BlockType.RainTrigger, pos);
+                    case 13:
+                        DrawParticle(BlockType.PortalEntry, pos);
+                        break;
+                    case 14:
+                        DrawParticle(BlockType.PortalExit, pos);
                         break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
@@ -424,5 +430,22 @@ public class GridManager : MonoBehaviour
 
     public void setGridWidth(int w) {
         _width = w;
+    }
+
+    public void addPortal(Particle particle) {
+        portalList.Add(particle);
+    }
+
+    public void removePortal(Particle particle) {
+        portalList.Remove(particle);
+    }
+
+    public List<Vector3> getAllPortalPosition() {
+        List<Vector3> positions = new List<Vector3>();
+        foreach (Particle particle in portalList) {
+            Vector3 pos = particle.gameObject.transform.position;
+            positions.Add(pos);
+        }
+        return positions;        
     }
 }

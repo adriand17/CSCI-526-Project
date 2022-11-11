@@ -11,7 +11,8 @@ public class Shooting : MonoBehaviour {
 
     public Transform rightpivot;
     public Transform firepoint;
-    
+    [SerializeField] private GameObject _childLinePrefab;
+
     // Renders line from gun to target.
     private LineRenderer laserRenderer;
         
@@ -21,6 +22,7 @@ public class Shooting : MonoBehaviour {
 
     public static int TempLaser = +2;
     private LaserStatus laserStatus = new LaserStatus();
+    private List<GameObject> childLines = new List<GameObject>();
 
     
     public void setLaserStatus(LaserStatus status) {
@@ -148,6 +150,26 @@ public class Shooting : MonoBehaviour {
                     start.z = raycastStart.z;
                     raycastStart = start;
                     break;
+                case BlockType.PortalEntry:
+                    //Debug.Log(hit.collider.gameObject);
+                    var allPosition = particle.getAllPortalPosition();
+                    
+                    foreach (Vector3 pos in allPosition) {
+                        Vector3 starts = pos;
+                        starts.z = raycastStart.z;
+                        raycastStart = starts;
+                        targetPosition = raycastStart + (raycastDirection.normalized * laserStatus.maxRange());
+                        
+                        positions.Add(raycastStart);
+                        //positions.Add(targetPosition);
+
+                    }
+                    breakLoop = true;
+                    break;
+                case BlockType.PortalExit:
+                    //Debug.Log(hit.collider.gameObject);
+                    breakLoop = true;
+                    break;
                 
                 default:
                     Debug.Log("ERROR: Unknown block type");
@@ -162,5 +184,9 @@ public class Shooting : MonoBehaviour {
         // Assign positions to line renderer.
         laserRenderer.positionCount = positions.Count;
         laserRenderer.SetPositions(positions.ToArray());
+    }
+
+    void DrawChildLaser() {
+        
     }
 }

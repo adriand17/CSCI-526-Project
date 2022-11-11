@@ -267,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightpivot: {fileID: 8131458324748295080}
   firepoint: {fileID: 8131458324748295080}
+  _childLinePrefab: {fileID: 5300842281891493922, guid: 16005e52a04ba4249b584572318a791d, type: 3}
 --- !u!120 &8131458325811062568
 LineRenderer:
   m_ObjectHideFlags: 0

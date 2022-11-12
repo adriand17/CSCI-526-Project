@@ -151,6 +151,7 @@ public class GridManager : MonoBehaviour
                         break;
                     case 12:
                         DrawParticle(BlockType.RainTrigger, pos);
+                        break;
                     case 13:
                         DrawParticle(BlockType.PortalEntry, pos);
                         break;
@@ -228,6 +229,8 @@ public class GridManager : MonoBehaviour
             {
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
+                removePortal(t.particle);
+
                 t.particle = null;
                 _gameManager.blocksPlaced[index]++;
                 _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
@@ -437,6 +440,7 @@ public class GridManager : MonoBehaviour
     }
 
     public void removePortal(Particle particle) {
+        Debug.Log("removePortal");
         portalList.Remove(particle);
     }
 

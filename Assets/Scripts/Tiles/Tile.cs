@@ -69,62 +69,59 @@ public class Tile : MonoBehaviour
         hidePreview();   
     }
 
+    // Shows a semi-transparent version of block,
+    // so the player can preview their action.
     private void showPreview()
     {
-        BlockType b = _gridManager.getBuildType();
-        Debug.Log(_renderer.sprite);
         var c = Color.white;
-        c.a = 0.5f;
+        c.a = 0.5f; // Semi-transparent
+     
+        BlockType b = _gridManager.getBuildType();
         switch (b)
         {
             case BlockType.Bedrock:
                 _renderer.sprite = Resources.Load<Sprite>("Bedrock");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Dirt:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Mirror:
                 _renderer.sprite = Resources.Load<Sprite>("Mirror");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Glass:
                 _renderer.sprite = Resources.Load<Sprite>("Glass");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Magma:
                 _renderer.sprite = Resources.Load<Sprite>("Magma");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.BlueIce:
                 _renderer.sprite = Resources.Load<Sprite>("BlueIce");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.TNT:
                 _renderer.sprite = Resources.Load<Sprite>("TNT");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.Vapor:
                 _renderer.sprite = Resources.Load<Sprite>("Water");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.Evaporator:
                 _renderer.sprite = Resources.Load<Sprite>("Evaporator");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.Condensation:
                 _renderer.sprite = Resources.Load<Sprite>("Condensation");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.None:
                 break;
+            
             default:
                 //Debug.LogError("Unhandled block type: " + type);
                 break;

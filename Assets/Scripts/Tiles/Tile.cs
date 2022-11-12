@@ -52,12 +52,6 @@ public class Tile : MonoBehaviour
             _renderer.color = Color.green;
             _isBuildable = true;
         }
-        else
-        {
-
-        }
-
-        
     }
 
     

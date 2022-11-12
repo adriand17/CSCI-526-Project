@@ -53,7 +53,6 @@ public class Tile : MonoBehaviour
             _isBuildable = true;
         }
     }
-
     
     private void OnMouseEnter()
     {
@@ -62,17 +61,12 @@ public class Tile : MonoBehaviour
         {
             showPreview();
         }
-        
-        
     }
 
     private void OnMouseExit()
     {
         _highlight.SetActive(false);
-       
-        hidePreview();
-       
-        
+        hidePreview();   
     }
 
     private void showPreview()
@@ -138,7 +132,6 @@ public class Tile : MonoBehaviour
         _renderer.color = c;
     }
 
-
     private void hidePreview()
     {
         Debug.Log(_renderer.sprite);
@@ -163,17 +156,10 @@ public class Tile : MonoBehaviour
 
     }
 
-    
-
     /// Lets manager inform tile of its valid neighbors.
     public void setAdjacentTiles(Tile upTile, Tile downTile, Tile leftTile, Tile rightTile)
     {
-        //this.upTile = upTile;
-        //this.downTile = downTile;
-        //this.rightTile = rightTile;
-        //this.leftTile = leftTile;
     }
-
 
     public void SetTower(Tower t)
     {

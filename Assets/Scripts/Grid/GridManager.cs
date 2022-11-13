@@ -225,7 +225,17 @@ public class GridManager : MonoBehaviour
             _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
             return true;
         }
-        else if (t.particle != null && t.particle.getBlockType() == buildType && index!= -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
+        return false;
+    }
+
+    public bool CanBreakBlockAtTile(Vector3 pos)
+    {
+        Tile t = _tiles[pos];
+        //Debug.Log(t._isPassable);
+        // if the existing building count excess the limit and player want to add budling on the pos
+        int index = _gameManager.whichButtonPressed(buildType);
+
+        if (t.particle != null && t.particle.getBlockType() == buildType && index!= -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
         {
             DestroyImmediate(t.particle.gameObject);
             particles.Remove(t.particle);

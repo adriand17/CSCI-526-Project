@@ -100,7 +100,11 @@ public class Particle : MonoBehaviour {
         /// Prevents particle hiding behind tile.
         _renderer.sortingLayerName = "ParticleLayer";
         
-        switch (type) {
+        setBlockSprite();
+    }
+
+    private void setBlockSprite() { 
+        switch (block.blockType) {
             case BlockType.Water:
                 WaterBlock waterBlock = (WaterBlock)block;
                 waterBlock.UpdateSprite();
@@ -169,7 +173,7 @@ public class Particle : MonoBehaviour {
                 _renderer.color = Color.white;
                 break;
             default:
-                Debug.LogError("Unhandled block type: " + type);
+                Debug.LogError("Unhandled block type: " + block.blockType);
                 break;
         }
     }

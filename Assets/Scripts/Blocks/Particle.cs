@@ -178,6 +178,21 @@ public class Particle : MonoBehaviour {
         }
     }
 
+    private void OnMouseEnter()
+    {
+        if(_gridManager.CanBreakBlockAtTile(this.tile.location)) { 
+            _renderer.sprite = Resources.Load<Sprite>("Pickaxe");
+        } else { 
+            _renderer.sprite = Resources.Load<Sprite>("Barrier");
+        }
+        _renderer.color = new Color(1, 1, 1, 0.5f);
+    }
+
+    private void OnMouseExit()
+    {
+        setBlockSprite();
+    }
+
     public void Update() {
         _timeSinceLastUpdate += Time.deltaTime;
         if (_timeSinceLastUpdate < Particle.TickInterval + delay) {

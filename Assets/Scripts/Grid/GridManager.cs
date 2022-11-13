@@ -215,17 +215,24 @@ public class GridManager : MonoBehaviour
 
         if (t.particle == null && buildType != BlockType.None && index != -1 && _gameManager.blocksPlaced[index] > 0)
         {
-            DrawParticle(buildType, pos);
-            
-            /// Log block placement.
-            string level = SceneManager.GetActiveScene().name;
-            string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSfP2foRoq7thSwuBci5e3pqX4SAXmmWIHdhKSGDei93TckhgQ/formResponse?usp=pp_url&entry.1767141370={pos.x}&entry.1642741263={pos.y}&entry.913150214={buildType}&entry.274409603={level}&submit";
-            MakeGetRequest(uri);
-            _gameManager.blocksPlaced[index]--;
-            _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
             return true;
         }
         return false;
+    }
+    
+    public void AddBlockToTile(Vector3 pos)
+    {
+        Tile t = _tiles[pos];
+        int index = _gameManager.whichButtonPressed(buildType);
+        DrawParticle(buildType, pos);
+        
+        _gameManager.blocksPlaced[index]--;
+        _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
+        
+        /// Log block placement.
+        string level = SceneManager.GetActiveScene().name;
+        string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSfP2foRoq7thSwuBci5e3pqX4SAXmmWIHdhKSGDei93TckhgQ/formResponse?usp=pp_url&entry.1767141370={pos.x}&entry.1642741263={pos.y}&entry.913150214={buildType}&entry.274409603={level}&submit";
+        MakeGetRequest(uri);
     }
 
     public bool CanBreakBlockAtTile(Vector3 pos)
@@ -237,16 +244,22 @@ public class GridManager : MonoBehaviour
 
         if (t.particle != null && t.particle.getBlockType() == buildType && index!= -1 && _gameManager.blocksPlaced[index] < _gameManager._blocksGiven[index])
         {
-            DestroyImmediate(t.particle.gameObject);
-            particles.Remove(t.particle);
-            removePortal(t.particle);
-
-            t.particle = null;
-            _gameManager.blocksPlaced[index]++;
-            _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
             return true;
         }
         return false;
+    }
+    
+    public void BreakBlockAtTile(Vector3 pos)
+    {
+        Tile t = _tiles[pos];
+        int index = _gameManager.whichButtonPressed(buildType);
+        DestroyImmediate(t.particle.gameObject);
+        particles.Remove(t.particle);
+        removePortal(t.particle);
+
+        t.particle = null;
+        _gameManager.blocksPlaced[index]++;
+        _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
     }
 
     public BlockType getBuildType()

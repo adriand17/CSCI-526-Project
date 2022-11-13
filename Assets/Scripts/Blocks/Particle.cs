@@ -207,12 +207,8 @@ public class Particle : MonoBehaviour {
         // changeFlage is a check to see if a building can be placed on the location
         Debug.Log("clicking on particle");
 
-        bool changeFlage = _gridManager.CanBreakBlockAtTile(this.tile.location);
-        if (changeFlage)
-        {
-            Debug.Log("added or rmoved at tile");
-        } else {
-            Debug.Log("cancel other buliding to create new one");
+        if(_gridManager.CanBreakBlockAtTile(this.tile.location)) { 
+            _gridManager.BreakBlockAtTile(this.tile.location);
         }
     }
 

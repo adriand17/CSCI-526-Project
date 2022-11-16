@@ -471,6 +471,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 710587053941288862, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1662282350937959471, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_Name
       value: TeamSC Prefab
@@ -535,13 +539,25 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: GridManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3790938202001019201, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4017671196707084966, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_text
+      value: 'level 16: Water Pipelines'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4114656894269527844, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI
       value: 
       objectReference: {fileID: 1095762842}
     - target: {fileID: 5687174477176575805, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7296255561840110499, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_IsActive

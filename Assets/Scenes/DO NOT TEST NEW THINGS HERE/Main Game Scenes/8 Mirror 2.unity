@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4017671196707084966, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_text
+      value: 'level 8: Find the Perfect Angle'
+      objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI
       value: 

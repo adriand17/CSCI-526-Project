@@ -10,6 +10,12 @@ public class MainMenu : MonoBehaviour
 //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene("Title Screen_AIM");
     }
+
+    public void Tutorial()
+    {
+//        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("DirtLevel_tutorial");
+    }
     public void QuitGame()
     {
         Debug.Log("QUIT!");

@@ -6,7 +6,7 @@ public class blast : MonoBehaviour
 {
     private static blast instance;
 
-    [SerializeField] public Grid grid;
+    [SerializeField] public GridManager gridManager;
     [SerializeField] private Camera mainCamera;
     // Start is called before the first frame update
 
@@ -24,6 +24,13 @@ public class blast : MonoBehaviour
 
     public static void ShowBlast_static(Vector2 location)
     {
+        // Debug.Log(location);
+        // Debug.Log(instance.gridManager.getHeight());
+        // Debug.Log(instance.gridManager.getWidth());
+        float offX = location.x - instance.gridManager.getWidth()/2f;
+        float offY = location.y - instance.gridManager.getHeight()/2f;
+        // Debug.Log((offX, offY));
+        instance.gameObject.transform.localPosition = new Vector3(offX*40f, offY*40f+40f, 0);
         instance.gameObject.SetActive(true);
         instance.StartCoroutine(instance.DisableBlast());
     }

@@ -333,6 +333,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1468599365}
     m_Modifications:
+    - target: {fileID: -323329119148659634, guid: 9075971c8161a496bae1bfe2414c1ce7, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 524383768}
+    - target: {fileID: -323329119148659634, guid: 9075971c8161a496bae1bfe2414c1ce7, type: 3}
+      propertyPath: gridManager
+      value: 
+      objectReference: {fileID: 615875999}
     - target: {fileID: 1079269808544591120, guid: 9075971c8161a496bae1bfe2414c1ce7, type: 3}
       propertyPath: m_Name
       value: blast

@@ -278,7 +278,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &209128646
 RectTransform:
   m_ObjectHideFlags: 0
@@ -579,7 +579,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 5.0028, y: 41.621}
+  m_AnchoredPosition: {x: 5.0028, y: -0.0000076293945}
   m_SizeDelta: {x: -77.157, y: -83.2424}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &598082973
@@ -1065,7 +1065,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 1.0289917, y: 0.17099762}
+  m_AnchoredPosition: {x: -1.5086975, y: 4.5}
   m_SizeDelta: {x: -3.017395, y: 9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1504939724
@@ -1088,7 +1088,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'PLAY
+  m_text: 'START
 
 '
   m_isRightToLeft: 0
@@ -1099,8 +1099,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4287627262
-  m_fontColor: {r: 0.9941325, g: 1, b: 0.5613208, a: 1}
+    rgba: 4282663739
+  m_fontColor: {r: 0.23137257, g: 0.2627451, b: 0.26666668, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

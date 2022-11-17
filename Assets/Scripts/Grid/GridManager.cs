@@ -19,6 +19,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private Transform _camera;
     [SerializeField] private GameObject _GameOverText;
  
+    //Keep Track of Rain Makers
+    public List<RainMakerBlock> _rainMakerBlocks;
 
     /// Type of block placed when player builds.
     protected BlockType buildType = BlockType.None;
@@ -32,10 +34,12 @@ public class GridManager : MonoBehaviour
 
     public int waterCount;
 
+    private List<Particle> portalList = new List<Particle>();
     // Start is called before the first frame update
     public void onStart()
     {
         waterCount = 0;
+        _rainMakerBlocks = new List<RainMakerBlock>();
         SetBlockBuildType(_gameManager._blockSelectionButtonTypes[0]);
         GenerateGrid();
         ResetHealth();
@@ -80,6 +84,11 @@ public class GridManager : MonoBehaviour
         particle.Init(type, tile, this);
         tile.SetParticle(particle);
         particles.Add(particle);
+
+        if (type == BlockType.RainMaker)
+        {
+            _rainMakerBlocks.Add((RainMakerBlock)particle.block);
+        }
     }
 
     // Create inital level geometry.
@@ -136,6 +145,18 @@ public class GridManager : MonoBehaviour
                     case 10:
                         DrawParticle(BlockType.Vapor, pos);
                         waterCount++;
+                        break;
+                    case 11:
+                        DrawParticle(BlockType.RainMaker, pos);
+                        break;
+                    case 12:
+                        DrawParticle(BlockType.RainTrigger, pos);
+                        break;
+                    case 13:
+                        DrawParticle(BlockType.PortalEntry, pos);
+                        break;
+                    case 14:
+                        DrawParticle(BlockType.PortalExit, pos);
                         break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
@@ -208,6 +229,8 @@ public class GridManager : MonoBehaviour
             {
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
+                removePortal(t.particle);
+
                 t.particle = null;
                 _gameManager.blocksPlaced[index]++;
                 _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
@@ -421,5 +444,23 @@ public class GridManager : MonoBehaviour
 
     public void setGridWidth(int w) {
         _width = w;
+    }
+
+    public void addPortal(Particle particle) {
+        portalList.Add(particle);
+    }
+
+    public void removePortal(Particle particle) {
+        Debug.Log("removePortal");
+        portalList.Remove(particle);
+    }
+
+    public List<Vector3> getAllPortalPosition() {
+        List<Vector3> positions = new List<Vector3>();
+        foreach (Particle particle in portalList) {
+            Vector3 pos = particle.gameObject.transform.position;
+            positions.Add(pos);
+        }
+        return positions;        
     }
 }

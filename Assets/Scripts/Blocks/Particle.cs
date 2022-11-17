@@ -54,6 +54,20 @@ public class Particle : MonoBehaviour {
             case BlockType.Condensation:
                 block = new CondensationBlock(this, gridManager);
                 break;
+            case BlockType.RainMaker:
+                block = new RainMakerBlock(this);
+                break;
+            case BlockType.RainTrigger:
+                block = new RainTriggerBlock(this);
+                break;
+            case BlockType.PortalEntry:
+                block = new PortalEntryBlock(this, gridManager);
+                //gridManager.addPortal(this); 
+                break;    
+            case BlockType.PortalExit:
+                block = new PortalExitBlock(this, gridManager);
+                gridManager.addPortal(this);
+                break;             
             default:
                 //Debug.LogError("Unknown block type: " + blockType);
                 break;
@@ -138,7 +152,21 @@ public class Particle : MonoBehaviour {
                 _renderer.sprite = Resources.Load<Sprite>("Condensation");
                 _renderer.color = Color.white;
                 break;
-            case BlockType.None:
+            case BlockType.RainTrigger:
+                _renderer.sprite = Resources.Load<Sprite>("RainTrigger");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.RainMaker:
+                _renderer.sprite = Resources.Load<Sprite>("RainMaker");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.PortalEntry:
+                _renderer.sprite = Resources.Load<Sprite>("Portal 1");
+                _renderer.color = Color.white;
+                break;
+            case BlockType.PortalExit:
+                _renderer.sprite = Resources.Load<Sprite>("Portal 2");
+                _renderer.color = Color.white;
                 break;
             default:
                 Debug.LogError("Unhandled block type: " + type);
@@ -195,10 +223,15 @@ public class Particle : MonoBehaviour {
             /// > Coroutines are ... stopped when the MonoBehaviour is destroyed
             _gridManager.MakeGetRequest(url);
             _gridManager.waterCount--;
-        }
+        } 
 
         tile.SetParticle(null);
         _gridManager.particles.Remove(this);
+        _gridManager.removePortal(this);
         Destroy(this.gameObject);
+    }
+
+    public List<Vector3> getAllPortalPosition() {
+       return _gridManager.getAllPortalPosition();
     }
 }

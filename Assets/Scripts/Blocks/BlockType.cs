@@ -15,6 +15,10 @@ public enum BlockType
     Evaporator, //8: Converts liquid water to gas
     Condensation, //9. Convert vapor to water
     Vapor, //10: Gas form of water, moves up instead
+    RainMaker,
+    RainTrigger,
+    PortalEntry, //13: Portal Entry
+    PortalExit, //14: Portal Exit
     None
 }
 

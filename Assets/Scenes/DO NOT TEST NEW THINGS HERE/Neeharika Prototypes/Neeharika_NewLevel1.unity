@@ -137,21 +137,13 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: 339c131bf5d114141b45164490f0df2f, type: 3}
-    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: _blocksGiven.Array.data[2]
-      value: 1
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4900000, guid: 1acca6ba3fb3d441bb543abf892a3b41, type: 3}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blockSelectionButtonTypes.Array.data[0]
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: _blockSelectionButtonTypes.Array.data[1]
       value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: _blockSelectionButtonTypes.Array.data[2]
+      propertyPath: _blockSelectionButtonTypes.Array.data[1]
       value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}

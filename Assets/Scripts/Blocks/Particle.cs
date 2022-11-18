@@ -100,7 +100,11 @@ public class Particle : MonoBehaviour {
         /// Prevents particle hiding behind tile.
         _renderer.sortingLayerName = "ParticleLayer";
         
-        switch (type) {
+        setBlockSprite();
+    }
+
+    private void setBlockSprite() { 
+        switch (block.blockType) {
             case BlockType.Water:
                 WaterBlock waterBlock = (WaterBlock)block;
                 waterBlock.UpdateSprite();
@@ -169,9 +173,24 @@ public class Particle : MonoBehaviour {
                 _renderer.color = Color.white;
                 break;
             default:
-                Debug.LogError("Unhandled block type: " + type);
+                Debug.LogError("Unhandled block type: " + block.blockType);
                 break;
         }
+    }
+
+    private void OnMouseEnter()
+    {
+        if(_gridManager.CanBreakBlockAtTile(this.tile.location)) { 
+            _renderer.sprite = Resources.Load<Sprite>("Pickaxe");
+        } else { 
+            _renderer.sprite = Resources.Load<Sprite>("Barrier");
+        }
+        _renderer.color = new Color(1, 1, 1, 0.5f);
+    }
+
+    private void OnMouseExit()
+    {
+        setBlockSprite();
     }
 
     public void Update() {
@@ -203,12 +222,8 @@ public class Particle : MonoBehaviour {
         // changeFlage is a check to see if a building can be placed on the location
         Debug.Log("clicking on particle");
 
-        bool changeFlage = _gridManager.CanAddBlockToTile(this.tile.location);
-        if (changeFlage)
-        {
-            Debug.Log("added or rmoved at tile");
-        } else {
-            Debug.Log("cancel other buliding to create new one");
+        if(_gridManager.CanBreakBlockAtTile(this.tile.location)) { 
+            _gridManager.BreakBlockAtTile(this.tile.location);
         }
     }
 

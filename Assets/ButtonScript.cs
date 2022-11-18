@@ -61,10 +61,10 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             Tooltip.ShowTooltip_static("Condensation");
         }
         else if (Type == BlockType.PortalEntry){
-            Tooltip.ShowTooltip_static("Condensation");
+            Tooltip.ShowTooltip_static("Portal Entry");
         }
         else if (Type == BlockType.PortalExit){
-            Tooltip.ShowTooltip_static("Condensation");
+            Tooltip.ShowTooltip_static("Portal Exit");
         }
     }
     

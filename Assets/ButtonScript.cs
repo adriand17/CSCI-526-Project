@@ -60,6 +60,12 @@ public class ButtonScript : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         else if (Type == BlockType.Condensation){
             Tooltip.ShowTooltip_static("Condensation");
         }
+        else if (Type == BlockType.PortalEntry){
+            Tooltip.ShowTooltip_static("Condensation");
+        }
+        else if (Type == BlockType.PortalExit){
+            Tooltip.ShowTooltip_static("Condensation");
+        }
     }
     
     public void OnPointerExit(PointerEventData pointerEventData)

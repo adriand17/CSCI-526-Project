@@ -27,13 +27,14 @@ public class GridManager : MonoBehaviour
 
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
-
+    BlockRange br = new BlockRange();
     /// Empty flashing animation.
     private Coroutine TextFlash;
 
 
     public int waterCount;
 
+    private List<Particle> portalList = new List<Particle>();
     // Start is called before the first frame update
     public void onStart()
     {
@@ -151,6 +152,12 @@ public class GridManager : MonoBehaviour
                     case 12:
                         DrawParticle(BlockType.RainTrigger, pos);
                         break;
+                    case 13:
+                        DrawParticle(BlockType.PortalEntry, pos);
+                        break;
+                    case 14:
+                        DrawParticle(BlockType.PortalExit, pos);
+                        break;
                     default:
                         Debug.LogError($"Invalid block ID {blockID} at row {drawRow}, col {drawCol}");
                         break;
@@ -222,6 +229,8 @@ public class GridManager : MonoBehaviour
             {
                 DestroyImmediate(t.particle.gameObject);
                 particles.Remove(t.particle);
+                removePortal(t.particle);
+
                 t.particle = null;
                 _gameManager.blocksPlaced[index]++;
                 _gameManager.textPlaceBoxes[index].text = _gameManager.blocksPlaced[index].ToString();
@@ -275,6 +284,17 @@ public class GridManager : MonoBehaviour
 
         }
 
+        return inRangeTiles;
+    }
+
+    public List<Tile> GetInRangeTiles(Vector3 position)
+    {
+        List<Tile> inRangeTiles = new List<Tile>();
+        int posx = (int)position.x;
+        int posy = (int)position.y;
+        Tile t = GetTileAt(new Vector3(posx, posy));
+
+        inRangeTiles = br.GetInRangeTiles(t, buildType);
         return inRangeTiles;
     }
 
@@ -424,5 +444,23 @@ public class GridManager : MonoBehaviour
 
     public void setGridWidth(int w) {
         _width = w;
+    }
+
+    public void addPortal(Particle particle) {
+        portalList.Add(particle);
+    }
+
+    public void removePortal(Particle particle) {
+        Debug.Log("removePortal");
+        portalList.Remove(particle);
+    }
+
+    public List<Vector3> getAllPortalPosition() {
+        List<Vector3> positions = new List<Vector3>();
+        foreach (Particle particle in portalList) {
+            Vector3 pos = particle.gameObject.transform.position;
+            positions.Add(pos);
+        }
+        return positions;        
     }
 }

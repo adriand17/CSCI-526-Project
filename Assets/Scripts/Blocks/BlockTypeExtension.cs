@@ -23,6 +23,8 @@ namespace BlockTypeExtension
                 case BlockType.Evaporator:
                 case BlockType.Condensation:
                 case BlockType.Vapor:
+                case BlockType.PortalEntry:
+                case BlockType.PortalExit:
                     return true;
 
                 default:

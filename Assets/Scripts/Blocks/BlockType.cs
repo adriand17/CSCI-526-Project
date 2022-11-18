@@ -17,6 +17,8 @@ public enum BlockType
     Vapor, //10: Gas form of water, moves up instead
     RainMaker,
     RainTrigger,
+    PortalEntry, //13: Portal Entry
+    PortalExit, //14: Portal Exit
     None
 }
 

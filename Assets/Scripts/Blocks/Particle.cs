@@ -165,11 +165,11 @@ public class Particle : MonoBehaviour {
                 _renderer.color = Color.white;
                 break;
             case BlockType.PortalEntry:
-                _renderer.sprite = Resources.Load<Sprite>("Portal 1");
+                _renderer.sprite = Resources.Load<Sprite>("PortalEntry");
                 _renderer.color = Color.white;
                 break;
             case BlockType.PortalExit:
-                _renderer.sprite = Resources.Load<Sprite>("Portal 2");
+                _renderer.sprite = Resources.Load<Sprite>("PortalExit");
                 _renderer.color = Color.white;
                 break;
             default:

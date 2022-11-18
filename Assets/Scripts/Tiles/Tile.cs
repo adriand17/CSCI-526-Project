@@ -122,7 +122,12 @@ public class Tile : MonoBehaviour
             case BlockType.Condensation:
                 _renderer.sprite = Resources.Load<Sprite>("Condensation");
                 break;
-            
+            case BlockType.PortalEntry:
+                _renderer.sprite = Resources.Load<Sprite>("PortalEntry");
+                break;
+            case BlockType.PortalExit:
+                _renderer.sprite = Resources.Load<Sprite>("PortalExit");
+                break;
             case BlockType.None:
                 break;
             

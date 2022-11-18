@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: 575119fdf1027461299a271b4bfe629b, type: 3}
+      objectReference: {fileID: 4900000, guid: 350a513481c145c4a8770d272f67e218, type: 3}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

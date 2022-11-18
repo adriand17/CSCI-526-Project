@@ -123,6 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &754686792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2853309650642117993, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+  m_PrefabInstance: {fileID: 2033372717419687135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &888917116 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7526125893025199066, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+  m_PrefabInstance: {fileID: 2033372717419687135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2033372717419687135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -135,9 +157,49 @@ PrefabInstance:
       value: TeamSC Prefab
       objectReference: {fileID: 0}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blocksGiven.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: fecd99d5692787b408d387478f4a1f5c, type: 3}
+      objectReference: {fileID: 4900000, guid: 069c2ce8747fd4f518541c4747915011, type: 3}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: textLimitBoxes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: textPlaceBoxes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blocksGiven.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blocksGiven.Array.data[3]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: textLimitBoxes.Array.data[3]
+      value: 
+      objectReference: {fileID: 888917116}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: textPlaceBoxes.Array.data[3]
+      value: 
+      objectReference: {fileID: 754686792}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.data[2]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.data[3]
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

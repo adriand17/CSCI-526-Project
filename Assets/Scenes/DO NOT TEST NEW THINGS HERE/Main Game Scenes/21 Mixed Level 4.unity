@@ -142,6 +142,10 @@ PrefabInstance:
       propertyPath: _blocksGiven.Array.data[0]
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.data[2]
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2033372718746913024, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_IsActive
       value: 0

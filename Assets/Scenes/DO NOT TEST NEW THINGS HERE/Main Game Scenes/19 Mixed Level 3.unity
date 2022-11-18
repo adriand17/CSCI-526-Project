@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &2033372717419687135
+--- !u!1001 &1274070755
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -134,13 +134,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: TeamSC Prefab
       objectReference: {fileID: 0}
-    - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _textJson.Array.data[1]
+      value: 
+      objectReference: {fileID: 4900000, guid: 4fdd9f853be70477fbee60d5782aa435, type: 3}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blocksGiven.Array.data[0]
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.data[2]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: pauseMenuUI
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_RootOrder

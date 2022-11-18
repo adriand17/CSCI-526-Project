@@ -70,7 +70,6 @@ public class Tile : MonoBehaviour
     {
         _highlight.SetActive(false);
         hidePreview();
-        hideRangePreview();
     }
 
     // Shows a semi-transparent version of block,

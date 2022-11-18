@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &1274070755
+--- !u!1001 &2033372717419687135
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -137,10 +137,18 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: ae376307d875c4179a62c2d561d60be4, type: 3}
+      objectReference: {fileID: 4900000, guid: cca21588a68564448a00d086121ed049, type: 3}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
-      propertyPath: _blocksGiven.Array.data[0]
-      value: 5
+      propertyPath: _blockSelectionButtonTypes.Array.data[2]
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI

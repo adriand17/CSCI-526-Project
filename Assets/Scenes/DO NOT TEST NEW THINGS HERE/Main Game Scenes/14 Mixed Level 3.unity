@@ -137,10 +137,14 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: 4fdd9f853be70477fbee60d5782aa435, type: 3}
+      objectReference: {fileID: 4900000, guid: ae376307d875c4179a62c2d561d60be4, type: 3}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blocksGiven.Array.data[0]
-      value: 2
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: _blockSelectionButtonTypes.Array.data[2]
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI

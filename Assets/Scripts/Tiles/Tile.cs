@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour
 
     public Color baseColor = Color.gray;
     public Vector3 location;
-    List<Tile> tList;
+    List<Tile> tList = new List<Tile>();
 
     public bool Buildable => _isBuildable && Occupied == false;
 
@@ -70,6 +70,7 @@ public class Tile : MonoBehaviour
     {
         _highlight.SetActive(false);
         hidePreview();
+        hideRangePreview();
     }
 
     // Shows a semi-transparent version of block,
@@ -141,6 +142,15 @@ public class Tile : MonoBehaviour
         {
             if (t != null && t.particle == null)
                 t._rangeHighlight.SetActive(true);
+        }
+    }
+
+    private void hideRangePreview()
+    {
+        foreach (Tile t in tList)
+        {
+            if (t != null)
+                t._rangeHighlight.SetActive(false);
         }
     }
 

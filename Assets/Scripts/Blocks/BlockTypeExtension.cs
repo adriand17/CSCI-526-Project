@@ -25,6 +25,8 @@ namespace BlockTypeExtension
                 case BlockType.Vapor:
                 case BlockType.PortalEntry:
                 case BlockType.PortalExit:
+                case BlockType.RainMaker:
+                case BlockType.RainTrigger:
                     return true;
 
                 default:

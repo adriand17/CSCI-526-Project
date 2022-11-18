@@ -7,7 +7,7 @@ public class InstrScreen : MonoBehaviour
 {    
     public void LoadInstrcuction()
     {
-        SceneManager.LoadScene("Level Selector Screen");
+        SceneManager.LoadScene("Level Selection");
         Debug.Log("Loading Game");
     }
 }

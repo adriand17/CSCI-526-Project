@@ -181,7 +181,7 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToLevelSelection()
     {
-        SceneManager.LoadScene("Level Selector Screen");
+        SceneManager.LoadScene("Level Selection");
     }
 
     private void logReset() { 
@@ -225,56 +225,83 @@ public class GameManager : MonoBehaviour
                 break;
             case "2 Mirror Level":
                 Debug.Log("2 Mirror Level");
-                SceneManager.LoadScene("3 Dirt Level");
+                SceneManager.LoadScene("3 New Dirt Level");
                 break;
-            case "3 Dirt Level":
-                Debug.Log("3 Dirt Level");
+            case "3 New Dirt Level":
+                Debug.Log("3 New Dirt Level");
                 SceneManager.LoadScene("4 Magma_TNT");
                 break;
             case "4 Magma_TNT":
-                Debug.Log("4 Magma_TNTe");
+                Debug.Log("4 Magma_TNT");
                 SceneManager.LoadScene("5 Vapor");
                 break;
             case "5 Vapor":
-                SceneManager.LoadScene("6 TNT");
+                SceneManager.LoadScene("6 Ice Intro");
                 break;
-            case "6 TNT":
-                SceneManager.LoadScene("7 TNT Mirror");
+            case "6 Ice Intro":
+                SceneManager.LoadScene("7 TNT");
                 break;
-            case "7 TNT Mirror":
-                SceneManager.LoadScene("8 Mirror 2");
+            case "7 TNT":
+                SceneManager.LoadScene("8 TNT Mirror");
                 break;
-            case "8 Mirror 2":
-                SceneManager.LoadScene("9 Mixed Level 1");
+            case "8 TNT Mirror":
+                SceneManager.LoadScene("9 Mirror 2");
                 break;
-            case "9 Mixed Level 1":
-                SceneManager.LoadScene("10 Mixed Level 2");
+            case "9 Mirror 2":
+                SceneManager.LoadScene("10 Mixed Level 1");
                 break;
-            case "10 Mixed Level 2":
-                SceneManager.LoadScene("11 Advanced Level 1");
+            case "10 Mixed Level 1":
+                SceneManager.LoadScene("11 Mixed Level 2");
                 break;
-            case "11 Advanced Level 1":
-                SceneManager.LoadScene("12 Advanced Lavel 2");
+            case "11 Mixed Level 2":
+                SceneManager.LoadScene("12 Advance Level 1");
                 break;
-            case "12 Advanced Lavel 2":
-                SceneManager.LoadScene("13 Mixed Level 3");
+            case "12 Advance Level 1":
+                SceneManager.LoadScene("13 Advance Level 2");
                 break;
-            case "13 Mixed Level 3":
-                SceneManager.LoadScene("14 Mirror 3 Hard");
+            case "13 Advance Level 2":
+                SceneManager.LoadScene("14 Mixed Level 3");
                 break;
-            case "14 Mirror 3 Hard":
-                SceneManager.LoadScene("15 Vapor 2");
+            case "14 Mixed Level 3":
+                SceneManager.LoadScene("15 Mirror 3 Hard");
                 break;
-            case "15 Vapor 2":
+            case "15 Mirror 3 Hard":
                 SceneManager.LoadScene("16 TNT 2");
                 break;
             case "16 TNT 2":
-                SceneManager.LoadScene("17 Mixed Level 3");
+                SceneManager.LoadScene("17 Vapor 2");
                 break;
-            case "17 Mixed Level 3":
-                SceneManager.LoadScene("18 Mixed Level 4");
+            case "17 Vapor 2":
+                SceneManager.LoadScene("18 Vapor 3");
                 break;
-            case "18 Mixed Level 4":
+            case "18 Vapor 3":
+                SceneManager.LoadScene("19 Mixed Level 3");
+                break;
+            case "19 Mixed Level 3":
+                SceneManager.LoadScene("20 Vapor 4");
+                break;
+            case "20 Vapor 4":
+                SceneManager.LoadScene("21 Mixed Level 4");
+                break;
+            case "21 Mixed Level 4":
+                SceneManager.LoadScene("22 Mixed");
+                break;
+            case "22 Mixed":
+                SceneManager.LoadScene("23 Portal");
+                break;
+            case "23 Portal":
+                SceneManager.LoadScene("24 Portal 2");
+                break;
+            case "24 Portal 2":
+                SceneManager.LoadScene("25 Portal 3");
+                break;
+            case "25 Portal 3":
+                SceneManager.LoadScene("26 RainMaker");
+                break;
+            case "26 RainMaker":
+                SceneManager.LoadScene("27 Ice Intro Rain Maker");
+                break;
+            case "27 Ice Intro Rain Maker":
                 SceneManager.LoadScene("Title Screen");
                 break;
             default:

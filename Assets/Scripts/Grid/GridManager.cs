@@ -27,7 +27,7 @@ public class GridManager : MonoBehaviour
 
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
-
+    BlockRange br = new BlockRange();
     /// Empty flashing animation.
     private Coroutine TextFlash;
 
@@ -284,6 +284,17 @@ public class GridManager : MonoBehaviour
 
         }
 
+        return inRangeTiles;
+    }
+
+    public List<Tile> GetInRangeTiles(Vector3 position)
+    {
+        List<Tile> inRangeTiles = new List<Tile>();
+        int posx = (int)position.x;
+        int posy = (int)position.y;
+        Tile t = GetTileAt(new Vector3(posx, posy));
+
+        inRangeTiles = br.GetInRangeTiles(t, buildType);
         return inRangeTiles;
     }
 

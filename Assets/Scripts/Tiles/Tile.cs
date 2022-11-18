@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _rangeHighlight;
     [SerializeField] private bool _isBuildable;
 
     public bool Occupied = false;
@@ -29,6 +30,7 @@ public class Tile : MonoBehaviour
 
     public Color baseColor = Color.gray;
     public Vector3 location;
+    List<Tile> tList;
 
     public bool Buildable => _isBuildable && Occupied == false;
 
@@ -60,13 +62,15 @@ public class Tile : MonoBehaviour
         if(particle == null)
         {
             showPreview();
+            showRangePreview();
         }
     }
 
     private void OnMouseExit()
     {
         _highlight.SetActive(false);
-        hidePreview();   
+        hidePreview();
+        hideRangePreview();
     }
 
     // Shows a semi-transparent version of block,
@@ -127,6 +131,18 @@ public class Tile : MonoBehaviour
                 break;
         }
         _renderer.color = c;
+    }
+
+    private void showRangePreview()
+    {
+        tList = _gridManager.GetInRangeTiles(location);
+        var c = Color.red;
+        c.a = 0.5f;
+        foreach (Tile t in tList)
+        {
+            if (t != null && t.particle == null)
+                t._rangeHighlight.SetActive(true);
+        }
     }
 
     private void hidePreview()

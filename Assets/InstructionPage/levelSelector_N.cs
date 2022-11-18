@@ -22,7 +22,7 @@ public class levelSelector_N : MonoBehaviour
     }
     public void OpenLevel3()
     {
-        SceneManager.LoadScene("3 New Dirt Level");
+        SceneManager.LoadScene("ARCHIVE LEVEL 3");
     }
     public void OpenLevel4()
     {

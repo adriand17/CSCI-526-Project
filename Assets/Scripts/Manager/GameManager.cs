@@ -225,9 +225,9 @@ public class GameManager : MonoBehaviour
                 break;
             case "2 Mirror Level":
                 Debug.Log("2 Mirror Level");
-                SceneManager.LoadScene("3 New Dirt Level");
+                SceneManager.LoadScene("ARCHIVE LEVEL 3");
                 break;
-            case "3 New Dirt Level":
+            case "ARCHIVE LEVEL 3":
                 Debug.Log("3 New Dirt Level");
                 SceneManager.LoadScene("4 Magma_TNT");
                 break;

@@ -21,6 +21,10 @@ EditorBuildSettings:
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/2 Mirror Level.unity
     guid: d5ffc10f47a65422480ac1c3fd662775
   - enabled: 1
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/ARCHIVE LEVEL
+      3.unity
+    guid: c56ba2121699a43a3971318a2bbc1fcd
+  - enabled: 0
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/3 New Dirt Level.unity
     guid: 2bfb72ec4d2ac418589dfa2bd50194a3
   - enabled: 1

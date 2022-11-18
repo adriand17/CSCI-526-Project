@@ -8,6 +8,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
+    [SerializeField] private GameObject _rangeHighlight;
     [SerializeField] private bool _isBuildable;
 
     public bool Occupied = false;
@@ -29,6 +30,7 @@ public class Tile : MonoBehaviour
 
     public Color baseColor = Color.gray;
     public Vector3 location;
+    List<Tile> tList;
 
     public bool Buildable => _isBuildable && Occupied == false;
 
@@ -52,14 +54,7 @@ public class Tile : MonoBehaviour
             _renderer.color = Color.green;
             _isBuildable = true;
         }
-        else
-        {
-
-        }
-
-        
     }
-
     
     private void OnMouseEnter()
     {
@@ -67,76 +62,70 @@ public class Tile : MonoBehaviour
         if(particle == null)
         {
             showPreview();
+            showRangePreview();
         }
-        
-        
     }
 
     private void OnMouseExit()
     {
         _highlight.SetActive(false);
-       
         hidePreview();
-       
-        
+        hideRangePreview();
     }
 
+    // Shows a semi-transparent version of block,
+    // so the player can preview their action.
     private void showPreview()
     {
-        BlockType b = _gridManager.getBuildType();
-        Debug.Log(_renderer.sprite);
         var c = Color.white;
-        c.a = 0.5f;
+        c.a = 0.5f; // Semi-transparent
+     
+        BlockType b = _gridManager.getBuildType();
         switch (b)
         {
             case BlockType.Bedrock:
                 _renderer.sprite = Resources.Load<Sprite>("Bedrock");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Dirt:
                 _renderer.sprite = Resources.Load<Sprite>("Dirt");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Mirror:
                 _renderer.sprite = Resources.Load<Sprite>("Mirror");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Glass:
                 _renderer.sprite = Resources.Load<Sprite>("Glass");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.Magma:
                 _renderer.sprite = Resources.Load<Sprite>("Magma");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.BlueIce:
                 _renderer.sprite = Resources.Load<Sprite>("BlueIce");
-                _renderer.color = Color.white;
                 break;
 
             case BlockType.TNT:
                 _renderer.sprite = Resources.Load<Sprite>("TNT");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.Vapor:
                 _renderer.sprite = Resources.Load<Sprite>("Water");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.Evaporator:
                 _renderer.sprite = Resources.Load<Sprite>("Evaporator");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.Condensation:
                 _renderer.sprite = Resources.Load<Sprite>("Condensation");
-                _renderer.color = Color.white;
                 break;
+            
             case BlockType.None:
                 break;
+            
             default:
                 //Debug.LogError("Unhandled block type: " + type);
                 break;
@@ -144,6 +133,17 @@ public class Tile : MonoBehaviour
         _renderer.color = c;
     }
 
+    private void showRangePreview()
+    {
+        tList = _gridManager.GetInRangeTiles(location);
+        var c = Color.red;
+        c.a = 0.5f;
+        foreach (Tile t in tList)
+        {
+            if (t != null && t.particle == null)
+                t._rangeHighlight.SetActive(true);
+        }
+    }
 
     private void hidePreview()
     {
@@ -153,33 +153,15 @@ public class Tile : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        // changeFlage is a check to see if a building can be placed on the location
-        changeFlage = _gridManager.CanAddBlockToTile(location);
-        //_gridManager.CanAddTowerToTile(location);
-        if (changeFlage)
-        {
-
-            Debug.Log("added or removed at tile");
+        if (_gridManager.CanAddBlockToTile(location)) { 
+            _gridManager.AddBlockToTile(location);
         }
-        else
-        {
-            Debug.Log("cancel other buliding to create new one");
-
-        }
-
     }
-
-    
 
     /// Lets manager inform tile of its valid neighbors.
     public void setAdjacentTiles(Tile upTile, Tile downTile, Tile leftTile, Tile rightTile)
     {
-        //this.upTile = upTile;
-        //this.downTile = downTile;
-        //this.rightTile = rightTile;
-        //this.leftTile = leftTile;
     }
-
 
     public void SetTower(Tower t)
     {

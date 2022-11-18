@@ -339,6 +339,7 @@ public class GridManager : MonoBehaviour
         particles.Clear();
         GenerateGrid();
         ResetHealth();
+        portalList.Clear();
     }
 
     public void DestoryParticleAtTile(Tile t)

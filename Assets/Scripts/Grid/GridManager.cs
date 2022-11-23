@@ -28,6 +28,7 @@ public class GridManager : MonoBehaviour
     public HashSet<Particle> particles = new HashSet<Particle>();
     private Dictionary<Vector2, Tile> _tiles;
     BlockRange br = new BlockRange();
+    
     /// Empty flashing animation.
     private Coroutine TextFlash;
 
@@ -209,7 +210,7 @@ public class GridManager : MonoBehaviour
     public bool CanAddBlockToTile(Vector3 pos)
     {
         Tile t = _tiles[pos];
-        //Debug.Log(t._isPassable);
+        
         // if the existing building count excess the limit and player want to add budling on the pos
         int index = _gameManager.whichButtonPressed(buildType);
 
@@ -238,7 +239,6 @@ public class GridManager : MonoBehaviour
     public bool CanBreakBlockAtTile(Vector3 pos)
     {
         Tile t = _tiles[pos];
-        //Debug.Log(t._isPassable);
         // if the existing building count excess the limit and player want to add budling on the pos
         int index = _gameManager.whichButtonPressed(buildType);
 
@@ -351,48 +351,8 @@ public class GridManager : MonoBehaviour
     /// How long to play pulse animation.
     [SerializeField] private float flashDuration = 2.4f;
 
-    /// Pulses building count text red. 
-    /// Reminds player they can't build.
-    /*private IEnumerator FlashCountText()
-    {
-        float counter = 0;
-        while (counter <= flashDuration)
-        {
-            /// Reset immediately if player can build.
-            if (_goldLimit - _goldSpent >= buildTypePrice(buildType))
-            {
-                yield break;
-            }
-
-            _remainingGoldText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
-            _goldLabelText.color = Color.Lerp(Color.white, Color.red, counter % 0.8f);
-            counter += Time.deltaTime;
-            yield return null;
-        }
-
-        /// Final color reset.
-        _remainingGoldText.color = Color.white;
-        _goldLabelText.color = Color.white;
-        yield return null;
-    }*/
-
     public int GetWaterCount()
     {
-        /*int count = 0;
-        //if check if all waves are complete
-        for (int x = 0; x < _width; x++)
-        {
-            for (int y = 0; y < _height; y++)
-            {
-                Tile t = _tiles[new Vector3(x, y)];
-                if (t.particle != null && t.particle.getBlockType() == BlockType.Water)
-                {
-                    count++;
-                }
-            }
-        }
-
-        return count;*/
         return waterCount;
     }
 
@@ -403,16 +363,6 @@ public class GridManager : MonoBehaviour
         return t.particle.block;
   
     }
-
-
-
-/*    public int GetCurrentHealth()
-    {
-        DestoryWateratTile(t);
-        DrawParticle(replace, t.location);
-        return t.particle.block;
-  
-    }*/
 
     public int getHeight()
     {

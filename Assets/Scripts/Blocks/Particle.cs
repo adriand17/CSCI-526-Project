@@ -227,12 +227,24 @@ public class Particle : MonoBehaviour {
 
     public void DeleteParticle(Cause cause, BlockType blockType) {
         if (cause == Cause.Explosion) { 
-            /// Do nothing, TNT will play sound.
+            if (blockType == BlockType.TNT) {
+                int exlposionNum = Random.Range(1, 4);
+                if (exlposionNum == 1) {
+                    tile.playSoundNamed("explode1");
+                } else if (exlposionNum == 2) {
+                    tile.playSoundNamed("explode2");
+                } else if (exlposionNum == 3) {
+                    tile.playSoundNamed("explode3");
+                } else if (exlposionNum == 4) {
+                    tile.playSoundNamed("explode4");
+                }
+            } else { 
+                /// Do nothing, TNT plays sound.
+            }
         } else { 
             if (getBlockType() == BlockType.Water) {
                 tile.playSoundNamed("fizz");
             }
-
         }
 
         if (getBlockType() == BlockType.Water) {

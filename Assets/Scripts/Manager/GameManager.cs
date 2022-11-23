@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public List<TextMeshProUGUI> textPlaceBoxes;
     [SerializeField] public List<int> _blocksGiven;
     [SerializeField] public TextMeshProUGUI waterCount;
+    [SerializeField] public TextMeshProUGUI levelName;
     [SerializeField] public Texture2D pickaxeCursor;
     public List<int> blocksPlaced;
     
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
 
         // Telemetry: level start
         string level = currentScene.name;
+        levelName.text = level;
         string uri = $"https://docs.google.com/forms/d/e/1FAIpQLSfZ8JI_YZx-d-JoHURLWdkNi7IuAWH_X7hsVfNPRcfTK4bxUQ/formResponse?usp=pp_url&entry.1841436937=Start&entry.177939367={level}&submit";
         _gridManager.MakeGetRequest(uri);
     }

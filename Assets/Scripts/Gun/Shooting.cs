@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BlockTypeExtension;
+using Death;
 
 public class Shooting : MonoBehaviour {
 
@@ -128,7 +129,7 @@ public class Shooting : MonoBehaviour {
                 case BlockType.Water:
                     WaterBlock waterBlock = (WaterBlock)particle.block;
                     if (ChangeTemperature) {
-                        waterBlock.ChangeTemperature(TempLaser, "laser");
+                        waterBlock.ChangeTemperature(TempLaser, Cause.Laser);
                     }
                     breakLoop = true;
                     break;
@@ -265,7 +266,7 @@ public class Shooting : MonoBehaviour {
                 case BlockType.Water:
                     WaterBlock waterBlock = (WaterBlock)particle.block;
                     if (ChangeTemperature) {
-                        waterBlock.ChangeTemperature(TempLaser, "laser");
+                        waterBlock.ChangeTemperature(TempLaser, Cause.Laser);
                     }
                     breakLoop = true;
                     break;

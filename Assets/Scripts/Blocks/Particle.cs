@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Death;
 
 public enum WaterFlowDirection { 
     Still, 
@@ -219,19 +220,38 @@ public class Particle : MonoBehaviour {
 
 
     private void OnMouseDown() {
-        // changeFlage is a check to see if a building can be placed on the location
-        Debug.Log("clicking on particle");
-
         if(_gridManager.CanBreakBlockAtTile(this.tile.location)) { 
             _gridManager.BreakBlockAtTile(this.tile.location);
         }
     }
 
-    public void DeleteParticle(string cause, BlockType blockType) {
+    public void DeleteParticle(Cause cause, BlockType blockType) {
+        if (cause == Cause.Explosion) { 
+            if (blockType == BlockType.TNT) {
+                int exlposionNum = Random.Range(1, 4);
+                if (exlposionNum == 1) {
+                    tile.playSoundNamed("explode1");
+                } else if (exlposionNum == 2) {
+                    tile.playSoundNamed("explode2");
+                } else if (exlposionNum == 3) {
+                    tile.playSoundNamed("explode3");
+                } else if (exlposionNum == 4) {
+                    tile.playSoundNamed("explode4");
+                }
+            } else { 
+                /// Do nothing, TNT plays sound.
+            }
+        } else { 
+            if (getBlockType() == BlockType.Water) {
+                tile.playSoundNamed("fizz");
+            }
+        }
+
         if (getBlockType() == BlockType.Water) {
             // Log water position on death.
             string level = SceneManager.GetActiveScene().name;
-            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSePv5UFqW2cPAadJGiioCkeaH7Uoe09bREG5CYxSNP4JEjmxQ/formResponse?usp=pp_url&entry.1230153677={tile.location.x}&entry.813067426={tile.location.y}&entry.541452585={cause}&entry.711829831={level}&submit";
+            string causeStr = cause.name();
+            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSePv5UFqW2cPAadJGiioCkeaH7Uoe09bREG5CYxSNP4JEjmxQ/formResponse?usp=pp_url&entry.1230153677={tile.location.x}&entry.813067426={tile.location.y}&entry.541452585={causeStr}&entry.711829831={level}&submit";
 
             /// Make request on object that isn't about to die.
             /// Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html

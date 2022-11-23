@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Death;
 
 public class MagmaBlock: Block {
 
@@ -20,7 +21,7 @@ public class MagmaBlock: Block {
                 return;
             }
             WaterBlock wb = (WaterBlock)p.block;
-            wb.ChangeTemperature(tempChange, "Magma");
+            wb.ChangeTemperature(tempChange, Cause.Heating);
         }
 
         /// Heat up adjacent water.

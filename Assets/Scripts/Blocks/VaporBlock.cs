@@ -25,18 +25,6 @@ public class VaporBlock: Block {
         }
     }
 
-    public void ChangeTemperature(float tempChange, string cause) {
-        temperature += tempChange;
-        if (temperature >= tempVapor) {
-            particle.DeleteParticle(cause, blockType);
-            return;
-        } else  if (temperature < tempMin) {
-            /// Don't allow temperature to go below "absolute zero".
-            temperature = tempMin;
-        }
-        UpdateSprite();
-    }
-
     public void UpdateSprite() { 
         if (temperature < tempFreeze) { 
             /// Set sprite to ice.
@@ -46,10 +34,6 @@ public class VaporBlock: Block {
             /// Set sprite to water.
             particle._renderer.sprite = Resources.Load<Sprite>("Water");
             particle._renderer.color = Color.white;
-            /// Get redder based on temperature.
-            //float red = (float)(temperature - tempFreeze) / (float)(tempVapor - tempFreeze);
-            //red *= 0.75f; // Dampen effect.
-            //particle._renderer.color = new Color(red, 0, 1);
         }
     }
 

@@ -219,9 +219,6 @@ public class Particle : MonoBehaviour {
 
 
     private void OnMouseDown() {
-        // changeFlage is a check to see if a building can be placed on the location
-        Debug.Log("clicking on particle");
-
         if(_gridManager.CanBreakBlockAtTile(this.tile.location)) { 
             _gridManager.BreakBlockAtTile(this.tile.location);
         }

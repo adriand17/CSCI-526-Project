@@ -270,6 +270,12 @@ public class Shooting : MonoBehaviour {
                     breakLoop = true;
                     break;
 
+                case BlockType.RainTrigger:
+                    RainTriggerBlock rtBlock = (RainTriggerBlock)particle.block;
+                    rtBlock.SpawnWater();
+                    breakLoop = true;
+                    break;
+
                 case BlockType.TNT:
                     TNTBlock tntBlock = (TNTBlock)particle.block;
                     tntBlock.StartCountdown();

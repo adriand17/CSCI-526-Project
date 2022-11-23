@@ -226,6 +226,15 @@ public class Particle : MonoBehaviour {
     }
 
     public void DeleteParticle(Cause cause, BlockType blockType) {
+        if (cause == Cause.Explosion) { 
+            /// Do nothing, TNT will play sound.
+        } else { 
+            if (getBlockType() == BlockType.Water) {
+                tile.playSoundNamed("fizz");
+            }
+
+        }
+
         if (getBlockType() == BlockType.Water) {
             // Log water position on death.
             string level = SceneManager.GetActiveScene().name;

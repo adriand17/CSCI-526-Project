@@ -21,48 +21,8 @@ public class VaporBlock: Block {
 
     public override void Tick() {
         if (temperature >= tempFreeze) {
-            //CoolWater();
             VaporFlow();
         }
-    }
-
-    private void CoolWater() { 
-        float tempChange = 0f;
-
-        /*if (blockType != BlockType.Water) {
-            Debug.LogError("Cool: non-water particle");
-            return;
-        }*/
-
-        void TradeHeat(Tile neighbor) { 
-            if (neighbor == null || neighbor.particle == null) {
-                return;
-            }
-            Particle p = neighbor.particle;
-            if (p.block.GetType() != typeof(WaterBlock)) {
-                return;
-            }
-            WaterBlock wb = (WaterBlock)p.block;
-            if (wb.temperature >= this.temperature + tempChange) {
-                return;
-            }
-            
-            wb.ChangeTemperature(+1f, "CoolWater");
-            tempChange += -1f;
-        }
-
-        /// Share heat with neighbors.
-        TradeHeat(particle.tile.upTile);
-        TradeHeat(particle.tile.downTile);
-        TradeHeat(particle.tile.leftTile);
-        TradeHeat(particle.tile.rightTile);
-
-        /// Cool off naturally.
-        if (temperature > VaporBlock.tempInit) {
-            tempChange += -1f;
-        }
-
-        ChangeTemperature(tempChange, "CoolWater");
     }
 
     public void ChangeTemperature(float tempChange, string cause) {

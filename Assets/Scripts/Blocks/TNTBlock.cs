@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BlockTypeExtension;
+using Death;
 
 public class TNTBlock: Block {
 
@@ -74,17 +75,17 @@ public class TNTBlock: Block {
                 case BlockType.Water:
                     WaterBlock waterBlock = (WaterBlock)p.block;
                     if (waterBlock.IsFrozen()) {
-                        p.DeleteParticle("explosion", p.getBlockType());
+                        p.DeleteParticle(Cause.Explosion, p.getBlockType());
                     }
                     break;
 
                 default:
                     if (p.getBlockType().isExplodable()) {
-                        p.DeleteParticle("explosion", p.getBlockType());
+                        p.DeleteParticle(Cause.Explosion, p.getBlockType());
                     }
                     break;
             }
         }
-        particle.DeleteParticle("explosion", blockType);
+        particle.DeleteParticle(Cause.Explosion, blockType);
     }
 }

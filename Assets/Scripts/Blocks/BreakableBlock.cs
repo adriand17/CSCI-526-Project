@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Death;
 
 public class BreakableBlock : Block {
 
@@ -79,7 +80,7 @@ public class BreakableBlock : Block {
         }
 
         if (durability <= 0) {    
-            particle.DeleteParticle("erosion", blockType);
+            particle.DeleteParticle(Cause.Erosion, blockType);
         }
     }
 }

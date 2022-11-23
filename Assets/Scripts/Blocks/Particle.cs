@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Death;
 
 public enum WaterFlowDirection { 
     Still, 
@@ -224,11 +225,12 @@ public class Particle : MonoBehaviour {
         }
     }
 
-    public void DeleteParticle(string cause, BlockType blockType) {
+    public void DeleteParticle(Cause cause, BlockType blockType) {
         if (getBlockType() == BlockType.Water) {
             // Log water position on death.
             string level = SceneManager.GetActiveScene().name;
-            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSePv5UFqW2cPAadJGiioCkeaH7Uoe09bREG5CYxSNP4JEjmxQ/formResponse?usp=pp_url&entry.1230153677={tile.location.x}&entry.813067426={tile.location.y}&entry.541452585={cause}&entry.711829831={level}&submit";
+            string causeStr = cause.name();
+            string url = $"https://docs.google.com/forms/d/e/1FAIpQLSePv5UFqW2cPAadJGiioCkeaH7Uoe09bREG5CYxSNP4JEjmxQ/formResponse?usp=pp_url&entry.1230153677={tile.location.x}&entry.813067426={tile.location.y}&entry.541452585={causeStr}&entry.711829831={level}&submit";
 
             /// Make request on object that isn't about to die.
             /// Docs: https://docs.unity3d.com/ScriptReference/MonoBehaviour.StartCoroutine.html

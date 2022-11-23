@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Death;
 
 public class BlueIceBlock: Block {
 
@@ -20,9 +21,8 @@ public class BlueIceBlock: Block {
             if(p.block.GetType() == typeof(VaporBlock))
             {
                 VaporBlock vb = (VaporBlock)p.block;
-                //vb.ChangeTemperature(tempChange, "BlueIce");
                 WaterBlock w = (WaterBlock) gridManager.ReplaceBlockAtTile(neighbor, BlockType.Water);
-                w.ChangeTemperature(-5, "BlueIce");
+                w.ChangeTemperature(-5, Cause.Cooling);
                 
 
                 return;
@@ -31,7 +31,7 @@ public class BlueIceBlock: Block {
                 return;
             }
             WaterBlock wb = (WaterBlock)p.block;
-            wb.ChangeTemperature(tempChange, "BlueIce");
+            wb.ChangeTemperature(tempChange, Cause.Cooling);
         }
 
         /// Cool distance 1.

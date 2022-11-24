@@ -137,7 +137,7 @@ PrefabInstance:
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _textJson.Array.data[1]
       value: 
-      objectReference: {fileID: 4900000, guid: 5493b0df909a94784820e8936df24ff3, type: 3}
+      objectReference: {fileID: 4900000, guid: 2a7abe0e7bca14561a4bf6f7e409a4aa, type: 3}
     - target: {fileID: 2033372717248814546, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: _blocksGiven.Array.data[0]
       value: 2

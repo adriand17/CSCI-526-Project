@@ -57,6 +57,8 @@ public class Shooting : MonoBehaviour {
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
         if (Input.GetKey(Shooting.FireKey) && laserStatus.canFire()) {
             bool ChangeTemperature = false;
+            GameManager.Instance.GMaudioSource.clip = Resources.Load<AudioClip>("laser2");
+            GameManager.Instance.GMaudioSource.Play();
             if (timeSinceHeat > laserHeatInterval) {
                 ChangeTemperature = true;
                 timeSinceHeat = 0f;
@@ -143,6 +145,7 @@ public class Shooting : MonoBehaviour {
                 case BlockType.RainTrigger:
                     RainTriggerBlock rtBlock = (RainTriggerBlock)particle.block;
                     rtBlock.SpawnWater();
+                    rtBlock.particle.tile.playSoundNamed("thunder2");
                     breakLoop = true;
                     break;
                 

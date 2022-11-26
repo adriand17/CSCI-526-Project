@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     [Header("Reference Managers")]
     public GridManager _gridManager;
     public GunManager _gunManager;
-    
+    public AudioSource GMaudioSource;
 
     [Header("Block Selection Buttons")]
     [SerializeField] public List<BlockType> _blockSelectionButtonTypes;
@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GMaudioSource = gameObject.AddComponent<AudioSource>();
         _wavesArray = new JSONParser.WaveArray();
         _wavesArray.waves = new List<JSONParser.Wave>();
         _dropLocations = new JSONParser.GridLocationsArray();

@@ -58,7 +58,6 @@ public class Tooltip : MonoBehaviour
         localPos.x += -tooltipText.preferredWidth+5f;
         localPos.y += 20f;
         transform.localPosition = localPos;
-
     }
 
     public static void ShowTooltip_static(string tooltipString)

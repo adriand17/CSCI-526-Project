@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     public void Tutorial()
     {
 //        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene("DirtLevel_tutorial");
+        SceneManager.LoadScene("3 New Dirt Level");
     }
     public void QuitGame()
     {

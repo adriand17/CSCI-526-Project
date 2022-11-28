@@ -93,19 +93,19 @@ EditorBuildSettings:
     path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/22 Mixed.unity
     guid: c58ce2c65ce554bd9a30b6f20a010512
   - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/23 Portal.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/22 Portal.unity
     guid: 71e5d5752296f4cc7bf15929ea679685
   - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/24 Portal 2.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/23 Portal 2.unity
     guid: 1ac9814895ab94644af47526946717be
   - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/25 Portal 3.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/24 Portal 3.unity
     guid: ac2f3de38038b42a8bac15894081ce4c
   - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/26 RainMaker.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/28 RainMaker.unity
     guid: 30ae3d5e5ec4f47e5bf6b0c21827df0a
   - enabled: 1
-    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/27 Ice Intro
-      Rain Maker.unity
+    path: Assets/Scenes/DO NOT TEST NEW THINGS HERE/Main Game Scenes/29 RainMaker
+      2.unity
     guid: cf201766612fe44c08489560ae9410c1
   m_configObjects: {}

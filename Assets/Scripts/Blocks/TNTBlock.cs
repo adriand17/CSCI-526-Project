@@ -55,6 +55,8 @@ public class TNTBlock: Block {
         new Vector2(-2, +0),
     };
     private void Explode() {
+        blast.ShowBlast_static(particle.tile.transform.localPosition);
+        Debug.Log(RectTransformUtility.WorldToScreenPoint(null, particle.tile.transform.localPosition));
         foreach (Vector2 target in explosionTargets) {
             Tile tile = particle.tile.getRelativeTile(target);
             if (tile == null) {

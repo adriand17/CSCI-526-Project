@@ -55,10 +55,9 @@ public class Tooltip : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas.GetComponent<RectTransform>(),
             Input.mousePosition, null, out localPos);
 
-        localPos.x += 45f;
-        localPos.y += 35f;
+        localPos.x += -tooltipText.preferredWidth+5f;
+        localPos.y += 20f;
         transform.localPosition = localPos;
-
     }
 
     public static void ShowTooltip_static(string tooltipString)

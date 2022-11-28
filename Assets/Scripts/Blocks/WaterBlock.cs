@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Death;
 
 public class WaterBlock: Block {
 
@@ -47,7 +48,7 @@ public class WaterBlock: Block {
                 return;
             }
             
-            wb.ChangeTemperature(+1f, "CoolWater");
+            wb.ChangeTemperature(+1f, Cause.Cooling);
             tempChange += -1f;
         }
 
@@ -62,10 +63,10 @@ public class WaterBlock: Block {
             tempChange += -1f;
         }
 
-        ChangeTemperature(tempChange, "CoolWater");
+        ChangeTemperature(tempChange, Cause.Cooling);
     }
 
-    public void ChangeTemperature(float tempChange, string cause) {
+    public void ChangeTemperature(float tempChange, Cause cause) {
         temperature += tempChange;
         if (temperature >= tempVapor) {
             particle.DeleteParticle(cause, blockType);

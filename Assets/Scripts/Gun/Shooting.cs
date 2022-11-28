@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using BlockTypeExtension;
+using Death;
 
 public class Shooting : MonoBehaviour {
 
@@ -56,6 +57,8 @@ public class Shooting : MonoBehaviour {
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
         if (Input.GetKey(Shooting.FireKey) && laserStatus.canFire()) {
             bool ChangeTemperature = false;
+            GameManager.Instance.GMaudioSource.clip = Resources.Load<AudioClip>("laser2");
+            GameManager.Instance.GMaudioSource.Play();
             if (timeSinceHeat > laserHeatInterval) {
                 ChangeTemperature = true;
                 timeSinceHeat = 0f;
@@ -128,7 +131,7 @@ public class Shooting : MonoBehaviour {
                 case BlockType.Water:
                     WaterBlock waterBlock = (WaterBlock)particle.block;
                     if (ChangeTemperature) {
-                        waterBlock.ChangeTemperature(TempLaser, "laser");
+                        waterBlock.ChangeTemperature(TempLaser, Cause.Laser);
                     }
                     breakLoop = true;
                     break;
@@ -142,6 +145,7 @@ public class Shooting : MonoBehaviour {
                 case BlockType.RainTrigger:
                     RainTriggerBlock rtBlock = (RainTriggerBlock)particle.block;
                     rtBlock.SpawnWater();
+                    rtBlock.particle.tile.playSoundNamed("thunder2");
                     breakLoop = true;
                     break;
                 
@@ -265,8 +269,14 @@ public class Shooting : MonoBehaviour {
                 case BlockType.Water:
                     WaterBlock waterBlock = (WaterBlock)particle.block;
                     if (ChangeTemperature) {
-                        waterBlock.ChangeTemperature(TempLaser, "laser");
+                        waterBlock.ChangeTemperature(TempLaser, Cause.Laser);
                     }
+                    breakLoop = true;
+                    break;
+
+                case BlockType.RainTrigger:
+                    RainTriggerBlock rtBlock = (RainTriggerBlock)particle.block;
+                    rtBlock.SpawnWater();
                     breakLoop = true;
                     break;
 

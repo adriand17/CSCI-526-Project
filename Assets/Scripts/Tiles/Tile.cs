@@ -34,6 +34,10 @@ public class Tile : MonoBehaviour
 
     public bool Buildable => _isBuildable && Occupied == false;
 
+    /// Audio Source lives in Tile, so that it can play 
+    /// Particle death sounds after Particle is destroyed.
+    private AudioSource audioSource;
+
     public void Init(bool isOffset,  Vector2 gridPosition, GridManager gridManager)
     {
         _isBuildable = false;
@@ -45,6 +49,8 @@ public class Tile : MonoBehaviour
         this.location = new Vector3(gridPosition.x, gridPosition.y, -1);
         this._gridManager = gridManager;
         defaultSprite = _renderer.sprite;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     private void Update()
@@ -201,5 +207,11 @@ public class Tile : MonoBehaviour
 
     public Tile rightTile {
         get { return getRelativeTile(Vector2.right); }
+    }
+
+    /// [SOUNDS]
+    public void playSoundNamed(string soundName) {
+        audioSource.clip = Resources.Load<AudioClip>(soundName);
+        audioSource.Play();
     }
 }

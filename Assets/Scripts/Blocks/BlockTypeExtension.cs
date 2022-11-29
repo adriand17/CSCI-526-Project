@@ -55,11 +55,18 @@ namespace BlockTypeExtension
                 /// Towers aren't explodable.
                 case BlockType.Magma:
                 case BlockType.BlueIce:
+                case BlockType.Condensation:
+                case BlockType.Evaporator:
+                case BlockType.PortalEntry:
+                case BlockType.PortalExit:
+                case BlockType.RainMaker:
+                case BlockType.RainTrigger:
                     return false;
 
                 /// Never destroyed.
                 case BlockType.Bedrock:
                     return false;
+                
 
                 default:
                     Debug.LogError("Unknown block type: " + blockType);

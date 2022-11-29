@@ -22,7 +22,7 @@ public class levelSelector_N : MonoBehaviour
     }
     public void OpenLevel3()
     {
-        SceneManager.LoadScene("ARCHIVE LEVEL 3");
+        SceneManager.LoadScene("3 New Dirt Level");
     }
     public void OpenLevel4()
     {
@@ -98,27 +98,63 @@ public class levelSelector_N : MonoBehaviour
     }
     public void OpenLevel22()
     {
-        SceneManager.LoadScene("22 Mixed");
+        SceneManager.LoadScene("22 Portal");
     }
     public void OpenLevel23()
     {
-        SceneManager.LoadScene("23 Portal");
+        SceneManager.LoadScene("23 Portal 2");
     }
     public void OpenLevel24()
     {
-        SceneManager.LoadScene("24 Portal 2");
+        SceneManager.LoadScene("24 Portal 3");
     }
     public void OpenLevel25()
     {
-        SceneManager.LoadScene("25 Portal 3");
+        SceneManager.LoadScene("25 Portal 4");
     }
     public void OpenLevel26()
     {
-        SceneManager.LoadScene("26 RainMaker");
+        SceneManager.LoadScene("26 Portal 5");
     }
     public void OpenLevel27()
     {
-        SceneManager.LoadScene("27 Ice Intro Rain Maker");
+        SceneManager.LoadScene("27 Portal 6");
+    }
+    public void OpenLevel28()
+    {
+        SceneManager.LoadScene("28 RainMaker");
+    }
+    public void OpenLevel29()
+    {
+        SceneManager.LoadScene("29 RainMaker 2");
+    }
+    public void OpenLevel30()
+    {
+        SceneManager.LoadScene("30 Rain Maker 3");
+    }
+    public void OpenLevel31()
+    {
+        SceneManager.LoadScene("31 Rain Maker 4");
+    }
+    public void OpenLevel32()
+    {
+        SceneManager.LoadScene("32 Portal Rain Maker");
+    }
+    public void OpenLevel33()
+    {
+        SceneManager.LoadScene("33 Portal Glass Box");
+    }
+    public void OpenLevel34()
+    {
+        SceneManager.LoadScene("34 Rain Maker 5");
+    }
+    public void OpenLevel35()
+    {
+        SceneManager.LoadScene("35 Rain Maker 6");
+    }
+    public void OpenLevel36()
+    {
+        SceneManager.LoadScene("36 Rain Maker 7");
     }
 
     //        public void OpenLevel7()

@@ -228,9 +228,9 @@ public class GameManager : MonoBehaviour
                 break;
             case "2 Mirror Level":
                 Debug.Log("2 Mirror Level");
-                SceneManager.LoadScene("ARCHIVE LEVEL 3");
+                SceneManager.LoadScene("3 New Dirt Level");
                 break;
-            case "ARCHIVE LEVEL 3":
+            case "3 New Dirt Level":
                 Debug.Log("3 New Dirt Level");
                 SceneManager.LoadScene("4 Magma_TNT");
                 break;
@@ -287,27 +287,55 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene("21 Mixed Level 4");
                 break;
             case "21 Mixed Level 4":
-                SceneManager.LoadScene("22 Mixed");
+                SceneManager.LoadScene("22 Portal");
                 break;
-            case "22 Mixed":
-                SceneManager.LoadScene("23 Portal");
+            case "22 Portal":
+                SceneManager.LoadScene("23 Portal 2");
                 break;
-            case "23 Portal":
-                SceneManager.LoadScene("24 Portal 2");
+            case "23 Portal 2":
+                SceneManager.LoadScene("24 Portal 3");
                 break;
-            case "24 Portal 2":
-                SceneManager.LoadScene("25 Portal 3");
+            case "24 Portal 3":
+                SceneManager.LoadScene("25 Portal 4");
                 break;
-            case "25 Portal 3":
-                SceneManager.LoadScene("26 RainMaker");
+            case "25 Portal 4":
+                SceneManager.LoadScene("26 Portal 5");
                 break;
-            case "26 RainMaker":
-                SceneManager.LoadScene("27 Ice Intro Rain Maker");
+            case "26 Portal 5":
+                SceneManager.LoadScene("27 Portal 6");
                 break;
-            case "27 Ice Intro Rain Maker":
+            case "27 Portal 6":
+                SceneManager.LoadScene("28 RainMaker");
+                break;
+            case "28 RainMaker":
+                SceneManager.LoadScene("29 RainMaker 2");
+                break;
+            case "29 RainMaker 2":
+                SceneManager.LoadScene("30 Rain Maker 3");
+                break;
+            case "30 Rain Maker 3":
+                SceneManager.LoadScene("31 Rain Maker 4");
+                break;
+            case "31 Rain Maker 4":
+                SceneManager.LoadScene("32 Portal Rain Maker");
+                break;
+            case "32 Portal Rain Maker":
+                SceneManager.LoadScene("33 Portal Glass Box");
+                break;
+            case "33 Portal Glass Box":
+                SceneManager.LoadScene("34 Rain Maker 5");
+                break;
+            case "34 Rain Maker 5":
+                SceneManager.LoadScene("35 Rain Maker 6");
+                break;
+            case "35 Rain Maker 6":
+                SceneManager.LoadScene("36 Rain Maker 7");
+                break;
+            case "36 Rain Maker 7":
                 SceneManager.LoadScene("Title Screen");
                 break;
             default:
+                Debug.Log("Scene not found");
                 SceneManager.LoadScene("Title Screen");
                 break;
 

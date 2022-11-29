@@ -40,12 +40,13 @@ public class PauseMenu_N : MonoBehaviour
     {
         GameIsPaused = false;
         Time.timeScale=1f;
-        SceneManager.LoadScene("Title Screen");
-        Debug.Log("Loading Game");
+        SceneManager.LoadScene("Level Selection");
+//        Debug.Log("Loading Game");
     }
     public void QuitGame_N()
     {
-        Debug.Log("Quit Game");
-        Application.Quit();
+//        Debug.Log("Quit Game");
+//        Application.Quit();
+          SceneManager.LoadScene("Title Screen");
     }
 }

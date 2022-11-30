@@ -14,6 +14,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] public TowerManager _towerManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
+    [SerializeField] private Blast _blastPrefab;
     [SerializeField] private Particle _particlePrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;
@@ -90,6 +91,12 @@ public class GridManager : MonoBehaviour
         {
             _rainMakerBlocks.Add((RainMakerBlock)particle.block);
         }
+    }
+
+    public void CreateExplosion(Vector3 location)
+    {
+        var blast = Instantiate(_blastPrefab, new Vector3(location.x, location.y), Quaternion.identity);
+        blast.Init(this);
     }
 
     // Create inital level geometry.

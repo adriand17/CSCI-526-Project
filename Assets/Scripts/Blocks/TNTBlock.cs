@@ -8,8 +8,10 @@ public class TNTBlock: Block {
 
     private bool isCountingDown = false;
     private static float CountDownTime = 3f;
+    private GridManager _gridManger;
     
-    public TNTBlock(Particle particle): base(BlockType.TNT, particle) {
+    public TNTBlock(Particle particle, GridManager gridManager): base(BlockType.TNT, particle) {
+        _gridManger = gridManager;
     }
 
     public override void Tick() {
@@ -55,7 +57,8 @@ public class TNTBlock: Block {
         new Vector2(-2, +0),
     };
     private void Explode() {
-        blast.ShowBlast_static(particle.tile.transform.localPosition);
+        //blast.ShowBlast_static(particle.tile.transform.localPosition);
+        _gridManger.CreateExplosion(particle.tile.location);
         Debug.Log(RectTransformUtility.WorldToScreenPoint(null, particle.tile.transform.localPosition));
         foreach (Vector2 target in explosionTargets) {
             Tile tile = particle.tile.getRelativeTile(target);

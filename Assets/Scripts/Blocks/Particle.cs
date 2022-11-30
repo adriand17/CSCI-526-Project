@@ -44,7 +44,7 @@ public class Particle : MonoBehaviour {
                 block = new BlueIceBlock(this, gridManager);
                 break;
             case BlockType.TNT:
-                block = new TNTBlock(this);
+                block = new TNTBlock(this, gridManager);
                 break;
             case BlockType.Vapor:
                 block = new VaporBlock(this);

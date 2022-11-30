@@ -344,9 +344,9 @@ public class GridManager : MonoBehaviour
         }*/
         waterCount = 0;
         particles.Clear();
+        portalList.Clear();
         GenerateGrid();
         ResetHealth();
-        portalList.Clear();
     }
 
     public void DestoryParticleAtTile(Tile t)

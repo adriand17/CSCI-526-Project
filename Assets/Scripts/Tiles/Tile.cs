@@ -49,7 +49,7 @@ public class Tile : MonoBehaviour
         baseColor = isOffset ? _offsetColor : _baseColor;
 
         var c = baseColor;
-        c.a = 0.01f; // Semi-transparent
+        c.a = 0.1f; // Semi-transparent
         _renderer.color = c;
         baseColor = c;
 

@@ -61,6 +61,7 @@ namespace BlockTypeExtension
                 case BlockType.PortalExit:
                 case BlockType.RainMaker:
                 case BlockType.RainTrigger:
+                case BlockType.Vapor:
                     return false;
 
                 /// Never destroyed.

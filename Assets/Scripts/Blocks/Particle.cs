@@ -122,7 +122,7 @@ public class Particle : MonoBehaviour {
                 break;
             
             case BlockType.Mirror:
-                _renderer.sprite = Resources.Load<Sprite>("Mirror");
+                _renderer.sprite = Resources.Load<Sprite>("mirror_shiny");
                 _renderer.color = Color.white;
                 break;
             
@@ -146,7 +146,7 @@ public class Particle : MonoBehaviour {
                 _renderer.color = Color.white;
                 break;
             case BlockType.Vapor:
-                _renderer.sprite = Resources.Load<Sprite>("Water");
+                _renderer.sprite = Resources.Load<Sprite>("smoke1");
                 _renderer.color = Color.white;
                 break;
             case BlockType.Evaporator:

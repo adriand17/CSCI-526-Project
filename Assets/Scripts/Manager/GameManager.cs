@@ -353,7 +353,7 @@ public class GameManager : MonoBehaviour
         {
             case "1 Glass Level":
                 Debug.Log("1 Glass Level");
-                _background.sprite = Resources.Load<Sprite>("1");
+                _background.sprite = Resources.Load<Sprite>("5");
                 break;
             case "2 Mirror Level":
                 Debug.Log("2 Mirror Level");
@@ -361,11 +361,11 @@ public class GameManager : MonoBehaviour
                 break;
             case "3 New Dirt Level":
                 Debug.Log("3 New Dirt Level");
-                _background.sprite = Resources.Load<Sprite>("1");
+                _background.sprite = Resources.Load<Sprite>("3");
                 break;
             case "4 Magma_TNT":
                 Debug.Log("4 Magma_TNT");
-                _background.sprite = Resources.Load<Sprite>("1");
+                _background.sprite = Resources.Load<Sprite>("4");
                 break;
             case "5 Vapor":
                 _background.sprite = Resources.Load<Sprite>("1");

@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 716453426388446797, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 03488abc16a6f294f8a8233adc3d44e2, type: 3}
     - target: {fileID: 908789384045110876, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
       value: Evaporator turns water to steam which moves up.
@@ -260,6 +264,22 @@ PrefabInstance:
     - target: {fileID: 4065970998849077862, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
       value: Condensation blocks turn steam back into water.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301033288537933808, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4.854773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301033288537933808, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4.8520303
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301033288537933808, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -613.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 4301033288537933808, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -54.14
       objectReference: {fileID: 0}
     - target: {fileID: 4697892790149067545, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Gun Initializations")]
     [SerializeField] private GameObject _gunObject;
     [SerializeField] private GameObject _camera;
+    [SerializeField] private SpriteRenderer _background;
     
     [Header("Level Loading")]
     [Tooltip("The following are used for level loading and wave progression.")]
@@ -96,6 +97,7 @@ public class GameManager : MonoBehaviour
        
         this._totalWaves = _wavesArray.waves.Count;
         UpdateGameState();
+        loadBackground();
     }
 
 
@@ -337,6 +339,133 @@ public class GameManager : MonoBehaviour
             default:
                 Debug.Log("Scene not found");
                 SceneManager.LoadScene("Title Screen");
+                break;
+
+        }
+    }
+
+
+
+    public void loadBackground()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        switch (currentScene.name)
+        {
+            case "1 Glass Level":
+                Debug.Log("1 Glass Level");
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "2 Mirror Level":
+                Debug.Log("2 Mirror Level");
+                _background.sprite = Resources.Load<Sprite>("2");
+                break;
+            case "3 New Dirt Level":
+                Debug.Log("3 New Dirt Level");
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "4 Magma_TNT":
+                Debug.Log("4 Magma_TNT");
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "5 Vapor":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "6 Ice Intro":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "7 TNT":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "8 TNT Mirror":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "9 Mirror 2":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "10 Mixed Level 1":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "11 Mixed Level 2":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "12 Advance Level 1":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "13 Advance Level 2":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "14 Mixed Level 3":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "15 Mirror 3 Hard":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "16 TNT 2":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "17 Vapor 2":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "18 Vapor 3":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "19 Mixed Level 3":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "20 Vapor 4":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "21 Mixed Level 4":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "22 Portal":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "23 Portal 2":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "24 Portal 3":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "25 Portal 4":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "26 Portal 5":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "27 Portal 6":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "28 RainMaker":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "29 RainMaker 2":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "30 Rain Maker 3":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "31 Rain Maker 4":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "32 Portal Rain Maker":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "33 Portal Glass Box":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "34 Rain Maker 5":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "35 Rain Maker 6":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            case "36 Rain Maker 7":
+                _background.sprite = Resources.Load<Sprite>("1");
+                break;
+            default:
+                Debug.Log("Scene not found");
+                _background.sprite = Resources.Load<Sprite>("1");
                 break;
 
         }

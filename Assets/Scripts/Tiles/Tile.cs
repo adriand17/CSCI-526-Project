@@ -41,9 +41,17 @@ public class Tile : MonoBehaviour
     public void Init(bool isOffset,  Vector2 gridPosition, GridManager gridManager)
     {
         _isBuildable = false;
+
         
+        
+
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         baseColor = isOffset ? _offsetColor : _baseColor;
+
+        var c = baseColor;
+        c.a = 0.01f; // Semi-transparent
+        _renderer.color = c;
+        baseColor = c;
 
         this.gridPosition = gridPosition;
         this.location = new Vector3(gridPosition.x, gridPosition.y, -1);

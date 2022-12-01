@@ -122,7 +122,7 @@ public class Particle : MonoBehaviour {
                 break;
             
             case BlockType.Mirror:
-                _renderer.sprite = Resources.Load<Sprite>("mirror_shiny");
+                _renderer.sprite = Resources.Load<Sprite>("Mirror");
                 _renderer.color = Color.white;
                 break;
             

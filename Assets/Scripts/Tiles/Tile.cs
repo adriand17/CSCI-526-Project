@@ -106,7 +106,7 @@ public class Tile : MonoBehaviour
                 break;
 
             case BlockType.Mirror:
-                _renderer.sprite = Resources.Load<Sprite>("mirror_shiny");
+                _renderer.sprite = Resources.Load<Sprite>("Mirror");
                 break;
 
             case BlockType.Glass:

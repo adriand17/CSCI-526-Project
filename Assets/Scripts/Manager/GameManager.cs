@@ -442,27 +442,27 @@ public class GameManager : MonoBehaviour
                 levelName.text = "Level 21";
                 break;
             case "22 Portal":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("24");
                 levelName.text = "Level 22";
                 break;
             case "23 Portal 2":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("24");
                 levelName.text = "Level 23";
                 break;
             case "24 Portal 3":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("24");
                 levelName.text = "Level 24";
                 break;
             case "25 Portal 4":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("24");
                 levelName.text = "Level 25";
                 break;
             case "26 Portal 5":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("24");
                 levelName.text = "Level 26";
                 break;
             case "27 Portal 6":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("24");
                 levelName.text = "Level 27";
                 break;
             case "28 RainMaker":

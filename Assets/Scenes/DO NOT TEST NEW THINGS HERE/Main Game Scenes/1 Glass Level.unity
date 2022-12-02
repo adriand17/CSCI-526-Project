@@ -157,10 +157,10 @@ RectTransform:
   m_Father: {fileID: 2033372717419687136}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 57.69221, y: -21.5}
-  m_SizeDelta: {x: 364.8171, y: 50.698}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 299, y: -12.765015}
+  m_SizeDelta: {x: 286.9889, y: 76.1113}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &313141552
 MonoBehaviour:
@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2589197180767722048, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4065970998849077862, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
       value: Press space to shoot!
@@ -460,6 +464,14 @@ PrefabInstance:
     - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
       value: Your laser can travel through glass!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 54.026
       objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI

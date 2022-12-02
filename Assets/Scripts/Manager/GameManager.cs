@@ -181,6 +181,7 @@ public class GameManager : MonoBehaviour
         _gridManager.ResetGrid();
         logReset();
         reset = false;
+        didWin = false;
     }
 
 
@@ -198,7 +199,7 @@ public class GameManager : MonoBehaviour
 
     void DetermineWinState()
     {
-       
+
         //check is water is present on map if so then bring up win screen
         if(_gridManager.GetWaterCount() == 0 && !didWin)
         {

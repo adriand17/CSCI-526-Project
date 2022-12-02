@@ -212,7 +212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4697892790149067545, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
-      value: Lasers reflect off mirrors (Gray blocks)
+      value: Lasers reflect off mirrors (Shiny Gray blocks)
       objectReference: {fileID: 0}
     - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
@@ -371,20 +371,28 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 354.8686
+      value: 327.36877
       objectReference: {fileID: 0}
     - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 104.9879
+      value: 87.1131
       objectReference: {fileID: 0}
     - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -208
+      value: 517
       objectReference: {fileID: 0}
     - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -75
+      value: -59
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}

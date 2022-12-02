@@ -257,13 +257,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2589197180767722048, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3352987445894131115, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 4065970998849077862, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
-      value: Condensation blocks turn steam back into water.
+      value: Steam must be turned back into water to be destroyed by the Laser
       objectReference: {fileID: 0}
     - target: {fileID: 4301033288537933808, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_LocalScale.x
@@ -323,7 +327,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5358523140010832491, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5959701149364263015, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_IsActive
@@ -431,7 +435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7943225363499253417, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 291.3779
+      value: 316.4315
       objectReference: {fileID: 0}
     - target: {fileID: 7943225363499253417, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_SizeDelta.y

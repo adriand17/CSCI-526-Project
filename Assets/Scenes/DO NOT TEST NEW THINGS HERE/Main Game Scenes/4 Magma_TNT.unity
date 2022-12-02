@@ -130,6 +130,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 329268517219033214, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 271.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 329268517219033214, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 41.3979
+      objectReference: {fileID: 0}
+    - target: {fileID: 329268517219033214, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 10.889
+      objectReference: {fileID: 0}
+    - target: {fileID: 908789384045110876, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_text
+      value: Water cannot be Destroyed by Tnt
+      objectReference: {fileID: 0}
     - target: {fileID: 1662282350937959471, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_Name
       value: TeamSC Prefab
@@ -202,7 +218,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2051458023696331852, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589197180767722048, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4065970998849077862, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
@@ -215,6 +235,38 @@ PrefabInstance:
     - target: {fileID: 4920554041885870019, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_text
       value: Magma Blocks will burn Water.
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 249.43262
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 67.721985
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -249.44
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -215.3
       objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI
@@ -351,6 +403,14 @@ PrefabInstance:
     - target: {fileID: 8331829191146134385, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -131.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -101
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}

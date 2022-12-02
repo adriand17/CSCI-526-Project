@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 299, y: -12.765015}
-  m_SizeDelta: {x: 286.9889, y: 76.1113}
+  m_AnchoredPosition: {x: 309, y: -72}
+  m_SizeDelta: {x: 305.8584, y: 67.4023}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &313141552
 MonoBehaviour:
@@ -467,11 +467,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 54.026
+      value: 33.861
       objectReference: {fileID: 0}
     - target: {fileID: 5166382227290340207, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: pauseMenuUI

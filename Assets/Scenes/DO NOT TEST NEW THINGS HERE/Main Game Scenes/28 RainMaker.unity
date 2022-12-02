@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 908789384045110876, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_text
+      value: Water Will Come out of the Rain makers (Dark Grey Blocks)
+      objectReference: {fileID: 0}
     - target: {fileID: 1662282350937959471, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_Name
       value: TeamSC Prefab
@@ -148,6 +152,59 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2033372718266607208, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2589197180767722048, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475326388593708456, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 262.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475326388593708456, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0011721
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697892790149067545, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_text
+      value: shooting rain Trigger blocks (red and whiite)will created more water.
+        AVOID SHOOTINg THEM!
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 293.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 67.721985
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -309.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 5147429668985868603, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -192
+      objectReference: {fileID: 0}
+    - target: {fileID: 5358523140010832491, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8017424288591011961, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
@@ -201,6 +258,22 @@ PrefabInstance:
     - target: {fileID: 8331829191146134385, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 293.8644
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 125.7619
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -162.92682
+      objectReference: {fileID: 0}
+    - target: {fileID: 9148055554649202890, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -76.99417
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59e1d1bc0a070494696d4daddeebd25d, type: 3}

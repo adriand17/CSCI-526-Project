@@ -354,30 +354,30 @@ public class GameManager : MonoBehaviour
         {
             case "1 Glass Level":
                 Debug.Log("1 Glass Level");
-                _background.sprite = Resources.Load<Sprite>("5");
+                _background.sprite = Resources.Load<Sprite>("17");
                 levelName.text = "Level 1";
                 break;
             case "2 Mirror Level":
                 Debug.Log("2 Mirror Level");
-                _background.sprite = Resources.Load<Sprite>("5");
+                _background.sprite = Resources.Load<Sprite>("17");
                 levelName.text = "Level 2";
                 break;
             case "3 New Dirt Level":
                 Debug.Log("3 New Dirt Level");
-                _background.sprite = Resources.Load<Sprite>("5");
+                _background.sprite = Resources.Load<Sprite>("17");
                 levelName.text = "Level 3";
                 break;
             case "4 Magma_TNT":
                 Debug.Log("4 Magma_TNT");
-                _background.sprite = Resources.Load<Sprite>("5");
+                _background.sprite = Resources.Load<Sprite>("17");
                 levelName.text = "Level 4";
                 break;
             case "5 Vapor":
-                _background.sprite = Resources.Load<Sprite>("5");
+                _background.sprite = Resources.Load<Sprite>("17");
                 levelName.text = "Level 5";
                 break;
             case "6 Ice Intro":
-                _background.sprite = Resources.Load<Sprite>("7");
+                _background.sprite = Resources.Load<Sprite>("17");
                 levelName.text = "Level 6";
                 break;
             case "7 TNT":
@@ -402,43 +402,43 @@ public class GameManager : MonoBehaviour
                 levelName.text = "Level 11";
                 break;
             case "12 Advance Level 1":
-                _background.sprite = Resources.Load<Sprite>("7");
+                _background.sprite = Resources.Load<Sprite>("5");
                 levelName.text = "Level 12";
                 break;
             case "13 Advance Level 2":
-                _background.sprite = Resources.Load<Sprite>("8");
+                _background.sprite = Resources.Load<Sprite>("5");
                 levelName.text = "Level 13";
                 break;
             case "14 Mixed Level 3":
-                _background.sprite = Resources.Load<Sprite>("8");
+                _background.sprite = Resources.Load<Sprite>("5");
                 levelName.text = "Level 14";
                 break;
             case "15 Mirror 3 Hard":
-                _background.sprite = Resources.Load<Sprite>("8");
+                _background.sprite = Resources.Load<Sprite>("5");
                 levelName.text = "Level 15";
                 break;
             case "16 TNT 2":
-                _background.sprite = Resources.Load<Sprite>("8");
+                _background.sprite = Resources.Load<Sprite>("18");
                 levelName.text = "Level 16";
                 break;
             case "17 Vapor 2":
-                _background.sprite = Resources.Load<Sprite>("8");
+                _background.sprite = Resources.Load<Sprite>("18");
                 levelName.text = "Level 17";
                 break;
             case "18 Vapor 3":
-                _background.sprite = Resources.Load<Sprite>("14");
+                _background.sprite = Resources.Load<Sprite>("18");
                 levelName.text = "Level 18";
                 break;
             case "19 Mixed Level 3":
-                _background.sprite = Resources.Load<Sprite>("14");
+                _background.sprite = Resources.Load<Sprite>("18");
                 levelName.text = "Level 19";
                 break;
             case "20 Vapor 4":
-                _background.sprite = Resources.Load<Sprite>("14");
+                _background.sprite = Resources.Load<Sprite>("18");
                 levelName.text = "Level 20";
                 break;
             case "21 Mixed Level 4":
-                _background.sprite = Resources.Load<Sprite>("14");
+                _background.sprite = Resources.Load<Sprite>("18");
                 levelName.text = "Level 21";
                 break;
             case "22 Portal":
@@ -466,31 +466,31 @@ public class GameManager : MonoBehaviour
                 levelName.text = "Level 27";
                 break;
             case "28 RainMaker":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("23");
                 levelName.text = "Level 28";
                 break;
             case "29 RainMaker 2":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("23");
                 levelName.text = "Level 29";
                 break;
             case "30 Rain Maker 3":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("23");
                 levelName.text = "Level 30";
                 break;
             case "31 Rain Maker 4":
-                _background.sprite = Resources.Load<Sprite>("11");
+                _background.sprite = Resources.Load<Sprite>("23");
                 levelName.text = "Level 31";
                 break;
             case "32 Portal Rain Maker":
-                _background.sprite = Resources.Load<Sprite>("12");
+                _background.sprite = Resources.Load<Sprite>("23");
                 levelName.text = "Level 32";
                 break;
             case "33 Portal Glass Box":
-                _background.sprite = Resources.Load<Sprite>("12");
+                _background.sprite = Resources.Load<Sprite>("19");
                 levelName.text = "Level 33";
                 break;
             case "34 Rain Maker 5":
-                _background.sprite = Resources.Load<Sprite>("12");
+                _background.sprite = Resources.Load<Sprite>("19");
                 levelName.text = "Level 34";
                 break;
             case "35 Rain Maker 6":
@@ -498,7 +498,7 @@ public class GameManager : MonoBehaviour
                 levelName.text = "Level 35";
                 break;
             case "36 Rain Maker 7":
-                _background.sprite = Resources.Load<Sprite>("12");
+                _background.sprite = Resources.Load<Sprite>("19");
                 levelName.text = "Level 36";
                 break;
             default:

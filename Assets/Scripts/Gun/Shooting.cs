@@ -57,8 +57,18 @@ public class Shooting : MonoBehaviour {
         /// `GetKey` instead of `GetKeyDown` allows continuous firing.
         if (Input.GetKey(Shooting.FireKey) && laserStatus.canFire()) {
             bool ChangeTemperature = false;
+            
             GameManager.Instance.GMaudioSource.clip = Resources.Load<AudioClip>("laser2");
-            GameManager.Instance.GMaudioSource.Play();
+
+            if (Input.GetKeyDown(Shooting.FireKey))
+            {
+                GameManager.Instance.GMaudioSource.Play();
+            }
+            else if (Input.GetKey(Shooting.FireKey) && !GameManager.Instance.GMaudioSource.isPlaying)
+            {
+                //set audio to audio while laser is shooting and button is held down
+            }
+           
             if (timeSinceHeat > laserHeatInterval) {
                 ChangeTemperature = true;
                 timeSinceHeat = 0f;
@@ -188,6 +198,7 @@ public class Shooting : MonoBehaviour {
                     //Debug.Log(hit.collider.gameObject);
                     breakLoop = true;
                     break;
+            
                 
                 default:
                     Debug.Log("ERROR: Unknown block type");

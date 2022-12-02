@@ -14,7 +14,7 @@ public class GridManager : MonoBehaviour
     [SerializeField] public TowerManager _towerManager;
     [SerializeField] private int _width, _height;
     [SerializeField] private Tile _tilePrefab;
-    [SerializeField] private Blast _blastPrefab;
+    [SerializeField] private Blast1 _blastPrefab;
     [SerializeField] private Particle _particlePrefab;
     [SerializeField] private Grid grid;
     [SerializeField] private Transform _camera;

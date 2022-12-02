@@ -3460,7 +3460,7 @@ MonoBehaviour:
   _width: 16
   _height: 9
   _tilePrefab: {fileID: 9049506976798774116, guid: 6192c2dacd9154344a52002a8abf1c74, type: 3}
-  _blastPrefab: {fileID: 2577305911383968505, guid: 17f437675eb397a418541dda8285eb62, type: 3}
+  _blastPrefab: {fileID: 7251790831833235343, guid: 17f437675eb397a418541dda8285eb62, type: 3}
   _particlePrefab: {fileID: 5095413079667632645, guid: ec5a8e89f9801c74587f4f8b5bb84394, type: 3}
   _camera: {fileID: 2033372718641105183}
   _GameOverText: {fileID: 2033372717305315179}

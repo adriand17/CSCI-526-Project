@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blast : MonoBehaviour
+public class Blast1 : MonoBehaviour
 {
     //private static Blast instance;
 
